@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <color name="default_text_color">#8A000000</color>
+    <color name="alert_text_color">#898989</color>
+
+
+    <color name="login_back">#41B5F8</color>
+    <color name="B2D5C">#2B2D5C</color>
+    <color name="B2D5C2">#80000000</color>
+    <color name="ffffff">#ffffff</color>
+    <color name="ffffff85">#D9FFFFFF</color>
+    <color name="C5C5C5">#F1F1F1</color>
+    <color name="a515C6F">#515C6F</color>
+
+
+</resources>

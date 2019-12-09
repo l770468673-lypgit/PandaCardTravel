@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".adapters.fragments.MainFrag_home">
+
+
+    <RelativeLayout
+        android:id="@+id/rely_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/lly_attbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/login_back"
+            android:orientation="horizontal" />
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/fragment_home_vvp"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:layout_below="@+id/lly_attbar"
+            android:background="@color/alert_text_color" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/fragment_home_vvp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+
+            <!-- 存放小圆点的容器 -->
+
+            <LinearLayout
+                android:id="@+id/fragment_home_points"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#AFAEAE"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <RadioGroup
+        android:id="@+id/fragment_home__rgroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rely_1"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/fragment_home_active"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/yikatongjihuo"
+            android:gravity="center"
+            android:text="@string/fragment_home_active" />
+
+        <RadioButton
+            android:id="@+id/fragment_home_recharge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/yiktongchongzhi"
+            android:gravity="center"
+            android:text="@string/fragment_home_recharge" />
+
+
+        <RadioButton
+            android:id="@+id/fragment_home_discounts"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/yikatongquanyi"
+            android:gravity="center"
+            android:text="@string/fragment_home_discounts" />
+
+        <RadioButton
+            android:id="@+id/fragment_home_useread"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/yikatongshuoming"
+            android:gravity="center"
+            android:text="@string/fragment_home_useread" />
+    </RadioGroup>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_home__rgroup"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/fragment_home_boxframe">
+
+        <TextView
+            android:layout_width="@dimen/x60"
+            android:layout_height="@dimen/y30"
+            android:layout_margin="8dp"
+            android:background="@drawable/fragment_home_boxframe_text"
+            android:gravity="center"
+            android:text="@string/login_willlogin"
+            android:textColor="@color/ffffff"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="@string/fragment_home_cardmoney" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="6dp"
+                    android:gravity="center"
+                    android:text="@string/fragment_home_xxxxxxx" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:text="@string/fragment_home_cardusetime" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="6dp"
+                    android:text="@string/fragment_home_xxxxxxx" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

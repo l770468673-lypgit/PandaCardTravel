@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/main_frag_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp" />
+
+
+        <RadioGroup
+            android:id="@+id/main_rgroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#B8B8B8"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/main_frag_home"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/icon_success_white"
+                android:gravity="center"
+                android:text="@string/main_frag_home" />
+
+            <RadioButton
+                android:id="@+id/main_frag_travel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/icon_success_white"
+                android:gravity="center"
+                android:text="@string/main_frag_travel" />
+
+            <RadioButton
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="2.5"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:id="@+id/main_frag_shop"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/icon_success_white"
+                android:gravity="center"
+                android:text="@string/main_frag_shop" />
+
+            <RadioButton
+                android:id="@+id/main_frag_mine"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:drawableTop="@drawable/icon_success_white"
+                android:gravity="center"
+                android:text="@string/main_frag_mine" />
+        </RadioGroup>
+    </LinearLayout>
+
+
+    <Button
+        android:background="@drawable/test"
+        android:id="@+id/btntobus"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="40dp"
+        android:gravity="center"
+        android:text="Hello "
+        android:textSize="20sp" />
+
+</RelativeLayout>
