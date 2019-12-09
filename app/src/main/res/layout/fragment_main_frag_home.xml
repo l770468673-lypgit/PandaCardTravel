@@ -60,44 +60,33 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@mipmap/yikatongjihuo"
+            android:drawableTop="@mipmap/mine_addcard"
             android:gravity="center"
             android:text="@string/fragment_home_active" />
 
         <RadioButton
             android:id="@+id/fragment_home_recharge"
             android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"
-            android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@mipmap/yiktongchongzhi"
+            android:drawableTop="@mipmap/mine_myordeer"
             android:gravity="center"
             android:text="@string/fragment_home_recharge" />
 
 
         <RadioButton
             android:id="@+id/fragment_home_discounts"
+
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@mipmap/yikatongquanyi"
+            android:drawableTop="@mipmap/mine_addcard"
             android:gravity="center"
             android:text="@string/fragment_home_discounts" />
 
@@ -106,13 +95,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="5dp"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@mipmap/yikatongshuoming"
+            android:drawableTop="@mipmap/mine_addcard"
             android:gravity="center"
             android:text="@string/fragment_home_useread" />
     </RadioGroup>

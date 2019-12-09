@@ -63,8 +63,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.pandacard.teavel.MainActivity" />
-        <activity android:name="com.pandacard.teavel.NFCActivity" />
+        <activity android:name="com.pandacard.teavel.uis.MainActivity" />
+        <activity android:name="com.pandacard.teavel.uis.NFCActivity" />
 
 
     </application>

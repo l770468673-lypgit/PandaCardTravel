@@ -1,4 +1,4 @@
-package com.pandacard.teavel;
+package com.pandacard.teavel.uis;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.pandacard.teavel.ParamConst;
+import com.pandacard.teavel.R;
 import com.pandacard.teavel.adapters.Main_frag_ViewPagerAdapter;
 import com.pandacard.teavel.adapters.fragments.MainFrag_home;
 import com.pandacard.teavel.adapters.fragments.MainFrag_mine;

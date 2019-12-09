@@ -21,7 +21,7 @@
                 android:background="#0D92CE"
                 android:orientation="horizontal">
 
-                <ImageView
+                <com.pandacard.teavel.CircleImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -209,12 +209,10 @@
 
 
             <RadioGroup
-
                 android:id="@+id/fragment_mine_rgroup"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="100dp"
                 android:layout_below="@+id/fragment_mine_boxframe"
-
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -222,14 +220,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
                     android:button="@null"
-                    android:drawableTop="@mipmap/yikatongjihuo"
-                    android:drawablePadding="6dp"
+                    android:drawableTop="@mipmap/mine_addcard"
                     android:gravity="center"
                     android:text="@string/fragment_mine_active"
                     android:textColor="@color/a515C6F" />
@@ -239,14 +232,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
                     android:button="@null"
-                    android:drawableTop="@mipmap/main_guashijiedong"
-                    android:drawablePadding="6dp"
+                    android:drawableTop="@mipmap/mine_cardlost"
                     android:gravity="center"
                     android:text="@string/fragment_mine_useread"
                     android:textColor="@color/a515C6F" />
@@ -257,14 +245,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
                     android:button="@null"
-                    android:drawableTop="@mipmap/yikatongquanyi"
-                    android:drawablePadding="6dp"
+                    android:drawableTop="@mipmap/mine_myordeer"
                     android:gravity="center"
                     android:text="@string/fragment_mine_order"
                     android:textColor="@color/a515C6F" />
@@ -274,31 +257,29 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginBottom="5dp"
                     android:layout_weight="1"
                     android:button="@null"
-                    android:drawableTop="@mipmap/yikatongshuoming"
-                    android:drawablePadding="6dp"
+                    android:drawableTop="@mipmap/mine_myeid"
                     android:gravity="center"
                     android:text="@string/fragment_mine_eid"
                     android:textColor="@color/a515C6F" />
             </RadioGroup>
 
             <LinearLayout
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/fragment_mine_rgroup"
                 android:layout_margin="20dp"
                 android:background="@drawable/fragment_mine_boxframe_relay"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="12dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_margin="6dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -308,12 +289,13 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_gravity="right"
-                        android:background="@mipmap/ic_launcher" />
+                        android:background="@mipmap/nfc_suggest" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
+                        android:layout_marginLeft="16dp"
                         android:layout_toRightOf="@+id/rely_img1"
                         android:gravity="center"
                         android:text="@string/fragment_mine_reqinvoice"
@@ -324,7 +306,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginRight="20dp"
+
                         android:background="@mipmap/arrow" />
                 </RelativeLayout>
 
@@ -332,6 +314,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_margin="6dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:textColor="@color/a515C6F">
@@ -342,12 +325,13 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_gravity="right"
-                        android:background="@mipmap/ic_launcher" />
+                        android:background="@mipmap/mine_online_kefu" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
+                        android:layout_marginLeft="16dp"
                         android:layout_toRightOf="@+id/rely_img2"
                         android:gravity="center"
                         android:text="@string/fragment_mine_onlineser"
@@ -358,7 +342,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginRight="20dp"
+
                         android:background="@mipmap/arrow" />
                 </RelativeLayout>
 
@@ -366,6 +350,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_margin="6dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -375,12 +360,13 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_gravity="right"
-                        android:background="@mipmap/ic_launcher" />
+                        android:background="@mipmap/nfc_rate" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
+                        android:layout_marginLeft="16dp"
                         android:layout_toRightOf="@+id/rely_img3"
                         android:gravity="center"
                         android:text="@string/fragment_mine_address"
@@ -391,7 +377,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginRight="20dp"
+
                         android:background="@mipmap/arrow" />
                 </RelativeLayout>
 
@@ -399,6 +385,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_margin="6dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -408,12 +395,13 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_gravity="right"
-                        android:background="@mipmap/ic_launcher" />
+                        android:background="@mipmap/mine_setting_pass" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
+                        android:layout_marginLeft="16dp"
                         android:layout_toRightOf="@+id/rely_img4"
                         android:gravity="center"
                         android:text="@string/fragment_mine_changepass"
@@ -424,7 +412,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginRight="20dp"
+
                         android:background="@mipmap/arrow" />
                 </RelativeLayout>
 
@@ -432,6 +420,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_margin="6dp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -441,12 +430,13 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
                         android:layout_gravity="right"
-                        android:background="@mipmap/ic_launcher" />
+                        android:background="@mipmap/nfc_rate" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerInParent="true"
+                        android:layout_marginLeft="16dp"
                         android:layout_toRightOf="@+id/rely_img5"
                         android:gravity="center"
                         android:text="@string/fragment_mine_twxt_about"
@@ -457,7 +447,7 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerInParent="true"
-                        android:layout_marginRight="20dp"
+
                         android:background="@mipmap/arrow" />
                 </RelativeLayout>
 

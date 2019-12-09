@@ -45,8 +45,16 @@
     <string name="fragment_mine_twxt_about">关于我们</string>
 
 
-
-
+    <string name="fragment_bycar_text_select">选择</string>
+    <string name="fragment_bycar_text_chognzhi">充值</string>
+    <string name="fragment_bycar_text_more">更多操作</string>
+    <string name="fragment_bycar_text_yue">余额</string>
+    <string name="fragment_bycar_text_youxiaoqi">有效期：长期</string>
+    <string name="fragment_bycar_text_cardtype">片类型：全国交通一卡通</string>
+    <string name="fragment_bycar_text_outser">出行服务</string>
+    <string name="fragment_bycar_text_subline">(线路图查询等)</string>
+    <string name="fragment_bycar_text_subflybus">(公交地铁飞机等)</string>
+    <string name="fragment_bycar_text_trainsale">乘车优惠推荐</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

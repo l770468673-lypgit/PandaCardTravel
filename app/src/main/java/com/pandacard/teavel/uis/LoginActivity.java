@@ -19,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pandacard.teavel.MainActivity;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.utils.LUtils;
 
@@ -95,7 +94,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mlogin_loginedyt.setOnClickListener(this);
         mLogin_phonenum_reg.setOnClickListener(this);
         mlogin_will_wxlogin.setOnClickListener(this);
-
+        mlogin_loginedyt.setClickable(true);
 
     }
 
@@ -103,8 +102,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.login_loginedyt:
+                mlogin_loginedyt.setClickable(false);
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
+                finish();
 
                 break;
             case R.id.login_phonenum_reg:
