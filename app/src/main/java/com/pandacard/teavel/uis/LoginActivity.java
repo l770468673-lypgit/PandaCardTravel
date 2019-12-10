@@ -10,11 +10,22 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.media.Image;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.text.InputType;
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,15 +64,28 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     };
     private TextView mLogin_phonenum_reg;
     private ImageView mlogin_will_wxlogin;
+    private ImageView mPassvisvilit;
+
+    private boolean editflagView = true;
+    private EditText mLogin_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        loadporerColor();
         initPermission();
 
 
+    }
+
+    private void loadporerColor() {
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(getResources().getColor(R.color.login_back));
+        }
     }
 
     private void initPermission() {
@@ -88,12 +112,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         mlogin_loginedyt = findViewById(R.id.login_loginedyt);
+        mLogin_password = findViewById(R.id.login_password);
         mLogin_phonenum_reg = findViewById(R.id.login_phonenum_reg);
         mlogin_will_wxlogin = findViewById(R.id.login_will_wxlogin);
+        mPassvisvilit = findViewById(R.id.passvisvilit);
 
         mlogin_loginedyt.setOnClickListener(this);
         mLogin_phonenum_reg.setOnClickListener(this);
         mlogin_will_wxlogin.setOnClickListener(this);
+        mPassvisvilit.setOnClickListener(this);
         mlogin_loginedyt.setClickable(true);
 
     }
@@ -111,6 +138,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.login_phonenum_reg:
 
 
+                break;
+            case R.id.passvisvilit:
+                if (!editflagView) {
+                    mLogin_password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                } else {
+                    mLogin_password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+                editflagView = !editflagView;
+                mLogin_password.postInvalidate();
+                CharSequence text = mLogin_password.getText();
+                if (text instanceof Spannable) {
+                    Spannable spanText = (Spannable) text;
+                    Selection.setSelection(spanText, text.length());
+                }
                 break;
             case R.id.login_will_wxlogin:
                 mWechat = ShareSDK.getPlatform(Wechat.NAME);

@@ -1,26 +1,40 @@
 package com.pandacard.teavel.adapters.fragments;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.bumptech.glide.Glide;
+import com.pandacard.teavel.ParamConst;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.adapters.Myadapter;
+import com.pandacard.teavel.uis.MainActivity;
+import com.pandacard.teavel.uis.NFCActivity;
+import com.pandacard.teavel.uis.SaveMoneyActivity;
 import com.pandacard.teavel.utils.LUtils;
+import com.pandacard.teavel.utils.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeListener {
+public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private static String TAG = "MainFrag_home";
     private ViewPager mFragment_home_vvp;
     private List<ImageView> mImageViews;
@@ -28,6 +42,8 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
     private LinearLayout mFragment_home_points;
     // 标记前一个小圆点的位置
     private int prePosition = 0;
+    private RadioGroup mfragment_home__rgroup;
+    private RadioButton mfragment_home_active, mfragment_home_recharge, mfragment_home_useread, mfragment_home_discounts;
 
 
     public MainFrag_home() {
@@ -57,11 +73,40 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
         return inflate;
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        StatusBarUtil.setDrawable(getActivity(), R.drawable.mine_title_jianbian);
+        loadporerColor();
+    }
+
+    private void loadporerColor() {
+        Window window = getActivity().getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.setStatusBarColor(getResources().getColor(R.color.login_back));
+        }
+    }
 
     private void initView(View inflate) {
 
         mFragment_home_vvp = inflate.findViewById(R.id.fragment_home_vvp);
         mFragment_home_points = inflate.findViewById(R.id.fragment_home_points);
+
+        mfragment_home__rgroup = inflate.findViewById(R.id.fragment_home__rgroup);
+
+        mfragment_home_active = inflate.findViewById(R.id.fragment_home_active);
+        mfragment_home_recharge = inflate.findViewById(R.id.fragment_home_recharge);
+        mfragment_home_useread = inflate.findViewById(R.id.fragment_home_useread);
+        mfragment_home_discounts = inflate.findViewById(R.id.fragment_home_discounts);
+
+
+        mfragment_home_active.setOnClickListener(this);
+        mfragment_home_recharge.setOnClickListener(this);
+        mfragment_home_useread.setOnClickListener(this);
+        mfragment_home_discounts.setOnClickListener(this);
+
 
         mMyadapter = new Myadapter(getActivity());
         mFragment_home_vvp.setAdapter(mMyadapter);
@@ -117,9 +162,6 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
         super.onDetach();
     }
 
-    // 当页面滚动的时候调用的方法
-    // offset:0--1:百分比
-    // distance:移动过的真实的距离值.
 
     @Override
     public void onPageScrolled(int position, float offset, int distance) {
@@ -134,15 +176,28 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
         mFragment_home_points.getChildAt(position).setBackgroundResource(
                 R.mipmap.ic_launcher);
 
-//        prePosition = position;
-////         设置底部小点选中状态
-//        mFragment_home_points.getChildAt(prePosition).setBackgroundResource(R.drawable.icon_dot_pink);
-
-
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
 
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fragment_home_active:
+            case R.id.fragment_home_useread:
+            case R.id.fragment_home_discounts:
+                Toast.makeText(getActivity(), "开发中", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.fragment_home_recharge:
+                Intent intent = new Intent(getActivity(), NFCActivity.class);
+                startActivityForResult(intent, ParamConst.READ_CARD_INFO_CODE);
+                break;
+
+        }
+    }
+
+
 }

@@ -11,7 +11,7 @@
         android:id="@+id/login_back_fii"
         android:layout_width="match_parent"
         android:layout_height="@dimen/y220"
-        android:background="@color/login_back">
+        android:background="@drawable/login_title_jianbian">
 
     </RelativeLayout>
 
@@ -132,19 +132,33 @@
                         android:textColor="@color/B2D5C2"
                         android:textSize="14sp" />
 
-                    <EditText
-                        android:id="@+id/password"
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/imgloginpass"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@null"
-                        android:inputType="numberPassword"
-                        android:text="sdsds"
-                        android:textColor="@color/B2D5C"
-                        android:textSize="14sp" />
+                        android:layout_height="wrap_content">
+
+                        <EditText
+                            android:id="@+id/login_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@null"
+                            android:inputType="numberPassword"
+                            android:text="12313132"
+                            android:textColor="@color/B2D5C"
+                            android:textSize="14sp" />
+
+                        <ImageView
+                            android:id="@+id/passvisvilit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerInParent="true"
+                            android:background="@mipmap/login_passvisbilit" />
+                    </RelativeLayout>
+
 
                 </LinearLayout>
 

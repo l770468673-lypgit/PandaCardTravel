@@ -1,8 +1,12 @@
 package com.pandacard.teavel.uis;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -38,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
         initView();
 
@@ -84,8 +89,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btntobus:
-                Intent intent = new Intent(MainActivity.this, NFCActivity.class);
-                startActivityForResult(intent, ParamConst.READ_CARD_INFO_CODE);
+                Intent intent = new Intent(this, SaveMoneyActivity.class);
+                startActivity(intent);
                 break;
         }
     }

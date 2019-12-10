@@ -24,7 +24,7 @@
 
     <string name="fragment_home_cardmoney">余额</string>
     <string name="fragment_home_cardusetime">卡片有效期</string>
-    <string name="fragment_home_xxxxxxx">xxxxxx</string>
+    <string name="fragment_home_xxxxxxx">0.0</string>
 
 
     <string name="fragment_mine_active">添加</string>
@@ -43,6 +43,9 @@
     <string name="fragment_mine_address">地址簿</string>
     <string name="fragment_mine_changepass">修改密码</string>
     <string name="fragment_mine_twxt_about">关于我们</string>
+    <string name="fragment_mine_twxt_edit">编辑资料</string>
+    <string name="fragment_mine_my_cards">我的熊猫卡</string>
+    <string name="fragment_mine_my_cardsnum">熊猫卡号 :</string>
 
 
     <string name="fragment_bycar_text_select">选择</string>
@@ -51,10 +54,23 @@
     <string name="fragment_bycar_text_yue">余额</string>
     <string name="fragment_bycar_text_youxiaoqi">有效期：长期</string>
     <string name="fragment_bycar_text_cardtype">片类型：全国交通一卡通</string>
+    <string name="fragment_bycar_text_usedevices">当前使用设备</string>
     <string name="fragment_bycar_text_outser">出行服务</string>
     <string name="fragment_bycar_text_subline">(线路图查询等)</string>
     <string name="fragment_bycar_text_subflybus">(公交地铁飞机等)</string>
     <string name="fragment_bycar_text_trainsale">乘车优惠推荐</string>
+    <string name="fragment_bycar_text_usehelp">使用帮助</string>
+    <string name="fragment_bycar_text_num">卡号 ：</string>
+
+
+    <string name="nfcact_title_textname">充值写卡</string>
+    <string name="nfcact_title_savemoney">交通充值</string>
+
+    <string name="nfcact_title_fapiao">发票信息 |</string>
+    <string name="nfcact_title_tishi"> 温馨提示 |</string>
+
+
+    <string name="moredispose_text_hist">充值记录</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

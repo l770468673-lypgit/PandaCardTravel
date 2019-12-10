@@ -11,12 +11,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/lly_attbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/login_back"
-            android:orientation="horizontal" />
+            android:background="@drawable/mine_title_jianbian"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:background="@mipmap/main_home_location" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:layout_marginRight="20dp"
+                android:background="@mipmap/main_home_location" />
+        </RelativeLayout>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/fragment_home_vvp"
@@ -53,6 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rely_1"
+        android:layout_marginTop="10dp"
         android:orientation="horizontal">
 
         <RadioButton
@@ -64,18 +84,20 @@
             android:button="@null"
             android:drawableTop="@mipmap/mine_addcard"
             android:gravity="center"
-            android:text="@string/fragment_home_active" />
+            android:text="@string/fragment_home_active"
+            android:textColor="@color/a515C6F" />
 
         <RadioButton
             android:id="@+id/fragment_home_recharge"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@mipmap/mine_myordeer"
+            android:drawableTop="@mipmap/main_home_chongzhi"
             android:gravity="center"
-            android:text="@string/fragment_home_recharge" />
+            android:text="@string/fragment_home_recharge"
+            android:textColor="@color/a515C6F" />
 
 
         <RadioButton
@@ -86,9 +108,10 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@mipmap/mine_addcard"
+            android:drawableTop="@mipmap/mine_myordeer"
             android:gravity="center"
-            android:text="@string/fragment_home_discounts" />
+            android:text="@string/fragment_home_discounts"
+            android:textColor="@color/a515C6F" />
 
         <RadioButton
             android:id="@+id/fragment_home_useread"
@@ -97,9 +120,10 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@mipmap/mine_addcard"
+            android:drawableTop="@mipmap/mine_myeid"
             android:gravity="center"
-            android:text="@string/fragment_home_useread" />
+            android:text="@string/fragment_home_useread"
+            android:textColor="@color/a515C6F" />
     </RadioGroup>
 
     <RelativeLayout
@@ -109,12 +133,15 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
-        android:background="@drawable/fragment_home_boxframe">
+        android:background="@drawable/fragment_home_boxframe"
+        android:gravity="center">
 
         <TextView
             android:layout_width="@dimen/x60"
             android:layout_height="@dimen/y30"
-            android:layout_margin="8dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
             android:background="@drawable/fragment_home_boxframe_text"
             android:gravity="center"
             android:text="@string/login_willlogin"

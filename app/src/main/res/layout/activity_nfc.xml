@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,16 +9,8 @@
     <RelativeLayout
         android:id="@+id/relay_recharge"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
-            android:text="@string/please_use_card"
-            android:textSize="26sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,123 +36,51 @@
 
     </RelativeLayout>
 
-
     <LinearLayout
-        android:id="@+id/lly_showlayout"
+        android:id="@+id/lly_writeview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="gone">
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/y140"
-            android:background="@color/a515C6F" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="10dp">
-
-            <Spinner
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true" />
-
-            <RadioButton
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_marginLeft="@dimen/x12"
-                android:layout_marginRight="@dimen/x12"
-                android:background="@drawable/nfcact_boxframe_paybtn"
-                android:button="@null"
-                android:paddingLeft="20dp"
-                android:paddingTop="10dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="10dp"
-                android:text="@string/fragment_bycar_text_select" />
-
-
-        </RelativeLayout>
-
-        <ImageView
-            android:id="@+id/rely_xiongmaika_pic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center"
-            android:background="@mipmap/pandacard_img" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="@drawable/mine_title_jianbian">
 
             <LinearLayout
-                android:id="@+id/lly_yue1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="6dp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginBottom="20dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <TextView
+                <ImageView
+                    android:id="@+id/chongzhinfc_imageview_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/x12"
-                    android:text="@string/fragment_bycar_text_yue" />
-
-                <RadioButton
-                    android:id="@+id/radio_btn_recharge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x12"
-                    android:layout_marginRight="@dimen/x12"
-                    android:background="@drawable/nfcact_boxframe_paybtn"
-                    android:button="@null"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="20dp"
-                    android:paddingBottom="10dp"
-                    android:text="@string/fragment_bycar_text_chognzhi" />
-
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x12"
-                    android:background="@drawable/nfcact_boxframe_paybtn"
-                    android:button="@null"
-                    android:paddingLeft="20dp"
-                    android:paddingTop="10dp"
-                    android:paddingRight="20dp"
-                    android:paddingBottom="10dp"
-                    android:text="@string/fragment_bycar_text_more" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/lly_yue2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/lly_yue1"
-                android:layout_margin="8dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:background="@mipmap/back_img" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/chongzhinfc_textView"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/x12"
-                    android:text="@string/fragment_bycar_text_youxiaoqi" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/x12"
-                    android:text="@string/fragment_bycar_text_cardtype" />
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:layout_toRightOf="@+id/nfc_imageview_back"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="@string/nfcact_title_savemoney"
+                    android:textColor="@color/ffffff"
+                    android:textSize="30dp" />
 
             </LinearLayout>
 
@@ -169,136 +89,93 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:background="@drawable/nfcactivity_linebox"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/fragment_bycar_text_num"
+                android:textSize="20sp" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/lly_writecardnum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginTop="20dp"
+                android:text="@string/app_name"
+                android:textSize="20sp" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:padding="6dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@mipmap/nfc_suggest" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="@dimen/x12"
-                        android:layout_weight="2"
-                        android:text="@string/fragment_bycar_text_outser" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/x12"
-                        android:layout_weight="2"
-                        android:text="@string/fragment_bycar_text_subline" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-                        android:background="@mipmap/arrow" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="4dp"
-                    android:gravity="center"
-                    android:padding="8dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@mipmap/nfc_rate" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginRight="@dimen/x12"
-                        android:layout_weight="2"
-                        android:text="@string/fragment_bycar_text_trainsale" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="@dimen/x12"
-                        android:layout_weight="2"
-                        android:text="@string/fragment_bycar_text_subflybus" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="20dp"
-
-                        android:background="@mipmap/arrow" />
-                </LinearLayout>
-
-            </LinearLayout>
         </LinearLayout>
 
 
-    </LinearLayout>
+        <GridView
+            android:id="@+id/money_listview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numColumns="3" />
 
+
+        <!--tuikuan  退款 全村 等操作 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/quancun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="圈存" />
+
+            <Button
+                android:id="@+id/quancun2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="圈存2次" />
+
+            <Button
+                android:id="@+id/tuikuan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="退款" />
+        </LinearLayout>
+        <!--tuikuan  ppppppppppppp -->
+    </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/lly_writeview"
+        android:id="@+id/nfc_bottomlly"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
-            android:id="@+id/lly_writecardnum"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/quancun"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="圈存" />
+            android:text="@string/nfcact_title_fapiao"
+            android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/quancun2"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="圈存2次" />
-        <Button
-            android:id="@+id/tuikuan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="退款" />
 
+            android:text="@string/nfcact_title_tishi"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:text="@string/moredispose_text_hist"
+            android:textSize="14sp" />
     </LinearLayout>
-</LinearLayout>
+
+</RelativeLayout>

@@ -8,7 +8,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/C5C5C5">
+        android:background="@color/FAF6F4F4">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -18,15 +18,16 @@
                 android:id="@+id/fragment_mine_bluecolor"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:background="#0D92CE"
+                android:background="@drawable/mine_title_jianbian"
                 android:orientation="horizontal">
 
                 <com.pandacard.teavel.CircleImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
-                    android:background="@mipmap/ic_launcher" />
+                    android:layout_marginRight="12dp"
+                    android:background="@mipmap/icn_avatar" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -58,7 +59,8 @@
                             android:layout_centerInParent="true"
                             android:layout_toRightOf="@+id/mine_rely_name1"
                             android:text="@string/app_name"
-                            android:textColor="@color/ffffff85" />
+                            android:textColor="@color/ffffff85"
+                            android:textSize="12sp" />
 
                         <ImageView
                             android:id="@+id/mine_rely_name3"
@@ -83,8 +85,9 @@
                             android:layout_alignParentLeft="true"
                             android:layout_centerHorizontal="true"
                             android:layout_marginRight="8dp"
-                            android:text="@string/app_name"
-                            android:textColor="@color/ffffff85" />
+                            android:text="@string/fragment_mine_my_cardsnum"
+                            android:textColor="@color/ffffff85"
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/mine_rely_card2"
@@ -92,8 +95,9 @@
                             android:layout_height="wrap_content"
                             android:layout_centerInParent="true"
                             android:layout_toRightOf="@+id/mine_rely_card1"
-                            android:text="@string/app_name"
-                            android:textColor="@color/ffffff85" />
+                            android:text="102450036400511"
+                            android:textColor="@color/ffffff85"
+                            android:textSize="12sp" />
 
                     </RelativeLayout>
 
@@ -111,12 +115,14 @@
                             android:layout_centerInParent="true"
                             android:layout_marginRight="8dp"
                             android:background="@drawable/mine_user_boxframe"
+                            android:padding="6dp"
                             android:paddingLeft="10dp"
                             android:paddingTop="2dp"
                             android:paddingRight="10dp"
                             android:paddingBottom="2dp"
-                            android:text="@string/app_name"
-                            android:textColor="@color/ffffff85" />
+                            android:text="@string/fragment_mine_twxt_edit"
+                            android:textColor="@color/ffffff85"
+                            android:textSize="12sp" />
 
                         <TextView
                             android:id="@+id/mine_rely_panda2"
@@ -125,12 +131,14 @@
                             android:layout_centerInParent="true"
                             android:layout_toRightOf="@+id/mine_rely_panda1"
                             android:background="@drawable/mine_user_boxframe"
+                            android:padding="6dp"
                             android:paddingLeft="10dp"
                             android:paddingTop="2dp"
                             android:paddingRight="10dp"
                             android:paddingBottom="2dp"
-                            android:text="@string/app_name"
-                            android:textColor="@color/ffffff85" />
+                            android:text="@string/fragment_mine_my_cards"
+                            android:textColor="@color/ffffff85"
+                            android:textSize="12sp" />
 
                         <ImageView
                             android:id="@+id/mine_rely_panda3"
@@ -182,7 +190,7 @@
                         android:gravity="center"
                         android:text="@string/fragment_mine_minerecord"
                         android:textColor="@color/ffffff"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -191,7 +199,7 @@
                         android:gravity="center"
                         android:text="@string/fragment_mine_minesummoney"
                         android:textColor="@color/ffffff"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -200,7 +208,7 @@
                         android:gravity="center"
                         android:text="@string/fragment_mine_payset"
                         android:textColor="@color/ffffff"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                 </LinearLayout>
 
@@ -285,9 +293,10 @@
 
                     <ImageView
                         android:id="@+id/rely_img1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
                         android:layout_gravity="right"
                         android:background="@mipmap/nfc_suggest" />
 
@@ -321,9 +330,10 @@
 
                     <ImageView
                         android:id="@+id/rely_img2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
                         android:layout_gravity="right"
                         android:background="@mipmap/mine_online_kefu" />
 
@@ -356,9 +366,10 @@
 
                     <ImageView
                         android:id="@+id/rely_img3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
                         android:layout_gravity="right"
                         android:background="@mipmap/nfc_rate" />
 
@@ -391,9 +402,11 @@
 
                     <ImageView
                         android:id="@+id/rely_img4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
+
                         android:layout_gravity="right"
                         android:background="@mipmap/mine_setting_pass" />
 
@@ -426,11 +439,12 @@
 
                     <ImageView
                         android:id="@+id/rely_img5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_alignParentLeft="true"
+                        android:layout_centerInParent="true"
                         android:layout_gravity="right"
-                        android:background="@mipmap/nfc_rate" />
+                        android:background="@mipmap/mine_black" />
 
                     <TextView
                         android:layout_width="wrap_content"
