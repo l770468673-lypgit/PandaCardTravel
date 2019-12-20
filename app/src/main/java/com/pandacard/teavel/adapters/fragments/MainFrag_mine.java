@@ -18,6 +18,7 @@ import com.pandacard.teavel.R;
 import com.pandacard.teavel.uis.LoginActivity;
 import com.pandacard.teavel.uis.MineCarsDetal;
 import com.pandacard.teavel.utils.StatusBarUtil;
+import com.pandacard.teavel.utils.ToastUtils;
 
 
 public class MainFrag_mine extends Fragment implements View.OnClickListener {
@@ -89,17 +90,12 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
 
         switch (v.getId()) {
             case R.id.fragment_mine_active:
-                Toast.makeText(getActivity(), "开发中", Toast.LENGTH_LONG).show();
-                break;
             case R.id.fragment_mine_useread:
-                Toast.makeText(getActivity(), "开发中", Toast.LENGTH_LONG).show();
-                break;
             case R.id.fragment_mine_order:
-                Toast.makeText(getActivity(), "开发中", Toast.LENGTH_LONG).show();
-                break;
             case R.id.fragment_mine_eid:
-                Toast.makeText(getActivity(), "开发中", Toast.LENGTH_LONG).show();
+                ToastUtils.showToast(getActivity(), "开发中");
                 break;
+
             case R.id.mine_rely_panda3:
                 Intent intentlog = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intentlog);

@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/lly_attbarimageview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
             android:layout_alignParentLeft="true"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
@@ -26,8 +26,8 @@
             android:background="@mipmap/main_home_location" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_centerInParent="true"
             android:layout_gravity="center"

@@ -24,6 +24,7 @@ public class MainFrag_travel extends Fragment {
     private WebView mFragment_travel_webview;
 
     public MainFrag_travel() {
+
     }
 
     public static MainFrag_travel newInstance() {
@@ -43,7 +44,6 @@ public class MainFrag_travel extends Fragment {
                              Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_main_frag_travel, container, false);
 
-
         return inflate;
     }
 
@@ -54,6 +54,8 @@ public class MainFrag_travel extends Fragment {
         loadDate();
     }
 
+
+
     private void loadDate() {
 
 
@@ -63,18 +65,18 @@ public class MainFrag_travel extends Fragment {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 if (newProgress != 100) {
-                    //                    mProgressBar.setProgress(newProgress);
+                    //mProgressBar.setProgress(newProgress);
                 } else {
-                    //                    mProgressBar.setVisibility(View.GONE);
+                    //mProgressBar.setVisibility(View.GONE);
                 }
             }
         });
 
-        mFragment_travel_webview.setWebViewClient(new WebViewClient(){
+        mFragment_travel_webview.setWebViewClient(new WebViewClient() {
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                 super.onReceivedError(view, request, error);
-                LUtils.i(TAG,"onReceivedError 证书问题");
+                LUtils.i(TAG, "onReceivedError 证书问题");
             }
         });
 
@@ -100,11 +102,8 @@ public class MainFrag_travel extends Fragment {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             setting.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);//注意网上例程很多的是.SINGLE_COLUMN，但调试时发现移动版网站会错位，所以改成									       //SINGLE_COLUMN
         }
-
-
         setting.setUseWideViewPort(true);
         setting.setLoadWithOverviewMode(true);
-
 
     }
 

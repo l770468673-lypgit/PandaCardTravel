@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/lly_attbar"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="?attr/actionBarSize"
         android:background="@drawable/mine_title_jianbian"
         android:orientation="horizontal">
 

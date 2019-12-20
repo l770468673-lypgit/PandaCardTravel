@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,11 +26,13 @@ import com.bumptech.glide.Glide;
 import com.pandacard.teavel.ParamConst;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.adapters.Myadapter;
+import com.pandacard.teavel.uis.LoginActivity;
 import com.pandacard.teavel.uis.MainActivity;
 import com.pandacard.teavel.uis.NFCActivity;
 import com.pandacard.teavel.uis.SaveMoneyActivity;
 import com.pandacard.teavel.utils.LUtils;
 import com.pandacard.teavel.utils.StatusBarUtil;
+import com.pandacard.teavel.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +46,7 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
     // 标记前一个小圆点的位置
     private int prePosition = 0;
     private RadioGroup mfragment_home__rgroup;
+    private TextView mFragment_home_login;
     private RadioButton mfragment_home_active, mfragment_home_recharge, mfragment_home_useread, mfragment_home_discounts;
 
 
@@ -93,6 +97,7 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
 
         mFragment_home_vvp = inflate.findViewById(R.id.fragment_home_vvp);
         mFragment_home_points = inflate.findViewById(R.id.fragment_home_points);
+        mFragment_home_login = inflate.findViewById(R.id.fragment_home_login);
 
         mfragment_home__rgroup = inflate.findViewById(R.id.fragment_home__rgroup);
 
@@ -103,6 +108,7 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
 
 
         mfragment_home_active.setOnClickListener(this);
+        mFragment_home_login.setOnClickListener(this);
         mfragment_home_recharge.setOnClickListener(this);
         mfragment_home_useread.setOnClickListener(this);
         mfragment_home_discounts.setOnClickListener(this);
@@ -189,11 +195,15 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
             case R.id.fragment_home_active:
             case R.id.fragment_home_useread:
             case R.id.fragment_home_discounts:
-                Toast.makeText(getActivity(), "开发中", Toast.LENGTH_LONG).show();
+                ToastUtils.showToast(getActivity(), "开发中");
                 break;
             case R.id.fragment_home_recharge:
                 Intent intent = new Intent(getActivity(), NFCActivity.class);
                 startActivityForResult(intent, ParamConst.READ_CARD_INFO_CODE);
+                break;
+            case R.id.fragment_home_login:
+                Intent intent2 = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent2);
                 break;
 
         }

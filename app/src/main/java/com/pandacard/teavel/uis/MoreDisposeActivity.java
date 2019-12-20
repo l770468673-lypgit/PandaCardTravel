@@ -1,13 +1,12 @@
 package com.pandacard.teavel.uis;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import com.pandacard.teavel.R;
+import com.pandacard.teavel.bases.BaseActivity;
 import com.pandacard.teavel.utils.StatusBarUtil;
 
-public class MoreDisposeActivity extends AppCompatActivity {
+public class MoreDisposeActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -11,31 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <RelativeLayout
+        <include
             android:id="@+id/lly_attbar"
+            layout="@layout/toptitlebar_layout"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/mine_title_jianbian"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:background="@mipmap/main_home_location" />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerInParent="true"
-                android:layout_gravity="center"
-                android:layout_marginRight="20dp"
-                android:background="@mipmap/main_home_location" />
-        </RelativeLayout>
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/fragment_home_vvp"
@@ -51,8 +32,6 @@
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:visibility="gone">
-
-
             <!-- 存放小圆点的容器 -->
 
             <LinearLayout
@@ -137,6 +116,7 @@
         android:gravity="center">
 
         <TextView
+            android:id="@+id/fragment_home_login"
             android:layout_width="@dimen/x60"
             android:layout_height="@dimen/y30"
             android:layout_alignParentLeft="true"

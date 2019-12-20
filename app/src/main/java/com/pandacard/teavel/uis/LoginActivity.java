@@ -1,22 +1,14 @@
 package com.pandacard.teavel.uis;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.text.InputType;
 import android.text.Selection;
 import android.text.Spannable;
 import android.text.method.HideReturnsTransformationMethod;
@@ -30,8 +22,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.pandacard.teavel.R;
+import com.pandacard.teavel.bases.BaseActivity;
 import com.pandacard.teavel.utils.LUtils;
+import com.pandacard.teavel.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,7 +42,7 @@ import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.wechat.friends.Wechat;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener, PlatformActionListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener, PlatformActionListener {
 
     private static final String TAG = "LoginActivity";
     private Button mlogin_loginedyt;
@@ -73,10 +71,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mWechat = ShareSDK.getPlatform(Wechat.NAME);
+        mWechat.setPlatformActionListener(this);
         loadporerColor();
         initPermission();
-
-
     }
 
     private void loadporerColor() {
@@ -109,14 +107,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void initView() {
-
-
         mlogin_loginedyt = findViewById(R.id.login_loginedyt);
         mLogin_password = findViewById(R.id.login_password);
         mLogin_phonenum_reg = findViewById(R.id.login_phonenum_reg);
         mlogin_will_wxlogin = findViewById(R.id.login_will_wxlogin);
         mPassvisvilit = findViewById(R.id.passvisvilit);
-
         mlogin_loginedyt.setOnClickListener(this);
         mLogin_phonenum_reg.setOnClickListener(this);
         mlogin_will_wxlogin.setOnClickListener(this);
@@ -136,8 +131,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 break;
             case R.id.login_phonenum_reg:
-
-
+                Intent inreg = new Intent(this, RegistActivity.class);
+                startActivity(inreg);
                 break;
             case R.id.passvisvilit:
                 if (!editflagView) {
@@ -154,8 +149,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
             case R.id.login_will_wxlogin:
-                mWechat = ShareSDK.getPlatform(Wechat.NAME);
-                mWechat.setPlatformActionListener(this);
+                LUtils.d(TAG, "：----login_will_wxlogin---------- ");
+
+                mWechat.showUser(null);
+                LUtils.d(TAG, "：----login_will_wxlogin-------mWechat--- ");
                 break;
         }
     }
@@ -222,7 +219,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     @Override
     public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
         Iterator ite = hashMap.entrySet().iterator();
-        //        mDialog2.dismiss();
 
         while (ite.hasNext()) {
             Map.Entry entry = (Map.Entry) ite.next();
@@ -231,6 +227,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             LUtils.d(TAG, key + "：-------------- " + value);
             LUtils.d(TAG, hashMap.toString());
         }
+
+
+        ToastUtils.showToast(this,"微信登录成功");
+
     }
 
     @Override
@@ -238,11 +238,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                // mDialog2.dismiss();
-                //                mAnimaition.stop();
-                //                iamge_loaddate_anim.setVisibility(View.GONE);
                 LUtils.d(TAG, "微信登录失败!" + i + throwable);
-                Toast.makeText(getBaseContext(), "微信登录失败!" + i + throwable, Toast.LENGTH_SHORT).show();
+
+                ToastUtils.showToast(getBaseContext(), "微信登录失败!" + i + throwable);
             }
         });
     }
@@ -255,7 +253,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //                mDialog2.dismiss();
 
                 LUtils.d(TAG, "微信取消登录!" + i);
-                Toast.makeText(getBaseContext(), "微信取消登录!" + i, Toast.LENGTH_SHORT).show();
+                ToastUtils.showToast(getBaseContext(), "微信取消登录!" + i );
+
             }
         });
     }

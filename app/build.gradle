@@ -7,9 +7,9 @@ MobSDK {
     ShareSDK {
         devInfo {
             Wechat {
-                appId "--------"
-                appSecret "---------------------"
-                userName "智联锁"
+                appId "wx066b02355bf9f39b"
+                appSecret "c15f966a034e8ddb0d1693bf7129917f"
+                userName "熊猫文旅通"
                 path "pages/index/index.html?id=1"
                 withShareTicket true
                 miniprogramType 0
@@ -63,6 +63,7 @@ android {
             // Or, if you prefer, you can continue to check for errors in release builds,
             // but continue the build even when errors are found:
             abortOnError false
+            disable 'GoogleAppIndexingWarning'
         }
         release {
             minifyEnabled false

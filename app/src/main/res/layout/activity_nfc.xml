@@ -9,7 +9,8 @@
     <RelativeLayout
         android:id="@+id/relay_recharge"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
 
         <LinearLayout
@@ -37,54 +38,59 @@
     </RelativeLayout>
 
     <LinearLayout
+android:visibility="gone"
         android:id="@+id/lly_writeview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:orientation="vertical">
 
 
-        <RelativeLayout
+        <include
+            layout="@layout/toptitlebar_layout_withtext"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y140"
-            android:background="@drawable/mine_title_jianbian">
+            android:layout_height="wrap_content" />
+        <!--        <RelativeLayout-->
+        <!--            android:visibility="gone"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="120dp"-->
+        <!--            android:background="@drawable/mine_title_jianbian">-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginBottom="20dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_alignParentLeft="true"-->
+        <!--                android:layout_alignParentBottom="true"-->
+        <!--                android:layout_centerHorizontal="true"-->
+        <!--                android:layout_centerVertical="true"-->
+        <!--                android:layout_marginBottom="20dp"-->
+        <!--                android:gravity="center"-->
+        <!--                android:orientation="horizontal">-->
 
-                <ImageView
-                    android:id="@+id/chongzhinfc_imageview_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="20dp"
-                    android:background="@mipmap/back_img" />
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/chongzhinfc_imageview_back"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_gravity="center_vertical"-->
+        <!--                    android:layout_marginLeft="20dp"-->
+        <!--                    android:background="@mipmap/back_img" />-->
 
-                <TextView
-                    android:id="@+id/chongzhinfc_textView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:layout_toRightOf="@+id/nfc_imageview_back"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="@string/nfcact_title_savemoney"
-                    android:textColor="@color/ffffff"
-                    android:textSize="30dp" />
+        <!--                <TextView-->
+        <!--                    android:id="@+id/chongzhinfc_textView"-->
+        <!--                    android:layout_width="0dp"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:layout_alignParentBottom="true"-->
+        <!--                    android:layout_centerInParent="true"-->
+        <!--                    android:layout_gravity="center"-->
+        <!--                    android:layout_toRightOf="@+id/nfc_imageview_back"-->
+        <!--                    android:layout_weight="1"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:text="@string/nfcact_title_savemoney"-->
+        <!--                    android:textColor="@color/ffffff"-->
+        <!--                    android:textSize="30dp" />-->
 
-            </LinearLayout>
+        <!--            </LinearLayout>-->
 
-        </RelativeLayout>
+        <!--        </RelativeLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -177,5 +183,48 @@
             android:text="@string/moredispose_text_hist"
             android:textSize="14sp" />
     </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/nfc_paymoney_bottomlly"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/paymoney_bottomlly1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/paymoney_bottomlly2"
+            android:text="@string/nfcact_title_realpaymoney"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/paymoney_bottomlly2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@+id/paymoney_bottomlly3"
+            android:text="xxxxx"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/paymoney_bottomlly3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/nfcact_grid_itemclock_commit"
+            android:text="@string/nfcact_title_realpaymoney_commit"
+            android:textColor="@color/B23008"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
 </RelativeLayout>

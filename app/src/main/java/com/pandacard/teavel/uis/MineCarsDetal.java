@@ -1,16 +1,14 @@
 package com.pandacard.teavel.uis;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 
 import com.pandacard.teavel.R;
+import com.pandacard.teavel.bases.BaseActivity;
 import com.pandacard.teavel.utils.StatusBarUtil;
 
-public class MineCarsDetal extends AppCompatActivity implements View.OnClickListener {
+public class MineCarsDetal extends BaseActivity implements View.OnClickListener {
 
 
     private ImageView mAttbarimageview;

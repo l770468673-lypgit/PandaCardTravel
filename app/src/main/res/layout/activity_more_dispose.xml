@@ -96,11 +96,11 @@
 
                     <TextView
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:layout_marginRight="@dimen/x12"
                         android:layout_weight="1"
-                        android:gravity="center"
+                        android:gravity="right"
                         android:text="@string/fragment_bycar_text_num" />
 
                     <TextView
@@ -124,8 +124,8 @@
                         android:layout_gravity="center"
                         android:layout_marginRight="@dimen/x12"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/fragment_bycar_text_num" />
+                        android:gravity="right"
+                        android:text="@string/fragment_bycar_text_onlycardtype" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -148,8 +148,8 @@
                         android:layout_gravity="center"
                         android:layout_marginRight="@dimen/x12"
                         android:layout_weight="1"
-                        android:gravity="center"
-                        android:text="@string/fragment_bycar_text_num" />
+                        android:gravity="right"
+                        android:text="@string/fragment_bycar_text_currentusetype" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -233,7 +233,7 @@
                     android:layout_gravity="center"
                     android:layout_marginRight="@dimen/x12"
                     android:layout_weight="2"
-                    android:text="@string/fragment_bycar_text_trainsale" />
+                    android:text="@string/fragment_bycar_text_exception" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -254,18 +254,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="4dp"
-                android:layout_marginBottom="4dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:padding="8dp">
+                android:padding="6dp">
 
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="10dp"
-                    android:background="@mipmap/nfc_rate" />
+                    android:background="@mipmap/mine_setting_pass" />
 
                 <TextView
                     android:layout_width="0dp"

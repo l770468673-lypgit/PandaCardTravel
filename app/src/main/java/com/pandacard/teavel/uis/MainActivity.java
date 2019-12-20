@@ -1,32 +1,29 @@
 package com.pandacard.teavel.uis;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import com.pandacard.teavel.ParamConst;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.adapters.Main_frag_ViewPagerAdapter;
 import com.pandacard.teavel.adapters.fragments.MainFrag_home;
 import com.pandacard.teavel.adapters.fragments.MainFrag_mine;
 import com.pandacard.teavel.adapters.fragments.MainFrag_shop;
 import com.pandacard.teavel.adapters.fragments.MainFrag_travel;
+import com.pandacard.teavel.bases.BaseActivity;
 import com.pandacard.teavel.utils.LUtils;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
     private static String TAG = "MainActivity";
     private Button mBtntobus;
     private RadioGroup mMain_rgroup;
@@ -85,6 +82,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        LUtils.d(TAG, "onKeyDown: event -- " + keyCode);
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                //finish();
+                Intent home = new Intent(Intent.ACTION_MAIN);
+                home.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                home.addCategory(Intent.CATEGORY_HOME);
+                startActivity(home);
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

@@ -52,19 +52,37 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".uis.MineCarsDetal"></activity>
-        <activity android:name=".uis.MoreDisposeActivity" />
-        <activity android:name=".uis.SaveMoneyActivity" />
-        <activity android:name=".uis.LoginActivity" />
-        <activity android:name=".uis.WelcomeActivit">
+        <activity
+            android:name=".uis.RegistActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".uis.MineCarsDetal"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".uis.MoreDisposeActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".uis.SaveMoneyActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".uis.LoginActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".uis.WelcomeActivit"
+            android:launchMode="singleTask">
             <intent-filter>
+                <action android:name="android.intent.View"/>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".uis.MainActivity" />
-        <activity android:name=".uis.NFCActivity" />
+        <activity
+            android:name=".uis.MainActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".uis.NFCActivity"
+            android:launchMode="singleTask" />
     </application>
 
 </manifest>
