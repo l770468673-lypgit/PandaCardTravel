@@ -1,13 +1,17 @@
 package com.pandacard.teavel.uis;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.Settings;
 import android.text.Selection;
 import android.text.Spannable;
@@ -16,9 +20,11 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +34,10 @@ import androidx.core.content.ContextCompat;
 
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.bases.BaseActivity;
+import com.pandacard.teavel.utils.KeyboardUtils;
 import com.pandacard.teavel.utils.LUtils;
+import com.pandacard.teavel.utils.StatusBarUtil;
+import com.pandacard.teavel.utils.TimerUtils;
 import com.pandacard.teavel.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -66,13 +75,40 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     private boolean editflagView = true;
     private EditText mLogin_password;
+    private RelativeLayout mRel_login_editphone;
+    private RelativeLayout mRel_wxlogin_editphone;
+    private loginHandler mHandler;
+    public static int WX_LOGIN_SETPHONE = 23001;
+    private TextView mChongzhinfc_textView;
+    private ImageView mChongzhinfc_imageview_back;
+    private Button mBtn_yanzhengma;
+    private EditText mWx_login_phonenum;
+    private EditText mWx_login_password;
+
+    class loginHandler extends Handler {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 23001:
+                    LUtils.d(TAG, "微信登录成功");
+                    mRel_wxlogin_editphone.setVisibility(View.VISIBLE);
+                    mRel_login_editphone.setVisibility(View.GONE);
+                    mRel_login_editphone.setClickable(false);
+                    break;
+
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        StatusBarUtil.setDrawable(this, R.drawable.mine_title_jianbian);
         mWechat = ShareSDK.getPlatform(Wechat.NAME);
         mWechat.setPlatformActionListener(this);
+        mHandler = new loginHandler();
         loadporerColor();
         initPermission();
     }
@@ -107,16 +143,31 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
 
     private void initView() {
+
         mlogin_loginedyt = findViewById(R.id.login_loginedyt);
         mLogin_password = findViewById(R.id.login_password);
         mLogin_phonenum_reg = findViewById(R.id.login_phonenum_reg);
         mlogin_will_wxlogin = findViewById(R.id.login_will_wxlogin);
         mPassvisvilit = findViewById(R.id.passvisvilit);
+        mRel_login_editphone = findViewById(R.id.rel_login_editphone);
+        mRel_wxlogin_editphone = findViewById(R.id.rel_wxlogin_editphone);
+        mChongzhinfc_textView = findViewById(R.id.chongzhinfc_textView);
+        mBtn_yanzhengma = findViewById(R.id.btn_yanzhengma);
+        mWx_login_phonenum = findViewById(R.id.wx_login_phonenum);
+        mWx_login_password = findViewById(R.id.wx_login_password);
+
+
+        mChongzhinfc_imageview_back = findViewById(R.id.chongzhinfc_imageview_back);
+
+        TimerUtils.initTimer(this, mBtn_yanzhengma,60000,1000);
         mlogin_loginedyt.setOnClickListener(this);
+        mBtn_yanzhengma.setOnClickListener(this);
         mLogin_phonenum_reg.setOnClickListener(this);
         mlogin_will_wxlogin.setOnClickListener(this);
         mPassvisvilit.setOnClickListener(this);
         mlogin_loginedyt.setClickable(true);
+        mChongzhinfc_imageview_back.setOnClickListener(this);
+        mChongzhinfc_textView.setText(getResources().getText(R.string.login_wx_phonebind));
 
     }
 
@@ -133,6 +184,23 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             case R.id.login_phonenum_reg:
                 Intent inreg = new Intent(this, RegistActivity.class);
                 startActivity(inreg);
+                break;
+            case R.id.btn_yanzhengma:
+                if (mWx_login_phonenum.getText().toString().trim().length()>10){
+
+                    TimerUtils.TimerStart();
+                }else {
+
+                    ToastUtils.showToast(this,R.string.login_wx_editokphone);
+                }
+
+                break;
+            case R.id.chongzhinfc_imageview_back:
+                mRel_wxlogin_editphone.setVisibility(View.GONE);
+                mRel_login_editphone.setVisibility(View.VISIBLE);
+                mRel_login_editphone.setClickable(true);
+                TimerUtils.TimerStop(getResources().getString(R.string.login_wx_querycode));
+                KeyboardUtils.hideKeyboard(this);
                 break;
             case R.id.passvisvilit:
                 if (!editflagView) {
@@ -155,6 +223,16 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 LUtils.d(TAG, "：----login_will_wxlogin-------mWechat--- ");
                 break;
         }
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mRel_wxlogin_editphone.setVisibility(View.GONE);
+        mRel_login_editphone.setVisibility(View.VISIBLE);
+        mRel_login_editphone.setClickable(true);
     }
 
     @Override
@@ -225,11 +303,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             Object key = entry.getKey();
             Object value = entry.getValue();
             LUtils.d(TAG, key + "：-------------- " + value);
-            LUtils.d(TAG, hashMap.toString());
+            //            LUtils.d(TAG, hashMap.toString());
+
         }
 
+        mHandler.sendEmptyMessage(WX_LOGIN_SETPHONE);
 
-        ToastUtils.showToast(this,"微信登录成功");
 
     }
 
@@ -251,11 +330,17 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             @Override
             public void run() {
                 //                mDialog2.dismiss();
-
                 LUtils.d(TAG, "微信取消登录!" + i);
-                ToastUtils.showToast(getBaseContext(), "微信取消登录!" + i );
+                ToastUtils.showToast(getBaseContext(), "微信取消登录!" + i);
 
             }
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mRel_wxlogin_editphone.setVisibility(View.GONE);
+        TimerUtils.TimerStop(getResources().getString(R.string.login_wx_querycode));
     }
 }

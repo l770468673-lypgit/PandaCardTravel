@@ -6,6 +6,10 @@
     <string name="login_will_wxlogin">微信登录</string>
     <string name="login_willreg">注册</string>
     <string name="login_forgetpass">忘记密码</string>
+    <string name="login_wx_nextstep">保存</string>
+    <string name="login_wx_phonebind">手机绑定</string>
+    <string name="login_wx_querycode">获取验证码</string>
+    <string name="login_wx_editokphone">请输入正确的手机号码</string>
 
     <string name="main_frag_home">首页</string>
     <string name="main_frag_travel">旅游</string>
@@ -84,7 +88,6 @@
     <string name="regist_writepassix">密码</string>
     <string name="regist_rewritepassix">确认密码</string>
     <string name="regist_anncommit">提交注册</string>
-
 
 
     <!-- TODO: Remove or change this placeholder text -->

@@ -12,6 +12,7 @@ import com.pandacard.teavel.R;
 import com.pandacard.teavel.bases.BaseActivity;
 import com.pandacard.teavel.utils.LUtils;
 import com.pandacard.teavel.utils.StatusBarUtil;
+import com.pandacard.teavel.utils.TimerUtils;
 import com.pandacard.teavel.utils.ToastUtils;
 
 
@@ -21,7 +22,6 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
     private TextView mChongzhinfc_textView;
     private ImageView mchongzhinfc_imageview_back;
     private Button mlogin_regist, mbtn_yanzhengma;
-    private TimeCount mTimeCount;
     private EditText mreg_phonenum, mimgregpasswordyanzhengmg, mokregpassword, mre_okregpassword;
     private String mVerifyCode;
 
@@ -36,30 +36,8 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
 
     }
 
-    class TimeCount extends CountDownTimer {
-
-        public TimeCount(long millisInFuture, long countDownInterval) {
-            super(millisInFuture, countDownInterval);
-        }
-
-        @Override
-        public void onTick(long millisUntilFinished) {
-
-            mbtn_yanzhengma.setClickable(false);
-            mbtn_yanzhengma.setText("(" + millisUntilFinished / 1000 + ") ");
-        }
-
-        @Override
-        public void onFinish() {
-            mbtn_yanzhengma.setText("获取验证码");
-            mbtn_yanzhengma.setClickable(true);
-
-
-        }
-    }
 
     private void initview() {
-        mTimeCount = new TimeCount(60000, 1000);
 
         mChongzhinfc_textView = findViewById(R.id.chongzhinfc_textView);
         mchongzhinfc_imageview_back = findViewById(R.id.chongzhinfc_imageview_back);
@@ -75,6 +53,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         mlogin_regist.setOnClickListener(this);
         mbtn_yanzhengma.setOnClickListener(this);
         mchongzhinfc_imageview_back.setOnClickListener(this);
+        TimerUtils.initTimer(this,mbtn_yanzhengma,60000,1000);
     }
 
     @Override
@@ -133,8 +112,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                 }
                 break;
             case R.id.btn_yanzhengma:
-                mbtn_yanzhengma.setClickable(false);
-                mTimeCount.start();
+                TimerUtils.TimerStart();
 //                Call<SecurityCode> securityCode =
 //                        HttpManager.getInstance().getHttpClient().getSecurityCode("103", mreg_phonenum.getText().toString().trim());
 //                securityCode.enqueue(new Callback<SecurityCode>() {
