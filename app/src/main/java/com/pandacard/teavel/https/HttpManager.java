@@ -23,8 +23,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class HttpManager {
 
-    //oAuO41dgPvVoQCHvfRM5KOVU9bY0
-    //88313113
     private final static String TAG = "HttpManager";
 
     private final static String CONNECT_LOGIN = "http://www.estonecn.com:9999/";
