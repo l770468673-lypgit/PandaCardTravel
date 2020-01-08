@@ -105,6 +105,7 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
                 ShareUtil.removekey(HttpRetrifitUtils.SERNAME_PHONE);
                 ShareUtil.removekey(HttpRetrifitUtils.SERNAME_PASS);
                 ShareUtil.removekey(HttpRetrifitUtils.WXLOGIN_UNID);
+                ShareUtil.removekey(HttpRetrifitUtils.APPISlOGIN);
                 getActivity().finish();
                 break;
             case R.id.mine_rely_panda2:

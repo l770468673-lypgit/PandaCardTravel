@@ -209,9 +209,11 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 break;
             case R.id.wx_login_logindenglu:
 
-                if (ShareUtil.getString(HttpRetrifitUtils.WXLOGIN_UNID) != null && mWx_login_phonenum.getText().toString().trim().length() == 11//) {
+                if (ShareUtil.getString(HttpRetrifitUtils.WXLOGIN_UNID) != null
+                        && mWx_login_phonenum.getText().toString().trim().length() == 11//) {
                         && mVcode.equals(mWx_login_password.getText().toString().trim())) {
-                    WX_Regist(ShareUtil.getString(HttpRetrifitUtils.WXLOGIN_UNID), mWx_login_phonenum.getText().toString().trim());
+                    WX_Regist(ShareUtil.getString(HttpRetrifitUtils.WXLOGIN_UNID),
+                            mWx_login_phonenum.getText().toString().trim());
                 } else {
                     ToastUtils.showToast(this, "请检查参数");
                 }
@@ -306,6 +308,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 if (response.body() != null) {
                     ToastUtils.showToast(LoginActivity.this, response.body().getMsg());
                     ShareUtil.putString(HttpRetrifitUtils.WXLOGIN_UNID, wxid);
+                    ShareUtil.putString(HttpRetrifitUtils.APPISlOGIN, "login");
                     finish();
                 }
             }
@@ -407,13 +410,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             //            LUtils.d(TAG, key + "：-------------- " + value);
             //            LUtils.d(TAG, hashMap.toString());
 
-            if (entry.getKey().equals("unionid")) {
-                LUtils.d(TAG, key + "：-----unionid--------- " + (String) entry.getValue());
-                ShareUtil.putString(HttpRetrifitUtils.WXLOGIN_UNID, (String) entry.getValue());
-            }
-            if (entry.getKey().equals("headimgurl")) {
-                LUtils.d(TAG, key + "：-----headimgurl--------- " + (String) entry.getValue());
-            }
+//            if (entry.getKey().equals("unionid")) {
+//                LUtils.d(TAG, key + "：-----unionid--------- " + (String) entry.getValue());
+//                ShareUtil.putString(HttpRetrifitUtils.WXLOGIN_UNID, (String) entry.getValue());
+//            }
+//            if (entry.getKey().equals("headimgurl")) {
+//                LUtils.d(TAG, key + "：-----headimgurl--------- " + (String) entry.getValue());
+//            }
 
         }
 
@@ -457,9 +460,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     if (response.body().getCode() == 1 || response.body().getCode() == 2) {
                         ShareUtil.putString(HttpRetrifitUtils.SERNAME_PHONE, phone);
                         ShareUtil.putString(HttpRetrifitUtils.SERNAME_PASS, pass);
+                        ShareUtil.putString(HttpRetrifitUtils.APPISlOGIN, "login");
                         ToastUtils.showToast(LoginActivity.this, response.body().getMsg());
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                        startActivity(intent);
                         finish();
                     } else {
                         ToastUtils.showToast(LoginActivity.this, response.body().getMsg());

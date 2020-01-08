@@ -70,20 +70,24 @@ public class GridViewAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
-        if (mData_list.size() != position + 1) {
-            holder.realmoney.setText(mData_list.get(position).get("truemoney") + " 元");
-            holder.salemoney.setText("售价 ：" + mData_list.get(position).get("salemoney") + " 元");
-            LUtils.d(TAG, "mData_list.size()==" + mData_list.size());
-            LUtils.d(TAG, "position==" + position);
-        } else {
-            holder.realmoney.setText(mData_list.get(position).get("truemoney"));
-            holder.realmoney.setTextSize(16);
-            holder.salemoney.setText("");
-            //              holder.salemoney.setVisibility(View.GONE);
-            LUtils.d(TAG, " else mData_list.size()==" + mData_list.size());
-            LUtils.d(TAG, "else  position==" + position);
-        }
+        holder.realmoney.setText(mData_list.get(position).get("truemoney") + " 元");
+        holder.salemoney.setText("售价 ：" + mData_list.get(position).get("salemoney") + " 元");
+//        if (mData_list.size() != position + 1) {
+//            holder.realmoney.setText(mData_list.get(position).get("truemoney") + " 元");
+//            holder.salemoney.setText("售价 ：" + mData_list.get(position).get("salemoney") + " 元");
+//            LUtils.d(TAG, "mData_list.size()==" + mData_list.size());
+//            LUtils.d(TAG, "position==" + position);
+//        } else {
+//            holder.realmoney.setText(mData_list.get(position).get("truemoney"));
+//            holder.realmoney.setTextSize(16);
+//            holder.salemoney.setText("");
+//            //              holder.salemoney.setVisibility(View.GONE);
+//            LUtils.d(TAG, " else mData_list.size()==" + mData_list.size());
+//            LUtils.d(TAG, "else  position==" + position);
+//
+//
+//
+//        }
 
         if (position == location) {
             holder.gradviewid.setBackground(mActivity.getDrawable(R.drawable.nfcact_grid_itemclock_boxframe));

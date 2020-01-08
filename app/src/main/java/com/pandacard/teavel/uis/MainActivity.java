@@ -19,7 +19,10 @@ import com.pandacard.teavel.adapters.fragments.MainFrag_mine;
 import com.pandacard.teavel.adapters.fragments.MainFrag_shop;
 import com.pandacard.teavel.adapters.fragments.MainFrag_travel;
 import com.pandacard.teavel.bases.BaseActivity;
+import com.pandacard.teavel.utils.HttpRetrifitUtils;
 import com.pandacard.teavel.utils.LUtils;
+import com.pandacard.teavel.utils.ShareUtil;
+import com.pandacard.teavel.utils.ToastUtils;
 
 import java.util.ArrayList;
 
@@ -37,6 +40,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private String mMShoppic;
     private String mMTrippic;
     private String mMBananerpic;
+    private String mAppIsLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,12 +53,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         mMBananerpic = bundle.getString("mBananer");
 
 
+        LUtils.d(TAG, "mAppIsLogin==========" + mAppIsLogin);
         initView();
 
         initPagerDate();
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mAppIsLogin = ShareUtil.getString(HttpRetrifitUtils.APPISlOGIN);
+    }
 
     private void initPagerDate() {
 
@@ -112,8 +122,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btntobus:
-                Intent intent = new Intent(this, SaveMoneyActivity.class);
-                startActivity(intent);
+
+                if (mAppIsLogin != null) {
+
+                    Intent intent = new Intent(this, SaveMoneyActivity.class);
+                    startActivity(intent);
+                } else {
+                    ToastUtils.showToast(this, "请登录后再试");
+                }
+
                 break;
         }
     }

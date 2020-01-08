@@ -21,6 +21,8 @@ public class HttpRetrifitUtils {
     public static final String SERNAME_PHONE = "username_phone";
     public static final String SERNAME_PASS = "username_pass";
     public static final String WXLOGIN_UNID = "wxlogin_unid";
+    public static final String APPISlOGIN = "appislogin";
+
 
     /**
      * Post请求 异步

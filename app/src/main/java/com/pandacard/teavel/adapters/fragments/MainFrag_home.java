@@ -51,6 +51,7 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
     private RadioGroup mfragment_home__rgroup;
     private TextView mFragment_home_login;
     private RadioButton mfragment_home_active, mfragment_home_recharge, mfragment_home_useread, mfragment_home_discounts;
+    private String mAppIsLogin;
 
 
     public MainFrag_home() {
@@ -67,6 +68,7 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
@@ -74,9 +76,11 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflate = inflater.inflate(R.layout.fragment_main_frag_home, container, false);
+
+
         initView(inflate);
         String mBananerpic = getArguments().getString("MBananerpic");
-       loadImg(mBananerpic);
+        loadImg(mBananerpic);
 
 
         return inflate;
@@ -113,7 +117,13 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
 
 
         mfragment_home_active.setOnClickListener(this);
-        mFragment_home_login.setOnClickListener(this);
+        mFragment_home_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent2 = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent2);
+            }
+        });
         mfragment_home_recharge.setOnClickListener(this);
         mfragment_home_useread.setOnClickListener(this);
         mfragment_home_discounts.setOnClickListener(this);
@@ -142,8 +152,8 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
     @Override
     public void onResume() {
         super.onResume();
-
-        if (ShareUtil.getString(HttpRetrifitUtils.SERNAME_PHONE) != null || ShareUtil.getString(HttpRetrifitUtils.WXLOGIN_UNID) != null) {
+        mAppIsLogin = ShareUtil.getString(HttpRetrifitUtils.APPISlOGIN);
+        if (ShareUtil.getString(HttpRetrifitUtils.APPISlOGIN) != null) {
             mFragment_home_login.setText(R.string.login_islogin);
             mFragment_home_login.setClickable(false);
         }
@@ -188,7 +198,7 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
             mFragment_home_points.getChildAt(0).setBackgroundResource(R.mipmap.ic_launcher);
             mMyadapter.setList(imgList);
 
-    }
+        }
     }
 
 
@@ -220,25 +230,28 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.fragment_home_active:
-                Intent in = new Intent(getActivity(), CardActiviting.class);
-                startActivityForResult(in, ParamConst.READ_CARD_INFO_CODE);
-                break;
-            case R.id.fragment_home_useread:
-            case R.id.fragment_home_discounts:
-                ToastUtils.showToast(getActivity(), "开发中");
-                break;
-            case R.id.fragment_home_recharge:
-                Intent intent = new Intent(getActivity(), NFCActivity.class);
-                startActivityForResult(intent, ParamConst.READ_CARD_INFO_CODE);
-                break;
-            case R.id.fragment_home_login:
-                Intent intent2 = new Intent(getActivity(), LoginActivity.class);
-                startActivity(intent2);
-                break;
+        if (mAppIsLogin != null) {
+
+            switch (v.getId()) {
+                case R.id.fragment_home_active:
+                    Intent in = new Intent(getActivity(), CardActiviting.class);
+                    startActivityForResult(in, ParamConst.READ_CARD_INFO_CODE);
+                    break;
+                case R.id.fragment_home_useread:
+                case R.id.fragment_home_discounts:
+                    ToastUtils.showToast(getActivity(), "开发中");
+                    break;
+                case R.id.fragment_home_recharge:
+                    Intent intent = new Intent(getActivity(), NFCActivity.class);
+                    startActivityForResult(intent, ParamConst.READ_CARD_INFO_CODE);
+                    break;
+            }
+
+        } else {
+            ToastUtils.showToast(getActivity(), "请登录后再试");
 
         }
+
     }
 
 
