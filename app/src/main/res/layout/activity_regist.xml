@@ -129,12 +129,12 @@
 
             <EditText
                 android:id="@+id/okregpassword"
+                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/imgokregpass"
                 android:background="@null"
                 android:hint="@string/regist_writepassix"
-                android:inputType="numberPassword"
                 android:textSize="14sp" />
 
 
@@ -171,10 +171,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:inputType="textPassword"
                 android:layout_toRightOf="@+id/re_imgokregpass"
                 android:background="@null"
                 android:hint="@string/regist_rewritepassix"
-                android:inputType="numberPassword"
                 android:textSize="14sp" />
 
 

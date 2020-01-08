@@ -7,13 +7,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.RequestManager;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.bases.BaseActivity;
+import com.pandacard.teavel.https.HttpManager;
+import com.pandacard.teavel.https.beans.ResourcesBean;
+import com.pandacard.teavel.https.beans.SecurityCode;
+import com.pandacard.teavel.utils.HttpRetrifitUtils;
 import com.pandacard.teavel.utils.LUtils;
+import com.pandacard.teavel.utils.ShareUtil;
 import com.pandacard.teavel.utils.StatusBarUtil;
 import com.pandacard.teavel.utils.TimerUtils;
 import com.pandacard.teavel.utils.ToastUtils;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class RegistActivity extends BaseActivity implements View.OnClickListener {
@@ -23,7 +34,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
     private ImageView mchongzhinfc_imageview_back;
     private Button mlogin_regist, mbtn_yanzhengma;
     private EditText mreg_phonenum, mimgregpasswordyanzhengmg, mokregpassword, mre_okregpassword;
-    private String mVerifyCode;
+    private String mVcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +64,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         mlogin_regist.setOnClickListener(this);
         mbtn_yanzhengma.setOnClickListener(this);
         mchongzhinfc_imageview_back.setOnClickListener(this);
-        TimerUtils.initTimer(this,mbtn_yanzhengma,60000,1000);
+        TimerUtils.initTimer(this, mbtn_yanzhengma, 60000, 1000);
     }
 
     @Override
@@ -64,76 +75,106 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.login_regist:
-                if (mimgregpasswordyanzhengmg.getText().toString().trim().equals(mVerifyCode)) {
-                    if (mokregpassword.getText().toString().trim().equals(mre_okregpassword.getText().toString().trim())) {
+                //                if (mimgregpasswordyanzhengmg.getText().toString().trim().equals(mVcode)) {
+                LUtils.d(TAG, mokregpassword.getText().toString().trim());
+                LUtils.d(TAG, mre_okregpassword.getText().toString().trim());
+                if (mokregpassword.getText().toString().trim().equals(mre_okregpassword.getText().toString().trim())) {
+                    Call<SecurityCode> registBeanCall = HttpManager.getInstance().getHttpClient().toRegister(mreg_phonenum.getText().toString().trim(),
+                            mokregpassword.getText().toString().trim());
 
-                        //                        Call<RegistBean> registBeanCall = HttpManager.getInstance().getHttpClient().toRegist("104", mreg_phonenum.getText().toString().trim(), mokregpassword.getText().toString().trim());
-                        //
-                        //                        registBeanCall.enqueue(new Callback<RegistBean>() {
-                        //                            @Override
-                        //                            public void onResponse(Call<RegistBean> call, Response<RegistBean> response) {
-                        //                                RegistBean body = response.body();
-                        //                                if (body != null) {
-                        //                                    if (body.getErrorCode() == 0) {
-                        //
-                        //                                        ToastUtils.showToast(RegistActivity.this, body.getErrorMsg() + "请登录");
-                        //                                        RequestManager.getInstance().register(mreg_phonenum.getText().toString().trim(), mokregpassword.getText().toString().trim(),
-                        //                                                "", "", "", new HttpResponseListener() {
-                        //                                                    @Override
-                        //                                                    public void onResponseSuccess(int i, Object o) {
-                        //                                                        LUtils.d(TAG, "code===" + i);
-                        //                                                    }
-                        //
-                        //                                                    @Override
-                        //                                                    public void onResponseError(Throwable throwable) {
-                        //                                                        LUtils.d(TAG, "throwable===" + throwable.getMessage());
-                        //                                                    }
-                        //                                                });
-                        //                                        finish();
-                        //                                    } else {
-                        //
-                        //                                        ToastUtils.showToast(RegistActivity.this, body.getErrorMsg());
-                        //                                    }
-                        //                                }
-                        //                            }
-                        //
-                        //                            @Override
-                        //                            public void onFailure(Call<RegistBean> call, Throwable t) {
-                        //
-                        //                            }
-                        //                        });
+                    registBeanCall.enqueue(new Callback<SecurityCode>() {
+                        @Override
+                        public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
+                            if (response.body() != null) {
+                                //{"msg":"注册成功","code":1,"extra":{}}
+                                SecurityCode body = response.body();
+                                ToastUtils.showToast(RegistActivity.this, body.getMsg());
+                                if (response.body().getCode() == 1 || response.body().getCode() == 2) {
+                                    tophregLogin(mreg_phonenum.getText().toString().trim(), mre_okregpassword.getText().toString().trim());
+                                    ToastUtils.showToast(RegistActivity.this, "toLogin");
+                                    finish();
+                                } else {
+                                    ToastUtils.showToast(RegistActivity.this, response.body().getMsg());
+                                }
 
-                    } else {
-                        ToastUtils.showToast(this, "两次密码不一致");
-                        LUtils.d(TAG, " ===" + mokregpassword.getText().toString().trim() + "===" + mre_okregpassword.getText().toString().trim());
-                    }
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<SecurityCode> call, Throwable t) {
+
+                        }
+                    });
+
                 } else {
-                    ToastUtils.showToast(RegistActivity.this, "验证码不正确");
+                    ToastUtils.showToast(this, "两次密码不一致");
+                    LUtils.d(TAG, " ===" + mokregpassword.getText().toString().trim() + "===" + mre_okregpassword.getText().toString().trim());
                 }
+                //                } else {
+                //                    ToastUtils.showToast(RegistActivity.this, "验证码不正确");
+                //                }
                 break;
             case R.id.btn_yanzhengma:
-                TimerUtils.TimerStart();
-//                Call<SecurityCode> securityCode =
-//                        HttpManager.getInstance().getHttpClient().getSecurityCode("103", mreg_phonenum.getText().toString().trim());
-//                securityCode.enqueue(new Callback<SecurityCode>() {
-//                    @Override
-//                    public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
-//                        SecurityCode body = response.body();
-//                        if (body != null) {
-//                            if (body.getErrorCode() == 0) {
-//                                mVerifyCode = body.getExtra().getVerifyCode();
-//
-//                            }
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<SecurityCode> call, Throwable t) {
-//
-//                    }
-//                });
+                if (mreg_phonenum.getText().toString().trim().length() == 11) {
+                    TimerUtils.TimerStart();
+                    mVcode = null;
+                    Call<SecurityCode> securityCode =
+                            HttpManager.getInstance().getHttpClient().toSMSCode(mreg_phonenum.getText().toString().trim());
+                    securityCode.enqueue(new Callback<SecurityCode>() {
+                        @Override
+                        public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
+                            SecurityCode body = response.body();
+                            if (body != null) {
+
+                                mVcode = body.getExtra().getVcode();
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<SecurityCode> call, Throwable t) {
+
+                        }
+                    });
+                } else {
+                    ToastUtils.showToast(this, "手机号码长度不够");
+                }
+
 
                 break;
         }
+    }
+
+    private void tophregLogin(final String phone, final String pass) {
+        Call<SecurityCode> resourcesBeanCall = HttpManager.getInstance().getHttpClient().toPhoneLogin(phone, pass);
+        //        ShareUtil.putString(HttpRetrifitUtils.SERNAME_PHONE, phone);
+        //        ShareUtil.putString(HttpRetrifitUtils.SERNAME_PASS, pass);
+        resourcesBeanCall.enqueue(new Callback<SecurityCode>() {
+            @Override
+            public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
+                if (response.body() != null) {
+                    if (response.body().getCode() == 1 || response.body().getCode() == 2) {
+                        ShareUtil.putString(HttpRetrifitUtils.SERNAME_PHONE, phone);
+                        ShareUtil.putString(HttpRetrifitUtils.SERNAME_PASS, pass);
+                        ToastUtils.showToast(RegistActivity.this, response.body().getMsg());
+                        finish();
+                    } else {
+                        ToastUtils.showToast(RegistActivity.this, response.body().getMsg());
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<SecurityCode> call, Throwable t) {
+
+            }
+        });
+
+
     }
 }

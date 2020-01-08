@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.mob.MobSDK;
 import com.pandacard.teavel.https.HttpManager;
+import com.pandacard.teavel.utils.ShareUtil;
 
 public class MyApplication extends Application {
 
@@ -13,6 +14,7 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         MobSDK.init(this);
+        ShareUtil.initShared(this);
         HttpManager.getInstance();
     }
     //    private void checuAppUpdate() {

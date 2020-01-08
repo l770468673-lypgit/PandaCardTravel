@@ -7,10 +7,11 @@
     tools:context=".uis.LoginActivity">
 
     <RelativeLayout
-android:visibility="gone"
+
         android:id="@+id/rel_login_editphone"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <RelativeLayout
             android:id="@+id/login_back_fii"
@@ -95,7 +96,7 @@ android:visibility="gone"
                             android:layout_marginRight="10dp"
                             android:background="@null"
                             android:inputType="number"
-                            android:text="15689123357"
+                            android:text=""
                             android:textColor="@color/B2D5C"
                             android:textSize="14sp" />
 
@@ -150,8 +151,9 @@ android:visibility="gone"
                                 android:layout_marginLeft="20dp"
                                 android:layout_marginRight="10dp"
                                 android:background="@null"
-                                android:inputType="numberPassword"
-                                android:text="12313132"
+                                android:hint="@string/regist_writepassix"
+                                android:text=""
+                                android:inputType="textPassword"
                                 android:textColor="@color/B2D5C"
                                 android:textSize="14sp" />
 
@@ -210,12 +212,13 @@ android:visibility="gone"
                         android:gravity="right"
                         android:text="@string/login_phonenum_for"
                         android:textColor="@color/B2D5C2"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:visibility="gone" />
 
                 </RelativeLayout>
 
                 <Button
-                    android:id="@+id/login_loginedyt"
+                    android:id="@+id/login_logindenglu"
                     android:layout_width="220dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
@@ -285,22 +288,22 @@ android:visibility="gone"
 
 
     <RelativeLayout
-
         android:id="@+id/rel_wxlogin_editphone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
-      >
+        android:visibility="gone">
 
         <include
             android:id="@+id/include_top"
             layout="@layout/toptitlebar_layout_withtext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
         <LinearLayout
-            android:layout_below="@+id/include_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/include_top"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -377,7 +380,7 @@ android:visibility="gone"
                         android:layout_height="20dp"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="10dp"
-                        android:text="@string/login_password"
+                        android:text="@string/regist_writesecuritycode"
                         android:textColor="@color/B2D5C2"
                         android:textSize="14sp" />
 
@@ -429,7 +432,7 @@ android:visibility="gone"
             </RelativeLayout>
 
             <Button
-                android:id="@+id/wx_login_loginedyt"
+                android:id="@+id/wx_login_logindenglu"
                 android:layout_width="220dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"

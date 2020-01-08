@@ -27,9 +27,10 @@ public class MainFrag_travel extends Fragment {
 
     }
 
-    public static MainFrag_travel newInstance() {
+    public static MainFrag_travel newInstance(String MTrippic) {
         MainFrag_travel fragment = new MainFrag_travel();
         Bundle args = new Bundle();
+        args.putString("MTrippic", MTrippic);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,11 +56,9 @@ public class MainFrag_travel extends Fragment {
     }
 
 
-
     private void loadDate() {
 
-
-        mFragment_travel_webview.loadUrl("https://www.baidu.com");
+        mFragment_travel_webview.loadUrl(getArguments().getString("MTrippic"));
         mFragment_travel_webview.setWebViewClient(new WebViewClient());
         mFragment_travel_webview.setWebChromeClient(new WebChromeClient() {
             @Override

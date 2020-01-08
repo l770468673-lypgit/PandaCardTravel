@@ -31,12 +31,11 @@ public class SaveMoneyActivity extends BaseActivity implements View.OnClickListe
         initView();
 
 
-
     }
 
     private void initView() {
 
-     mSave_imageview_back = findViewById(R.id.chongzhinfc_imageview_back);
+        mSave_imageview_back = findViewById(R.id.chongzhinfc_imageview_back);
         mChongzhinfc_textView = findViewById(R.id.chongzhinfc_textView);
         mSave_radio_btn_recharge = findViewById(R.id.save_radio_btn_recharge);
         mSave_radio_btn_more = findViewById(R.id.save_radio_btn_more);

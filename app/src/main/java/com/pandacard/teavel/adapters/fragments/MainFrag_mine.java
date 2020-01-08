@@ -17,6 +17,9 @@ import androidx.fragment.app.Fragment;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.uis.LoginActivity;
 import com.pandacard.teavel.uis.MineCarsDetal;
+import com.pandacard.teavel.uis.WelcomeActivit;
+import com.pandacard.teavel.utils.HttpRetrifitUtils;
+import com.pandacard.teavel.utils.ShareUtil;
 import com.pandacard.teavel.utils.StatusBarUtil;
 import com.pandacard.teavel.utils.ToastUtils;
 
@@ -97,8 +100,11 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.mine_rely_panda3:
-                Intent intentlog = new Intent(getActivity(), LoginActivity.class);
+                Intent intentlog = new Intent(getActivity(), WelcomeActivit.class);
                 startActivity(intentlog);
+                ShareUtil.removekey(HttpRetrifitUtils.SERNAME_PHONE);
+                ShareUtil.removekey(HttpRetrifitUtils.SERNAME_PASS);
+                ShareUtil.removekey(HttpRetrifitUtils.WXLOGIN_UNID);
                 getActivity().finish();
                 break;
             case R.id.mine_rely_panda2:

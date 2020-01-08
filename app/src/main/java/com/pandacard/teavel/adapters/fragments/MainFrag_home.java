@@ -26,11 +26,14 @@ import com.bumptech.glide.Glide;
 import com.pandacard.teavel.ParamConst;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.adapters.Myadapter;
+import com.pandacard.teavel.uis.CardActiviting;
 import com.pandacard.teavel.uis.LoginActivity;
 import com.pandacard.teavel.uis.MainActivity;
 import com.pandacard.teavel.uis.NFCActivity;
 import com.pandacard.teavel.uis.SaveMoneyActivity;
+import com.pandacard.teavel.utils.HttpRetrifitUtils;
 import com.pandacard.teavel.utils.LUtils;
+import com.pandacard.teavel.utils.ShareUtil;
 import com.pandacard.teavel.utils.StatusBarUtil;
 import com.pandacard.teavel.utils.ToastUtils;
 
@@ -53,9 +56,10 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
     public MainFrag_home() {
     }
 
-    public static MainFrag_home newInstance() {
+    public static MainFrag_home newInstance(String MBananerpic) {
         MainFrag_home fragment = new MainFrag_home();
         Bundle args = new Bundle();
+        args.putString("MBananerpic", MBananerpic);
         fragment.setArguments(args);
         return fragment;
     }
@@ -71,7 +75,8 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
         // Inflate the layout for this fragment
         View inflate = inflater.inflate(R.layout.fragment_main_frag_home, container, false);
         initView(inflate);
-        mImageViews = loadImg();
+        String mBananerpic = getArguments().getString("MBananerpic");
+       loadImg(mBananerpic);
 
 
         return inflate;
@@ -121,45 +126,69 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
         mFragment_home_vvp.addOnPageChangeListener(this);
     }
 
-    public List<ImageView> loadImg() {
-        List<String> mList = new ArrayList<>();
-        mList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575455923333&di=f7785f33467b0330962e6393edc59a32&imgtype=0&src=http%3A%2F%2Fpic30.nipic.com%2F20130625%2F7447430_153500063000_2.jpg");
-        mList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575455923333&di=f7785f33467b0330962e6393edc59a32&imgtype=0&src=http%3A%2F%2Fpic30.nipic.com%2F20130625%2F7447430_153500063000_2.jpg");
-        mList.add("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575455923333&di=f7785f33467b0330962e6393edc59a32&imgtype=0&src=http%3A%2F%2Fpic30.nipic.com%2F20130625%2F7447430_153500063000_2.jpg");
+    public List<String> spliteStrWithBlank(String msg) {
+        List<String> mlist = new ArrayList<>();
 
-        List<ImageView> imgList = new ArrayList<>();
-        for (int i = 0; i < mList.size(); i++) {
-            ImageView imageView = new ImageView(getActivity());
-            //Glide加载网络图片
-            Glide.with(getActivity())
-                    .load(mList.get(i))
-                    .into(imageView);
-            //设置imageview占满整个ViewPager
-            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-            imgList.add(imageView);
-
-            // 创建小圆点
-            View point = new View(getActivity());
-            point.setBackgroundResource(R.drawable.icon_dot_pink);
-            // 此处40是指40个px.并不是40dp.
-            // LayoutParams params = new LayoutParams(40, 40);
-            DisplayMetrics metrics = new DisplayMetrics();
-            // TypedValue.applyDimension:
-            float width = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
-                    30, metrics);
-            float height = TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_PX, 30, metrics);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) width, (int) height);
-            point.setLayoutParams(params);
-            params.leftMargin = 5;
-            mFragment_home_points.addView(point);
-
+        String[] s = msg.split(";");
+        for (int i = 0; i < s.length; i++) {
+            if (s[i].length() > 0) {
+                mlist.add(s[i]);
+            }
         }
-        // 设置默认的小圆点
-        mFragment_home_points.getChildAt(0).setBackgroundResource(R.mipmap.ic_launcher);
-        mMyadapter.setList(imgList);
-        return imgList;
+        return mlist;
+    }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (ShareUtil.getString(HttpRetrifitUtils.SERNAME_PHONE) != null || ShareUtil.getString(HttpRetrifitUtils.WXLOGIN_UNID) != null) {
+            mFragment_home_login.setText(R.string.login_islogin);
+            mFragment_home_login.setClickable(false);
+        }
+    }
+
+    public void loadImg(String mBananerpic) {
+
+        if (mBananerpic != null) {
+            List<String> mList = spliteStrWithBlank(mBananerpic);
+
+            List<ImageView> imgList = new ArrayList<>();
+            for (int i = 0; i < mList.size(); i++) {
+                LUtils.d(TAG, "-----------" + mList.get(i));
+                ImageView imageView = new ImageView(getActivity());
+
+                Glide.with(getActivity())
+                        .load(mList.get(i).trim())
+                        .into(imageView);
+
+                //设置imageview占满整个ViewPager
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                imgList.add(imageView);
+
+                // 创建小圆点
+                View point = new View(getActivity());
+                point.setBackgroundResource(R.drawable.icon_dot_pink);
+                // 此处40是指40个px.并不是40dp.
+                // LayoutParams params = new LayoutParams(40, 40);
+                DisplayMetrics metrics = new DisplayMetrics();
+                // TypedValue.applyDimension:
+                float width = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX,
+                        30, metrics);
+                float height = TypedValue.applyDimension(
+                        TypedValue.COMPLEX_UNIT_PX, 30, metrics);
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) width, (int) height);
+                point.setLayoutParams(params);
+                params.leftMargin = 5;
+                mFragment_home_points.addView(point);
+
+            }
+            // 设置默认的小圆点
+            mFragment_home_points.getChildAt(0).setBackgroundResource(R.mipmap.ic_launcher);
+            mMyadapter.setList(imgList);
+
+    }
     }
 
 
@@ -193,6 +222,9 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.fragment_home_active:
+                Intent in = new Intent(getActivity(), CardActiviting.class);
+                startActivityForResult(in, ParamConst.READ_CARD_INFO_CODE);
+                break;
             case R.id.fragment_home_useread:
             case R.id.fragment_home_discounts:
                 ToastUtils.showToast(getActivity(), "开发中");

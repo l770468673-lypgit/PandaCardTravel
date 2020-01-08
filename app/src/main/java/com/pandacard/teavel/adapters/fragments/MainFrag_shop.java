@@ -27,9 +27,10 @@ public class MainFrag_shop extends Fragment {
     }
 
     // TODO: Rename and change types and number of parameters
-    public static MainFrag_shop newInstance() {
+    public static MainFrag_shop newInstance(String MShoppic) {
         MainFrag_shop fragment = new MainFrag_shop();
         Bundle args = new Bundle();
+        args.putString("MShoppic", MShoppic);
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,9 +50,7 @@ public class MainFrag_shop extends Fragment {
     }
 
     private void loadDate() {
-
-
-        mFragment_shop_webview.loadUrl("https://www.baidu.com");
+        mFragment_shop_webview.loadUrl(getArguments().getString("MShoppic"));
         mFragment_shop_webview.setWebViewClient(new WebViewClient());
         mFragment_shop_webview.setWebChromeClient(new WebChromeClient() {
             @Override
@@ -64,11 +63,11 @@ public class MainFrag_shop extends Fragment {
             }
         });
 
-        mFragment_shop_webview.setWebViewClient(new WebViewClient(){
+        mFragment_shop_webview.setWebViewClient(new WebViewClient() {
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
                 super.onReceivedError(view, request, error);
-                LUtils.i(TAG,"onReceivedError 证书问题");
+                LUtils.i(TAG, "onReceivedError 证书问题");
             }
         });
 
@@ -101,7 +100,6 @@ public class MainFrag_shop extends Fragment {
 
 
     }
-
 
 
 }

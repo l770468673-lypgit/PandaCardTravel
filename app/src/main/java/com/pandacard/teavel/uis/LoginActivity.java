@@ -34,8 +34,13 @@ import androidx.core.content.ContextCompat;
 
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.bases.BaseActivity;
+import com.pandacard.teavel.https.HttpManager;
+import com.pandacard.teavel.https.beans.ResourcesBean;
+import com.pandacard.teavel.https.beans.SecurityCode;
+import com.pandacard.teavel.utils.HttpRetrifitUtils;
 import com.pandacard.teavel.utils.KeyboardUtils;
 import com.pandacard.teavel.utils.LUtils;
+import com.pandacard.teavel.utils.ShareUtil;
 import com.pandacard.teavel.utils.StatusBarUtil;
 import com.pandacard.teavel.utils.TimerUtils;
 import com.pandacard.teavel.utils.ToastUtils;
@@ -46,19 +51,23 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import cn.sharesdk.framework.Platform;
+
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.wechat.friends.Wechat;
+import okhttp3.internal.platform.Platform;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener, PlatformActionListener {
 
     private static final String TAG = "LoginActivity";
-    private Button mlogin_loginedyt;
+    private Button mlogin_logineddenglu;
     List<String> mPermissionList = new ArrayList<>();
     private int PERMISSION_CODE = 1000;
     AlertDialog mPermissionDialog;
-    private Platform mWechat;
+    private cn.sharesdk.framework.Platform mWechat;
 
     private String[] permissions = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -84,6 +93,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private Button mBtn_yanzhengma;
     private EditText mWx_login_phonenum;
     private EditText mWx_login_password;
+    private Button mWx_login_loginedyt;
+    private String mVcode;
+    private EditText mLogin_phonenum;
+
 
     class loginHandler extends Handler {
         @Override
@@ -144,54 +157,90 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     private void initView() {
 
-        mlogin_loginedyt = findViewById(R.id.login_loginedyt);
+        mlogin_logineddenglu = findViewById(R.id.login_logindenglu);
+
         mLogin_password = findViewById(R.id.login_password);
+        mLogin_phonenum = findViewById(R.id.login_phonenum);
+
         mLogin_phonenum_reg = findViewById(R.id.login_phonenum_reg);
         mlogin_will_wxlogin = findViewById(R.id.login_will_wxlogin);
+
         mPassvisvilit = findViewById(R.id.passvisvilit);
         mRel_login_editphone = findViewById(R.id.rel_login_editphone);
         mRel_wxlogin_editphone = findViewById(R.id.rel_wxlogin_editphone);
+
         mChongzhinfc_textView = findViewById(R.id.chongzhinfc_textView);
         mBtn_yanzhengma = findViewById(R.id.btn_yanzhengma);
+
         mWx_login_phonenum = findViewById(R.id.wx_login_phonenum);
         mWx_login_password = findViewById(R.id.wx_login_password);
+        mWx_login_loginedyt = findViewById(R.id.wx_login_logindenglu);
 
 
         mChongzhinfc_imageview_back = findViewById(R.id.chongzhinfc_imageview_back);
 
-        TimerUtils.initTimer(this, mBtn_yanzhengma,60000,1000);
-        mlogin_loginedyt.setOnClickListener(this);
+        TimerUtils.initTimer(this, mBtn_yanzhengma, 60000, 1000);
+        mlogin_logineddenglu.setOnClickListener(this);
         mBtn_yanzhengma.setOnClickListener(this);
         mLogin_phonenum_reg.setOnClickListener(this);
         mlogin_will_wxlogin.setOnClickListener(this);
+        mWx_login_loginedyt.setOnClickListener(this);
         mPassvisvilit.setOnClickListener(this);
-        mlogin_loginedyt.setClickable(true);
+        mlogin_logineddenglu.setClickable(true);
         mChongzhinfc_imageview_back.setOnClickListener(this);
         mChongzhinfc_textView.setText(getResources().getText(R.string.login_wx_phonebind));
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.login_loginedyt:
-                mlogin_loginedyt.setClickable(false);
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
-
+            case R.id.login_logindenglu:
+                //                mlogin_loginedyt.setClickable(false);
+                if (mLogin_phonenum.getText().toString().trim().length() == 11 && mLogin_password.getText().toString().trim().length() > 0) {
+                    toLogin(mLogin_phonenum.getText().toString().trim(), mLogin_password.getText().toString().trim());
+                } else {
+                    ToastUtils.showToast(this, "请检查参数是否正确");
+                }
                 break;
             case R.id.login_phonenum_reg:
                 Intent inreg = new Intent(this, RegistActivity.class);
                 startActivity(inreg);
+                finish();
+                break;
+            case R.id.wx_login_logindenglu:
+
+                if (ShareUtil.getString(HttpRetrifitUtils.WXLOGIN_UNID) != null && mWx_login_phonenum.getText().toString().trim().length() == 11//) {
+                        && mVcode.equals(mWx_login_password.getText().toString().trim())) {
+                    WX_Regist(ShareUtil.getString(HttpRetrifitUtils.WXLOGIN_UNID), mWx_login_phonenum.getText().toString().trim());
+                } else {
+                    ToastUtils.showToast(this, "请检查参数");
+                }
+
                 break;
             case R.id.btn_yanzhengma:
-                if (mWx_login_phonenum.getText().toString().trim().length()>10){
+                if (mWx_login_phonenum.getText().toString().trim().length() == 11) {
 
                     TimerUtils.TimerStart();
-                }else {
+                    Call<SecurityCode> securityCode =
+                            HttpManager.getInstance().getHttpClient().toSMSCode(mWx_login_phonenum.getText().toString().trim());
+                    securityCode.enqueue(new Callback<SecurityCode>() {
+                        @Override
+                        public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
+                            SecurityCode body = response.body();
+                            if (body != null) {
+                                mVcode = body.getExtra().getVcode();
 
-                    ToastUtils.showToast(this,R.string.login_wx_editokphone);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<SecurityCode> call, Throwable t) {
+
+                        }
+                    });
+                } else {
+
+                    ToastUtils.showToast(this, R.string.login_wx_editokphone);
                 }
 
                 break;
@@ -225,15 +274,67 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         }
     }
 
+    private void WX_Regist(final String wxid, String phNb) {
 
+        Call<SecurityCode> resourcesBeanCall = HttpManager.getInstance().getHttpClient().toWXRegister(wxid, phNb);
+        resourcesBeanCall.enqueue(new Callback<SecurityCode>() {
+            @Override
+            public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
+                if (response.body() != null) {
+                    if (response.body().getCode() == 1 || response.body().getCode() == 2) {
+                        ToastUtils.showToast(LoginActivity.this, response.body().getMsg());
+                        toWXlogin(wxid);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SecurityCode> call, Throwable t) {
+
+            }
+
+
+        });
+    }
+
+    private void toWXlogin(final String wxid) {
+        Call<SecurityCode> resourcesBeanCall = HttpManager.getInstance().getHttpClient().toWXLogin(wxid);
+        resourcesBeanCall.enqueue(new Callback<SecurityCode>() {
+            @Override
+            public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
+                if (response.body() != null) {
+                    ToastUtils.showToast(LoginActivity.this, response.body().getMsg());
+                    ShareUtil.putString(HttpRetrifitUtils.WXLOGIN_UNID, wxid);
+                    finish();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SecurityCode> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //        mRel_wxlogin_editphone.setVisibility(View.GONE);
+        //        TimerUtils.TimerStop(getResources().getString(R.string.login_wx_querycode));
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mRel_wxlogin_editphone.setVisibility(View.GONE);
-        mRel_login_editphone.setVisibility(View.VISIBLE);
-        mRel_login_editphone.setClickable(true);
+        //        mRel_login_editphone
+        //        mRel_wxlogin_editphone.setVisibility(View.GONE);
+        //        mRel_login_editphone.setVisibility(View.VISIBLE);
+        //        mRel_login_editphone.setClickable(true);
     }
+    //      mRel_wxlogin_editphone.setVisibility(View.GONE);
+    //        TimerUtils.TimerStop(getResources().getString(R.string.login_wx_querycode));
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -294,26 +395,34 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
     }
 
+
     @Override
-    public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+    public void onComplete(cn.sharesdk.framework.Platform platform, int i, HashMap<String, Object> hashMap) {
         Iterator ite = hashMap.entrySet().iterator();
 
         while (ite.hasNext()) {
             Map.Entry entry = (Map.Entry) ite.next();
             Object key = entry.getKey();
             Object value = entry.getValue();
-            LUtils.d(TAG, key + "：-------------- " + value);
+            //            LUtils.d(TAG, key + "：-------------- " + value);
             //            LUtils.d(TAG, hashMap.toString());
+
+            if (entry.getKey().equals("unionid")) {
+                LUtils.d(TAG, key + "：-----unionid--------- " + (String) entry.getValue());
+                ShareUtil.putString(HttpRetrifitUtils.WXLOGIN_UNID, (String) entry.getValue());
+            }
+            if (entry.getKey().equals("headimgurl")) {
+                LUtils.d(TAG, key + "：-----headimgurl--------- " + (String) entry.getValue());
+            }
 
         }
 
         mHandler.sendEmptyMessage(WX_LOGIN_SETPHONE);
 
-
     }
 
     @Override
-    public void onError(Platform platform, final int i, final Throwable throwable) {
+    public void onError(cn.sharesdk.framework.Platform platform, final int i, final Throwable throwable) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -325,7 +434,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
 
     @Override
-    public void onCancel(Platform platform, final int i) {
+    public void onCancel(cn.sharesdk.framework.Platform platform, final int i) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -337,10 +446,36 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         });
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        mRel_wxlogin_editphone.setVisibility(View.GONE);
-        TimerUtils.TimerStop(getResources().getString(R.string.login_wx_querycode));
+
+    private void toLogin(final String phone, final String pass) {
+        Call<SecurityCode> resourcesBeanCall = HttpManager.getInstance().getHttpClient().toPhoneLogin(phone, pass);
+        resourcesBeanCall.enqueue(new Callback<SecurityCode>() {
+            @Override
+            public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
+
+                if (response.body() != null) {
+                    if (response.body().getCode() == 1 || response.body().getCode() == 2) {
+                        ShareUtil.putString(HttpRetrifitUtils.SERNAME_PHONE, phone);
+                        ShareUtil.putString(HttpRetrifitUtils.SERNAME_PASS, pass);
+                        ToastUtils.showToast(LoginActivity.this, response.body().getMsg());
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        ToastUtils.showToast(LoginActivity.this, response.body().getMsg());
+                    }
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<SecurityCode> call, Throwable t) {
+
+            }
+        });
+
+
     }
 }

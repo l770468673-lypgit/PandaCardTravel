@@ -34,24 +34,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private ViewPager mMain_frag_viewpager;
     private ArrayList<Fragment> mMFragmentList;
     private Main_frag_ViewPagerAdapter mViewPagerAdapter;
+    private String mMShoppic;
+    private String mMTrippic;
+    private String mMBananerpic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        Bundle bundle = getIntent().getExtras();
+        mMShoppic = bundle.getString("mShop");
+        mMTrippic = bundle.getString("mTrip");
+        mMBananerpic = bundle.getString("mBananer");
+
 
         initView();
 
         initPagerDate();
     }
 
+
+
     private void initPagerDate() {
 
         mMFragmentList = new ArrayList<>();
-        mMFragmentList.add(MainFrag_home.newInstance());
-        mMFragmentList.add(MainFrag_travel.newInstance());
-        mMFragmentList.add(MainFrag_shop.newInstance());
+        mMFragmentList.add(MainFrag_home.newInstance(mMBananerpic));
+        mMFragmentList.add(MainFrag_travel.newInstance(mMTrippic));
+        mMFragmentList.add(MainFrag_shop.newInstance(mMShoppic));
         mMFragmentList.add(MainFrag_mine.newInstance());
         mViewPagerAdapter = new Main_frag_ViewPagerAdapter(getSupportFragmentManager());
 
@@ -97,6 +107,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         return super.onKeyDown(keyCode, event);
 
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

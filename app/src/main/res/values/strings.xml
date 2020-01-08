@@ -3,6 +3,7 @@
     <string name="nfc_read_card_wait_alert">打开手机NFC功能\n将卡片贴于手机背面NFC感应区\n（若卡片无反应，移动卡片寻找NFC感应区）</string>
     <string name="please_use_card">请帖卡</string>
     <string name="login_willlogin">登录</string>
+    <string name="login_islogin">已登录</string>
     <string name="login_will_wxlogin">微信登录</string>
     <string name="login_willreg">注册</string>
     <string name="login_forgetpass">忘记密码</string>
@@ -73,6 +74,7 @@
     <string name="nfcact_title_textname">充值写卡</string>
     <string name="nfcact_title_savemoney">交通充值</string>
 
+
     <string name="nfcact_title_fapiao">发票信息 |</string>
     <string name="nfcact_title_tishi"> 温馨提示 |</string>
     <string name="nfcact_title_realpaymoney"> 实付金额  ： </string>
@@ -85,9 +87,19 @@
     <string name="regist_writenum">手机号</string>
     <string name="regist_writesecuritycode">验证码</string>
     <string name="regist_getwritesecuritycode">获取验证码</string>
-    <string name="regist_writepassix">密码</string>
+    <string name="regist_writepassix">请输入六位数密码</string>
     <string name="regist_rewritepassix">确认密码</string>
     <string name="regist_anncommit">提交注册</string>
+
+    <string name="cardactive_title_eidact">添加卡片</string>
+    <string name="cardactive_idxcrad_read">请放置身份证</string>
+    <string name="cardactive_idxcrad_start">正在读取中</string>
+    <string name="cardactive_idxcrad_failed">读取失败</string>
+    <string name="cardactive_idxcrad_ok">读取成功</string>
+    <string name="cardactive_nextin">正在取卡</string>
+    <string name="cardactive_nextstep">下一步</string>
+    <string name="cardactive_idcardreadover">放置熊猫卡</string>
+    <string name="cardactive_faceover">人脸识别成功</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

@@ -9,8 +9,7 @@
     <RelativeLayout
         android:id="@+id/relay_recharge"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
 
         <LinearLayout
@@ -38,11 +37,11 @@
     </RelativeLayout>
 
     <LinearLayout
-android:visibility="gone"
         android:id="@+id/lly_writeview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:visibility="gone">
 
 
         <include
@@ -128,8 +127,7 @@ android:visibility="gone"
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/quancun"
