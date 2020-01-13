@@ -66,6 +66,7 @@
     <string name="fragment_bycar_text_trainsale">乘车优惠推荐</string>
     <string name="fragment_bycar_text_usehelp">使用帮助</string>
     <string name="fragment_bycar_text_num">卡号 ：</string>
+    <string name="fragment_bycar_text_money">余额 ：</string>
     <string name="fragment_bycar_text_exception">异常处理 ：</string>
     <string name="fragment_bycar_text_onlycardtype">卡类型 ：</string>
     <string name="fragment_bycar_text_currentusetype">当前类型 ：</string>
@@ -79,6 +80,7 @@
     <string name="nfcact_title_tishi"> 温馨提示 |</string>
     <string name="nfcact_title_realpaymoney"> 实付金额  ： </string>
     <string name="nfcact_title_realpaymoney_commit"> 立即充值 </string>
+    <string name="nfcact_title_realpaymoney_othermoney"> 其他金额 </string>
 
 
     <string name="moredispose_text_hist">充值记录</string>

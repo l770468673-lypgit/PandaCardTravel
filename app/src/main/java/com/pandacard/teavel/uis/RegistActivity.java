@@ -75,49 +75,59 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.login_regist:
-                //                if (mimgregpasswordyanzhengmg.getText().toString().trim().equals(mVcode)) {
-                LUtils.d(TAG, mokregpassword.getText().toString().trim());
-                LUtils.d(TAG, mre_okregpassword.getText().toString().trim());
-                if (mokregpassword.getText().toString().trim().equals(mre_okregpassword.getText().toString().trim())) {
-                    Call<SecurityCode> registBeanCall = HttpManager.getInstance().getHttpClient().toRegister(mreg_phonenum.getText().toString().trim(),
-                            mokregpassword.getText().toString().trim());
+                if (mimgregpasswordyanzhengmg.getText().toString().trim().equals(mVcode)) {
+                    LUtils.d(TAG, mokregpassword.getText().toString().trim());
+                    LUtils.d(TAG, mre_okregpassword.getText().toString().trim());
+                    //判断第一个字符是否为“数”
+                    if (mreg_phonenum.getText().toString().trim().startsWith("1")) {
+                        if (mokregpassword.getText().toString().trim().equals(mre_okregpassword.getText().toString().trim())&&
+                                mokregpassword.getText().toString().trim().length()>=6) {
 
-                    registBeanCall.enqueue(new Callback<SecurityCode>() {
-                        @Override
-                        public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
-                            if (response.body() != null) {
-                                //{"msg":"注册成功","code":1,"extra":{}}
-                                SecurityCode body = response.body();
-                                ToastUtils.showToast(RegistActivity.this, body.getMsg());
-                                if (response.body().getCode() == 1 || response.body().getCode() == 2) {
-                                    tophregLogin(mreg_phonenum.getText().toString().trim(), mre_okregpassword.getText().toString().trim());
-                                    ToastUtils.showToast(RegistActivity.this, "toLogin");
-                                    finish();
-                                } else {
-                                    ToastUtils.showToast(RegistActivity.this, response.body().getMsg());
+                            Call<SecurityCode> registBeanCall = HttpManager.getInstance().getHttpClient().toRegister(
+                                    mreg_phonenum.getText().toString().trim(),
+                                    mokregpassword.getText().toString().trim());
+
+                            registBeanCall.enqueue(new Callback<SecurityCode>() {
+                                @Override
+                                public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
+                                    if (response.body() != null) {
+                                        //{"msg":"注册成功","code":1,"extra":{}}
+                                        SecurityCode body = response.body();
+                                        ToastUtils.showToast(RegistActivity.this, body.getMsg());
+                                        if (response.body().getCode() == 1) {
+                                            tophregLogin(mreg_phonenum.getText().toString().trim(), mre_okregpassword.getText().toString().trim());
+                                            ToastUtils.showToast(RegistActivity.this, "toLogin");
+                                            finish();
+                                        } else {
+                                            ToastUtils.showToast(RegistActivity.this, response.body().getMsg());
+                                        }
+
+
+                                    }
+
                                 }
 
+                                @Override
+                                public void onFailure(Call<SecurityCode> call, Throwable t) {
 
-                            }
+                                }
+                            });
 
+                        } else {
+                            ToastUtils.showToast(this, "密码不正确");
+                            LUtils.d(TAG, " ===" + mokregpassword.getText().toString().trim() + "===" + mre_okregpassword.getText().toString().trim());
                         }
+                    } else {
+                        ToastUtils.showToast(this, "手机号码不正确");
+                    }
 
-                        @Override
-                        public void onFailure(Call<SecurityCode> call, Throwable t) {
-
-                        }
-                    });
 
                 } else {
-                    ToastUtils.showToast(this, "两次密码不一致");
-                    LUtils.d(TAG, " ===" + mokregpassword.getText().toString().trim() + "===" + mre_okregpassword.getText().toString().trim());
+                    ToastUtils.showToast(RegistActivity.this, "验证码不正确");
                 }
-                //                } else {
-                //                    ToastUtils.showToast(RegistActivity.this, "验证码不正确");
-                //                }
                 break;
             case R.id.btn_yanzhengma:
-                if (mreg_phonenum.getText().toString().trim().length() == 11) {
+                if (mreg_phonenum.getText().toString().trim().length() == 11 && mreg_phonenum.getText().toString().trim().startsWith("1")) {
                     TimerUtils.TimerStart();
                     mVcode = null;
                     Call<SecurityCode> securityCode =
@@ -139,7 +149,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                         }
                     });
                 } else {
-                    ToastUtils.showToast(this, "手机号码长度不够");
+                    ToastUtils.showToast(this, "检查手机号码是否正确");
                 }
 
 

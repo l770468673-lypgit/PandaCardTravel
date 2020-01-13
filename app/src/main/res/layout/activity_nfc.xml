@@ -6,10 +6,14 @@
     android:orientation="vertical"
     tools:context=".uis.NFCActivity">
 
+
     <RelativeLayout
         android:id="@+id/relay_recharge"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="visible">
 
 
         <LinearLayout
@@ -48,70 +52,56 @@
             layout="@layout/toptitlebar_layout_withtext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-        <!--        <RelativeLayout-->
-        <!--            android:visibility="gone"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="120dp"-->
-        <!--            android:background="@drawable/mine_title_jianbian">-->
-
-        <!--            <LinearLayout-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_alignParentLeft="true"-->
-        <!--                android:layout_alignParentBottom="true"-->
-        <!--                android:layout_centerHorizontal="true"-->
-        <!--                android:layout_centerVertical="true"-->
-        <!--                android:layout_marginBottom="20dp"-->
-        <!--                android:gravity="center"-->
-        <!--                android:orientation="horizontal">-->
-
-        <!--                <ImageView-->
-        <!--                    android:id="@+id/chongzhinfc_imageview_back"-->
-        <!--                    android:layout_width="wrap_content"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_gravity="center_vertical"-->
-        <!--                    android:layout_marginLeft="20dp"-->
-        <!--                    android:background="@mipmap/back_img" />-->
-
-        <!--                <TextView-->
-        <!--                    android:id="@+id/chongzhinfc_textView"-->
-        <!--                    android:layout_width="0dp"-->
-        <!--                    android:layout_height="wrap_content"-->
-        <!--                    android:layout_alignParentBottom="true"-->
-        <!--                    android:layout_centerInParent="true"-->
-        <!--                    android:layout_gravity="center"-->
-        <!--                    android:layout_toRightOf="@+id/nfc_imageview_back"-->
-        <!--                    android:layout_weight="1"-->
-        <!--                    android:gravity="center"-->
-        <!--                    android:text="@string/nfcact_title_savemoney"-->
-        <!--                    android:textColor="@color/ffffff"-->
-        <!--                    android:textSize="30dp" />-->
-
-        <!--            </LinearLayout>-->
-
-        <!--        </RelativeLayout>-->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="@string/fragment_bycar_text_num"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/lly_writecardnum"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="@string/app_name"
-                android:textSize="20sp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="@string/fragment_bycar_text_num"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/lly_writecardnum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/app_name"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="@string/fragment_bycar_text_money"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/lly_writecmomey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -122,33 +112,70 @@
             android:layout_height="wrap_content"
             android:numColumns="3" />
 
-
-        <!--tuikuan  退款 全村 等操作 -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:visibility="gone">
+            android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/nfc_btnsaveothermoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/nfcact_grid_item_boxframe"
+                android:padding="10dp"
+                android:text="@string/nfcact_title_realpaymoney_othermoney"
+                android:textSize="14sp" />
             <Button
                 android:id="@+id/quancun"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="圈存" />
+                android:text="圈存1分"
+                  />
+            <RelativeLayout
+                android:id="@+id/nfc_paymoney_bottomlly"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
 
-            <Button
-                android:id="@+id/quancun2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="圈存2次" />
+                <EditText
+                    android:id="@+id/nfc_saveothermoney"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toLeftOf="@+id/paymoney_bottomlly3"
+                    android:hint=""
+                    android:inputType="number"
+                    android:text=""
+                    android:textSize="14sp" />
 
-            <Button
-                android:id="@+id/tuikuan"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="退款" />
+                <Button
+
+                    android:id="@+id/paymoney_bottomlly3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
+                    android:background="@drawable/nfcact_grid_itemclock_commit"
+                    android:text="@string/nfcact_title_realpaymoney_commit"
+                    android:textColor="@color/B23008"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+
         </LinearLayout>
-        <!--tuikuan  ppppppppppppp -->
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -164,66 +191,50 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="@string/nfcact_title_fapiao"
             android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="@string/nfcact_title_tishi"
             android:textSize="14sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:text="@string/moredispose_text_hist"
             android:textSize="14sp" />
     </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/nfc_paymoney_bottomlly"
+    <!--tuikuan  退款 全村 等操作 -->
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:orientation="horizontal"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/paymoney_bottomlly1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/paymoney_bottomlly2"
-            android:text="@string/nfcact_title_realpaymoney"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/paymoney_bottomlly2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toLeftOf="@+id/paymoney_bottomlly3"
-            android:text="xxxxx"
-            android:textSize="14sp" />
+        android:orientation="vertical">
 
         <Button
-            android:id="@+id/paymoney_bottomlly3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/nfcact_grid_itemclock_commit"
-            android:text="@string/nfcact_title_realpaymoney_commit"
-            android:textColor="@color/B23008"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="圈存"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/quancun2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="圈存2次"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/tuikuan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="退款"
+            android:visibility="gone" />
+    </LinearLayout>
+    <!--tuikuan  ppppppppppppp -->
 </RelativeLayout>

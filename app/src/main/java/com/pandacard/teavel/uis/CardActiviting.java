@@ -547,7 +547,8 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
                 String password = mCard_bind_password.getText().toString().trim();
 
                 if (phonenum.length() == 11 && password.equals(mVcode)) {
-                    Call<bindSuccessBean> resourcesBeanCall = HttpManager.getInstance().getHttpClient().toeIdBind(phonenum, mMAppletNo);
+                    Call<bindSuccessBean> resourcesBeanCall = HttpManager.getInstance().getHttpClient().bindMobile
+                            (mMAppletNo, phonenum);
 
                     resourcesBeanCall.enqueue(new Callback<bindSuccessBean>() {
                         @Override
@@ -557,6 +558,7 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
 
                                 if (body.getCode() == 1) {
                                     ToastUtils.showToast(CardActiviting.this, body.getMsg());
+                                    ShareUtil.putString(HttpRetrifitUtils.APPISlOGIN, "login");
                                     finish();
                                 } else {
                                     ToastUtils.showToast(CardActiviting.this, body.getMsg());

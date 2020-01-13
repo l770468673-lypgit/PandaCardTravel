@@ -19,9 +19,16 @@ import com.pandacard.teavel.uis.LoginActivity;
 import com.pandacard.teavel.uis.MineCarsDetal;
 import com.pandacard.teavel.uis.WelcomeActivit;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
+import com.pandacard.teavel.utils.LUtils;
 import com.pandacard.teavel.utils.ShareUtil;
 import com.pandacard.teavel.utils.StatusBarUtil;
 import com.pandacard.teavel.utils.ToastUtils;
+
+import java.math.BigDecimal;
+
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.ShareSDK;
+import cn.sharesdk.wechat.friends.Wechat;
 
 
 public class MainFrag_mine extends Fragment implements View.OnClickListener {
@@ -32,6 +39,7 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
     private RadioButton mFragment_mine_eid;
     private TextView mMine_rely_panda2;
     private ImageView mMine_rely_panda3;
+    private Platform mWechat;
 
 
     public MainFrag_mine() {
@@ -72,6 +80,7 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
 
         mMine_rely_panda2.setOnClickListener(this);
         mMine_rely_panda3.setOnClickListener(this);
+        mWechat = ShareSDK.getPlatform(Wechat.NAME);
 
     }
 
@@ -106,7 +115,9 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
                 ShareUtil.removekey(HttpRetrifitUtils.SERNAME_PASS);
                 ShareUtil.removekey(HttpRetrifitUtils.WXLOGIN_UNID);
                 ShareUtil.removekey(HttpRetrifitUtils.APPISlOGIN);
+                mWechat.removeAccount(true);
                 getActivity().finish();
+
                 break;
             case R.id.mine_rely_panda2:
 

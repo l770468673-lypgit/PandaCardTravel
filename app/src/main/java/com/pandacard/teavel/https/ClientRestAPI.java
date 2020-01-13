@@ -20,7 +20,7 @@ import retrofit2.http.Query;
 public interface ClientRestAPI {
 
 
-    // 获取短信吗
+    // 7获取短信吗
     @FormUrlEncoded
     @POST("panda/getSMSCode")
     @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
@@ -64,7 +64,7 @@ public interface ClientRestAPI {
 
     //eid绑定
     @FormUrlEncoded
-    @POST("panda/bind")
+    @POST("panda/bindEid")
     @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
     Call<bindSuccessBean> toeIdBind(@Field("mobile") String mobile,
                                     @Field("eid") String eid);
@@ -74,4 +74,41 @@ public interface ClientRestAPI {
     @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
     Call<bean_person> QueryIdCard(@Field("actionId") String actionId,
                                   @Field("reqId") String reqId);
+
+    //9.删除熊猫卡接口
+    @FormUrlEncoded
+    @POST("panda/deleteCard")
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
+    Call<bean_person> deletePCard(@Field("cardCode") String cardCode);
+
+
+    //8.增加熊猫卡接口
+    @FormUrlEncoded
+    @POST("panda/addCard")
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
+    Call<bean_person> addCard(@Field("cardCode") String cardCode,
+                              @Field("authCode") String authCode);
+
+    //10.根据微信id获取手机号接口
+    @FormUrlEncoded
+    @POST("panda/getMobiles")
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
+    Call<bean_person> getMobiles(@Field("wxid") String wxid);
+
+
+    //   11.根据手机号获取所有对应熊猫卡接口
+    @FormUrlEncoded
+    @POST("panda/getCards")
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
+    Call<bean_person> getCards(@Field("mobile") String mobile);
+
+    //12.根据微信id获取手机号接口
+    @FormUrlEncoded
+    @POST("panda/bindMobile")
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
+    Call<bindSuccessBean> bindMobile(@Field("cardCode") String cardCode,
+                                 @Field("mobile") String mobile
+                                 );
+
+
 }

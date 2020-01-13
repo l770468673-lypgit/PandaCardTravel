@@ -1,9 +1,7 @@
 package com.pandacard.teavel.uis;
 
 import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -20,13 +18,11 @@ import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
@@ -35,7 +31,6 @@ import androidx.core.content.ContextCompat;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.bases.BaseActivity;
 import com.pandacard.teavel.https.HttpManager;
-import com.pandacard.teavel.https.beans.ResourcesBean;
 import com.pandacard.teavel.https.beans.SecurityCode;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
 import com.pandacard.teavel.utils.KeyboardUtils;
@@ -51,11 +46,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.wechat.friends.Wechat;
-import okhttp3.internal.platform.Platform;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -410,13 +403,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             //            LUtils.d(TAG, key + "：-------------- " + value);
             //            LUtils.d(TAG, hashMap.toString());
 
-//            if (entry.getKey().equals("unionid")) {
-//                LUtils.d(TAG, key + "：-----unionid--------- " + (String) entry.getValue());
-//                ShareUtil.putString(HttpRetrifitUtils.WXLOGIN_UNID, (String) entry.getValue());
-//            }
-//            if (entry.getKey().equals("headimgurl")) {
-//                LUtils.d(TAG, key + "：-----headimgurl--------- " + (String) entry.getValue());
-//            }
+            if (entry.getKey().equals("unionid")) {
+                LUtils.d(TAG, key + "：-----unionid--------- " + (String) entry.getValue());
+                ShareUtil.putString(HttpRetrifitUtils.WXLOGIN_UNID, (String) entry.getValue());
+            }
+            if (entry.getKey().equals("headimgurl")) {
+                LUtils.d(TAG, key + "：-----headimgurl--------- " + (String) entry.getValue());
+            }
 
         }
 
@@ -457,7 +450,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
 
                 if (response.body() != null) {
-                    if (response.body().getCode() == 1 || response.body().getCode() == 2) {
+                    if (response.body().getCode() == 1 ) {
                         ShareUtil.putString(HttpRetrifitUtils.SERNAME_PHONE, phone);
                         ShareUtil.putString(HttpRetrifitUtils.SERNAME_PASS, pass);
                         ShareUtil.putString(HttpRetrifitUtils.APPISlOGIN, "login");
