@@ -60,41 +60,46 @@ public class MinePandaCards extends AppCompatActivity implements pandainfoAdapte
 
     private void lodadaCard() {
         mcards.clear();
-        Call<cardsbean> cards = HttpManager.getInstance().getHttpClient().getCards(ShareUtil.getString(HttpRetrifitUtils.SERNAME_PHONE));
+        if (HttpRetrifitUtils.SERNAME_PHONE != null) {
 
-        cards.enqueue(new Callback<cardsbean>() {
-            @Override
-            public void onResponse(Call<cardsbean> call, Response<cardsbean> response) {
-                if (response.body() != null) {
-                    cardsbean body = response.body();
-                    if (body.getCode() == 1) {
-                        String cards1 = body.getExtra().getCards();
-                        mStrings = UserByteUtils.spliteStrWithBlank(cards1);
-                        LUtils.d(TAG, "mStrings===" + mStrings);
-                        for (int i = 0; i < mStrings.size(); i++) {
-                            mcards.add(mStrings.get(i));
+            Call<cardsbean> cards = HttpManager.getInstance().getHttpClient().getCards(ShareUtil.getString(HttpRetrifitUtils.SERNAME_PHONE));
+
+            cards.enqueue(new Callback<cardsbean>() {
+                @Override
+                public void onResponse(Call<cardsbean> call, Response<cardsbean> response) {
+                    if (response.body() != null) {
+                        cardsbean body = response.body();
+                        if (body.getCode() == 1) {
+                            String cards1 = body.getExtra().getCards();
+                            mStrings = UserByteUtils.spliteStrWithBlank(cards1);
+                            LUtils.d(TAG, "mStrings===" + mStrings);
+                            for (int i = 0; i < mStrings.size(); i++) {
+                                mcards.add(mStrings.get(i));
+                            }
+                            LUtils.d(TAG, "mcards===" + mcards);
+                            mPandainfoAdapter.setStringList(mcards);
+                            mPandainfoAdapter.notifyDataSetChanged();
+                            mTextv_nodate.setVisibility(View.GONE);
+                            mCardinfo_recycle.setVisibility(View.VISIBLE);
+                        } else {
+                            mTextv_nodate.setVisibility(View.VISIBLE);
+                            mCardinfo_recycle.setVisibility(View.GONE);
+                            mPandainfoAdapter.setStringList(mcards);
+                            mPandainfoAdapter.notifyDataSetChanged();
+                            ToastUtils.showToast(MinePandaCards.this, body.getMsg());
                         }
-                        LUtils.d(TAG, "mcards===" + mcards);
-                        mPandainfoAdapter.setStringList(mcards);
-                        mPandainfoAdapter.notifyDataSetChanged();
-                        mTextv_nodate.setVisibility(View.GONE);
-                        mCardinfo_recycle.setVisibility(View.VISIBLE);
-                    } else {
-                        mTextv_nodate.setVisibility(View.VISIBLE);
-                        mCardinfo_recycle.setVisibility(View.GONE);
-                        mPandainfoAdapter.setStringList(mcards);
-                        mPandainfoAdapter.notifyDataSetChanged();
-                        ToastUtils.showToast(MinePandaCards.this, body.getMsg());
+
                     }
+                }
+
+                @Override
+                public void onFailure(Call<cardsbean> call, Throwable t) {
 
                 }
-            }
-
-            @Override
-            public void onFailure(Call<cardsbean> call, Throwable t) {
-
-            }
-        });
+            });
+        } else {
+            ToastUtils.showToast(this, "登录后再试");
+        }
 
     }
 

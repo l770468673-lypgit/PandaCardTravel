@@ -53,7 +53,7 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
     private ViewPager mFragment_home_vvp;
     private List<ImageView> mImageViews;
     private Myadapter mMyadapter;
-    private LinearLayout mFragment_home_points;
+    //    private LinearLayout mFragment_home_points;
 
     // 标记前一个小圆点的位置
     private int prePosition = 0;
@@ -62,6 +62,8 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
     private RadioButton mfragment_home_active, mfragment_home_recharge, mfragment_home_useread, mfragment_home_discounts;
     private String mAppIsLogin;
     private TextView mLly_isbindcard;
+    private int[] mIntslist;
+    private List<ImageView> mMlis;
 
 
     public MainFrag_home() {
@@ -86,14 +88,30 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View inflate = inflater.inflate(R.layout.fragment_main_frag_home, container, false);
-
+        mMlis = new ArrayList<>();
 
         initView(inflate);
-        String mBananerpic = getArguments().getString("MBananerpic");
-        loadImg(mBananerpic);
+        //        String mBananerpic = getArguments().getString("MBananerpic");
+        //        loadImg(mBananerpic);
+
+        mIntslist = loadLocalPic();
+
+        createVVp();
 
 
         return inflate;
+    }
+
+    private void createVVp() {
+        for (int i = 0; i < mIntslist.length; i++) {
+            ImageView imageView = new ImageView(getActivity());
+            imageView.setImageResource(mIntslist[i]);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            mMlis.add(imageView);
+        }
+
+
+        mMyadapter.setList(mMlis);
     }
 
     @Override
@@ -116,7 +134,7 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
 
         mFragment_home_vvp = inflate.findViewById(R.id.fragment_home_vvp);
         mLly_isbindcard = inflate.findViewById(R.id.lly_isbindcard);
-        mFragment_home_points = inflate.findViewById(R.id.fragment_home_points);
+        //        mFragment_home_points = inflate.findViewById(R.id.fragment_home_points);
         mFragment_home_login = inflate.findViewById(R.id.fragment_home_login);
 
         mfragment_home__rgroup = inflate.findViewById(R.id.fragment_home__rgroup);
@@ -204,6 +222,11 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
         }
     }
 
+    public int[] loadLocalPic() {
+
+        return new int[]{R.mipmap.banner_2, R.mipmap.banner_3, R.mipmap.banner_4};
+    }
+
     public void loadImg(String mBananerpic) {
 
         if (mBananerpic != null) {
@@ -236,12 +259,12 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams((int) width, (int) height);
                 point.setLayoutParams(params);
                 params.leftMargin = 5;
-                mFragment_home_points.addView(point);
-
+                //                mFragment_home_points.addView(point);
+                //
             }
             // 设置默认的小圆点
-            mFragment_home_points.getChildAt(0).setBackgroundResource(R.mipmap.ic_launcher);
-            mMyadapter.setList(imgList);
+            //            mFragment_home_points.getChildAt(0).setBackgroundResource(R.mipmap.ic_launcher);
+            //            mMyadapter.setList(imgList);
 
         }
     }
@@ -263,8 +286,8 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
     public void onPageSelected(int position) {
 
         // 实现小圆点的不同状态切换效果
-        mFragment_home_points.getChildAt(position).setBackgroundResource(
-                R.mipmap.ic_launcher);
+        //        mFragment_home_points.getChildAt(position).setBackgroundResource(
+        //                R.mipmap.ic_launcher);
 
     }
 

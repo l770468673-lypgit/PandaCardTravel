@@ -617,8 +617,8 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
 
     public void commiyPhone() {
 
-        Call<bindSuccessBean> resourcesBeanCall = HttpManager.getInstance().getHttpClient().bindMobile
-                (mPandacard_cardnum.getText().toString(), mPhonenums.getText().toString());
+        Call<bindSuccessBean> resourcesBeanCall = HttpManager.getInstance().getHttpClient().mbindCard
+                (mPandacard_cardnum.getText().toString(), mPhonenums.getText().toString(), mLly_okname.getText().toString().trim(), "");
         resourcesBeanCall.enqueue(new Callback<bindSuccessBean>() {
             @Override
             public void onResponse(Call<bindSuccessBean> call, Response<bindSuccessBean> response) {

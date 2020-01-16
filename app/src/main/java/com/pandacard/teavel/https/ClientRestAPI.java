@@ -108,12 +108,21 @@ public interface ClientRestAPI {
     @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
     Call<cardsbean> getCards(@Field("mobile") String mobile);
 
+//    //12.12.绑定手机号接口
+//    @FormUrlEncoded
+//    @POST("panda/bindMobile")
+//    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
+//   Call<bindSuccessBean> bindMobile(@Field("cardCode") String cardCode,
+//                                     @Field("mobile") String mobile
+//    );
     //12.12.绑定手机号接口
     @FormUrlEncoded
-    @POST("panda/bindMobile")
+    @POST("panda/bindCard")
     @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
-    Call<bindSuccessBean> bindMobile(@Field("cardCode") String cardCode,
-                                     @Field("mobile") String mobile
+    Call<bindSuccessBean> mbindCard(@Field("cardCode") String cardCode,
+                                     @Field("mobile") String mobile,
+                                     @Field("name") String name,
+                                     @Field("eid") String eid
     );
 
     //13.充值后添加订单信息接口

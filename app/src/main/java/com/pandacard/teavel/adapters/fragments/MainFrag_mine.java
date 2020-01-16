@@ -14,16 +14,23 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.pandacard.teavel.R;
+import com.pandacard.teavel.https.HttpManager;
+import com.pandacard.teavel.https.beans.cardsbean;
 import com.pandacard.teavel.uis.MineOrderDetal;
 import com.pandacard.teavel.uis.MinePandaCards;
 import com.pandacard.teavel.uis.WelcomeActivit;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
+import com.pandacard.teavel.utils.LUtils;
 import com.pandacard.teavel.utils.ShareUtil;
 import com.pandacard.teavel.utils.StatusBarUtil;
+import com.pandacard.teavel.utils.ToastUtils;
+import com.pandacard.teavel.utils.UserByteUtils;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.wechat.friends.Wechat;
+import retrofit2.Call;
+import retrofit2.Response;
 
 
 public class MainFrag_mine extends Fragment implements View.OnClickListener {
@@ -112,17 +119,25 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.fragment_mine_order:
-
-                Intent intent = new Intent(getActivity(), MineOrderDetal.class);
-                startActivity(intent);
+                if (ShareUtil.getString(HttpRetrifitUtils.SERNAME_PHONE) != null) {
+                    Intent intent = new Intent(getActivity(), MineOrderDetal.class);
+                    startActivity(intent);
+                } else {
+                    ToastUtils.showToast(getActivity(), "登录后再试");
+                }
 
                 break;
             case R.id.fragment_mine_eid:
                 break;
             case R.id.mine_rely_panda2:
+                if (ShareUtil.getString(HttpRetrifitUtils.SERNAME_PHONE) != null) {
 
-                Intent intent2 = new Intent(getActivity(), MinePandaCards.class);
-                startActivity(intent2);
+                    Intent intent2 = new Intent(getActivity(), MinePandaCards.class);
+                    startActivity(intent2);
+                } else {
+                    ToastUtils.showToast(getActivity(), "登录后再试");
+                }
+
                 break;
 
             case R.id.mine_rely_panda3:
@@ -132,6 +147,7 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
                 ShareUtil.removekey(HttpRetrifitUtils.SERNAME_PASS);
                 ShareUtil.removekey(HttpRetrifitUtils.WXLOGIN_UNID);
                 ShareUtil.removekey(HttpRetrifitUtils.APPISlOGIN);
+                ShareUtil.removekey(HttpRetrifitUtils.DEFAULTCARDISBIND);
                 mWechat.removeAccount(true);
                 getActivity().finish();
 

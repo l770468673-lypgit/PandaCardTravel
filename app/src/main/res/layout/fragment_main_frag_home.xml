@@ -18,17 +18,27 @@
             android:layout_height="wrap_content" />
 
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/fragment_home_vvp"
+        <LinearLayout
+            android:id="@+id/lly_vvp"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/y160"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/lly_attbar"
-            android:background="@color/alert_text_color" />
+            android:padding="10dp">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/fragment_home_vvp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/y120"
+
+                android:background="@color/alert_text_color" />
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/fragment_home_vvp"
+            android:layout_alignBottom="@+id/lly_vvp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:visibility="gone">
@@ -40,7 +50,8 @@
                 android:layout_height="wrap_content"
                 android:background="#AFAEAE"
                 android:gravity="center_horizontal"
-                android:orientation="horizontal" />
+                android:orientation="horizontal"
+                android:visibility="gone" />
         </LinearLayout>
 
     </RelativeLayout>
