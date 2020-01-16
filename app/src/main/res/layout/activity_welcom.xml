@@ -7,6 +7,7 @@
     tools:context=".uis.WelcomeActivit">
 
     <ImageView
+        android:background="@mipmap/welcome_page"
         android:id="@+id/welcomeimg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

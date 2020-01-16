@@ -43,7 +43,7 @@ android {
         checkReleaseBuilds false
         abortOnError false
     }
-    
+
     signingConfigs {
         release {
             //注意：该签名文件的备份在项目内，使用路径可以改变

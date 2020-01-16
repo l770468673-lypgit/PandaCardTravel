@@ -1,4 +1,4 @@
-package com.pandacard.teavel.adapters.adapters;
+package com.pandacard.teavel.adapters;
 
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -71,7 +71,7 @@ public class GridViewAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
         holder.realmoney.setText(mData_list.get(position).get("truemoney") + " 元");
-        holder.salemoney.setText("售价 ：" + mData_list.get(position).get("salemoney") + " 元");
+//        holder.salemoney.setText("售价 ：" + mData_list.get(position).get("salemoney") + " 元");
 //        if (mData_list.size() != position + 1) {
 //            holder.realmoney.setText(mData_list.get(position).get("truemoney") + " 元");
 //            holder.salemoney.setText("售价 ：" + mData_list.get(position).get("salemoney") + " 元");
@@ -107,7 +107,7 @@ public class GridViewAdapter extends BaseAdapter {
         public ViewHolder(View convertView) {
             gradviewid = (LinearLayout) convertView.findViewById(R.id.gradviewid);
             realmoney = (TextView) convertView.findViewById(R.id.resalmoney);
-            salemoney = (TextView) convertView.findViewById(R.id.salemoney);
+//            salemoney = (TextView) convertView.findViewById(R.id.salemoney);
 
         }
     }

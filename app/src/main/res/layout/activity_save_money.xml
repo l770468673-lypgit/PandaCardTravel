@@ -7,29 +7,59 @@
     tools:context=".uis.SaveMoneyActivity">
 
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/lly_showlayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <include
+            android:id="@+id/include1"
             layout="@layout/toptitlebar_layout_withtext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
 
         <RelativeLayout
+            android:id="@+id/include2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/include1"
+            android:gravity="center"
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <Spinner
-                android:layout_marginLeft="20dp"
+            <TextView
+                android:id="@+id/textcards"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true" />
+                android:layout_alignParentLeft="true"
+                android:gravity="center"
+                android:padding="10dp"
+                android:text="@string/eidactivity_bindcard"
+                android:textSize="16sp" />
+
+            <!--            <TextView-->
+            <!--    -->
+            <!--                android:layout_width="200dp"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_marginLeft="20dp"-->
+            <!--                android:layout_toRightOf="@+id/textcards"-->
+            <!--                android:hint="@string/app_name"-->
+            <!--                android:padding="10dp"-->
+            <!--                android:textSize="16sp" />-->
+            <Spinner
+                android:id="@+id/savemmoney_spinn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:layout_toRightOf="@+id/textcards"
+                android:gravity="center"
+                android:spinnerMode="dropdown" />
+
 
             <RadioButton
                 android:layout_width="wrap_content"
@@ -43,22 +73,25 @@
                 android:paddingTop="10dp"
                 android:paddingRight="20dp"
                 android:paddingBottom="10dp"
-                android:text="@string/fragment_bycar_text_select" />
-
-
+                android:text="@string/fragment_bycar_text_select"
+                android:visibility="gone" />
         </RelativeLayout>
+
 
         <ImageView
             android:id="@+id/rely_xiongmaika_pic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:layout_below="@+id/include2"
             android:layout_centerInParent="true"
             android:layout_gravity="center"
             android:background="@mipmap/pandacard_img" />
 
         <RelativeLayout
+            android:id="@+id/include3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/rely_xiongmaika_pic"
             android:orientation="vertical">
 
             <LinearLayout
@@ -100,7 +133,8 @@
                     android:paddingTop="10dp"
                     android:paddingRight="20dp"
                     android:paddingBottom="10dp"
-                    android:text="@string/fragment_bycar_text_more" />
+                    android:text="@string/fragment_bycar_text_more"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <LinearLayout
@@ -131,6 +165,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/include3"
             android:layout_margin="16dp"
             android:background="@drawable/nfcactivity_linebox"
             android:orientation="vertical">
@@ -226,8 +261,12 @@
             </LinearLayout>
         </LinearLayout>
 
-
-    </LinearLayout>
+        <!--        <ListView-->
+        <!--            android:id="@+id/listcard"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:layout_below="@+id/include2" />-->
+    </RelativeLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

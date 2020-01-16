@@ -13,7 +13,6 @@
         android:background="@drawable/mine_title_jianbian">
 
         <LinearLayout
-            android:baselineAligned="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
@@ -21,6 +20,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginBottom="20dp"
+            android:baselineAligned="true"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -33,19 +33,19 @@
                 android:background="@mipmap/back_img" />
 
             <TextView
-                android:layout_marginRight="20dp"
                 android:id="@+id/chongzhinfc_textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerInParent="true"
-                android:textStyle="bold"
                 android:layout_gravity="center"
+                android:layout_marginRight="20dp"
                 android:layout_toRightOf="@+id/nfc_imageview_back"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@color/ffffff"
-                android:textSize="24dp" />
+                android:textSize="24dp"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

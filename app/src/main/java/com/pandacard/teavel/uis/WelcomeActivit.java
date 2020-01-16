@@ -86,12 +86,12 @@ public class WelcomeActivit extends BaseActivity {
 
                     final String welcome = extra.getWelcome();
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Glide.with(WelcomeActivit.this).load(welcome).into(mWelcomeimg);
-                        }
-                    });
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Glide.with(WelcomeActivit.this).load(welcome).into(mWelcomeimg);
+//                        }
+//                    });
 
                 }
             }

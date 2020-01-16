@@ -13,26 +13,20 @@
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/nfcact_grid_item_boxframe"
+        android:background="@drawable/fragment_home_boxframe"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/resalmoney"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:id="@+id/resalcards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:padding="10dp"
             android:text="111111"
-            android:textSize="20sp" />
+            android:textColor="@color/c8c8c"
+            android:textSize="16sp" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/salemoney"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:layout_marginBottom="10dp"-->
-<!--            android:gravity="center"-->
-<!--            android:textSize="12sp" />-->
 
     </LinearLayout>
 </LinearLayout>

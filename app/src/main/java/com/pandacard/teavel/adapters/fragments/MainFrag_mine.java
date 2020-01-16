@@ -8,23 +8,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.pandacard.teavel.R;
-import com.pandacard.teavel.uis.LoginActivity;
-import com.pandacard.teavel.uis.MineCarsDetal;
+import com.pandacard.teavel.uis.MineOrderDetal;
+import com.pandacard.teavel.uis.MinePandaCards;
 import com.pandacard.teavel.uis.WelcomeActivit;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
-import com.pandacard.teavel.utils.LUtils;
 import com.pandacard.teavel.utils.ShareUtil;
 import com.pandacard.teavel.utils.StatusBarUtil;
-import com.pandacard.teavel.utils.ToastUtils;
-
-import java.math.BigDecimal;
 
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
@@ -97,15 +92,28 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
 
     }
 
+
+
     @Override
     public void onClick(View v) {
 
         switch (v.getId()) {
             case R.id.fragment_mine_active:
             case R.id.fragment_mine_useread:
+
+                break;
             case R.id.fragment_mine_order:
+
+                Intent intent = new Intent(getActivity(), MineOrderDetal.class);
+                startActivity(intent);
+
+                break;
             case R.id.fragment_mine_eid:
-                ToastUtils.showToast(getActivity(), "开发中");
+                break;
+            case R.id.mine_rely_panda2:
+
+                Intent intent2 = new Intent(getActivity(), MinePandaCards.class);
+                startActivity(intent2);
                 break;
 
             case R.id.mine_rely_panda3:
@@ -119,12 +127,10 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
                 getActivity().finish();
 
                 break;
-            case R.id.mine_rely_panda2:
 
-                Intent intent = new Intent(getActivity(), MineCarsDetal.class);
-                startActivity(intent);
-
-                break;
         }
     }
+
+
+
 }

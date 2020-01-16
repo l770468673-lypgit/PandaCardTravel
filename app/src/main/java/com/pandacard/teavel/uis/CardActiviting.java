@@ -16,6 +16,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +27,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -69,6 +72,7 @@ import com.pandacard.teavel.https.HttpCallback;
 import com.pandacard.teavel.https.HttpManager;
 import com.pandacard.teavel.https.beans.ResourcesBean;
 import com.pandacard.teavel.https.beans.SecurityCode;
+import com.pandacard.teavel.https.beans.bean_addCards;
 import com.pandacard.teavel.https.beans.bean_person;
 import com.pandacard.teavel.https.beans.bindSuccessBean;
 import com.pandacard.teavel.utils.Bitmap2NV21;
@@ -103,7 +107,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class CardActiviting extends AppCompatActivity implements View.OnClickListener, ViewTreeObserver.OnGlobalLayoutListener {
+public class CardActiviting extends AppCompatActivity implements View.OnClickListener, ViewTreeObserver.OnGlobalLayoutListener, TextWatcher {
     private String TAG = "CardActiviting";
     private ImageView mSave_imageview_back;
     private TextView eeeererer;
@@ -246,8 +250,8 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
             }
         }
     };
-    private TextView mCardact_idnumn;
-    private ImageView cardact_iamgv;
+    //    private TextView mCardact_idnumn;
+    //    private ImageView cardact_iamgv;
     private TextView mCardact_pleaseon;
     private Button mCardactive_nextstep;
     private RelativeLayout mRely_readcard;
@@ -282,6 +286,13 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
     private Bitmap mBit2map;
     private Button mCard_bind_yanzhengma;
     private String mVcode;
+    private TextView mPhonenums;
+    private String mName;
+    private TextView mLly_okname;
+    private Button mLly_bindsuccess;
+    private Button mLly_bindfailed;
+    private EditText mBind_card_checkcode;
+    private LinearLayout mLly_yanzhengma;
 
 
     @Override
@@ -436,15 +447,16 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
     private void initView() {
         compareResultList = new ArrayList<>();
         WindowManager wm1 = this.getWindowManager();
-        int width1 = wm1.getDefaultDisplay().getWidth();
+        int width1 = wm1.getDefaultDisplay().getWidth()-30;
 
         mSave_imageview_back = findViewById(R.id.chongzhinfc_imageview_back);
         mChongzhinfc_textView = findViewById(R.id.chongzhinfc_textView);
         mCard_bind_yanzhengma = findViewById(R.id.card_bind_yanzhengma);
 
-        mCardact_idnumn = findViewById(R.id.cardact_idnumn);
-        cardact_iamgv = findViewById(R.id.cardact_iamgv);
+        //        mCardact_idnumn = findViewById(R.id.cardact_idnumn);
+        //        cardact_iamgv = findViewById(R.id.cardact_iamgv);
         mCardact_pleaseon = findViewById(R.id.cardact_pleaseon);
+        mLly_okname = findViewById(R.id.lly_okname);
         mCardactive_nextstep = findViewById(R.id.cardactive_nextstep);
 
 
@@ -463,15 +475,20 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
         mImage_setimg = findViewById(R.id.image_setimg);
 
         //3 pandacard view
-        mPandacard_image = findViewById(R.id.pandacard_image);
+        //        mPandacard_image = findViewById(R.id.pandacard_image);
         mPandacard_pleaseon = findViewById(R.id.pandacard_readok);
         mPandacard_cardnum = findViewById(R.id.pandacard_cardnum);
         mPanda_nextstep = findViewById(R.id.panda_nextstep);
+        mPhonenums = findViewById(R.id.phonenums);
+        mLly_bindfailed = findViewById(R.id.lly_bindfailed);
+        mBind_card_checkcode = findViewById(R.id.bind_card_checkcode);
+        mLly_yanzhengma = findViewById(R.id.lly_yanzhengma);
 
         // 4绑定手机号 和号码
         mCard_bind_phonenum = findViewById(R.id.card_bind_phonenum);
         mCard_bind_password = findViewById(R.id.card_bind_password);
         mCard_bind_commit = findViewById(R.id.card_bind_commit);
+        mLly_bindsuccess = findViewById(R.id.lly_bindsuccess);
 
 
         ViewGroup.LayoutParams layoutParamsf = mFramlay_allfaceview.getLayoutParams();
@@ -479,23 +496,33 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
         layoutParamsf.height = width1;
 
         ViewGroup.LayoutParams layoutParamsf2 = previewView.getLayoutParams();
-        layoutParamsf2.width = width1 - 10;
-        layoutParamsf2.height = width1 - 10;
+        layoutParamsf2.width = width1 - 30;
+        layoutParamsf2.height = width1 - 30;
+
+
+        ViewGroup.LayoutParams layoutParams = mImage_facehead.getLayoutParams();
+        layoutParams.width = width1;
+        layoutParams.height = width1;
 
         mChongzhinfc_textView.setText(R.string.cardactive_title_eidact);
         mPandacard_pleaseon.setText(R.string.cardactive_idcardreadover);
         mCardact_pleaseon.setText(R.string.cardactive_idxcrad_read);
 
         mCard_bind_yanzhengma.setOnClickListener(this);
+        mLly_bindfailed.setOnClickListener(this);
+        mLly_bindsuccess.setOnClickListener(this);
         mSave_imageview_back.setOnClickListener(this);
         mCardactive_nextstep.setOnClickListener(this);
         mRely_readcard.setOnClickListener(this);
         mPanda_nextstep.setOnClickListener(this);
         mFaceactive_nextstep.setOnClickListener(this);
+
         mCard_bind_commit.setOnClickListener(this);
         eeeererer = findViewById(R.id.eeeererer);
         //        //在布局结束后才做初始化操作
         previewView.getViewTreeObserver().addOnGlobalLayoutListener(this);
+
+        mBind_card_checkcode.addTextChangedListener(this);
     }
 
     /*eid读卡初始化,读卡必须初始化,具体参数见文档*/
@@ -513,53 +540,25 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.chongzhinfc_imageview_back:
+            case R.id.lly_bindfailed:
                 finish();
                 break;
-            case R.id.card_bind_yanzhengma:
-                if (mCard_bind_phonenum.getText().toString().trim().length() == 11) {
-                    TimerUtils.initTimer(this, mCard_bind_yanzhengma, 60000, 1000);
-                    TimerUtils.TimerStart();
-                    Call<SecurityCode> securityCode =
-                            HttpManager.getInstance().getHttpClient().toSMSCode(mCard_bind_phonenum.getText().toString().trim());
-                    securityCode.enqueue(new Callback<SecurityCode>() {
-                        @Override
-                        public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
-                            SecurityCode body = response.body();
-                            if (body != null) {
-                                mVcode = body.getExtra().getVcode();
+            case R.id.lly_bindsuccess:
 
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<SecurityCode> call, Throwable t) {
-
-                        }
-                    });
-                } else {
-
-                    ToastUtils.showToast(this, R.string.login_wx_editokphone);
-                }
-                break;
-
-            case R.id.card_bind_commit:
-                String phonenum = mCard_bind_phonenum.getText().toString().trim();
-                String password = mCard_bind_password.getText().toString().trim();
-
-                if (phonenum.length() == 11 && password.equals(mVcode)) {
+                if (mPhonenums.getText().toString().trim().length() == 11 && mPandacard_cardnum.getText().toString().trim().length() > 1) {
                     Call<bindSuccessBean> resourcesBeanCall = HttpManager.getInstance().getHttpClient().bindMobile
-                            (mMAppletNo, phonenum);
-
+                            (mPandacard_cardnum.getText().toString(), mPhonenums.getText().toString());
                     resourcesBeanCall.enqueue(new Callback<bindSuccessBean>() {
                         @Override
                         public void onResponse(Call<bindSuccessBean> call, Response<bindSuccessBean> response) {
                             bindSuccessBean body = response.body();
                             if (body != null) {
-
                                 if (body.getCode() == 1) {
                                     ToastUtils.showToast(CardActiviting.this, body.getMsg());
-                                    ShareUtil.putString(HttpRetrifitUtils.APPISlOGIN, "login");
+
                                     finish();
+                                    Intent intent = new Intent(CardActiviting.this, MainActivity.class);
+                                    startActivity(intent);
                                 } else {
                                     ToastUtils.showToast(CardActiviting.this, body.getMsg());
                                 }
@@ -571,11 +570,38 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
 
                         }
                     });
-
                 } else {
                     ToastUtils.showToast(this, "---------输入不正确 -----------");
-
                 }
+                break;
+            case R.id.card_bind_yanzhengma:
+
+                //                if (mCard_bind_phonenum.getText().toString().trim().length() == 11) {
+                //                    TimerUtils.initTimer(this, mCard_bind_yanzhengma, 60000, 1000);
+                //                    TimerUtils.TimerStart();
+                //                    Call<SecurityCode> securityCode =
+                //                            HttpManager.getInstance().getHttpClient().toSMSCode(mCard_bind_phonenum.getText().toString().trim());
+                //                    securityCode.enqueue(new Callback<SecurityCode>() {
+                //                        @Override
+                //                        public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
+                //                            SecurityCode body = response.body();
+                //                            if (body != null) {
+                //                                mVcode = body.getExtra().getVcode();
+                //                            }
+                //                        }
+                //
+                //                        @Override
+                //                        public void onFailure(Call<SecurityCode> call, Throwable t) {
+                //
+                //                        }
+                //                    });
+                //                } else {
+                //                    ToastUtils.showToast(this, R.string.login_wx_editokphone);
+                //                }
+                break;
+            case R.id.card_bind_commit:
+                String phonenum = mCard_bind_phonenum.getText().toString().trim();
+                String password = mCard_bind_password.getText().toString().trim();
 
                 break;
             case R.id.panda_nextstep:
@@ -584,10 +610,13 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
                 if (ShareUtil.getString(HttpRetrifitUtils.SERNAME_PHONE) != null) {
                     mCard_bind_phonenum.setText(ShareUtil.getString(HttpRetrifitUtils.SERNAME_PHONE));
                 }
-
+                mPandacard_cardnum.setText(mMAppletNo);
+                mPhonenums.setText(ShareUtil.getString(HttpRetrifitUtils.SERNAME_PHONE));
+                mLly_okname.setText(mName);
                 break;
             case R.id.faceactive_nextstep:
                 mRelay_pandacard.setVisibility(View.VISIBLE);
+
                 mRely_readcard.setVisibility(View.GONE);
                 mRely_facehead.setVisibility(View.GONE);
 
@@ -660,8 +689,8 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
                         LUtils.i(TAG, cardInfoGather.toString());
                         mMAppletNo = cardInfoGather.getPublicBasicInfo().getAppletNo();
                         mPandacard_pleaseon.setText(R.string.cardactive_idxcrad_ok);
-                        mPandacard_cardnum.setText(mMAppletNo);
-                        mPanda_nextstep.setVisibility(View.VISIBLE);
+                        mLly_yanzhengma.setVisibility(View.VISIBLE);
+
                     }
                 });
                 break;
@@ -717,12 +746,12 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
     }
 
     private void initCamera() {
+        eeeererer.setText(R.string.cardactive_infinding);
         final FaceListener faceListener = new FaceListener() {
             @Override
             public void onFail(Exception e) {
                 LUtils.i(TAG, "onFail: " + e.getMessage());
             }
-
 
             //请求FR的回调
             @Override
@@ -955,9 +984,9 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
                         // main_tv_idcard.setText(idType + "其他");
                     }
 
-                    String idnum = status.getIdnum();
-                    mCardact_idnumn.setText(idnum);
-
+                    //                    String idnum = status.getIdnum();
+                    //                    mCardact_idnumn.setText(idnum);
+                    mName = status.getName();
 
                     mCardact_pleaseon.setText(R.string.cardactive_idxcrad_ok);
                     mCardactive_nextstep.setVisibility(View.VISIBLE);
@@ -967,7 +996,7 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
 
 
                     mBit2map = Bitmap2NV21.bitmapZoomByScale(bitmap, 2, 2);
-                    cardact_iamgv.setImageBitmap(mBit2map);
+                    //                    cardact_iamgv.setImageBitmap(mBit2map);
 
                     mNv21 = Bitmap2NV21.bitmapToNv21(mBit2map, mBit2map.getWidth(), mBit2map.getHeight());
                     LUtils.d(TAG, "extra.nv21===" + mNv21);
@@ -1310,5 +1339,46 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onGlobalLayout() {
 
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+
+        if (s.length() == 4) {
+
+            KeyboardUtils.hideKeyboard(this);
+            LUtils.d(TAG, "s.length()===" + s.length());
+            Call<bean_addCards> bean_personCall = HttpManager.getInstance().getHttpClient().addCard(mMAppletNo, s.toString());
+            bean_personCall.enqueue(new Callback<bean_addCards>() {
+                @Override
+                public void onResponse(Call<bean_addCards> call, Response<bean_addCards> response) {
+                    if (response.body() != null) {
+                        if (response.body() != null) {
+                            int code = response.body().getCode();
+                            if (code == 1) {
+                                mPanda_nextstep.setVisibility(View.VISIBLE);
+                            } else {
+                                ToastUtils.showToast(CardActiviting.this, response.body().getMsg().toString());
+                            }
+                        }
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<bean_addCards> call, Throwable t) {
+
+                }
+            });
+        }
     }
 }

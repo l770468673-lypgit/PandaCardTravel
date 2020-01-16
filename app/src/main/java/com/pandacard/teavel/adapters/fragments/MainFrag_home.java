@@ -26,19 +26,27 @@ import com.bumptech.glide.Glide;
 import com.pandacard.teavel.ParamConst;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.adapters.Myadapter;
+import com.pandacard.teavel.https.HttpManager;
+import com.pandacard.teavel.https.beans.cardsbean;
 import com.pandacard.teavel.uis.CardActiviting;
 import com.pandacard.teavel.uis.LoginActivity;
 import com.pandacard.teavel.uis.MainActivity;
 import com.pandacard.teavel.uis.NFCActivity;
 import com.pandacard.teavel.uis.SaveMoneyActivity;
+import com.pandacard.teavel.uis.eIDActivity;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
 import com.pandacard.teavel.utils.LUtils;
 import com.pandacard.teavel.utils.ShareUtil;
 import com.pandacard.teavel.utils.StatusBarUtil;
 import com.pandacard.teavel.utils.ToastUtils;
+import com.pandacard.teavel.utils.UserByteUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private static String TAG = "MainFrag_home";
@@ -46,12 +54,14 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
     private List<ImageView> mImageViews;
     private Myadapter mMyadapter;
     private LinearLayout mFragment_home_points;
+
     // 标记前一个小圆点的位置
     private int prePosition = 0;
     private RadioGroup mfragment_home__rgroup;
     private TextView mFragment_home_login;
     private RadioButton mfragment_home_active, mfragment_home_recharge, mfragment_home_useread, mfragment_home_discounts;
     private String mAppIsLogin;
+    private TextView mLly_isbindcard;
 
 
     public MainFrag_home() {
@@ -105,6 +115,7 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
     private void initView(View inflate) {
 
         mFragment_home_vvp = inflate.findViewById(R.id.fragment_home_vvp);
+        mLly_isbindcard = inflate.findViewById(R.id.lly_isbindcard);
         mFragment_home_points = inflate.findViewById(R.id.fragment_home_points);
         mFragment_home_login = inflate.findViewById(R.id.fragment_home_login);
 
@@ -149,9 +160,42 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
     }
 
 
+    private void loadcardsDate() {
+        if (ShareUtil.getString(HttpRetrifitUtils.SERNAME_PHONE) != null) {
+            Call<cardsbean> cards = HttpManager.getInstance().getHttpClient().getCards(ShareUtil.getString(HttpRetrifitUtils.SERNAME_PHONE));
+
+            cards.enqueue(new Callback<cardsbean>() {
+                @Override
+                public void onResponse(Call<cardsbean> call, Response<cardsbean> response) {
+                    if (response.body() != null) {
+                        cardsbean body = response.body();
+                        if (body.getCode() == 1) {
+                            String cards1 = body.getExtra().getCards();
+                            List<String> mStrings = UserByteUtils.spliteStrWithBlank(cards1);
+                            if (mStrings.size() > 0) {
+                                mLly_isbindcard.setText(R.string.cardactive_cardsisbind);
+                            } else {
+                                mLly_isbindcard.setText(R.string.cardactive_cardsnotbind);
+                            }
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<cardsbean> call, Throwable t) {
+
+                }
+            });
+        }
+
+    }
+
     @Override
     public void onResume() {
         super.onResume();
+        loadcardsDate();
+
         mAppIsLogin = ShareUtil.getString(HttpRetrifitUtils.APPISlOGIN);
         if (ShareUtil.getString(HttpRetrifitUtils.APPISlOGIN) != null) {
             mFragment_home_login.setText(R.string.login_islogin);
@@ -234,8 +278,8 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
 
             switch (v.getId()) {
                 case R.id.fragment_home_active:
-                    Intent in = new Intent(getActivity(), CardActiviting.class);
-                    startActivityForResult(in, ParamConst.READ_CARD_INFO_CODE);
+                    Intent in = new Intent(getActivity(), eIDActivity.class);
+                    startActivity(in);
                     break;
                 case R.id.fragment_home_useread:
                 case R.id.fragment_home_discounts:

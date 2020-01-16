@@ -113,9 +113,10 @@
             android:numColumns="3" />
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/nfc_btnsaveothermoney"
@@ -127,12 +128,7 @@
                 android:padding="10dp"
                 android:text="@string/nfcact_title_realpaymoney_othermoney"
                 android:textSize="14sp" />
-            <Button
-                android:id="@+id/quancun"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="圈存1分"
-                  />
+
             <RelativeLayout
                 android:id="@+id/nfc_paymoney_bottomlly"
                 android:layout_width="wrap_content"
@@ -159,20 +155,23 @@
 
                     android:id="@+id/paymoney_bottomlly3"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="20dp"
-                    android:background="@drawable/nfcact_grid_itemclock_commit"
+                    android:background="@drawable/fragment_home_boxframe"
                     android:text="@string/nfcact_title_realpaymoney_commit"
-                    android:textColor="@color/B23008"
-                    android:textSize="16sp"
+                    android:textColor="@color/c8c8c"
                     android:textStyle="bold" />
 
             </RelativeLayout>
 
-
+            <Button
+                android:id="@+id/quancun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="圈存1分" />
         </LinearLayout>
 
 

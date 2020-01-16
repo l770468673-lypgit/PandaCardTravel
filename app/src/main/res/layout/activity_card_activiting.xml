@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/ffffff"
     tools:context=".uis.CardActiviting">
 
     <LinearLayout
@@ -24,42 +25,68 @@
             android:layout_height="match_parent"
             android:visibility="visible">
 
-
             <LinearLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:layout_height="match_parent"
+                android:layout_marginTop="40dp"
                 android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/cardact_idnumn"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text=" "
-                    android:textColor="#292929" />
-
+                <!--                <TextView-->
+                <!--                    android:id="@+id/cardact_idnumn"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="40dp"-->
+                <!--                    android:layout_centerInParent="true"-->
+                <!--                    android:layout_gravity="center"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:text=" "-->
+                <!--                    android:textColor="#292929" />-->
                 <ImageView
                     android:id="@+id/cardact_iamgv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
                     android:layout_gravity="center"
+                    android:background="@mipmap/shenfenzhengpic"
                     android:gravity="center"
-
                     android:textColor="#292929" />
 
                 <TextView
                     android:id="@+id/cardact_pleaseon"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
                     android:gravity="center"
-                    android:text="  "
+                    android:text="@string/cardactive_idxcrad_read"
                     android:textColor="#292929"
                     android:textSize="30dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="@string/cardactive_idxcrad_read2"
+                    android:textColor="#292929"
+                    android:textSize="12dp" />
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/cardactive_idxcrad_read3"
+                    android:textColor="#292929"
+                    android:textSize="12dp" />
+
             </LinearLayout>
+
+
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_centerInParent="true"-->
+            <!--               >-->
+            <!--           -->
+            <!--            </LinearLayout>-->
 
 
             <Button
@@ -68,6 +95,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/login_travel_btn"
                 android:gravity="center"
                 android:paddingLeft="40dp"
@@ -79,18 +107,17 @@
 
 
         <RelativeLayout
-            android:background="#ffffff"
             android:id="@+id/rely_facehead"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:visibility="visible">
 
             <FrameLayout
                 android:id="@+id/framlay_allfaceview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
                 android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true">
+             >
 
                 <TextureView
                     android:id="@+id/texture_preview"
@@ -103,14 +130,12 @@
                     android:id="@+id/face_rect_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:padding="10dp" />
+                    android:layout_gravity="center" />
 
                 <ImageView
                     android:id="@+id/image_facehead"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
                     android:background="@mipmap/face_head" />
 
                 <ImageView
@@ -137,6 +162,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/login_travel_btn"
                 android:gravity="center"
                 android:paddingLeft="40dp"
@@ -154,41 +180,122 @@
             android:layout_height="match_parent"
             android:visibility="gone">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/pandacard_image"
+                <LinearLayout
+                    android:id="@+id/lly_111"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_gravity="center"
-                    android:background="@mipmap/ic_launcher"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="40dp"
+                    android:background="@mipmap/pandacard_eid"
                     android:gravity="center"
-                    android:textColor="#292929" />
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/pandacard_cardnum"
+
+                </LinearLayout>
+
+                <!--                <ImageView-->
+                <!--                    android:id="@+id/pandacard_image"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_centerHorizontal="true"-->
+                <!--                    android:textColor="#292929" />-->
+
+                <!--                <TextView-->
+                <!--                    android:id="@+id/pandacard_cardnum"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:gravity="center"-->
+                <!--                    android:text=" "-->
+                <!--                    android:textColor="#292929"-->
+                <!--                    android:textSize="20dp" />-->
+
+                <LinearLayout
+                    android:id="@+id/lly_texteid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text=" "
-                    android:textColor="#292929"
-                    android:textSize="20dp" />
+                    android:layout_below="@+id/lly_111"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/pandacard_readok"
+                    <TextView
+                        android:id="@+id/pandacard_readok"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:text="22121122"
+                        android:textColor="#292929"
+                        android:textSize="30dp" />
+
+
+                    <TextView
+                        android:id="@+id/textv1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/pandacard_readok"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:text="@string/cardactive_idcardreadover2"
+                        android:textColor="#292929"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textv1"
+                        android:layout_centerVertical="true"
+                        android:gravity="center"
+                        android:text="@string/cardactive_idcardreadover3"
+                        android:textColor="#292929"
+                        android:textSize="14sp" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/lly_yanzhengma"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="22121122"
-                    android:textColor="#292929"
-                    android:textSize="30dp" />
+                    android:layout_below="@+id/lly_texteid"
+                    android:orientation="vertical"
+                    android:visibility="gone">
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/pandacard_readok"
+                        android:layout_centerVertical="true"
+                        android:layout_marginTop="20dp"
+                        android:gravity="center"
+                        android:text="@string/cardactive_idcardreadover4"
+                        android:textColor="#292929"
+                        android:textSize="20sp" />
+
+                    <EditText
+                        android:id="@+id/bind_card_checkcode"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/textv1"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:layout_margin="6dp"
+                        android:background="@drawable/fragment_home_boxframe"
+                        android:gravity="center"
+                        android:hint="@string/cardactive_idcardreadover5"
+                        android:padding="6dp"
+                        android:textColor="#292929"
+                        android:textSize="14sp" />
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
             <Button
                 android:id="@+id/panda_nextstep"
@@ -196,8 +303,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/login_travel_btn"
                 android:gravity="center"
+
                 android:paddingLeft="40dp"
                 android:paddingRight="40dp"
                 android:text="@string/cardactive_nextstep"
@@ -217,7 +326,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/include_top"
                 android:orientation="vertical"
-                android:padding="10dp">
+                android:padding="10dp"
+                android:visibility="gone">
 
                 <RelativeLayout
                     android:id="@+id/wx_relylogin1"
@@ -351,12 +461,109 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="20dp"
+                    android:layout_marginBottom="20dp"
                     android:background="@drawable/login_travel_btn"
                     android:padding="10dp"
                     android:text="@string/login_wx_nextstep"
                     android:textColor="#ffffff"
                     android:textSize="16sp" />
             </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/usermsg"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="20dp"
+                android:background="@drawable/fragment_home_boxframe"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/lly_okname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    android:gravity="center"
+                    android:text="21"
+                    android:textSize="20dp" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/eidactivity_bindphone" />
+
+                    <TextView
+                        android:id="@+id/phonenums"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="4dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/eidactivity_bindcard" />
+
+                    <TextView
+                        android:id="@+id/pandacard_cardnum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="890890890" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/usermsg"
+                android:orientation="horizontal">
+
+
+                <Button
+                    android:id="@+id/lly_bindsuccess"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/nextsetup"
+                    android:text="@string/eidactivity_msgok"
+                    android:textColor="@color/ffffff" />
+
+
+                <Button
+                    android:id="@+id/lly_bindfailed"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/nextsetup"
+                    android:text="@string/eidactivity_msgfa"
+                    android:textColor="@color/ffffff" />
+
+            </LinearLayout>
+
 
         </RelativeLayout>
 

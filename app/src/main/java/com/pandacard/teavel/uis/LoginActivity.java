@@ -31,7 +31,10 @@ import androidx.core.content.ContextCompat;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.bases.BaseActivity;
 import com.pandacard.teavel.https.HttpManager;
+import com.pandacard.teavel.https.beans.Mobilesbean;
 import com.pandacard.teavel.https.beans.SecurityCode;
+import com.pandacard.teavel.https.beans.bean_person;
+import com.pandacard.teavel.https.beans.bindSuccessBean;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
 import com.pandacard.teavel.utils.KeyboardUtils;
 import com.pandacard.teavel.utils.LUtils;
@@ -234,7 +237,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         }
                     });
                 } else {
-
                     ToastUtils.showToast(this, R.string.login_wx_editokphone);
                 }
 
@@ -294,6 +296,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     }
 
     private void toWXlogin(final String wxid) {
+
         Call<SecurityCode> resourcesBeanCall = HttpManager.getInstance().getHttpClient().toWXLogin(wxid);
         resourcesBeanCall.enqueue(new Callback<SecurityCode>() {
             @Override
@@ -406,14 +409,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             if (entry.getKey().equals("unionid")) {
                 LUtils.d(TAG, key + "：-----unionid--------- " + (String) entry.getValue());
                 ShareUtil.putString(HttpRetrifitUtils.WXLOGIN_UNID, (String) entry.getValue());
+                getMobiles((String) entry.getValue());
             }
             if (entry.getKey().equals("headimgurl")) {
                 LUtils.d(TAG, key + "：-----headimgurl--------- " + (String) entry.getValue());
             }
-
         }
 
-        mHandler.sendEmptyMessage(WX_LOGIN_SETPHONE);
 
     }
 
@@ -423,10 +425,32 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             @Override
             public void run() {
                 LUtils.d(TAG, "微信登录失败!" + i + throwable);
-
                 ToastUtils.showToast(getBaseContext(), "微信登录失败!" + i + throwable);
             }
         });
+    }
+
+    public void getMobiles(final String uid) {
+        Call<Mobilesbean> mobiles = HttpManager.getInstance().getHttpClient().getMobiles(uid);
+        mobiles.enqueue(new Callback<Mobilesbean>() {
+            @Override
+            public void onResponse(Call<Mobilesbean> call, Response<Mobilesbean> response) {
+                if (response.body() != null) {
+                    String mobiles1 = response.body().getExtra().getMobiles();
+                    if (mobiles1.length() < 1) {
+                        mHandler.sendEmptyMessage(WX_LOGIN_SETPHONE);
+                    } else {
+                        toWXlogin(uid);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Mobilesbean> call, Throwable t) {
+
+            }
+        });
+
     }
 
     @Override
@@ -450,13 +474,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
 
                 if (response.body() != null) {
-                    if (response.body().getCode() == 1 ) {
+                    if (response.body().getCode() == 1) {
                         ShareUtil.putString(HttpRetrifitUtils.SERNAME_PHONE, phone);
                         ShareUtil.putString(HttpRetrifitUtils.SERNAME_PASS, pass);
                         ShareUtil.putString(HttpRetrifitUtils.APPISlOGIN, "login");
                         ToastUtils.showToast(LoginActivity.this, response.body().getMsg());
-//                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                        startActivity(intent);
+                        //                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        //                        startActivity(intent);
                         finish();
                     } else {
                         ToastUtils.showToast(LoginActivity.this, response.body().getMsg());
