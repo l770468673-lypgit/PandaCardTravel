@@ -35,6 +35,8 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
     private TextView mMine_rely_panda2;
     private ImageView mMine_rely_panda3;
     private Platform mWechat;
+    private String mDefaultCards;
+    private TextView mMine_rely_card2;
 
 
     public MainFrag_mine() {
@@ -66,6 +68,9 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
         mFragment_mine_order = inflate.findViewById(R.id.fragment_mine_order);
         mFragment_mine_eid = inflate.findViewById(R.id.fragment_mine_eid);
         mMine_rely_panda2 = inflate.findViewById(R.id.mine_rely_panda2);
+        mMine_rely_card2 = inflate.findViewById(R.id.mine_rely_card2);
+
+
         mMine_rely_panda3 = inflate.findViewById(R.id.mine_rely_panda3);
 
         mFragment_mine_active.setOnClickListener(this);
@@ -77,6 +82,11 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
         mMine_rely_panda3.setOnClickListener(this);
         mWechat = ShareSDK.getPlatform(Wechat.NAME);
 
+        mDefaultCards = ShareUtil.getString(HttpRetrifitUtils.DEFAULTCARDISBIND);
+        if (mDefaultCards != null) {
+
+            mMine_rely_card2.setText(mDefaultCards);
+        }
     }
 
 
@@ -91,7 +101,6 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
         super.onDetach();
 
     }
-
 
 
     @Override
@@ -130,7 +139,6 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
 
         }
     }
-
 
 
 }

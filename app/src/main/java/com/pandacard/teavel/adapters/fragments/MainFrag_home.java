@@ -173,6 +173,7 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
                             String cards1 = body.getExtra().getCards();
                             List<String> mStrings = UserByteUtils.spliteStrWithBlank(cards1);
                             if (mStrings.size() > 0) {
+                                ShareUtil.putString(HttpRetrifitUtils.DEFAULTCARDISBIND, mStrings.get(0));
                                 mLly_isbindcard.setText(R.string.cardactive_cardsisbind);
                             } else {
                                 mLly_isbindcard.setText(R.string.cardactive_cardsnotbind);

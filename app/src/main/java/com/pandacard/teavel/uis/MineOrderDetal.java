@@ -6,6 +6,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,6 +43,7 @@ public class MineOrderDetal extends BaseActivity implements View.OnClickListener
     private RecyclerView mCardinfo_recycle;
     private reclcleAdapter mReclcleAdapter;
     private List<CaerdOrderDetalBean.ExtraBean> mExtra;
+    private TextView mTextv_nodate;
 
 
     @Override
@@ -94,6 +96,7 @@ public class MineOrderDetal extends BaseActivity implements View.OnClickListener
         mAttbarimageview = findViewById(R.id.mincardattbarimageview);
         mSpinner = findViewById(R.id.spinner);
         mCardinfo_recycle = findViewById(R.id.cardinfo_recycle);
+        mTextv_nodate = findViewById(R.id.textv_nodate);
 
 
         mCardinfo_recycle.setLayoutManager(new LinearLayoutManager(this));
@@ -142,11 +145,15 @@ public class MineOrderDetal extends BaseActivity implements View.OnClickListener
                         //                            public void run() {
                         mReclcleAdapter.setStringList(mExtra);
                         mReclcleAdapter.notifyDataSetChanged();
+                        mTextv_nodate.setVisibility(View.GONE);
+                        mCardinfo_recycle.setVisibility(View.VISIBLE);
                         //                            }
                         //                        });
                     } else {
                         mReclcleAdapter.setStringList(mExtra);
                         mReclcleAdapter.notifyDataSetChanged();
+                        mTextv_nodate.setVisibility(View.VISIBLE);
+                        mCardinfo_recycle.setVisibility(View.GONE);
                     }
                 }
             }

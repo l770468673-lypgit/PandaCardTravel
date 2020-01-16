@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.adapters.pandainfoAdapter;
@@ -31,6 +32,7 @@ public class MinePandaCards extends AppCompatActivity implements pandainfoAdapte
 
 
     private ImageView mAttbarimageview;
+    private TextView mTextv_nodate;
 
     private List<String> mStrings;
     private String TAG = "MinePandaCards";
@@ -75,7 +77,13 @@ public class MinePandaCards extends AppCompatActivity implements pandainfoAdapte
                         LUtils.d(TAG, "mcards===" + mcards);
                         mPandainfoAdapter.setStringList(mcards);
                         mPandainfoAdapter.notifyDataSetChanged();
+                        mTextv_nodate.setVisibility(View.GONE);
+                        mCardinfo_recycle.setVisibility(View.VISIBLE);
                     } else {
+                        mTextv_nodate.setVisibility(View.VISIBLE);
+                        mCardinfo_recycle.setVisibility(View.GONE);
+                        mPandainfoAdapter.setStringList(mcards);
+                        mPandainfoAdapter.notifyDataSetChanged();
                         ToastUtils.showToast(MinePandaCards.this, body.getMsg());
                     }
 
@@ -94,6 +102,8 @@ public class MinePandaCards extends AppCompatActivity implements pandainfoAdapte
         mAttbarimageview = findViewById(R.id.mincardattbarimageview);
         mCardinfo_recycle = findViewById(R.id.pandcardinfo_recycle);
         mCardinfo_recycle.setLayoutManager(new LinearLayoutManager(this));
+
+        mTextv_nodate = findViewById(R.id.textv_nodate);
 
         mCardinfo_recycle.setLayoutManager(new LinearLayoutManager(this));
         mPandainfoAdapter = new pandainfoAdapter(this);

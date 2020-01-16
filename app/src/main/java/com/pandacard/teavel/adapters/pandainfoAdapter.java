@@ -51,12 +51,12 @@ public class pandainfoAdapter extends RecyclerView.Adapter<pandainfoAdapter.View
         LUtils.d(TAG, "ss====" + s);
         LUtils.d(TAG, "onBindViewHolder");
         holder.cardinfo_money.setText(s);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               onItemClickedListener.onItemClickedListeners(position);
-            }
-        });
+//        holder.itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//               onItemClickedListener.onItemClickedListeners(position);
+//            }
+//        });
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

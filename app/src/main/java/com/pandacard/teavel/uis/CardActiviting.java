@@ -35,6 +35,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
+import com.alibaba.fastjson.serializer.StringCodec;
 import com.arcsoft.face.ActiveFileInfo;
 import com.arcsoft.face.AgeInfo;
 import com.arcsoft.face.ErrorInfo;
@@ -261,7 +262,7 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
     private RelativeLayout mRely_facehead;
 
     private FrameLayout mFramlay_allfaceview;
-
+    private String code4num;
 
     /**
      * 所需的所有权限信息
@@ -447,7 +448,7 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
     private void initView() {
         compareResultList = new ArrayList<>();
         WindowManager wm1 = this.getWindowManager();
-        int width1 = wm1.getDefaultDisplay().getWidth()-30;
+        int width1 = wm1.getDefaultDisplay().getWidth() - 30;
 
         mSave_imageview_back = findViewById(R.id.chongzhinfc_imageview_back);
         mChongzhinfc_textView = findViewById(R.id.chongzhinfc_textView);
@@ -546,30 +547,9 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
             case R.id.lly_bindsuccess:
 
                 if (mPhonenums.getText().toString().trim().length() == 11 && mPandacard_cardnum.getText().toString().trim().length() > 1) {
-                    Call<bindSuccessBean> resourcesBeanCall = HttpManager.getInstance().getHttpClient().bindMobile
-                            (mPandacard_cardnum.getText().toString(), mPhonenums.getText().toString());
-                    resourcesBeanCall.enqueue(new Callback<bindSuccessBean>() {
-                        @Override
-                        public void onResponse(Call<bindSuccessBean> call, Response<bindSuccessBean> response) {
-                            bindSuccessBean body = response.body();
-                            if (body != null) {
-                                if (body.getCode() == 1) {
-                                    ToastUtils.showToast(CardActiviting.this, body.getMsg());
 
-                                    finish();
-                                    Intent intent = new Intent(CardActiviting.this, MainActivity.class);
-                                    startActivity(intent);
-                                } else {
-                                    ToastUtils.showToast(CardActiviting.this, body.getMsg());
-                                }
-                            }
-                        }
+                    AddCards();
 
-                        @Override
-                        public void onFailure(Call<bindSuccessBean> call, Throwable t) {
-
-                        }
-                    });
                 } else {
                     ToastUtils.showToast(this, "---------输入不正确 -----------");
                 }
@@ -635,6 +615,57 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    public void commiyPhone() {
+
+        Call<bindSuccessBean> resourcesBeanCall = HttpManager.getInstance().getHttpClient().bindMobile
+                (mPandacard_cardnum.getText().toString(), mPhonenums.getText().toString());
+        resourcesBeanCall.enqueue(new Callback<bindSuccessBean>() {
+            @Override
+            public void onResponse(Call<bindSuccessBean> call, Response<bindSuccessBean> response) {
+                bindSuccessBean body = response.body();
+                if (body != null) {
+                    if (body.getCode() == 1) {
+                        ToastUtils.showToast(CardActiviting.this, body.getMsg());
+
+                        finish();
+                        Intent intent = new Intent(CardActiviting.this, MainActivity.class);
+                        startActivity(intent);
+                    } else {
+                        ToastUtils.showToast(CardActiviting.this, body.getMsg());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<bindSuccessBean> call, Throwable t) {
+
+            }
+        });
+    }
+
+    public void AddCards() {
+        Call<bean_addCards> bean_personCall = HttpManager.getInstance().getHttpClient().addCard(mMAppletNo, code4num);
+        bean_personCall.enqueue(new Callback<bean_addCards>() {
+            @Override
+            public void onResponse(Call<bean_addCards> call, Response<bean_addCards> response) {
+                if (response.body() != null) {
+                    if (response.body() != null) {
+                        int code = response.body().getCode();
+                        if (code == 1) {
+                            commiyPhone();
+                        } else {
+                            ToastUtils.showToast(CardActiviting.this, response.body().getMsg().toString());
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<bean_addCards> call, Throwable t) {
+
+            }
+        });
+    }
 
     @Override
     protected void onResume() {
@@ -1353,32 +1384,12 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void afterTextChanged(Editable s) {
-
+        code4num = null;
         if (s.length() == 4) {
-
+            mPanda_nextstep.setVisibility(View.VISIBLE);
             KeyboardUtils.hideKeyboard(this);
             LUtils.d(TAG, "s.length()===" + s.length());
-            Call<bean_addCards> bean_personCall = HttpManager.getInstance().getHttpClient().addCard(mMAppletNo, s.toString());
-            bean_personCall.enqueue(new Callback<bean_addCards>() {
-                @Override
-                public void onResponse(Call<bean_addCards> call, Response<bean_addCards> response) {
-                    if (response.body() != null) {
-                        if (response.body() != null) {
-                            int code = response.body().getCode();
-                            if (code == 1) {
-                                mPanda_nextstep.setVisibility(View.VISIBLE);
-                            } else {
-                                ToastUtils.showToast(CardActiviting.this, response.body().getMsg().toString());
-                            }
-                        }
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<bean_addCards> call, Throwable t) {
-
-                }
-            });
+            code4num = s.toString();
         }
     }
 }

@@ -95,7 +95,7 @@
 
     <string name="cardactive_title_eidact">添加卡片</string>
     <string name="cardactive_idxcrad_read">请贴身份证...</string>
-    <string name="cardactive_idxcrad_read2">请将身份证开进手机所示识别</string>
+    <string name="cardactive_idxcrad_read2">请将身份证靠进手机所示识别</string>
     <string name="cardactive_idxcrad_read3">识别过程中请勿离开身份证</string>
     <string name="cardactive_idxcrad_start">读取中，请勿移动</string>
     <string name="cardactive_idxcrad_failed">读取失败</string>
@@ -103,7 +103,7 @@
     <string name="cardactive_nextin">正在取卡</string>
     <string name="cardactive_nextstep">下一步</string>
     <string name="cardactive_idcardreadover">请贴熊猫卡......</string>
-    <string name="cardactive_idcardreadover2">请将熊猫卡开进手机所示识别</string>
+    <string name="cardactive_idcardreadover2">请将熊猫卡靠近进手机所示识别</string>
     <string name="cardactive_idcardreadover3">识别过程中请勿离开熊猫卡</string>
     <string name="cardactive_idcardreadover4">请输入卡片上图层后的校验码</string>
     <string name="cardactive_idcardreadover5">校验码</string>
@@ -141,6 +141,8 @@
     <string name="eidactivity_yquancun">已圈存 </string>
     <string name="eidactivity_nquancun">未圈存 </string>
     <string name="eidactivity_quancun">圈存状态： </string>
+
+    <string name="eidactivity_nodate">暂无数据</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

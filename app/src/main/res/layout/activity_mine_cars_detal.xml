@@ -63,8 +63,18 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/cardinfo_recycle"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/textv_nodate"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:text="@string/eidactivity_nodate"
+        android:visibility="gone" />
 
 
 </LinearLayout>

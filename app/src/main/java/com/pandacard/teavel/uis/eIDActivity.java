@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.pandacard.teavel.ParamConst;
 import com.pandacard.teavel.R;
+import com.pandacard.teavel.utils.StatusBarUtil;
 import com.pandacard.teavel.utils.ToastUtils;
 
 public class eIDActivity extends AppCompatActivity implements View.OnClickListener {
@@ -29,7 +30,7 @@ public class eIDActivity extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eid);
-
+        StatusBarUtil.setDrawable(this, R.drawable.mine_title_jianbian);
         initView();
     }
 

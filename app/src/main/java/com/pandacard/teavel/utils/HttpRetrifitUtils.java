@@ -23,6 +23,7 @@ public class HttpRetrifitUtils {
     public static final String WXLOGIN_UNID = "wxlogin_unid";
     public static final String APPISlOGIN = "appislogin";
     public static final String CARDISBIND = "cardisbind";
+    public static final String DEFAULTCARDISBIND = "defaultcardisbind";
 
 
     /**
