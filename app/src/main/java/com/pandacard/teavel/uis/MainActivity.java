@@ -19,19 +19,20 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.gson.reflect.TypeToken;
 import com.pandacard.teavel.R;
-import com.pandacard.teavel.adapters.Main_frag_ViewPagerAdapter;
 import com.pandacard.teavel.adapters.fragments.MainFrag_home;
 import com.pandacard.teavel.adapters.fragments.MainFrag_mine;
-import com.pandacard.teavel.adapters.fragments.MainFrag_shop;
-import com.pandacard.teavel.adapters.fragments.MainFrag_travel;
 import com.pandacard.teavel.apps.MyApplication;
 import com.pandacard.teavel.bases.BaseActivity;
 import com.pandacard.teavel.https.HttpManager;
@@ -39,22 +40,38 @@ import com.pandacard.teavel.https.beans.AppUpdate;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
 import com.pandacard.teavel.utils.LUtils;
 import com.pandacard.teavel.utils.ShareUtil;
+import com.pandacard.teavel.utils.StatusBarUtil;
 import com.pandacard.teavel.utils.ToastUtils;
+import com.xlu.fragments.FragmentFind;
+import com.xlu.fragments.FragmentFindZone;
+import com.xlu.po.City;
+import com.xlu.utils.Constance;
+import com.xlu.utils.DBUtil;
+import com.xlu.utils.JsonUtil;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
+import cn.com.wideroad.BaseHttp;
+import cn.com.wideroad.http.AjaxCallBack;
+import cn.com.wideroad.http.AjaxParams;
+import cn.com.wideroad.utils.StringUtil;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, ViewPager.OnPageChangeListener {
+public class MainActivity extends BaseActivity implements
+        View.OnClickListener
+//        , RadioGroup.OnCheckedChangeListener,
+        , ViewPager.OnPageChangeListener {
     private static String TAG = "MainActivity";
     private Button mBtntobus;
     private RadioGroup mMain_rgroup;
@@ -62,9 +79,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private RadioButton mMain_frag_travel;
     private RadioButton mMain_frag_shop;
     private RadioButton mMain_frag_mine;
-    private ViewPager mMain_frag_viewpager;
+    //    private ViewPager mMain_frag_viewpager;
     private ArrayList<Fragment> mMFragmentList;
-    private Main_frag_ViewPagerAdapter mViewPagerAdapter;
+    //    private Main_frag_ViewPagerAdapter mViewPagerAdapter;
     private String mMShoppic;
     private String mMTrippic;
     private String mMBananerpic;
@@ -75,24 +92,157 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private String mDownloadedAppPath;
     private Notification mBuild;
     private static final int NO_3 = 0x3;
+    List<City> citys;
+
+    private int mIndex;
+    private Fragment[] mFragments;
+    private RelativeLayout mMain_container;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        StatusBarUtil.setDrawable(this, R.drawable.mine_title_jianbian);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         Bundle bundle = getIntent().getExtras();
         mMShoppic = bundle.getString("mShop");
         mMTrippic = bundle.getString("mTrip");
         mMBananerpic = bundle.getString("mBananer");
 
-
+        initCitys();
         LUtils.d(TAG, "mAppIsLogin==========" + mAppIsLogin);
         initView();
-
-        initPagerDate();
+        initgroup();
+        initfragmentdate();
     }
 
+    private void initgroup() {
+        mMain_rgroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                switch (checkedId) {
+                    case R.id.main_frag_home:
+
+                        setIndexSelected(0);
+                        break;
+
+                    case R.id.main_frag_travel:
+
+                        setIndexSelected(1);
+                        break;
+
+                    case R.id.main_frag_shop:
+
+                        setIndexSelected(2);
+                        break;
+
+                    case R.id.main_frag_mine:
+
+                        setIndexSelected(3);
+                        break;
+                    default:
+                        break;
+                }
+
+//                //遍历RadioGroup 里面所有的子控件。
+//                for (int index = 0; index < group.getChildCount(); index++) {
+//                    //获取到指定位置的RadioButton
+//                    RadioButton rb = (RadioButton) group.getChildAt(index);
+//                    LUtils.d(TAG, " group.getChildCount()===" + group.getChildCount());
+//                    LUtils.d(TAG, " group.getChildAt  --- index===" + index);
+//                    //如果被选中
+//                    if (rb.isChecked()) {
+//                        setIndexSelected(index);
+//                        LUtils.d(TAG, " onCheckedChanged  --- index===" + index);
+//                        //setIndexSelectedTwo(index);  //方法二
+//                        break;
+//                    }
+//                }
+
+            }
+        });
+
+    }
+
+    private void setIndexSelected(int index) {
+
+        if (mIndex == index) {
+            return;
+        }
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+
+        //隐藏
+        ft.hide(mFragments[mIndex]);
+        //判断是否添加
+        if (!mFragments[index].isAdded()) {
+            ft.add(R.id.main_container, mFragments[index]).show(mFragments[index]);
+        } else {
+            ft.show(mFragments[index]);
+        }
+
+        ft.commit();
+        //再次赋值
+        mIndex = index;
+
+    }
+
+    private void initfragmentdate() {
+        MainFrag_home f_home = MainFrag_home.newInstance("");
+        FragmentFind f_Find = (FragmentFind) FragmentFind.newInstance("");
+        FragmentFindZone f_FindZone = (FragmentFindZone) FragmentFindZone.newInstance();
+        MainFrag_mine f_mine = MainFrag_mine.newInstance();
+
+        //添加到数组
+        mFragments = new Fragment[]{f_home, f_Find, f_FindZone, f_mine};
+        //开启事务
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        //添加首页
+        ft.add(R.id.main_container, f_home).commit();
+        //默认设置为第0个
+        setIndexSelected(0);
+        mMain_rgroup.getChildAt(0).performClick();//模拟点击第一个RB
+    }
+
+
+    private void initCitys() {
+        BaseHttp http = new BaseHttp();
+        AjaxParams params = new AjaxParams();
+        http.post(Constance.HTTP_REQUEST_URL + "getCitylist", params,
+                new AjaxCallBack<Object>() {
+
+                    @Override
+                    public void onFailure(Throwable t, int errorNo,
+                                          String strMsg) {
+                        super.onFailure(t, errorNo, strMsg);
+                        LUtils.d(TAG, "initCitys===onFailure=");
+                    }
+
+                    @Override
+                    public void onSuccess(Object t) {
+                        super.onSuccess(t);
+                        try {
+
+                            Type types = new TypeToken<List<City>>() {
+                            }.getType();
+
+                            citys = (List<City>) JsonUtil.fromJsonToObject(
+                                    StringUtil.removeNull(t), types);
+                            LUtils.d(TAG, "initCitys===citys====" + citys.toString());
+                            DBUtil.insertAll(citys);
+
+
+                        } catch (Exception e) {
+
+                        }
+
+                    }
+
+                });
+
+    }
 
     @Override
     protected void onResume() {
@@ -102,36 +252,36 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private void initPagerDate() {
 
-        mMFragmentList = new ArrayList<>();
-        mMFragmentList.add(MainFrag_home.newInstance(mMBananerpic));
-        mMFragmentList.add(MainFrag_travel.newInstance(mMTrippic));
-        mMFragmentList.add(MainFrag_shop.newInstance(mMShoppic));
-        mMFragmentList.add(MainFrag_mine.newInstance());
-        mViewPagerAdapter = new Main_frag_ViewPagerAdapter(getSupportFragmentManager());
+//        mMFragmentList = new ArrayList<>();
+//        mMFragmentList.add(MainFrag_home.newInstance(mMBananerpic));
+//        mMFragmentList.add(FragmentFind.newInstance(mMTrippic));
+//        mMFragmentList.add(FragmentFindZone.newInstance());
+//        mMFragmentList.add(MainFrag_mine.newInstance());
 
-        mMain_frag_viewpager.setAdapter(mViewPagerAdapter);
-        mViewPagerAdapter.setList(mMFragmentList);
-        LUtils.d(TAG, "mMFragmentList.size==" + mMFragmentList.size());
+//        mMFragmentList.add(MainFrag_shop.newInstance(mMShoppic));
+//        mMFragmentList.add(MainFrag_travel.newInstance(mMTrippic));
+//        mViewPagerAdapter = new Main_frag_ViewPagerAdapter(getSupportFragmentManager());
+
+//        mMain_frag_viewpager.setAdapter(mViewPagerAdapter);
+//        mViewPagerAdapter.setList(mMFragmentList);
+//        LUtils.d(TAG, "mMFragmentList.size==" + mMFragmentList.size());
         //系统默认选中第一个,但是系统选中第一个不执行onNavigationItemSelected(MenuItem)方法,
         // 如果要求刚进入页面就执行clickTabOne()方法,则手动调用选中第一个
-        mMain_frag_viewpager.addOnPageChangeListener(this);
+//        mMain_frag_viewpager.addOnPageChangeListener(this);
     }
 
     private void initView() {
 
         mMain_rgroup = findViewById(R.id.main_rgroup);
-        mMain_frag_viewpager = findViewById(R.id.main_frag_viewpager);
-
+//        mMain_frag_viewpager = findViewById(R.id.main_frag_viewpager);
         mMain_frag_home = findViewById(R.id.main_frag_home);
         mMain_frag_travel = findViewById(R.id.main_frag_travel);
         mMain_frag_shop = findViewById(R.id.main_frag_shop);
         mMain_frag_mine = findViewById(R.id.main_frag_mine);
         mBtntobus = findViewById(R.id.btntobus);
-
+        mMain_container = findViewById(R.id.main_container);
         mBtntobus.setOnClickListener(this);
-        mMain_rgroup.setOnCheckedChangeListener(this);
 
-        mMain_rgroup.getChildAt(0).performClick();//模拟点击第一个RB
         checuAppUpdate();
     }
 
@@ -169,24 +319,59 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         }
     }
 
-    @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
-        switch (checkedId) {
-            case R.id.main_frag_home:
-                mMain_frag_viewpager.setCurrentItem(0);
-                break;
-            case R.id.main_frag_travel:
-                mMain_frag_viewpager.setCurrentItem(1);
-                break;
-            case R.id.main_frag_shop:
-                mMain_frag_viewpager.setCurrentItem(2);
-                break;
-            case R.id.main_frag_mine:
-                mMain_frag_viewpager.setCurrentItem(3);
-                break;
-        }
-
-    }
+//    @Override
+//    public void onCheckedChanged(RadioGroup group, int checkedId) {
+//        switch (checkedId) {
+//            case R.id.main_frag_home:
+//                index = 0;
+//                break;
+//
+//            case R.id.main_frag_travel:
+//                index = 1;
+//                break;
+//
+//            case R.id.main_frag_shop:
+//                index = 2;
+//                break;
+//
+//            case R.id.main_frag_mine:
+//                index = 3;
+//                break;
+//            default:
+//                break;
+//
+////            case R.id.main_frag_home:
+////                mMain_frag_viewpager.setCurrentItem(0);
+////                break;
+////            case R.id.main_frag_travel:
+////                mMain_frag_viewpager.setCurrentItem(1);
+////                break;
+////            case R.id.main_frag_shop:
+////                mMain_frag_viewpager.setCurrentItem(2);
+////                break;
+////            case R.id.main_frag_mine:
+////                mMain_frag_viewpager.setCurrentItem(3);
+////                break;
+//        }
+//        change();
+//
+//
+//    }
+//
+//    protected void change() {
+//        if (currentTabIndex != index) {
+//            ft.hide(fragments[currentTabIndex]);
+//            if (!fragments[index].isAdded()) {
+//                ft.add(R.id.main_container, fragments[index]);
+//            }
+//            ft.show(fragments[index]).commit();
+//        }
+//        ((RadioButton) mMain_rgroup.getChildAt(currentTabIndex))
+//                .setChecked(false);
+//        ((RadioButton) mMain_rgroup.getChildAt(index)).setChecked(true);
+//        currentTabIndex = index;
+//
+//    }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -396,6 +581,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
 
         }
+
     }
 
     private void silentInstallApk(String apkPath) {

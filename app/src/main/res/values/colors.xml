@@ -22,4 +22,81 @@
     <color name="f3f3f3">#F3F3F3</color>
 
 
+<!--    、、============小路========-->
+
+    <color name="backgroud_color">#E0E0E0</color>
+    <color name="textColorPrimary">#414141</color>
+    <color name="main_background_color">#f4f4f4</color>
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="help_button_view">#ffcccccc</color>
+    <color name="help_view">#ff404040</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="result_image_border">#ffffffff</color>
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c000ff00</color>
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="sbc_header_text">#ff808080</color>
+    <color name="sbc_header_view">#ffffffff</color>
+    <color name="sbc_list_item">#fffff0e0</color>
+    <color name="sbc_layout_view">#ffffffff</color>
+    <color name="sbc_page_number_text">#ff000000</color>
+    <color name="sbc_snippet_text">#ff4b4b4b</color>
+    <color name="share_text">#ff000000</color>
+    <color name="share_view">#ffffffff</color>
+    <color name="status_view">#50000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+    <color name="rb_checked">#E9967A</color>
+    <color name="rb_unchecked">#ffe9df</color>
+    <color name="but_send_jiangjing">#ED9C71</color>
+    <color name="but_send_jiangjing_press">#FF9C71</color>
+    <color name="dialog_bg">#bb000000</color>
+    <color name="play_background">#f6dc45</color>
+    <color name="play_progress">#d56c3e</color>
+    <color name="google_red">#d62d20</color>
+    <color name="google_blue">#0057e7</color>
+    <color name="google_green">#008744</color>
+    <color name="google_yellow">#ffa700</color>
+    <color name="green">#17b659</color>
+    <color name="et_bg">#22000000</color>
+    <color name="grey"> #ebebeb</color>
+    <color name="black"> #000000</color>
+    <color name="darkgrey"> #C0C0C0</color>
+    <color name="white"> #FFFFFF</color>
+    <color name="red"> #FF0000</color>
+    <color name="darkyellow"> #FFCC33</color>
+    <color name="pressed_color">#FE525D</color>
+    <color name="default_color1">#FF3C5C</color>
+    <color name="divide_gray_color">#f4f4f4</color>
+    <color name="o">#ddeeee</color>
+    <color name="o1">#ffffdd</color>
+    <color name="gray">#d5d4d4</color>
+    <color name="blue">#0000ff</color>
+    <color name="calendar_color_green">#60c677</color>
+    <color name="calendar_color_orange">#fc6c00</color>
+    <color name="calendar_color_black">#666666</color>
+    <color name="calendar_color_black2">#F0F0F0</color>
+    <color name="calendar_color_gray">#cccccc</color>
+    <color name="calendar_color_month_title">#526276</color>
+    <color name="calendar_color_white">#ffffff</color>
+
+    <color name="clicked_color">#ff666666</color>
+    <color name="default_color">#000000</color>
+
+    <color name="hidebtn_clicked_color">#ff7700</color>
+    <color name="hidebtn_default_color">#9A9A9A</color>
+    <color name="circle_fill">#3376d4f3</color>
+    <color name="circle_stroke">#cc3f91fc</color>
+    <color name="partTranslucent">#39000000</color>
+
+    <color name="bg_pop_color">#ddFFFFFF</color>
+
+    <color name="light_blue">#6593cb</color>
+    <color name="tool_color">#01A4EF</color>
 </resources>
+

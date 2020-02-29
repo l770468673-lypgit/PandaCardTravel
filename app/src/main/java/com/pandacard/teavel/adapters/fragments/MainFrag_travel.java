@@ -58,7 +58,8 @@ public class MainFrag_travel extends Fragment {
 
     private void loadDate() {
 
-        mFragment_travel_webview.loadUrl(getArguments().getString("MTrippic"));
+        mFragment_travel_webview.loadUrl("https://mp.weixin.qq.com/s/gJAMG6qUF-p9Vc-WXV6XBA");
+//        mFragment_travel_webview.loadUrl(getArguments().getString("MTrippic"));
         mFragment_travel_webview.setWebViewClient(new WebViewClient());
         mFragment_travel_webview.setWebChromeClient(new WebChromeClient() {
             @Override

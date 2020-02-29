@@ -11,6 +11,7 @@ import com.pandacard.teavel.https.beans.bean_person;
 import com.pandacard.teavel.https.beans.bindSuccessBean;
 import com.pandacard.teavel.https.beans.cardsbean;
 import com.pandacard.teavel.https.beans.pandaInfo;
+import com.pandacard.teavel.https.beans.resetPass;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
@@ -154,9 +155,18 @@ public interface ClientRestAPI {
     );
 
 
+
     //16.获取apk信息接口
     @FormUrlEncoded
     @POST("panda/getAPKInfo")
     @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
     Call<AppUpdate> upDateApp(@Field("") String s);
+
+    // 重置密码
+    @FormUrlEncoded
+    @POST("panda/resetPassword")
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
+    Call<resetPass> resetPassword(@Field("mobile") String mobile,
+                                  @Field("password") String password
+                                  );
 }

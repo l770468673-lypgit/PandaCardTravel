@@ -32,6 +32,7 @@ android {
         ndk {
             abiFilters "armeabi-v7a"
         }
+        multiDexEnabled true
     }
 
     dexOptions {
@@ -47,7 +48,7 @@ android {
     signingConfigs {
         release {
             //注意：该签名文件的备份在项目内，使用路径可以改变
-            storeFile file("C:/Users/admin/Desktop/PandaCardTravel/pandacard.jks")
+            storeFile file("C:/Users/Administrator/Desktop/PandaCardTravel222/PandaCardTravel/pandacard.jks")
             storePassword "123456"
             keyAlias "panda"
             keyPassword "123456"
@@ -76,6 +77,9 @@ android {
         }
     }
 }
+android {
+    useLibrary 'org.apache.http.legacy'
+}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -99,4 +103,19 @@ dependencies {
     implementation files('libs/IDOCR.PubSdk.Android.Std.NFC.Test-7.1.0.jar')
     implementation files('libs/arcsoft_face.jar')
     implementation files('libs/arcsoft_image_util.jar')
+    //--
+    implementation 'com.android.support:design:25.3.1'
+    implementation 'com.jakewharton:butterknife:8.4.0'
+    implementation files('libs/eventbus-3.0.0-beta1.jar')
+    implementation files('libs/universal-image-loader-1.9.4.jar')
+    implementation files('libs/easydroid.jar')
+    //    implementation files('libs/lite-orm-1.5.4.jar')
+    implementation files('libs/lite-orm-1.9.1.jar')
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'com.github.promeg:tinypinyin:1.0.0'
+    implementation files('libs/xUtils-2.6.14.jar')
+    implementation files('libs/core-3.1.0.jar')
+    implementation files('libs/AMap_Location_V4.8.0_20191210.jar')
+    implementation files('libs/AMap_Search_V7.1.0_20191030.jar')
+    implementation files('libs/Android_Map3D_SDK_V7.2.1_20200115.jar')
 }

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroud_color">
+    <include layout="@layout/my_dy_toolbar"/>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_find"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"/>
+
+<!--    <RadioGroup-->
+<!--        android:id="@+id/tab_find_rgroup"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="@color/ffffff"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/rgroup1"-->
+<!--            style="@style/style_text_select"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:button="@null"-->
+<!--            android:drawableTop="@drawable/home_selectpic"-->
+<!--            android:drawablePadding="5dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/main_frag_home" />-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/rgroup2"-->
+<!--            style="@style/style_text_select"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:button="@null"-->
+<!--            android:drawableTop="@drawable/lvyou_selectpic"-->
+<!--            android:drawablePadding="5dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/main_frag_travel" />-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/rgroup3"-->
+<!--            style="@style/style_text_select"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:button="@null"-->
+<!--            android:drawableTop="@drawable/shop_selectpic"-->
+<!--            android:drawablePadding="5dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/main_frag_shop" />-->
+
+<!--        <RadioButton-->
+<!--            android:id="@+id/rgroup4"-->
+<!--            style="@style/style_text_select"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:button="@null"-->
+<!--            android:drawableTop="@drawable/mine_selectpic"-->
+<!--            android:drawablePadding="5dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/main_frag_mine" />-->
+<!--        <RadioButton-->
+<!--            android:id="@+id/rgroup5"-->
+<!--            style="@style/style_text_select"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:button="@null"-->
+<!--            android:drawableTop="@drawable/mine_selectpic"-->
+<!--            android:drawablePadding="5dp"-->
+<!--            android:gravity="center"-->
+<!--            android:text="@string/main_frag_mine" />-->
+<!--    </RadioGroup>-->
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_findvvp"
+        android:layout_width="match_parent"
+        android:layout_marginTop="3dp"
+        android:background="@color/white"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>

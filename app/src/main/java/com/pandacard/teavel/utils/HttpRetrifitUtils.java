@@ -25,6 +25,10 @@ public class HttpRetrifitUtils {
     public static final String CARDISBIND = "cardisbind";
     public static final String DEFAULTCARDISBIND = "defaultcardisbind";
 
+    public static final String ACT_TITLENAME = "act_titlename";
+
+    public static final String ACT_BUNUM = "act_bunum";
+
 
     /**
      * Post请求 异步

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="horizontal"
+    android:padding="10dp" >
+
+    <ImageView
+        android:id="@+id/iv_room_img"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:focusable="false"
+        android:scaleType="fitXY" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="2"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:id="@+id/tv_room_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:text="高级豪华房"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/tv_room_name" >
+
+                <TextView
+                    android:id="@+id/tv_room_price_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="258"
+                    android:textColor="#FF6500"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/tv_fuhao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/tv_room_price_num"
+                    android:text="¥"
+                    android:layout_marginRight="3dp"
+                    android:layout_alignBottom="@id/tv_room_price_num"
+                    android:textColor="#FF6500"
+                    android:textSize="13sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/tv_room_miaoshu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:text="27㎡"
+            android:layout_marginTop="10dp"
+            android:textColor="#979797"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1" >
+
+
+
+            <TextView
+                android:id="@+id/tv_room_order"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/rectangle_zhusu_pay"
+                android:focusable="false"
+                android:gravity="center"
+                android:text="预定"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+            <TextView
+                android:id="@+id/tv_my_lubi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:textColor="#ffffff"
+                android:background="#ff0000"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="小鹿币可抵扣:100"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

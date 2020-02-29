@@ -50,7 +50,8 @@ public class MainFrag_shop extends Fragment {
     }
 
     private void loadDate() {
-        mFragment_shop_webview.loadUrl(getArguments().getString("MShoppic"));
+        mFragment_shop_webview.loadUrl("https://mp.weixin.qq.com/s/egfU_mRKSd22P8IyR_KfgQ");
+//        mFragment_shop_webview.loadUrl(getArguments().getString("MShoppic"));
         mFragment_shop_webview.setWebViewClient(new WebViewClient());
         mFragment_shop_webview.setWebChromeClient(new WebChromeClient() {
             @Override

@@ -18,6 +18,7 @@ import com.pandacard.teavel.https.HttpManager;
 import com.pandacard.teavel.https.beans.cardsbean;
 import com.pandacard.teavel.uis.MineOrderDetal;
 import com.pandacard.teavel.uis.MinePandaCards;
+import com.pandacard.teavel.uis.OrderMy_Activity;
 import com.pandacard.teavel.uis.WelcomeActivit;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
 import com.pandacard.teavel.utils.LUtils;
@@ -128,6 +129,9 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
 
                 break;
             case R.id.fragment_mine_eid:
+
+                Intent intent = new Intent(getActivity(), OrderMy_Activity.class);
+                startActivity(intent);
                 break;
             case R.id.mine_rely_panda2:
                 if (ShareUtil.getString(HttpRetrifitUtils.SERNAME_PHONE) != null) {

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:star="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F4F4"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+   <include layout="@layout/my_dy_toolbar"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:scrollbars="none"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white" >
+
+                <ImageView
+                    android:id="@+id/iv_zhusu"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:focusable="true"
+                    android:scaleType="fitXY" />
+
+                <TextView
+                    android:id="@+id/tv_zhusu_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_zhusu"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#ffffff"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/iv_zhu_su_car_nav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="145dp"
+                    android:src="@drawable/by_car" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="#F4F4F4" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6"
+                    android:orientation="vertical"
+                    android:paddingBottom="15dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp" >
+
+                    <TextView
+                        android:id="@+id/tv_zhusu_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawableLeft="@drawable/maptitle"
+                        android:drawablePadding="5dp"
+                        android:gravity="bottom"
+                        android:singleLine="true"
+                        android:text="天门山索道公司斜对面"
+                        android:textColor="#3E3E3E"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_zhusu_phone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:drawableLeft="@drawable/dailtile"
+                        android:drawablePadding="5dp"
+                        android:gravity="bottom"
+                        android:text="0744-5741824"
+                        android:textColor="#3E3E3E"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:orientation="vertical"
+                    android:padding="10dp" >
+
+                    <com.xlu.widgets.StarView
+                        android:id="@+id/rb_zhusu_pinfen"
+                        android:layout_width="75dp"
+                        android:layout_height="15dp"
+                        android:orientation="horizontal"
+                        star:childWidth="15dp"
+                        star:counterAll="5"
+                        android:gravity="center_vertical"
+                        star:defoultImage="@drawable/ic_star_nil"
+                        star:hightImage="@drawable/ic_star_full"
+                        star:precision="whole"
+                        star:seletedable="false" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="3dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone" >
+
+                        <TextView
+                            android:id="@+id/tv_pinfen_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4.9"
+                            android:textColor="#FF771E"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="分"
+                            android:textColor="#FF771E"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_zhusu_pinglun_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:drawablePadding="3dp"
+                        android:gravity="center_vertical"
+                        android:drawableRight="@drawable/iv_right"
+                        android:text="417条评论"
+                        android:textColor="#b5b5b5"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F4F4F4" />
+
+            <com.xlu.widgets.ScrollDisabledListView
+                android:id="@+id/lv_zhuSu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:divider="#F4F4F4"
+                android:dividerHeight="1dp"
+                android:focusable="false" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#F4F4F4" />
+
+            <WebView
+                android:id="@+id/wv_zhusu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

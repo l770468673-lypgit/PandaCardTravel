@@ -75,6 +75,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             Manifest.permission.READ_PHONE_STATE
     };
     private TextView mLogin_phonenum_reg;
+    private TextView mForgetpass;
     private ImageView mlogin_will_wxlogin;
     private ImageView mPassvisvilit;
 
@@ -172,6 +173,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         mWx_login_password = findViewById(R.id.wx_login_password);
         mWx_login_loginedyt = findViewById(R.id.wx_login_logindenglu);
 
+        mForgetpass = findViewById(R.id.forgetpass);
+
 
         mChongzhinfc_imageview_back = findViewById(R.id.chongzhinfc_imageview_back);
 
@@ -183,6 +186,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         mWx_login_loginedyt.setOnClickListener(this);
         mPassvisvilit.setOnClickListener(this);
         mlogin_logineddenglu.setClickable(true);
+        mForgetpass.setOnClickListener(this);
         mChongzhinfc_imageview_back.setOnClickListener(this);
         mChongzhinfc_textView.setText(getResources().getText(R.string.login_wx_phonebind));
     }
@@ -200,6 +204,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 break;
             case R.id.login_phonenum_reg:
                 Intent inreg = new Intent(this, RegistActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putInt(HttpRetrifitUtils.ACT_TITLENAME, 2);// 2 是注册
+                inreg.putExtras(bundle);
+                startActivity(inreg);
                 startActivity(inreg);
                 finish();
                 break;
@@ -267,6 +275,14 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
                 mWechat.showUser(null);
                 LUtils.d(TAG, "：----login_will_wxlogin-------mWechat--- ");
+                break;
+            case R.id.forgetpass:
+                Intent inreset = new Intent(this, RegistActivity.class);
+                Bundle bundle2 = new Bundle();
+                bundle2.putInt(HttpRetrifitUtils.ACT_TITLENAME, 1);// 1 是重置密码
+                inreset.putExtras(bundle2);
+                startActivity(inreset);
+                finish();
                 break;
         }
     }
@@ -437,10 +453,12 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             public void onResponse(Call<Mobilesbean> call, Response<Mobilesbean> response) {
                 if (response.body() != null) {
                     String mobiles1 = response.body().getExtra().getMobiles();
+
                     if (mobiles1.length() < 1) {
                         mHandler.sendEmptyMessage(WX_LOGIN_SETPHONE);
                     } else {
                         toWXlogin(uid);
+                        ShareUtil.putString(HttpRetrifitUtils.SERNAME_PHONE, mobiles1);
                     }
                 }
             }

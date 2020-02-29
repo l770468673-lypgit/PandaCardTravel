@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:star="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f4f4f4"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/my_dy_toolbar"></include>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/iv_meishi"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:scaleType="fitXY" />
+
+
+                <TextView
+                    android:id="@+id/tv_meishi_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/iv_meishi"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#ffffff"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_meishi_title"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1">
+
+                        <LinearLayout
+                            android:id="@+id/ll_meishi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="5dp"
+                            android:background="#ffffff"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="人均:"
+                                android:textColor="#b1b1b1"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="￥"
+                                android:textColor="#FE751A"
+                                android:textSize="10sp" />
+
+                            <TextView
+                                android:id="@+id/tv_meishi_price"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="128"
+                                android:textColor="#FE751A"
+                                android:textSize="16sp" />
+
+                            <TextView
+                                android:id="@+id/tv_meishi_distance"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:singleLine="true"
+                                android:text="约50米"
+                                android:textColor="#b1b1b1"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <com.xlu.widgets.StarView
+                            android:id="@+id/rb_pingfen_show"
+                            android:layout_width="100dp"
+                            android:layout_height="20dp"
+                            android:layout_below="@id/ll_meishi"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal"
+                            star:childWidth="20dp"
+                            star:counterAll="5"
+                            star:defoultImage="@drawable/ic_star_nil"
+                            star:hightImage="@drawable/ic_star_full"
+                            star:precision="whole"
+                            star:seletedable="false" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/tv_jiudian_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="5dp"
+                            android:drawableLeft="@drawable/maptitle"
+                            android:drawablePadding="5dp"
+                            android:gravity="bottom"
+                            android:singleLine="true"
+                            android:text="天门山索道公司斜对面"
+                            android:textColor="#3E3E3E"
+                            android:textSize="14sp" />
+
+                        <TextView
+                            android:id="@+id/tv_meishi_phone_num"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/tv_jiudian_address"
+                            android:layout_marginLeft="20dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:drawableLeft="@drawable/dailtile"
+                            android:drawablePadding="5dp"
+                            android:gravity="bottom"
+                            android:text="0744-5741824"
+                            android:textColor="#3E3E3E"
+                            android:textSize="14sp" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/iv_car_nav"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="145dp"
+                    android:layout_marginRight="15dp"
+                    android:src="@drawable/by_car" />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="#e2e2e2" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#f4f4f4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="店家详情"
+                android:textColor="#7B7B7B"
+                android:textSize="16sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:background="#E6E6E6" />
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="1dp"
+                    android:background="#FF7921" />
+            </RelativeLayout>
+
+            <WebView
+                android:id="@+id/wv_caipin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#f4f4f4" />
+
+
+            <TextView
+                android:id="@+id/tv_pinglun_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="评论(2)"
+                android:textColor="#7B7B7B" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.8dp"
+                    android:background="#E6E6E6" />
+
+                <TextView
+                    android:layout_width="85dp"
+                    android:layout_height="1dp"
+                    android:background="#FF7921" />
+            </RelativeLayout>
+
+            <com.xlu.widgets.ScrollDisabledListView
+                android:id="@+id/lv_pinglun"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="#F2F2F2"
+                android:focusable="false" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:background="#f4f4f4" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/panelBaru"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:background="#FFFFFF"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_you_hui_fu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/rectangle_youhui_fu"
+            android:gravity="center"
+            android:padding="10sp"
+            android:text="优惠付"
+            android:textColor="#ffffff"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+</LinearLayout>

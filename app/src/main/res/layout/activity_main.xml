@@ -12,21 +12,32 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/main_frag_viewpager"
+<!--        <androidx.viewpager.widget.ViewPager-->
+<!--            android:id="@+id/main_frag_viewpager"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="300dp"-->
+<!--            android:layout_weight="1" />-->
+
+
+
+        <RelativeLayout
+            android:id="@+id/main_container"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_weight="1" />
+            android:layout_height="0dp"
+            android:layout_weight="8.9"
+            />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp" />
+            android:layout_height="0dp"
+            android:layout_weight="0.1" />
 
 
         <RadioGroup
             android:id="@+id/main_rgroup"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="0dp"
             android:background="@color/ffffff"
             android:orientation="horizontal">
 

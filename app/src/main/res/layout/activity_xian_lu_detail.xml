@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f4f4f4"
+    android:orientation="vertical" >
+    <include layout="@layout/my_dy_toolbar"></include>
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@color/tool_color" >-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/iv_xianlu_xiangqing_back"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:contentDescription="@null"-->
+            <!--android:padding="10dp"-->
+            <!--android:scaleType="fitStart"-->
+            <!--android:src="@drawable/iv_back" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/tv_zone_gonglue_name"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:text="线路攻略"-->
+            <!--android:textColor="#000000"-->
+            <!--android:textSize="18sp" />-->
+        <!--<TextView-->
+		    <!--android:textColor="#aa0000"-->
+		    <!--android:textSize="16sp"-->
+		    <!--android:layout_marginRight="10dp"-->
+		    <!--android:id="@+id/tv_share"-->
+		    <!--android:layout_width="wrap_content"-->
+		    <!--android:layout_height="wrap_content"-->
+		    <!--android:layout_alignParentRight="true"-->
+		    <!--android:layout_centerVertical="true"-->
+		    <!--android:text="分享" />-->
+    <!--</RelativeLayout>-->
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/iv_xiangqing"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:padding="10dp" >
+
+                <TextView
+                    android:id="@+id/tv_road_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_route_memo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textColor="#D4D4D4"
+                    android:textSize="14sp" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:visibility="gone"
+                    android:paddingTop="10dp" 
+                    android:paddingBottom="10dp">
+
+                   
+
+                   
+                    <TextView 
+                        android:id="@+id/tv_xianlu_guanzhu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/rectangle_create_guanzhu_zhusu"
+                        android:drawableLeft="@drawable/join_into_group"
+                        android:drawablePadding="3dp"
+                        android:textColor="#FEFEFE"
+                        android:layout_centerVertical="true"
+                        android:textSize="14sp"
+                        android:text="关注"
+                        android:gravity="center_vertical"
+                        android:layout_alignParentRight="true"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="3dp"
+                        android:paddingBottom="3dp"/>
+                </RelativeLayout>
+            </LinearLayout>
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:layout_marginTop="10dp">
+                <ImageView 
+                    android:id="@+id/iv_xianlu_buy_ticket"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/iv_xuanlu_ticket"/>
+                <ImageView 
+                    android:id="@+id/iv_xianlu_food"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/iv_xuanxianlu_food"/>
+                <ImageView 
+                    android:id="@+id/iv_xianlu_zhusu"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/iv_xuanlu_zhusu"/>
+            </LinearLayout>
+            <LinearLayout 
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:background="#ffffff">
+                <TextView 
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="行程安排"
+                    android:textColor="#000000"
+                    android:textSize="14sp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginBottom="3dp"
+                    android:layout_marginLeft="10dp"/>
+                <RelativeLayout 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                   <TextView 
+                       android:layout_width="match_parent"
+                       android:layout_height="0.8dp"
+                       android:background="#b1b1b1"/> 
+                       <TextView 
+                           android:layout_width="80dp"
+                           android:layout_height="1dp"
+                           android:background="#FF6F0F"/>
+                </RelativeLayout>
+                <WebView 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/wv_ziyouxing"/>
+                
+                
+            </LinearLayout>
+            
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
