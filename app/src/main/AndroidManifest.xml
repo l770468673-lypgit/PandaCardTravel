@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.pandacard.teavel">
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.NFC" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -93,7 +97,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".uis.OrderMy_Activity"></activity>
+        <activity android:name=".uis.PaySuccessActivity"></activity>
+        <activity android:name=".uis.CardOrderDetalActivity" />
+        <activity android:name=".uis.AddNewAddressActivity" />
+        <activity android:name=".uis.MyTransactionAddress" />
+        <activity android:name=".uis.CardOrder_Activity" />
+        <activity android:name=".uis.ToWechatPayActivity" />
+        <activity android:name=".uis.PayMoneyActivity" />
+        <activity
+            android:name=".uis.ReaTravelActivity"
+            android:label="@string/title_activity_rea_travel"
+            android:theme="@style/NoActionBar" />
+        <activity android:name=".uis.RollActivity" />
+        <activity android:name=".uis.OrderMy_Activity" />
         <activity android:name=".uis.confirmActivity" />
         <activity
             android:name=".uis.ByPandaActivity"

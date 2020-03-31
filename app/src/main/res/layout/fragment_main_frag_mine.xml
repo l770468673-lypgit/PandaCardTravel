@@ -68,8 +68,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentRight="true"
                             android:layout_centerInParent="true"
-                            android:layout_marginRight="40dp"
-                              />
+                            android:layout_marginRight="40dp" />
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -157,61 +156,96 @@
             <LinearLayout
                 android:id="@+id/fragment_mine_boxframe"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@+id/fragment_mine_bluecolor"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginBottom="20dp"
-                android:background="@drawable/fragment_mine_boxframe"
-                android:orientation="vertical"
-                android:padding="12dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:text="@string/fragment_mine_minewallet"
-                    android:textColor="@color/ffffff"
-                    android:textSize="18sp" />
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fragment_mine_boxframe"
+                    android:orientation="vertical"
+                    android:padding="12dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="@string/fragment_mine_minerecord"
+                        android:text="@string/fragment_mine_minewallet"
                         android:textColor="@color/ffffff"
-                        android:textSize="16sp" />
+                        android:textSize="18sp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center"
                         android:gravity="center"
-                        android:text="@string/fragment_mine_minesummoney"
-                        android:textColor="@color/ffffff"
-                        android:textSize="16sp" />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:text="@string/fragment_mine_payset"
-                        android:textColor="@color/ffffff"
-                        android:textSize="16sp" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/fragment_mine_minerecord"
+                            android:textColor="@color/ffffff"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/fragment_mine_minesummoney"
+                            android:textColor="@color/ffffff"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:text="@string/fragment_mine_payset"
+                            android:textColor="@color/ffffff"
+                            android:textSize="12sp" />
+
+                    </LinearLayout>
+
 
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/lly_mine_card"
+                    android:layout_width="0dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/fragment_mine_boxframe"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:text="@string/fragment_mine_minecardwallet"
+                        android:textColor="@color/ffffff"
+                        android:textSize="18sp" />
+
+
+                </LinearLayout>
 
             </LinearLayout>
 

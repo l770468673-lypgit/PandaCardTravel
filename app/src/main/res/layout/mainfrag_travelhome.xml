@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/lly_attbar"
+        layout="@layout/toptitlebar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:padding="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/y100"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@mipmap/banner_3"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/y100"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@mipmap/banner_2"
+            android:scaleType="centerCrop" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="@dimen/y100"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            android:background="@mipmap/banner_4"
+            android:scaleType="centerCrop" />
+    </LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/fragment_travelhome_rgroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rely_1"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/fragment_travelhome_active"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/mine_addcard"
+            android:gravity="center"
+            android:text="@string/fragment_travelhome_active"
+            android:textColor="@color/a515C6F" />
+
+        <RadioButton
+            android:id="@+id/fragment_travelhome_recharge"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/main_home_chongzhi"
+            android:gravity="center"
+            android:text="@string/fragment_travelhome_recharge"
+            android:textColor="@color/a515C6F" />
+
+
+        <RadioButton
+            android:id="@+id/fragment_travelhome_discounts"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/mine_myordeer"
+            android:gravity="center"
+            android:text="@string/fragment_travelhome_discounts"
+            android:textColor="@color/a515C6F" />
+
+        <RadioButton
+            android:id="@+id/fragment_travelhome_useread"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:button="@null"
+            android:drawableTop="@mipmap/mine_myeid"
+            android:gravity="center"
+            android:text="@string/fragment_travelhome_useread"
+            android:textColor="@color/a515C6F" />
+    </RadioGroup>
+
+</LinearLayout>

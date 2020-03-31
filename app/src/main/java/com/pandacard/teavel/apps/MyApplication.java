@@ -50,6 +50,8 @@ public class MyApplication extends Application {
         context = getApplicationContext();
        liteOrm = LiteOrm.newSingleInstance(this, "pandacard.db");
         MobSDK.init(this);
+//        MobSDK.submitPolicyGrantResult(boolean granted, OperationCallback callback);
+//        MobSDK.submitPolicyGrantResult(granted, null);
         ShareUtil.initShared(this);
         HttpManager.getInstance();
         MyApplication.city="北京市";

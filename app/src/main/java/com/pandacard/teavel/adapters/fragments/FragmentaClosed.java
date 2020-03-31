@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -11,6 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.pandacard.teavel.R;
+import com.pandacard.teavel.https.HttpManager;
+import com.pandacard.teavel.https.beans.small_routine_bean.MyOrderList;
+import com.pandacard.teavel.utils.HttpRetrifitUtils;
+import com.pandacard.teavel.utils.ShareUtil;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -68,7 +78,30 @@ public class FragmentaClosed extends Fragment {
         return inflater.inflate(R.layout.fragmenta_closed, container, false);
     }
 
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
+        loadDate();
+    }
+    private void loadDate() {
+
+        Call<MyOrderList> myOrderList = HttpManager.getInstance().getHttpClient3().getMyOrderList(
+                ShareUtil.getString(HttpRetrifitUtils.WECHAT_USERID), -1);
+        myOrderList.enqueue(new Callback<MyOrderList>() {
+            @Override
+            public void onResponse(Call<MyOrderList> call, Response<MyOrderList> response) {
+                if (response.body()!=null){
+                    MyOrderList body = response.body();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MyOrderList> call, Throwable t) {
+
+            }
+        });
+    }
     @Override
     public void onDetach() {
         super.onDetach();

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
 import com.pandacard.teavel.R;
@@ -15,6 +16,7 @@ import com.pandacard.teavel.adapters.fragments.FragmentaALL;
 import com.pandacard.teavel.adapters.fragments.FragmentaClosed;
 import com.pandacard.teavel.adapters.fragments.FragmentaFinish;
 import com.pandacard.teavel.adapters.fragments.FragmentnotPay;
+import com.pandacard.teavel.utils.StatusBarUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +32,14 @@ public class OrderMy_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_my);
+        StatusBarUtil.setDrawable(this, R.drawable.mine_title_jianbian);
         initView();
         initfragDte();
 
+    }
+
+    public void pageback_finish(View view) {
+        finish();
     }
 
     private void initfragDte() {
@@ -41,7 +48,7 @@ public class OrderMy_Activity extends AppCompatActivity {
         FragmentNotSend NotSend = new FragmentNotSend();
         FragmentNotReceiv NotReceiv = new FragmentNotReceiv();
         FragmentaFinish Finish = new FragmentaFinish();
-        FragmentaClosed Closed = new FragmentaClosed();
+//        FragmentaClosed Closed = new FragmentaClosed();
 
         //将fragment装进列表
         mList_fragment = new ArrayList<>();
@@ -50,8 +57,7 @@ public class OrderMy_Activity extends AppCompatActivity {
         mList_fragment.add(NotSend);
         mList_fragment.add(NotReceiv);
         mList_fragment.add(Finish);
-        mList_fragment.add(Closed);
-
+//        mList_fragment.add(Closed);
 
 
         //将名称加载tab名字列表
@@ -61,15 +67,16 @@ public class OrderMy_Activity extends AppCompatActivity {
         mList_title.add("待发货");
         mList_title.add("待收货");
         mList_title.add("已完成");
-        mList_title.add("已关闭");
+//        mList_title.add("已关闭");
         //设置TabLayout 的模式
         mTab_ordermsg.setTabMode(TabLayout.MODE_FIXED);
-        //为TabLayout添加tab名称
+
         //为TabLayout添加tab名称
         mTab_ordermsg.addTab(mTab_ordermsg.newTab().setText(mList_title.get(0)));
         mTab_ordermsg.addTab(mTab_ordermsg.newTab().setText(mList_title.get(1)));
         mTab_ordermsg.addTab(mTab_ordermsg.newTab().setText(mList_title.get(2)));
         mTab_ordermsg.addTab(mTab_ordermsg.newTab().setText(mList_title.get(3)));
+        mTab_ordermsg.addTab(mTab_ordermsg.newTab().setText(mList_title.get(4)));
         Find_tab_Adapter fadapter = new Find_tab_Adapter(getSupportFragmentManager(), mList_fragment, mList_title);
 
         mVp_ordermsg.setAdapter(fadapter);

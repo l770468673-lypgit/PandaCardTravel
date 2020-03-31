@@ -32,6 +32,7 @@ import com.pandacard.teavel.uis.ByPandaActivity;
 import com.pandacard.teavel.uis.CardActiviting;
 import com.pandacard.teavel.uis.LoginActivity;
 import com.pandacard.teavel.uis.MainActivity;
+import com.pandacard.teavel.uis.MyTransactionAddress;
 import com.pandacard.teavel.uis.NFCActivity;
 import com.pandacard.teavel.uis.RightsActivity;
 import com.pandacard.teavel.uis.SaveMoneyActivity;
@@ -308,8 +309,9 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
                     startActivity(in);
                     break;
                 case R.id.fragment_home_useread:
-                    Intent in2 = new Intent(getActivity(), ByPandaActivity.class);
-                    startActivity(in2);
+
+                    Intent Transac = new Intent(getActivity(), MyTransactionAddress.class);
+                    startActivity(Transac);
                     break;
                 case R.id.fragment_home_discounts:
                     Intent inrights = new Intent(getActivity(), RightsActivity.class);

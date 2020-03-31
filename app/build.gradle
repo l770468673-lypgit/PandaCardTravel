@@ -48,7 +48,7 @@ android {
     signingConfigs {
         release {
             //注意：该签名文件的备份在项目内，使用路径可以改变
-            storeFile file("C:/Users/Administrator/Desktop/PandaCardTravel222/PandaCardTravel/pandacard.jks")
+            storeFile file("../../PandaCardTravel/pandacard.jks")
             storePassword "123456"
             keyAlias "panda"
             keyPassword "123456"
@@ -118,4 +118,5 @@ dependencies {
     implementation files('libs/AMap_Location_V4.8.0_20191210.jar')
     implementation files('libs/AMap_Search_V7.1.0_20191030.jar')
     implementation files('libs/Android_Map3D_SDK_V7.2.1_20200115.jar')
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
 }

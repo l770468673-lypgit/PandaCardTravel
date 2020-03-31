@@ -33,6 +33,7 @@ import com.google.gson.reflect.TypeToken;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.adapters.fragments.MainFrag_home;
 import com.pandacard.teavel.adapters.fragments.MainFrag_mine;
+import com.pandacard.teavel.adapters.fragments.MainFrag_travelHome;
 import com.pandacard.teavel.apps.MyApplication;
 import com.pandacard.teavel.bases.BaseActivity;
 import com.pandacard.teavel.https.HttpManager;
@@ -42,7 +43,6 @@ import com.pandacard.teavel.utils.LUtils;
 import com.pandacard.teavel.utils.ShareUtil;
 import com.pandacard.teavel.utils.StatusBarUtil;
 import com.pandacard.teavel.utils.ToastUtils;
-import com.xlu.fragments.FragmentFind;
 import com.xlu.fragments.FragmentFindZone;
 import com.xlu.po.City;
 import com.xlu.utils.Constance;
@@ -190,12 +190,13 @@ public class MainActivity extends BaseActivity implements
 
     private void initfragmentdate() {
         MainFrag_home f_home = MainFrag_home.newInstance("");
-        FragmentFind f_Find = (FragmentFind) FragmentFind.newInstance("");
+//        FragmentFind f_Find = (FragmentFind) FragmentFind.newInstance("");
         FragmentFindZone f_FindZone = (FragmentFindZone) FragmentFindZone.newInstance();
         MainFrag_mine f_mine = MainFrag_mine.newInstance();
+        MainFrag_travelHome travelH = MainFrag_travelHome.newInstance();
 
         //添加到数组
-        mFragments = new Fragment[]{f_home, f_Find, f_FindZone, f_mine};
+        mFragments = new Fragment[]{f_home, travelH, f_FindZone, f_mine};
         //开启事务
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();

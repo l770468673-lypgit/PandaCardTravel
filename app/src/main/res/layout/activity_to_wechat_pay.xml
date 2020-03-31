@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".uis.ToWechatPayActivity">
+
+    <RelativeLayout
+        android:id="@+id/lly_attbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/mine_title_jianbian"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:id="@+id/lly_attbarimageview"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:background="@mipmap/back_img" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/bypanda_order_detal"
+            android:textColor="@color/ffffff"
+            android:textSize="24sp" />
+
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lly_attbar"
+        android:layout_margin="10dp"
+        android:background="@drawable/payxml">
+
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:background="@mipmap/wxpays" />
+
+        <Button
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="微信支付" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/wechatpay_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:text="22222" />
+
+        <Button
+            android:id="@+id/pay_money_wx"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="6dp"
+            android:background="@drawable/bg_corners2"
+            android:gravity="center"
+            android:text="支付" />
+
+    </RelativeLayout>
+</RelativeLayout>

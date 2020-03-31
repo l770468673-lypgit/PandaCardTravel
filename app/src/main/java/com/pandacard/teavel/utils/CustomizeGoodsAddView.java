@@ -2,6 +2,7 @@ package com.pandacard.teavel.utils;
 
 import android.content.Context;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -41,6 +42,7 @@ public class CustomizeGoodsAddView extends LinearLayout implements View.OnClickL
         TextView reduceIV = (TextView) view.findViewById(R.id.tv_reduce);
         mCountET = (EditText) view.findViewById(R.id.et_count);
         mCountET.addTextChangedListener(this);
+        mCountET.setInputType(InputType.TYPE_NULL);
         TextView addIV = (TextView) view.findViewById(R.id.tv_add);
         reduceIV.setOnClickListener(this);
         addIV.setOnClickListener(this);
@@ -159,7 +161,9 @@ public class CustomizeGoodsAddView extends LinearLayout implements View.OnClickL
                 int count = Integer.parseInt(text);
                 if (count == 0) {
                     Toast.makeText(mContext, "您输入的数量超过最大限制,请重新输入", Toast.LENGTH_SHORT).show();
-                    onValueChangeListene.onValueChange(0);
+//                    onValueChangeListene.onValueChange(0);
+                    mCountET.setText(1 + "");
+                    showMaxNumber(mContext, "最小只能输入", 1);
                 } else if (count > maxValue) {
                     mCountET.setText(maxValue + "");
                     showMaxNumber(mContext, "最大只能输入", maxValue);

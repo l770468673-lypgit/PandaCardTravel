@@ -8,7 +8,9 @@ package com.xlu.adapters;
  import androidx.fragment.app.FragmentManager;
  import androidx.fragment.app.FragmentPagerAdapter;
 
-import java.util.List;
+ import com.pandacard.teavel.uis.ReaTravelActivity;
+
+ import java.util.List;
 
 /**
  * Created by giant on 2017/8/3.
@@ -16,16 +18,18 @@ import java.util.List;
 
 public class FindFragmentPageAdapter extends FragmentPagerAdapter {
     private static final int PAGE_COUNT=6;
-    private Context mContext;
+    private ReaTravelActivity mContext;
     private List<Fragment> fts;
     private String[] names;
 
-    public FindFragmentPageAdapter(FragmentManager fm, List<Fragment> lists, String[] names, Context mContext) {
-        super(fm);
+    public FindFragmentPageAdapter(FragmentManager supportFragmentManager, List<Fragment> lists, String[] names, ReaTravelActivity mContext) {
+        super(supportFragmentManager);
         this.mContext = mContext;
         this.fts=lists;
         this.names=names;
     }
+
+
 
     @Override
     public Fragment getItem(int position) {

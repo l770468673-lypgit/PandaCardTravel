@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_corners3"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textviewtop1"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="注意"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textviewtop2"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_below="@+id/textviewtop1"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="购买前请点击“已阅读并同意《熊猫卡购买须知》”"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/premiss_llytv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="8dp"
+            android:background="@color/pressed_color"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/textviewtop3"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_below="@+id/textviewtop2"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="知道了"
+                android:textColor="@color/google_blue" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_corners2"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="填写确认收货地址"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_successname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:padding="4dp"
+        android:text="电话"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_succesphone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="4dp"
+        android:text="手机号码"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_succesaddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:padding="4dp"
+        android:text="详细地址"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/a515C6F" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/confirmtv_succescommit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="确认"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="80dp"
+            android:background="@color/a515C6F" />
+
+        <TextView
+            android:id="@+id/confirmtv_succescamcle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="取消"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+</LinearLayout>

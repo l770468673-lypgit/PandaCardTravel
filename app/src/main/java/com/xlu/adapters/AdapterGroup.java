@@ -7,6 +7,7 @@ import java.util.List;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.apps.MyApplication;
+import com.pandacard.teavel.utils.LUtils;
 import com.xlu.po.ProductSpecal;
 import com.xlu.uis.ActivityOrderVisitDetail;
 import com.xlu.utils.Constance;
@@ -26,6 +27,7 @@ import android.widget.TextView;
 
 
 public class AdapterGroup extends BaseAdapter {
+	private static  String TAG="AdapterGroup";
 
 	private LayoutInflater inflater;
 	private Context context;
@@ -83,6 +85,8 @@ public class AdapterGroup extends BaseAdapter {
 		imageLoader.displayImage(
 				Constance.HTTP_URL + tuanInfo.getPic(), holder.ivGroupPic,
 				MyApplication.normalOption);
+
+		LUtils.d(TAG,"getPic==="+Constance.HTTP_URL + tuanInfo.getPic());
 //		 LayoutParams params = (LayoutParams) holder.ivGroupPic
 //		 .getLayoutParams();
 //		 params.width=Constance.width;

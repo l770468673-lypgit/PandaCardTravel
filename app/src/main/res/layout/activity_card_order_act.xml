@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".uis.CardOrder_Activity">
+
+    <RelativeLayout
+        android:id="@+id/lly_attbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@drawable/mine_title_jianbian"
+        android:orientation="horizontal">
+
+
+        <ImageView
+            android:onClick="pageback_finish"
+            android:id="@+id/lly_attbarimageview"
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:background="@mipmap/back_img" />
+
+        <!--        <TextView-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_centerInParent="true"-->
+        <!--            android:layout_centerHorizontal="true"-->
+        <!--            android:text="@string/bypanda_order_detal"-->
+        <!--            android:textColor="@color/ffffff"-->
+        <!--            android:textSize="24sp" />-->
+
+
+    </RelativeLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_cardordermsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_cardordermsg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="3dp"
+        android:layout_weight="1"
+        android:background="@color/white" />
+
+</LinearLayout>

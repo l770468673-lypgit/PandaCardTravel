@@ -115,7 +115,7 @@
                 android:paddingBottom="1dp"
                 android:singleLine="true"
                 android:background="@drawable/ping_jia_border"
-                android:text="小鹿智游推荐"
+                android:text="熊猫旅游推荐"
                 android:textColor="#FF6500"
                 android:textSize="12sp"
                 />

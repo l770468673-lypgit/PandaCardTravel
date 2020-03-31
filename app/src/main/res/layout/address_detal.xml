@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:weightSum="10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:background="@drawable/bg_corners2"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/textview_isdefault"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:text=" " />
+
+        <LinearLayout
+            android:layout_weight="8"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/addressname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="姓名"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/addressnumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/addressname"
+                    android:gravity="center"
+                    android:text="手机号码" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="4dp"
+                android:id="@+id/address_detal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/addressname"
+                android:gravity="center"
+                android:text="123123123" />
+        </LinearLayout>
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:text=" " />
+
+    </LinearLayout>
+</LinearLayout>

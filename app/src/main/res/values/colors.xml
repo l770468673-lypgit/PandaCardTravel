@@ -20,6 +20,7 @@
     <color name="c8c8c">#8c8c8c</color>
     <color name="dadada">#DADADA</color>
     <color name="f3f3f3">#F3F3F3</color>
+    <color name="fcc932">#FCC932</color>
 
 
 <!--    、、============小路========-->
@@ -66,7 +67,8 @@
     <color name="et_bg">#22000000</color>
     <color name="grey"> #ebebeb</color>
     <color name="black"> #000000</color>
-    <color name="darkgrey"> #C0C0C0</color>
+    <color name="darkgrey">#EBEBEB</color>
+    <color name="darkgrey2">#CCCCCC</color>
     <color name="white"> #FFFFFF</color>
     <color name="red"> #FF0000</color>
     <color name="darkyellow"> #FFCC33</color>
@@ -98,5 +100,6 @@
 
     <color name="light_blue">#6593cb</color>
     <color name="tool_color">#01A4EF</color>
+    <color name="dfdfdf">#DFDFDF</color>
 </resources>
 

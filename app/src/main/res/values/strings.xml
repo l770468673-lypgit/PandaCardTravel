@@ -38,8 +38,9 @@
     <string name="fragment_mine_eid">我的eID</string>
 
     <string name="fragment_mine_minewallet">我的钱包</string>
-    <string name="fragment_mine_minerecord">充值记录  |</string>
-    <string name="fragment_mine_minesummoney">卡中余额  |</string>
+    <string name="fragment_mine_minecardwallet">我的卡卷</string>
+    <string name="fragment_mine_minerecord">充值记录|</string>
+    <string name="fragment_mine_minesummoney">卡中余额|</string>
     <string name="fragment_mine_payset">支付管理</string>
 
 
@@ -170,9 +171,12 @@
     <string name="bypanda_productmsg">产品参数</string>
     <string name="bypanda_whatspanda">什么是熊猫文旅通卡？</string>
     <string name="bypanda_byread">《熊猫文旅通卡购买须知》</string>
-    <string name="bypanda_agreeandread">○ 已阅读并同意 </string>
+    <string name="bypanda_agreeandread">已阅读并同意 </string>
     <string name="bypanda_busuccess">确认购买</string>
     <string name="bypanda_busuccess_order">确认订单</string>
+    <string name="bypanda_order_detal">订单详情</string>
+    <string name="bypanda_mytransaddress">我的收货地址</string>
+    <string name="bypanda_addmytransaddress">添加新地址</string>
 
     <string name="bypanda_yansefenlei">颜色分类</string>
     <string name="bypanda_yansefenlei_nianka">   熊猫文旅通卡-年卡   </string>
@@ -181,5 +185,10 @@
     <string name="content_to_request_permission">保证应用正常运行，请授予必要权限！</string>
     <string name="attention">提示</string>
     <string name="ok_text">好的~</string>
+    <string name="title_activity_rea_travel">ReaTravelActivity</string>
 
+    <string name="fragment_travelhome_active">景区旅游</string>
+    <string name="fragment_travelhome_recharge">通卡购买</string>
+    <string name="fragment_travelhome_discounts">卡单列表</string>
+    <string name="fragment_travelhome_useread">我的订单</string>
 </resources>

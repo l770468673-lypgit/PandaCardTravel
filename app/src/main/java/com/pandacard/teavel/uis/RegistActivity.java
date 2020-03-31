@@ -49,23 +49,16 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         mAnInt = extras.getInt(HttpRetrifitUtils.ACT_TITLENAME);
 
         initview(mAnInt);
-
-
     }
-
-
     private void initview(int anInt) {
-
         mChongzhinfc_textView = findViewById(R.id.chongzhinfc_textView);
         mchongzhinfc_imageview_back = findViewById(R.id.chongzhinfc_imageview_back);
         mbtn_yanzhengma = findViewById(R.id.btn_yanzhengma);
         mlogin_regist = findViewById(R.id.login_regist);
-
         mreg_phonenum = findViewById(R.id.reg_phonenum);
         mimgregpasswordyanzhengmg = findViewById(R.id.imgregpasswordyanzhengmg);
         mokregpassword = findViewById(R.id.okregpassword);
         mre_okregpassword = findViewById(R.id.re_okregpassword);
-
         if (anInt == 1) {
             mChongzhinfc_textView.setText(getResources().getText(R.string.reset_title_name));
         } else {
@@ -79,7 +72,6 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onClick(View v) {
-
         switch (v.getId()) {
             case R.id.chongzhinfc_imageview_back:
                 finish();
@@ -95,58 +87,12 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                             // 1是重置密码
                             // 2 是注册号码
                             if (mAnInt == 2) {
-                                Call<SecurityCode> registBeanCall = HttpManager.getInstance().getHttpClient().toRegister(
-                                        mreg_phonenum.getText().toString().trim(),
-                                        mokregpassword.getText().toString().trim());
-
-                                registBeanCall.enqueue(new Callback<SecurityCode>() {
-                                    @Override
-                                    public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
-                                        if (response.body() != null) {
-                                            //{"msg":"注册成功","code":1,"extra":{}}
-                                            SecurityCode body = response.body();
-                                            ToastUtils.showToast(RegistActivity.this, body.getMsg());
-                                            if (response.body().getCode() == 1) {
-                                                tophregLogin(mreg_phonenum.getText().toString().trim(), mre_okregpassword.getText().toString().trim());
-                                                ToastUtils.showToast(RegistActivity.this, "toLogin");
-                                                finish();
-                                            } else {
-                                                ToastUtils.showToast(RegistActivity.this, response.body().getMsg());
-                                            }
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<SecurityCode> call, Throwable t) {
-
-                                    }
-                                });
+                                HttpRetrifitUtils.toPhoneRegist(mreg_phonenum.getText().toString().trim(),
+                                        mokregpassword.getText().toString().trim(), RegistActivity.this);
                             } else {
-                                Call<resetPass> resetPassCall = HttpManager.getInstance().getHttpClient().resetPassword(
-                                        mreg_phonenum.getText().toString().trim(),
-                                        mokregpassword.getText().toString().trim());
-                                resetPassCall.enqueue(new Callback<resetPass>() {
-                                    @Override
-                                    public void onResponse(Call<resetPass> call, Response<resetPass> response) {
-                                        resetPass body = response.body();
-                                        if (body != null) {
-                                            int code = body.getCode();
-                                            if (code == 1) {
-                                                tophregLogin(mreg_phonenum.getText().toString().trim(), mre_okregpassword.getText().toString().trim());
-                                                ToastUtils.showToast(RegistActivity.this, "toLogin");
-                                                finish();
-                                            }
-
-                                        }
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<resetPass> call, Throwable t) {
-
-                                    }
-                                });
+                                HttpRetrifitUtils.ResetPassword(mreg_phonenum.getText().toString().trim(),
+                                        mokregpassword.getText().toString().trim(),RegistActivity.this);
                             }
-
                         } else {
                             ToastUtils.showToast(this, "密码不正确");
                             LUtils.d(TAG, " ===" + mokregpassword.getText().toString().trim() + "===" + mre_okregpassword.getText().toString().trim());
@@ -162,21 +108,8 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                 if (mreg_phonenum.getText().toString().trim().length() == 11 && mreg_phonenum.getText().toString().trim().startsWith("1")) {
                     TimerUtils.TimerStart();
                     mVcode = null;
-                    Call<SecurityCode> securityCode =
-                            HttpManager.getInstance().getHttpClient().toSMSCode(mreg_phonenum.getText().toString().trim());
-                    securityCode.enqueue(new Callback<SecurityCode>() {
-                        @Override
-                        public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
-                            SecurityCode body = response.body();
-                            if (body != null) {
-                                mVcode = body.getExtra().getVcode();
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(Call<SecurityCode> call, Throwable t) {
-                        }
-                    });
+                    SecurityCode smsCode = HttpRetrifitUtils.getSMSCode(mreg_phonenum.getText().toString().trim(), RegistActivity.this);
+                    mVcode = smsCode.getExtra().getVcode();
                 } else {
                     ToastUtils.showToast(this, "检查手机号码是否正确");
                 }
@@ -184,35 +117,4 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
         }
     }
 
-    private void tophregLogin(final String phone, final String pass) {
-        Call<SecurityCode> resourcesBeanCall = HttpManager.getInstance().getHttpClient().toPhoneLogin(phone, pass);
-        //        ShareUtil.putString(HttpRetrifitUtils.SERNAME_PHONE, phone);
-        //        ShareUtil.putString(HttpRetrifitUtils.SERNAME_PASS, pass);
-        resourcesBeanCall.enqueue(new Callback<SecurityCode>() {
-            @Override
-            public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
-                if (response.body() != null) {
-                    if (response.body().getCode() == 1 || response.body().getCode() == 2) {
-                        ShareUtil.putString(HttpRetrifitUtils.APPISlOGIN, "login");
-                        ShareUtil.putString(HttpRetrifitUtils.SERNAME_PHONE, phone);
-                        ShareUtil.putString(HttpRetrifitUtils.SERNAME_PASS, pass);
-                        ToastUtils.showToast(RegistActivity.this, response.body().getMsg());
-                        finish();
-                    } else {
-                        ToastUtils.showToast(RegistActivity.this, response.body().getMsg());
-                    }
-
-                }
-
-
-            }
-
-            @Override
-            public void onFailure(Call<SecurityCode> call, Throwable t) {
-
-            }
-        });
-
-
-    }
 }

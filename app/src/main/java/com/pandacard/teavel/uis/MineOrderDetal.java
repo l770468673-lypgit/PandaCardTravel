@@ -160,7 +160,8 @@ public class MineOrderDetal extends BaseActivity implements View.OnClickListener
 
             @Override
             public void onFailure(Call<CaerdOrderDetalBean> call, Throwable t) {
-
+                mTextv_nodate.setVisibility(View.VISIBLE);
+                mCardinfo_recycle.setVisibility(View.GONE);
             }
         });
     }

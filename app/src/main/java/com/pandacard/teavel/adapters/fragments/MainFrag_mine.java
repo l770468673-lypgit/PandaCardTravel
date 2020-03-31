@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ import com.pandacard.teavel.https.beans.cardsbean;
 import com.pandacard.teavel.uis.MineOrderDetal;
 import com.pandacard.teavel.uis.MinePandaCards;
 import com.pandacard.teavel.uis.OrderMy_Activity;
+import com.pandacard.teavel.uis.RollActivity;
 import com.pandacard.teavel.uis.WelcomeActivit;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
 import com.pandacard.teavel.utils.LUtils;
@@ -45,6 +47,7 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
     private Platform mWechat;
     private String mDefaultCards;
     private TextView mMine_rely_card2;
+    private LinearLayout mLly_mine_card;
 
 
     public MainFrag_mine() {
@@ -77,6 +80,7 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
         mFragment_mine_eid = inflate.findViewById(R.id.fragment_mine_eid);
         mMine_rely_panda2 = inflate.findViewById(R.id.mine_rely_panda2);
         mMine_rely_card2 = inflate.findViewById(R.id.mine_rely_card2);
+        mLly_mine_card = inflate.findViewById(R.id.lly_mine_card);
 
 
         mMine_rely_panda3 = inflate.findViewById(R.id.mine_rely_panda3);
@@ -87,6 +91,7 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
         mFragment_mine_eid.setOnClickListener(this);
 
         mMine_rely_panda2.setOnClickListener(this);
+        mLly_mine_card.setOnClickListener(this);
         mMine_rely_panda3.setOnClickListener(this);
         mWechat = ShareSDK.getPlatform(Wechat.NAME);
 
@@ -115,10 +120,6 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         switch (v.getId()) {
-            case R.id.fragment_mine_active:
-            case R.id.fragment_mine_useread:
-
-                break;
             case R.id.fragment_mine_order:
                 if (ShareUtil.getString(HttpRetrifitUtils.SERNAME_PHONE) != null) {
                     Intent intent = new Intent(getActivity(), MineOrderDetal.class);
@@ -128,10 +129,16 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
                 }
 
                 break;
+            case R.id.fragment_mine_active:
+            case R.id.fragment_mine_useread:
+                break;
+            case R.id.lly_mine_card:
+                Intent intentroll = new Intent(getActivity(), RollActivity.class);
+                startActivity(intentroll);
+                break;
             case R.id.fragment_mine_eid:
 
-                Intent intent = new Intent(getActivity(), OrderMy_Activity.class);
-                startActivity(intent);
+
                 break;
             case R.id.mine_rely_panda2:
                 if (ShareUtil.getString(HttpRetrifitUtils.SERNAME_PHONE) != null) {
