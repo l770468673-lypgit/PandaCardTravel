@@ -109,6 +109,8 @@ public class ReaTravelActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+
+
             case R.id.tv_all_title_name:
                 Intent intent = new Intent(this, ActivitySelectCity.class);
                 startActivityForResult(intent, REQUEST_CODE_CITY);
