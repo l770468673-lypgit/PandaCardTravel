@@ -1,20 +1,34 @@
 package com.pandacard.teavel.https.beans.small_routine_bean;
 
 import java.io.Serializable;
-import java.util.List;
 
-public class MyAddressByUserId  implements Serializable{
+public class queryAddressInfoById implements Serializable{
 
 
     /**
-     * addressList : [{"countries":"莱芜区","createTime":"2020-03-19 17:17:29","detailAddress":"北京村","id":"ff80808170f202ee0170f215544b0002","isDefault":1,"phoneNumber":"NUM","provinces":"山东省","receiver":"NAME","region":"济南市","userId":"ff8080816f89cb95016f8d37e55a0012"}]
+     * addressInfo : {"countries":"8552","
+     * createTime":"2020-04-01 16:30:45",
+     * "detailAddress":"8852",
+     * "id":"ff808081713466a5017134dd3b3a0006","
+     * isDefault":2,"phoneNumber":"9963",
+     * "provinces":"9963",
+     * "receiver":"9963",
+     * "region":"9852","userId":"ff8080816f89cb95016f8d37e55a0012"}
      * status : true
      * msg : 查询成功
      */
 
+    private AddressInfoBean addressInfo;
     private boolean status;
     private String msg;
-    private List<AddressListBean> addressList;
+
+    public AddressInfoBean getAddressInfo() {
+        return addressInfo;
+    }
+
+    public void setAddressInfo(AddressInfoBean addressInfo) {
+        this.addressInfo = addressInfo;
+    }
 
     public boolean isStatus() {
         return status;
@@ -32,25 +46,17 @@ public class MyAddressByUserId  implements Serializable{
         this.msg = msg;
     }
 
-    public List<AddressListBean> getAddressList() {
-        return addressList;
-    }
-
-    public void setAddressList(List<AddressListBean> addressList) {
-        this.addressList = addressList;
-    }
-
-    public static class AddressListBean  implements Serializable {
+    public static class AddressInfoBean  implements Serializable {
         /**
-         * countries : 莱芜区
-         * createTime : 2020-03-19 17:17:29
-         * detailAddress : 北京村
-         * id : ff80808170f202ee0170f215544b0002
-         * isDefault : 1
-         * phoneNumber : NUM
-         * provinces : 山东省
-         * receiver : NAME
-         * region : 济南市
+         * countries : 8552
+         * createTime : 2020-04-01 16:30:45
+         * detailAddress : 8852
+         * id : ff808081713466a5017134dd3b3a0006
+         * isDefault : 2
+         * phoneNumber : 9963
+         * provinces : 9963
+         * receiver : 9963
+         * region : 9852
          * userId : ff8080816f89cb95016f8d37e55a0012
          */
 

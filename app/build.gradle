@@ -119,4 +119,5 @@ dependencies {
     implementation files('libs/AMap_Search_V7.1.0_20191030.jar')
     implementation files('libs/Android_Map3D_SDK_V7.2.1_20200115.jar')
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.3.1'
 }

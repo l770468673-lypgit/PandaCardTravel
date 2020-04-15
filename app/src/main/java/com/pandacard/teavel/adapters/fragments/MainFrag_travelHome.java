@@ -49,6 +49,7 @@ public class MainFrag_travelHome extends Fragment implements View.OnClickListene
     private RadioButton mFragment_travelhome_discounts;
     private RadioButton mFragment_travelhome_useread;
     private RadioGroup mFragment_travelhome_rgroup;
+    private String mStrIslogin;
 
 
     public MainFrag_travelHome() {
@@ -59,6 +60,12 @@ public class MainFrag_travelHome extends Fragment implements View.OnClickListene
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mStrIslogin = ShareUtil.getString(HttpRetrifitUtils.APPISlOGIN);
     }
 
     @Override
@@ -75,6 +82,7 @@ public class MainFrag_travelHome extends Fragment implements View.OnClickListene
     }
 
     private void initView(View inflate) {
+
         mFragment_travelhome_rgroup = inflate.findViewById(R.id.fragment_travelhome_rgroup);
         mFragment_travelhome_active = inflate.findViewById(R.id.fragment_travelhome_active);
         mFragment_home_recharge = inflate.findViewById(R.id.fragment_travelhome_recharge);
@@ -86,8 +94,6 @@ public class MainFrag_travelHome extends Fragment implements View.OnClickListene
         mFragment_travelhome_useread.setOnClickListener(this);
         mFragment_travelhome_discounts.setOnClickListener(this);
     }
-
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -97,34 +103,42 @@ public class MainFrag_travelHome extends Fragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.fragment_travelhome_active:
-                Intent intarvel = new Intent(getActivity(), ReaTravelActivity.class);
-                startActivity(intarvel);
-                break;
-            case R.id.fragment_travelhome_recharge:
-                Intent in2 = new Intent(getActivity(), ByPandaActivity.class);
-                Bundle b = new Bundle();
+        if (mStrIslogin != null) {
+            switch (v.getId()) {
+
+                case R.id.fragment_travelhome_active:
+
+                    Intent intarvel = new Intent(getActivity(), ReaTravelActivity.class);
+                    startActivity(intarvel);
+                    break;
+                case R.id.fragment_travelhome_recharge:
+                    Intent in2 = new Intent(getActivity(), ByPandaActivity.class);
+                    Bundle b = new Bundle();
 //                b.putString("mSbanna", mSbanna);
 //                b.putString("mGoodsDesc", mGoodsDesc);
 //                b.putString("mProductId", mProductId);
 //                b.putDouble("mGoodsCostPrice", mGoodsCostPrice);
-                in2.putExtras(b);
-                startActivity(in2);
-                break;
+                    in2.putExtras(b);
+                    startActivity(in2);
+                    break;
 
-            case R.id.fragment_travelhome_discounts:
-                Intent intentorder= new Intent(getActivity(), CardOrder_Activity.class);
-                startActivity(intentorder);
-                break;
-            case R.id.fragment_travelhome_useread:
-                Intent intent = new Intent(getActivity(), OrderMy_Activity.class);
-                startActivity(intent);
+                case R.id.fragment_travelhome_discounts:
+                    Intent intentorder = new Intent(getActivity(), CardOrder_Activity.class);
+                    startActivity(intentorder);
+                    break;
+                case R.id.fragment_travelhome_useread:
+                    Intent intent = new Intent(getActivity(), OrderMy_Activity.class);
+                    startActivity(intent);
 
-                break;
+                    break;
 
-            default:
+                default:
+                    break;
+            }
 
+
+        } else {
+            ToastUtils.showToast(getActivity(), "请登录后再试");
         }
     }
 }

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_corners2"
+    android:background="@drawable/dialog_addressback"
     android:orientation="vertical">
 
 
@@ -16,42 +16,91 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/tv_successname"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:gravity="center"
-        android:padding="4dp"
-        android:text="电话"
-        android:textSize="20sp" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_succesphone"
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="收货人:"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_successname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="电话"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="8dp"
         android:gravity="center"
-        android:padding="4dp"
-        android:text="手机号码"
-        android:textSize="20sp" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_succesaddress"
-        android:layout_width="wrap_content"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="手机号:"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_succesphone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="手机号码"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginTop="8dp"
         android:gravity="center"
-        android:padding="4dp"
-        android:text="详细地址"
-        android:textSize="20sp" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="详细地址:"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_succesaddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="4dp"
+            android:text="详细地址"
+            android:textSize="16sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="20dp"
-        android:background="@color/a515C6F" />
+        android:background="@color/dfdfdf" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -61,6 +110,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:textColor="#0C7FDA"
             android:id="@+id/confirmtv_succescommit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -74,7 +124,7 @@
         <LinearLayout
             android:layout_width="1dp"
             android:layout_height="80dp"
-            android:background="@color/a515C6F" />
+            android:background="@color/dfdfdf" />
 
         <TextView
             android:id="@+id/confirmtv_succescamcle"
@@ -83,7 +133,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:gravity="center"
+            android:gravity="center"            android:textColor="#0C7FDA"
             android:text="取消"
             android:textSize="20sp" />
 

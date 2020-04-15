@@ -6,7 +6,19 @@ public class CardsByUserId {
 
 
     /**
-     * cardList : [{"buyNum":3,"cardOrderStatus":"1","giveStatus":"","createTime":"2020-03-25 02:03:30","orderCode":"9753032514472502","remark":"","proLogo":"https://dfs.ileyouzunyi.com/down/toImg.jspx?url=/2020/01/09/1578564348276.png","id":"ff80808171105262017110722d0c0009","proName":"熊猫文旅通卡","userId":"ff8080816f89cb95016f8d37e55a0012","useUserId":"","lastUpdateTime":"2020-03-25 02:03:30"},{"buyNum":3,"cardOrderStatus":"1","giveStatus":"","createTime":"2020-03-25 02:03:14","orderCode":"9753032511092701","remark":"","proLogo":"https://dfs.ileyouzunyi.com/down/toImg.jspx?url=/2020/01/09/1578564348276.png","id":"ff8080817110526201711052cc960001","proName":"熊猫文旅通卡","userId":"ff8080816f89cb95016f8d37e55a0012","useUserId":"","lastUpdateTime":"2020-03-25 02:03:14"},{"buyNum":3,"cardOrderStatus":"1","giveStatus":"","createTime":"2020-03-25 02:03:43","orderCode":"9753032511092701","remark":"","proLogo":"https://dfs.ileyouzunyi.com/down/toImg.jspx?url=/2020/01/09/1578564348276.png","id":"ff808081711048500171104a14890001","proName":"熊猫文旅通卡","userId":"ff8080816f89cb95016f8d37e55a0012","useUserId":"","lastUpdateTime":"2020-03-25 02:03:43"},{"buyNum":1,"cardOrderStatus":"1","giveStatus":"","createTime":"2020-03-25 11:03:07","orderCode":"9753032511250403","remark":"","id":"ff808081710a7e8501710fb8e1aa0004","userId":"ff8080816f89cb95016f8d37e55a0012","useUserId":"","lastUpdateTime":"2020-03-25 11:03:07"},{"buyNum":1,"cardOrderStatus":"1","giveStatus":"","createTime":"2020-03-25 11:03:03","orderCode":"9753032511190202","remark":"","id":"ff808081710a7e8501710fb355d20002","userId":"ff8080816f89cb95016f8d37e55a0012","useUserId":"","lastUpdateTime":"2020-03-25 11:03:03"},{"buyNum":3,"cardOrderStatus":"1","giveStatus":"","createTime":"2020-03-25 11:03:30","orderCode":"9753032511092701","remark":"","id":"ff808081710a7e8501710faa95530000","userId":"ff8080816f89cb95016f8d37e55a0012","useUserId":"","lastUpdateTime":"2020-03-25 11:03:30"}]
+     * cardList : [{"buyNum":3,"cardOrderStatus":"1",
+     * "giveStatus":""
+     * ,"createTime":"2020-03-25 02:03:30",
+     * "orderCode":"9753032514472502",
+     * "remark":"",
+     * "proLogo":"https://dfs.ileyouzunyi.com/down/toImg.jspx?
+     * url=/2020/01/09/1578564348276.png",
+     * "id":"ff80808171105262017110722d0c0009",
+     * "proName":"熊猫文旅通卡",
+     * "userId":"ff8080816f89cb95016f8d37e55a0012",
+     * "useUserId":"",
+     * "lastUpdateTime":"2020-03-25 02:03:30"},
+     * {"buyNum":3,"cardOrderStatus":"1","giveStatus":"","createTime":"2020-03-25 02:03:14","orderCode":"9753032511092701","remark":"","proLogo":"https://dfs.ileyouzunyi.com/down/toImg.jspx?url=/2020/01/09/1578564348276.png","id":"ff8080817110526201711052cc960001","proName":"熊猫文旅通卡","userId":"ff8080816f89cb95016f8d37e55a0012","useUserId":"","lastUpdateTime":"2020-03-25 02:03:14"},{"buyNum":3,"cardOrderStatus":"1","giveStatus":"","createTime":"2020-03-25 02:03:43","orderCode":"9753032511092701","remark":"","proLogo":"https://dfs.ileyouzunyi.com/down/toImg.jspx?url=/2020/01/09/1578564348276.png","id":"ff808081711048500171104a14890001","proName":"熊猫文旅通卡","userId":"ff8080816f89cb95016f8d37e55a0012","useUserId":"","lastUpdateTime":"2020-03-25 02:03:43"},{"buyNum":1,"cardOrderStatus":"1","giveStatus":"","createTime":"2020-03-25 11:03:07","orderCode":"9753032511250403","remark":"","id":"ff808081710a7e8501710fb8e1aa0004","userId":"ff8080816f89cb95016f8d37e55a0012","useUserId":"","lastUpdateTime":"2020-03-25 11:03:07"},{"buyNum":1,"cardOrderStatus":"1","giveStatus":"","createTime":"2020-03-25 11:03:03","orderCode":"9753032511190202","remark":"","id":"ff808081710a7e8501710fb355d20002","userId":"ff8080816f89cb95016f8d37e55a0012","useUserId":"","lastUpdateTime":"2020-03-25 11:03:03"},{"buyNum":3,"cardOrderStatus":"1","giveStatus":"","createTime":"2020-03-25 11:03:30","orderCode":"9753032511092701","remark":"","id":"ff808081710a7e8501710faa95530000","userId":"ff8080816f89cb95016f8d37e55a0012","useUserId":"","lastUpdateTime":"2020-03-25 11:03:30"}]
      * msg : 查询成功
      * status : true
      */

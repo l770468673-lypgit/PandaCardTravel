@@ -43,8 +43,9 @@
             android:layout_centerInParent="true"
             android:layout_centerHorizontal="true"
             android:text="@string/bypanda_addmytransaddress"
+            android:layout_marginRight="10dp"
             android:textColor="@color/ffffff"
-            android:textSize="16sp" />
+            android:textSize="12sp" />
 
     </RelativeLayout>
 

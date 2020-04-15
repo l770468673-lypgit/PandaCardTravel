@@ -4,8 +4,16 @@ package com.pandacard.teavel.https;
 import com.pandacard.teavel.utils.LUtils;
 
 import java.io.IOException;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.util.concurrent.TimeUnit;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocketFactory;
+import javax.net.ssl.X509TrustManager;
+
+import okhttp3.CertificatePinner;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -71,7 +79,10 @@ public class HttpManager {
 
         //
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
-
+//        builder.certificatePinner(new CertificatePinner.Builder()
+//                .add("sbbic.com", "sha1/C8xoaOSEzPC6BgGmxAt/EAcsajw=")
+//                .add("closedevice.com", "sha1/T5x9IXmcrQ7YuQxXnxoCmeeQ84c=")
+//                .build());
         builder.readTimeout(20, TimeUnit.SECONDS).addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
@@ -87,6 +98,7 @@ public class HttpManager {
                  */
                 Request request = chain.request();
                 Request.Builder requestBuilder = request.newBuilder();
+
                 requestBuilder.addHeader("Content-Type", "text/html; charset=UTF-8")
                         .addHeader("Connection", "keep-alive")
                         .addHeader("Accept", "*/*")
@@ -102,8 +114,15 @@ public class HttpManager {
 
             }
         }).connectTimeout(30, TimeUnit.SECONDS).writeTimeout(25, TimeUnit.SECONDS)//设置超时
+
                 .build();
 
+        // okBuilder.sslSocketFactory(createSSLSocketFactory());
+        //    okBuilder.hostnameVerifier(new TrustAllHostnameVerifier());
+        //    return okBuilder.build();
+        //————————————————
+        //版权声明：本文为CSDN博主「丶白泽」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+        //原文链接：https://blog.csdn.net/weixin_39397471/article/details/103877854
         //-------------
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -113,13 +132,13 @@ public class HttpManager {
                 .baseUrl(CONNECT_LOGIN)
                 .client(new OkHttpClient.Builder().addInterceptor(loggingInterceptor).build())
                 .addConverterFactory(GsonConverterFactory.create())
+
                 .build();
 
         mHttpClient = mRetrofit.create(ClientRestAPI.class);
 
 
     }
-
 
     private void init2() {
         HttpLoggingInterceptor.Level level = HttpLoggingInterceptor.Level.BODY;
@@ -253,6 +272,7 @@ public class HttpManager {
     public ClientRestAPI getHttpClient2() {
         return mHttpClient2;
     }
+
     public ClientRestAPI getHttpClient3() {
         return mHttpClient3;
     }

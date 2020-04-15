@@ -97,20 +97,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".uis.PaySuccessActivity"></activity>
-        <activity android:name=".uis.CardOrderDetalActivity" />
-        <activity android:name=".uis.AddNewAddressActivity" />
-        <activity android:name=".uis.MyTransactionAddress" />
-        <activity android:name=".uis.CardOrder_Activity" />
-        <activity android:name=".uis.ToWechatPayActivity" />
+        <activity android:name=".uis.PaySuccessActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".uis.CardOrderDetalActivity"  android:launchMode="singleTask"  />
+        <activity android:name=".uis.AddNewAddressActivity"  android:launchMode="singleTask"  />
+        <activity android:name=".uis.MyTransactionAddress"  android:launchMode="singleTask"  />
+        <activity android:name=".uis.CardOrder_Activity"  android:launchMode="singleTask"  />
+        <activity android:name=".uis.ToWechatPayActivity"   android:launchMode="singleTask" />
         <activity android:name=".uis.PayMoneyActivity" />
         <activity
             android:name=".uis.ReaTravelActivity"
             android:label="@string/title_activity_rea_travel"
             android:theme="@style/NoActionBar" />
-        <activity android:name=".uis.RollActivity" />
-        <activity android:name=".uis.OrderMy_Activity" />
-        <activity android:name=".uis.confirmActivity" />
+        <activity android:name=".uis.RollActivity"   android:launchMode="singleTask" />
+        <activity android:name=".uis.OrderMy_Activity"
+            android:launchMode="singleTask" />
+        <activity android:name=".uis.confirmActivity"
+            android:launchMode="singleTask" />
         <activity
             android:name=".uis.ByPandaActivity"
             android:launchMode="singleTask" />
@@ -119,9 +122,9 @@
             android:name="com.amap.api.v2.apikey"
             android:value="af038b53996a8580fab396896534dc9d" />
 
-        <activity android:name=".uis.RightsActivity" />
-        <activity android:name=".uis.MinePandaCards" />
-        <activity android:name=".uis.eIDActivity" />
+        <activity android:name=".uis.RightsActivity"   android:launchMode="singleTask" />
+        <activity android:name=".uis.MinePandaCards"  android:launchMode="singleTask"  />
+        <activity android:name=".uis.eIDActivity"  android:launchMode="singleTask"  />
         <activity
             android:name=".uis.CardActiviting"
             android:launchMode="singleTask" />
@@ -136,22 +139,22 @@
             android:launchMode="singleTask" />
         <activity
             android:name="com.xlu.uis.ActivitySelectCity"
-            android:theme="@style/Anim_activity" />
+            android:theme="@style/Anim_activity"  android:launchMode="singleTask"  />
         <activity
             android:name="com.xlu.uis.ActivityOrderVisitDetail"
-            android:theme="@style/Anim_activity" />
+            android:theme="@style/Anim_activity"   android:launchMode="singleTask" />
         <activity
             android:name="com.xlu.uis.ActivityZhuSuDetail"
-            android:theme="@style/Anim_activity" />
+            android:theme="@style/Anim_activity"   android:launchMode="singleTask" />
         <activity
             android:name="com.xlu.uis.ActivityDinnerDetail"
-            android:theme="@style/Anim_activity" />
+            android:theme="@style/Anim_activity"  android:launchMode="singleTask"  />
         <activity
             android:name="com.xlu.uis.ActivityXianluDetail"
-            android:theme="@style/Anim_activity" />
+            android:theme="@style/Anim_activity"   android:launchMode="singleTask" />
         <activity
             android:name="com.xlu.uis.ActivityTicketShow"
-            android:theme="@style/Anim_activity" />
+            android:theme="@style/Anim_activity"  android:launchMode="singleTask"  />
         <activity
             android:name=".uis.SaveMoneyActivity"
             android:launchMode="singleTask" />

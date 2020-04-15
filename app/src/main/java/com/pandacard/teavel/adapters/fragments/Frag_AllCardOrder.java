@@ -22,7 +22,9 @@ import com.pandacard.teavel.R;
 import com.pandacard.teavel.adapters.AllCardOrderAdapter;
 import com.pandacard.teavel.https.HttpManager;
 import com.pandacard.teavel.https.beans.AddressBean;
+import com.pandacard.teavel.https.beans.ReceiveCardbean;
 import com.pandacard.teavel.https.beans.small_routine_bean.CardsByUserId;
+import com.pandacard.teavel.https.beans.small_routine_bean.MyAddressByUserId;
 import com.pandacard.teavel.https.beans.small_routine_bean.updateOrderCardStatusForGive;
 import com.pandacard.teavel.uis.MyTransactionAddress;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
@@ -31,9 +33,14 @@ import com.pandacard.teavel.utils.MyDialog;
 import com.pandacard.teavel.utils.ShareUtil;
 import com.pandacard.teavel.utils.ToastUtils;
 
+import java.util.HashMap;
 import java.util.List;
 
+import cn.sharesdk.framework.Platform;
+import cn.sharesdk.framework.PlatformActionListener;
+import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import cn.sharesdk.wechat.friends.Wechat;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -59,9 +66,9 @@ public class Frag_AllCardOrder extends Fragment implements View.OnClickListener,
     //    private LinearLayout mLly_addressdetal;
     private MyDialog mMyDialogby;
     private MyDialog mMyDialogConfirm;
-    private Button mRelativeLayout;
-    private Button mDialog_cancle;
-    private Button mDialog_success;
+    private TextView mRelativeLayout;
+    private TextView mDialog_cancle;
+    private TextView mDialog_success;
     private TextView mTv_successname;
     private TextView mTv_succesphone;
     private TextView mTv_succesaddress;
@@ -78,6 +85,8 @@ public class Frag_AllCardOrder extends Fragment implements View.OnClickListener,
     private AllCardOrderAdapter mAdapter;
     private List<CardsByUserId.CardListBean> mCardList;
     private String mOrderCode;
+    private int ADDRESSREQUEST = 0x0777;
+    private int ADDRESSRESULT = 0x0888;
 
     public Frag_AllCardOrder() {
         // Required empty public constructor
@@ -216,9 +225,11 @@ public class Frag_AllCardOrder extends Fragment implements View.OnClickListener,
                 break;
             case R.id.relay_tpaddressact:
                 mMyDialogby.dismiss();
-                getActivity().finish();
                 Intent Transac = new Intent(getActivity(), MyTransactionAddress.class);
-                startActivity(Transac);
+                Bundle bundle = new Bundle();
+                bundle.putString("MyTransactionAddress", "MyTransactionAddress");
+                Transac.putExtras(bundle);
+                startActivityForResult(Transac, ADDRESSREQUEST);
                 break;
             case R.id.dialog_success:
                 mSaddress_addname = address_addname.getText().toString();
@@ -252,6 +263,18 @@ public class Frag_AllCardOrder extends Fragment implements View.OnClickListener,
         }
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ADDRESSREQUEST && resultCode == ADDRESSRESULT) {
+            Bundle extras = data.getExtras();
+            MyAddressByUserId.AddressListBean bean =
+                    (MyAddressByUserId.AddressListBean) extras.getSerializable("addressListBean");
+            OwnByAndSendDialog(bean);
+        }
+    }
+
     private void OwnConfirmDialog() {
 
 
@@ -276,7 +299,7 @@ public class Frag_AllCardOrder extends Fragment implements View.OnClickListener,
 
     }
 
-    public void OwnByAndSendDialog() {
+    public void OwnByAndSendDialog(MyAddressByUserId.AddressListBean bean) {
         mViewfirstdia = getLayoutInflater().inflate(R.layout.addressdialog_layout, null);
         mMyDialogby = new MyDialog(getActivity(), mViewfirstdia);
         address_addname = mViewfirstdia.findViewById(R.id.address_addname);
@@ -290,6 +313,15 @@ public class Frag_AllCardOrder extends Fragment implements View.OnClickListener,
         mRelativeLayout = mViewfirstdia.findViewById(R.id.relay_tpaddressact);
         mDialog_success = mViewfirstdia.findViewById(R.id.dialog_success);
         mDialog_cancle = mViewfirstdia.findViewById(R.id.dialog_cancle);
+
+        if (bean != null) {
+            address_addname.setText(bean.getReceiver());
+            address_addphone.setText(bean.getPhoneNumber());
+            address_addprovinces.setText(bean.getProvinces());
+            address_addcountries.setText(bean.getRegion());
+            address_addcity.setText(bean.getCountries());
+            address_addaddressdetals.setText(bean.getDetailAddress());
+        }
         mRelativeLayout.setOnClickListener(this);
         mDialog_success.setOnClickListener(this);
         mDialog_cancle.setOnClickListener(this);
@@ -300,27 +332,51 @@ public class Frag_AllCardOrder extends Fragment implements View.OnClickListener,
     @Override
     public void setClickBuy(int position) {
         mOrderCode = mCardList.get(position).getOrderCode();
-        OwnByAndSendDialog();
+        OwnByAndSendDialog(null);
     }
 
     @Override
-    public void setClickSend(int position) {
+    public void setClickSend(final int position) {
+        CardsByUserId.CardListBean cardListBean = mCardList.get(position);
+        ReceiveCardbean cardbean =
+                new ReceiveCardbean(cardListBean.getId(), cardListBean.getOrderCode()
+                        , cardListBean.getUserId(), "", ""
+                        , cardListBean.getProName(), cardListBean.getProLogo(), "");
+        LUtils.d(TAG, "cardbean====" + cardbean.toString());
         //  addressdialog
         OnekeyShare oks = new OnekeyShare();
-        // title标题，微信、QQ和QQ空间等平台使用
-        oks.setTitle("分享");
-        // titleUrl QQ和QQ空间跳转链接
-        oks.setTitleUrl("");
-        // text是分享文本，所有平台都需要这个字段
-        oks.setText("我是分享文本");
-        // imagePath是图片的本地路径，确保SDcard下面存在此张图片
-//                oks.setImagePath("/sdcard/test.jpg");
-        // url在微信、Facebook等平台中使用
+//         title标题，微信、QQ和QQ空间等平台使用
+//        oks.setTitle("分享");
+//         titleUrl QQ和QQ空间跳转链接
+//        oks.setTitleUrl("");
+//         text是分享文本，所有平台都需要这个字段
+        oks.setText("/pages/receiveCard/receiveCard?data=" + cardbean.toString());
+//         imagePath是图片的本地路径，确保SDcard下面存在此张图片
+        oks.setImagePath("/sdcard/test.jpg");
+//         url在微信、Facebook等平台中使用
 //                oks.setUrl("http://sharesdk.cn");
-        oks.show(getActivity());
-        checkOrderDetal(mCardList.get(position).getId());
-    }
+        oks.setCallback(new PlatformActionListener() {
+            @Override
+            public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+                checkOrderDetal(mCardList.get(position).getId());
+                ToastUtils.showToast(getActivity(), "分享成功");
+            }
 
+            @Override
+            public void onError(Platform platform, int i, Throwable throwable) {
+                ToastUtils.showToast(getActivity(), "分享失败");
+            }
+
+            @Override
+            public void onCancel(Platform platform, int i) {
+                ToastUtils.showToast(getActivity(), "取消分享");
+            }
+        });
+        oks.show(getActivity());
+
+
+
+    }
 
 
     private void checkOrderDetal(String id) {

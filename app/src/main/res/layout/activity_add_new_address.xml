@@ -60,12 +60,12 @@
 
 
     <LinearLayout
-        android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:background="@color/ffffff"
-        android:orientation="horizontal">
+
+        android:orientation="horizontal"
+        android:padding="12dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -75,7 +75,7 @@
 
         <EditText
             android:id="@+id/address_username"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:hint="     "
@@ -89,12 +89,12 @@
 
 
     <LinearLayout
-        android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:background="@color/ffffff"
-        android:orientation="horizontal">
+
+        android:orientation="horizontal"
+        android:padding="12dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
 
         <EditText
             android:id="@+id/address_phonenum"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:hint="   "
@@ -119,12 +119,13 @@
 
 
     <LinearLayout
-        android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:background="@color/ffffff"
-        android:orientation="horizontal">
+
+        android:orientation="horizontal"
+        android:padding="12dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,7 +134,7 @@
 
         <EditText
             android:id="@+id/address_addressprovinces"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:hint="  "
@@ -147,12 +148,12 @@
 
 
     <LinearLayout
-        android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:background="@color/ffffff"
-        android:orientation="horizontal">
+
+        android:orientation="horizontal"
+        android:padding="12dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -162,7 +163,7 @@
 
         <EditText
             android:id="@+id/address_addresscity"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:hint="   "
@@ -176,12 +177,12 @@
 
 
     <LinearLayout
-        android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:background="@color/ffffff"
-        android:orientation="horizontal">
+
+        android:orientation="horizontal"
+        android:padding="12dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -191,7 +192,7 @@
 
         <EditText
             android:id="@+id/address_addresscounty"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:hint=" 市中区"
@@ -205,12 +206,13 @@
 
 
     <LinearLayout
-        android:padding="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
         android:background="@color/ffffff"
-        android:orientation="horizontal">
+
+        android:orientation="horizontal"
+        android:padding="12dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -219,7 +221,7 @@
 
         <EditText
             android:id="@+id/address_addressdetal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:hint=" 例如 ：某某街道、小区、楼号、单元号等 "
@@ -249,11 +251,14 @@
             android:textSize="16sp" />
 
         <Button
+            android:background="@null"
             android:id="@+id/address_changedefault"
             android:layout_width="wrap_content"
+            android:drawableRight="@drawable/smart_home_select"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="设置默认"
+            android:gravity="center"
+
             android:textSize="16sp" />
     </RelativeLayout>
 

@@ -38,7 +38,7 @@
     <string name="fragment_mine_eid">我的eID</string>
 
     <string name="fragment_mine_minewallet">我的钱包</string>
-    <string name="fragment_mine_minecardwallet">我的卡卷</string>
+    <string name="fragment_mine_minecardwallet">我的卡劵</string>
     <string name="fragment_mine_minerecord">充值记录|</string>
     <string name="fragment_mine_minesummoney">卡中余额|</string>
     <string name="fragment_mine_payset">支付管理</string>

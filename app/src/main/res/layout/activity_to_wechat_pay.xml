@@ -84,7 +84,7 @@
             android:layout_gravity="center"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="6dp"
-            android:background="@drawable/bg_corners2"
+            android:background="@drawable/dialog_addressback"
             android:gravity="center"
             android:text="支付" />
 

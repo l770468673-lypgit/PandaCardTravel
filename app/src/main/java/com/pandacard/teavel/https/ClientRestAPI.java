@@ -2,6 +2,7 @@ package com.pandacard.teavel.https;
 
 import com.pandacard.teavel.https.beans.AppUpdate;
 import com.pandacard.teavel.https.beans.CaerdOrderDetalBean;
+import com.pandacard.teavel.https.beans.ReceiveCardbean;
 import com.pandacard.teavel.https.beans.small_routine_bean.CardsByUserId;
 import com.pandacard.teavel.https.beans.small_routine_bean.GoodsInfoById;
 import com.pandacard.teavel.https.beans.Mobilesbean;
@@ -14,12 +15,15 @@ import com.pandacard.teavel.https.beans.bean_addCards;
 import com.pandacard.teavel.https.beans.bean_person;
 import com.pandacard.teavel.https.beans.bindSuccessBean;
 import com.pandacard.teavel.https.beans.cardsbean;
+import com.pandacard.teavel.https.beans.small_routine_bean.deleteAddressInfoById;
 import com.pandacard.teavel.https.beans.small_routine_bean.generateOrder;
 import com.pandacard.teavel.https.beans.pandaInfo;
 import com.pandacard.teavel.https.beans.small_routine_bean.insertAddressInfo;
+import com.pandacard.teavel.https.beans.small_routine_bean.queryAddressInfoById;
 import com.pandacard.teavel.https.beans.small_routine_bean.queryUserOrderCardById;
 import com.pandacard.teavel.https.beans.small_routine_bean.regAppUser;
 import com.pandacard.teavel.https.beans.resetPass;
+import com.pandacard.teavel.https.beans.small_routine_bean.updateAddress;
 import com.pandacard.teavel.https.beans.small_routine_bean.updateOrderCardStatusForGive;
 import com.pandacard.teavel.https.beans.small_routine_bean.updateOrderCardStatusForRefuse;
 import com.pandacard.teavel.https.beans.small_routine_bean.updateOrderToClose;
@@ -332,13 +336,55 @@ public interface ClientRestAPI {
             @Field("id") String id
 
     );
-//16.取消订单的接口
-    ///foreign/updateOrderToClose.jspx
-@FormUrlEncoded
-@POST("foreign/updateOrderToClose.jspx")
-@Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
-Call<updateOrderToClose> updateOrderToClose(
-        @Field("orderCode") String orderCode
 
-);
+    //16.取消订单的接口
+    ///foreign/updateOrderToClose.jspx
+    @FormUrlEncoded
+    @POST("foreign/updateOrderToClose.jspx")
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
+    Call<updateOrderToClose> updateOrderToClose(
+            @Field("orderCode") String orderCode
+
+    );
+    //17.根据id删除收货地址信息
+    @FormUrlEncoded
+    @POST("foreign/deleteAddressInfoById.jspx")
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
+    Call<deleteAddressInfoById> deleteAddressInfoById(
+            @Field("addressId") String addressId
+
+    );
+    //18. 根据id查询地址信息
+    ///foreign//queryAddressInfoById.jspx
+    @FormUrlEncoded
+    @POST("foreign/queryAddressInfoById.jspx")
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
+    Call<queryAddressInfoById> queryAddressInfoById(
+            @Field("addressId") String addressId
+
+    );
+    //19. 修改收货地址
+    ///foreign/updateAddress.jspx
+    @FormUrlEncoded
+    @POST("foreign/updateAddress.jspx")
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
+    Call<updateAddress> updateAddress(
+            @Field("addressId") String addressId,
+            @Field("provinces") String provinces,
+            @Field("region") String region,
+            @Field("countries") String countries,
+            @Field("detailAddress") String detailAddress,
+            @Field("receiver") String receiver,
+            @Field("phoneNumber") String phoneNumber,
+            @Field("isDefault") int isDefault
+
+    );
+    //=-----------
+    @FormUrlEncoded
+    @POST("pages/receiveCard/receiveCard")
+    @Headers("Content-Type:application/x-www-form-urlencoded; charset=utf-8")
+    Call<ReceiveCardbean> receiveCard(
+            @Field("data") String data
+
+    );
 }
