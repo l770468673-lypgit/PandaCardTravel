@@ -33,6 +33,9 @@ import com.pandacard.teavel.utils.LUtils;
 import com.pandacard.teavel.utils.ShareUtil;
 import com.pandacard.teavel.utils.StatusBarUtil;
 import com.pandacard.teavel.utils.ToastUtils;
+import com.tencent.mm.opensdk.modelbiz.WXLaunchMiniProgram;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.List;
 
@@ -112,14 +115,16 @@ public class MainFrag_travelHome extends Fragment implements View.OnClickListene
                     startActivity(intarvel);
                     break;
                 case R.id.fragment_travelhome_recharge:
-                    Intent in2 = new Intent(getActivity(), ByPandaActivity.class);
-                    Bundle b = new Bundle();
+//                    Intent in2 = new Intent(getActivity(), ByPandaActivity.class);
+//                    Bundle b = new Bundle();
 //                b.putString("mSbanna", mSbanna);
 //                b.putString("mGoodsDesc", mGoodsDesc);
 //                b.putString("mProductId", mProductId);
 //                b.putDouble("mGoodsCostPrice", mGoodsCostPrice);
-                    in2.putExtras(b);
-                    startActivity(in2);
+//                    in2.putExtras(b);
+//                    startActivity(in2);
+
+                    toWeChatproject();
                     break;
 
                 case R.id.fragment_travelhome_discounts:
@@ -140,5 +145,17 @@ public class MainFrag_travelHome extends Fragment implements View.OnClickListene
         } else {
             ToastUtils.showToast(getActivity(), "请登录后再试");
         }
+    }
+
+
+    public void toWeChatproject() {
+        String appId = "wx066b02355bf9f39b"; // 填应用AppId
+        IWXAPI api = WXAPIFactory.createWXAPI(getActivity(), appId);
+
+        WXLaunchMiniProgram.Req req = new WXLaunchMiniProgram.Req();
+        req.userName = "gh_ad3fcc78de0c"; // 小程序原始id
+        req.path = "/pages/index/index";                  //拉起小程序页面的可带参路径，不填默认拉起小程序首页
+        req.miniprogramType = WXLaunchMiniProgram.Req.MINIPTOGRAM_TYPE_RELEASE;
+        api.sendReq(req);
     }
 }

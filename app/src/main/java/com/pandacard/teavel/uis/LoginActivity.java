@@ -1,6 +1,7 @@
 package com.pandacard.teavel.uis;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -56,6 +57,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.pandacard.teavel.utils.HttpRetrifitUtils.mBody;
+
 public class LoginActivity extends BaseActivity implements View.OnClickListener, PlatformActionListener {
 
     private static final String TAG = "LoginActivity";
@@ -91,8 +94,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
     private EditText mWx_login_phonenum;
     private EditText mWx_login_password;
     private Button mWx_login_loginedyt;
-    private String mVcode;
+
     private EditText mLogin_phonenum;
+    private   String sVcode;
 
 
     class loginHandler extends Handler {
@@ -217,7 +221,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             case R.id.wx_login_logindenglu:
                 if (ShareUtil.getString(HttpRetrifitUtils.WXLOGIN_UNID) != null
                         && mWx_login_phonenum.getText().toString().trim().length() == 11//) {
-                        && mVcode.equals(mWx_login_password.getText().toString().trim())) {
+                        && sVcode.equals(mWx_login_password.getText().toString().trim())) {
                     HttpRetrifitUtils.WX_Regist(ShareUtil.getString(HttpRetrifitUtils.WXLOGIN_UNID),
                             mWx_login_phonenum.getText().toString().trim(),LoginActivity.this);
                 } else {
@@ -229,8 +233,8 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 if (mWx_login_phonenum.getText().toString().trim().length() == 11) {
 
                     TimerUtils.TimerStart();
-                    SecurityCode smsCode = HttpRetrifitUtils.getSMSCode(mWx_login_phonenum.getText().toString().trim(), LoginActivity.this);
-                    mVcode = smsCode.getExtra().getVcode();
+                    getSMSCode(mWx_login_phonenum.getText().toString().trim(), LoginActivity.this);
+
                 } else {
                     ToastUtils.showToast(this, R.string.login_wx_editokphone);
                 }
@@ -371,7 +375,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         mHandler.sendEmptyMessage(WX_LOGIN_SETPHONE);
                     } else {
                         HttpRetrifitUtils.toWXlogin(uid, LoginActivity.this);
-
                         ShareUtil.putString(HttpRetrifitUtils.SERNAME_PHONE, mobiles1);
                     }
                 }
@@ -398,5 +401,28 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         });
     }
 
+    /**
+     * 获取验证码
+     */
+    public  void getSMSCode(String phone, final Activity context) {
+        Call<SecurityCode> securityCode =
+                HttpManager.getInstance().getHttpClient().toSMSCode(phone);
+        securityCode.enqueue(new Callback<SecurityCode>() {
+            @Override
+            public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
+                if (response.body() != null) {
+                    sVcode = response.body().getExtra().getVcode();
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SecurityCode> call, Throwable t) {
+            }
+        });
+
+
+
+    }
 
 }

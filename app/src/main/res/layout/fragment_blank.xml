@@ -11,33 +11,68 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/informationnull"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="#ffffff"
+        android:gravity="center"
+        android:orientation="vertical"
+  >
+
+        <ImageView
+            android:id="@+id/imagenull"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/housedetal_opendoorinformation_null" />
+
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imagenull"
+            android:gravity="center"
+            android:text="@string/eidactivity_nodate"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+
+
     <ImageView
         android:id="@+id/spaiamge_loaddate_anim"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="@drawable/load1" />
+        android:background="@drawable/load1"
+        android:visibility="gone" />
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/lly_addressdetal"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:orientation="vertical"-->
+    <!--        android:visibility="gone">-->
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/lly_addressdetal"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:orientation="vertical"-->
-<!--        android:visibility="gone">-->
+    <!--        <Button-->
+    <!--            android:id="@+id/ownbuy"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="自购" />-->
 
-<!--        <Button-->
-<!--            android:id="@+id/ownbuy"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="自购" />-->
-
-<!--        <Button-->
-<!--            android:id="@+id/sendfriends"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@+id/ownbuy"-->
-<!--            android:text="赠送" />-->
-<!--    </LinearLayout>-->
+    <!--        <Button-->
+    <!--            android:id="@+id/sendfriends"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_below="@+id/ownbuy"-->
+    <!--            android:text="赠送" />-->
+    <!--    </LinearLayout>-->
 
 </RelativeLayout>

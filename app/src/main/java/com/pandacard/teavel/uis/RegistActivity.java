@@ -1,5 +1,6 @@
 package com.pandacard.teavel.uis;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -35,8 +36,9 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
     private ImageView mchongzhinfc_imageview_back;
     private Button mlogin_regist, mbtn_yanzhengma;
     private EditText mreg_phonenum, mimgregpasswordyanzhengmg, mokregpassword, mre_okregpassword;
-    private String mVcode;
+
     private int mAnInt;
+    private static String sVcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +79,7 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                 finish();
                 break;
             case R.id.login_regist:
-                if (mimgregpasswordyanzhengmg.getText().toString().trim().equals(mVcode)) {
+                if (mimgregpasswordyanzhengmg.getText().toString().trim().equals(sVcode)) {
                     LUtils.d(TAG, mokregpassword.getText().toString().trim());
                     LUtils.d(TAG, mre_okregpassword.getText().toString().trim());
                     //判断第一个字符是否为“数”
@@ -107,14 +109,39 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
             case R.id.btn_yanzhengma:
                 if (mreg_phonenum.getText().toString().trim().length() == 11 && mreg_phonenum.getText().toString().trim().startsWith("1")) {
                     TimerUtils.TimerStart();
-                    mVcode = null;
-                    SecurityCode smsCode = HttpRetrifitUtils.getSMSCode(mreg_phonenum.getText().toString().trim(), RegistActivity.this);
-                    mVcode = smsCode.getExtra().getVcode();
+                    sVcode = null;
+                  getSMSCode(mreg_phonenum.getText().toString().trim(), RegistActivity.this);
+
                 } else {
                     ToastUtils.showToast(this, "检查手机号码是否正确");
                 }
                 break;
         }
+    }
+
+    /**
+     * 获取验证码
+     */
+    public  void getSMSCode(String phone, final Activity context) {
+        Call<SecurityCode> securityCode =
+                HttpManager.getInstance().getHttpClient().toSMSCode(phone);
+        securityCode.enqueue(new Callback<SecurityCode>() {
+            @Override
+            public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
+                if (response.body() != null) {
+                    sVcode = response.body().getExtra().getVcode();
+
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<SecurityCode> call, Throwable t) {
+            }
+        });
+
+
+
     }
 
 }

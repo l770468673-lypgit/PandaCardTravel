@@ -203,28 +203,7 @@ public class HttpRetrifitUtils {
         return mBody;
     }
 
-    /**
-     * 获取验证码
-     */
-    public static SecurityCode getSMSCode(String phone, final Activity context) {
-        Call<SecurityCode> securityCode =
-                HttpManager.getInstance().getHttpClient().toSMSCode(phone);
-        securityCode.enqueue(new Callback<SecurityCode>() {
-            @Override
-            public void onResponse(Call<SecurityCode> call, Response<SecurityCode> response) {
-                if (response.body() != null) {
-                    mBody = response.body();
-                }
-            }
 
-            @Override
-            public void onFailure(Call<SecurityCode> call, Throwable t) {
-            }
-        });
-
-        return null;
-
-    }
 
     /**
      * app  wechat 登录

@@ -11,16 +11,20 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.adapters.MyOrderAdapter;
 import com.pandacard.teavel.https.HttpManager;
 import com.pandacard.teavel.https.beans.small_routine_bean.MyOrderList;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
+import com.pandacard.teavel.utils.LUtils;
 import com.pandacard.teavel.utils.ShareUtil;
 
 import java.util.List;
@@ -41,6 +45,7 @@ public class FragmentnotPay extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    private static final String TAG = "FragmentnotPay";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -49,11 +54,14 @@ public class FragmentnotPay extends Fragment {
     private List<MyOrderList.OrderListBean> mOrderList;
     private RecyclerView mAll_orderrecycle;
     private MyOrderAdapter mAdapter;
+
     public FragmentnotPay() {
         // Required empty public constructor
     }
+
     private ImageView iamge_loaddate_anim;
     private AnimationDrawable mAnimaition;
+
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
@@ -72,6 +80,29 @@ public class FragmentnotPay extends Fragment {
         return fragment;
     }
 
+    private RelativeLayout informationnull;
+    private notPayUiHandler mHandler;
+
+    class notPayUiHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 10001:
+                    mAnimaition.stop();
+                    iamge_loaddate_anim.setVisibility(View.GONE);
+                    informationnull.setVisibility(View.VISIBLE);
+                    break;
+                case 10002:
+                    mAnimaition.stop();
+                    iamge_loaddate_anim.setVisibility(View.GONE);
+                    informationnull.setVisibility(View.GONE);
+                    break;
+
+            }
+        }
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,6 +116,8 @@ public class FragmentnotPay extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        mHandler = new notPayUiHandler();
         View inflate = inflater.inflate(R.layout.fragment_blank, container, false);
         initView(inflate);
         return inflate;
@@ -95,12 +128,14 @@ public class FragmentnotPay extends Fragment {
         mAll_orderrecycle = inflate.findViewById(R.id.all_orderrecycle);
         iamge_loaddate_anim = inflate.findViewById(R.id.spaiamge_loaddate_anim);
         iamge_loaddate_anim.setBackgroundResource(R.drawable.load_date_anim);
+        informationnull = inflate.findViewById(R.id.informationnull);
         mAnimaition = (AnimationDrawable) iamge_loaddate_anim.getBackground();
         mAnimaition.setOneShot(false);
 
         mAnimaition.start();
         iamge_loaddate_anim.setVisibility(View.VISIBLE);
     }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -108,28 +143,45 @@ public class FragmentnotPay extends Fragment {
         mAll_orderrecycle.setLayoutManager(layoutManager);
         mAdapter = new MyOrderAdapter(getActivity());
         mAll_orderrecycle.setAdapter(mAdapter);
+
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        informationnull.setVisibility(View.GONE);
         loadDate();
     }
+
     private void loadDate() {
 
         Call<MyOrderList> myOrderList = HttpManager.getInstance().getHttpClient3().getMyOrderList(
-                ShareUtil.getString(HttpRetrifitUtils.WECHAT_USERID),  HttpRetrifitUtils.STATE_NOTPAY);
+                ShareUtil.getString(HttpRetrifitUtils.WECHAT_USERID), HttpRetrifitUtils.STATE_NOTPAY);
         myOrderList.enqueue(new Callback<MyOrderList>() {
             @Override
             public void onResponse(Call<MyOrderList> call, Response<MyOrderList> response) {
-                if (response.body()!=null){
+                if (response.body() != null) {
                     MyOrderList body = response.body();
                     mOrderList = body.getOrderList();
-                    mAdapter.setOrderList(mOrderList);
-                    mAdapter.notifyDataSetChanged();
-                    mAnimaition.stop();
-                    iamge_loaddate_anim.setVisibility(View.GONE);
+
+                    if (mOrderList != null) {
+                        mAdapter.setOrderList(mOrderList);
+                        mAdapter.notifyDataSetChanged();
+                        mAnimaition.stop();
+
+                        mHandler.sendEmptyMessageDelayed(10002, 200);
+                    } else {
+                        mHandler.sendEmptyMessageDelayed(10001, 200);
+
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<MyOrderList> call, Throwable t) {
-
+                LUtils.d(TAG, "" + t);
+                mHandler.sendEmptyMessageDelayed(10001, 200);
             }
         });
     }

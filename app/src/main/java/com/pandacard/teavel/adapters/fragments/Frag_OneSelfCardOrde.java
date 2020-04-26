@@ -3,6 +3,13 @@ package com.pandacard.teavel.adapters.fragments;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,18 +17,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-
 import com.pandacard.teavel.R;
-import com.pandacard.teavel.adapters.AllCardOrderAdapter;
 import com.pandacard.teavel.adapters.OneSelfCardOrderAdapter;
 import com.pandacard.teavel.https.HttpManager;
 import com.pandacard.teavel.https.beans.small_routine_bean.CardsByUserId;
 import com.pandacard.teavel.https.beans.small_routine_bean.queryUserOrderCardById;
-import com.pandacard.teavel.https.beans.small_routine_bean.updateOrderCardStatusForGive;
 import com.pandacard.teavel.uis.CardOrderDetalActivity;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
 import com.pandacard.teavel.utils.ShareUtil;
@@ -62,6 +62,28 @@ public class Frag_OneSelfCardOrde extends Fragment implements OneSelfCardOrderAd
 
     private ImageView iamge_loaddate_anim;
     private AnimationDrawable mAnimaition;
+    private RelativeLayout informationnull;
+    private SelfUiHandler mHandler;
+
+    class SelfUiHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 10001:
+                    mAnimaition.stop();
+                    iamge_loaddate_anim.setVisibility(View.GONE);
+                    informationnull.setVisibility(View.VISIBLE);
+                    break;
+                case 10002:
+                    mAnimaition.stop();
+                    iamge_loaddate_anim.setVisibility(View.GONE);
+                    informationnull.setVisibility(View.GONE);
+                    break;
+
+            }
+        }
+    }
 
     /**
      * Use this factory method to create a new instance of
@@ -94,6 +116,7 @@ public class Frag_OneSelfCardOrde extends Fragment implements OneSelfCardOrderAd
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        mHandler = new SelfUiHandler();
         View inflate = inflater.inflate(R.layout.fragment_blank, container, false);
         initView(inflate);
         return inflate;
@@ -106,7 +129,7 @@ public class Frag_OneSelfCardOrde extends Fragment implements OneSelfCardOrderAd
         iamge_loaddate_anim.setBackgroundResource(R.drawable.load_date_anim);
         mAnimaition = (AnimationDrawable) iamge_loaddate_anim.getBackground();
         mAnimaition.setOneShot(false);
-
+        informationnull = inflate.findViewById(R.id.informationnull);
         mAnimaition.start();
         iamge_loaddate_anim.setVisibility(View.VISIBLE);
 
@@ -116,14 +139,22 @@ public class Frag_OneSelfCardOrde extends Fragment implements OneSelfCardOrderAd
         mAdapter.setOrderItenClick(this);
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        informationnull.setVisibility(View.GONE);
+        initDate();
+    }
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        initDate();
     }
 
     private void initDate() {
+        iamge_loaddate_anim.setVisibility(View.VISIBLE);
         Call<CardsByUserId> cardsByUserId = HttpManager.getInstance().getHttpClient3().getCardsByUserId(
                 ShareUtil.getString(HttpRetrifitUtils.WECHAT_USERID),
                 HttpRetrifitUtils.STATE_FINISH);
@@ -131,15 +162,18 @@ public class Frag_OneSelfCardOrde extends Fragment implements OneSelfCardOrderAd
             @Override
             public void onResponse(Call<CardsByUserId> call, Response<CardsByUserId> response) {
                 if (response.body() != null) {
-                    mCardList = response.body().getCardList();
-                    mAdapter.setCardList(mCardList);
-                    mAdapter.notifyDataSetChanged();
-                    mAnimaition.stop();
-                    iamge_loaddate_anim.setVisibility(View.GONE);
-//                    LUtils.d(TAG,"cardList=="+cardList.toString());
-                } else {
 
-//                    mLly_addressdetal.setVisibility(View.VISIBLE);
+                    mCardList = response.body().getCardList();
+                    if (mCardList != null) {
+                        mAdapter.setCardList(mCardList);
+                        mAdapter.notifyDataSetChanged();
+                        mAnimaition.stop();
+
+                        mHandler.sendEmptyMessageDelayed(10002, 200);
+                    } else {
+                        mHandler.sendEmptyMessageDelayed(10001, 200);
+
+                    }
 
                 }
 
@@ -147,9 +181,9 @@ public class Frag_OneSelfCardOrde extends Fragment implements OneSelfCardOrderAd
 
             @Override
             public void onFailure(Call<CardsByUserId> call, Throwable t) {
-                mAnimaition.stop();
-                iamge_loaddate_anim.setVisibility(View.GONE);
-//                mLly_addressdetal.setVisibility(View.VISIBLE);
+
+                mHandler.sendEmptyMessage(10001);
+                //                mLly_addressdetal.setVisibility(View.VISIBLE);
             }
         });
 

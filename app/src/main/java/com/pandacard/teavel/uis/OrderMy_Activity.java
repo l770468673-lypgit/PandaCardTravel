@@ -60,7 +60,7 @@ public class OrderMy_Activity extends AppCompatActivity {
 //        mList_fragment.add(Closed);
 
 
-        //将名称加载tab名字列表
+        //将名称加载tab名字列
         mList_title = new ArrayList<>();
         mList_title.add("全部");
         mList_title.add("未付款");

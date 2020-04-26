@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="订单号 ："
-                android:textSize="20dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/allorder_orderstate"
@@ -74,7 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="熊猫文旅卡"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/allorder_ordermoney"
@@ -85,20 +85,25 @@
                         android:textSize="14sp" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
                     android:orientation="horizontal"
-                    android:padding="2dp">
+              >
+                    <TextView
 
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:text="购买数量："
+                        android:textSize="14sp" />
                     <TextView
                         android:id="@+id/allorder_ordercolortype"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
-                        android:text="颜色分类"
+                        android:text=""
                         android:textSize="14sp" />
 
                 </LinearLayout>
@@ -113,7 +118,7 @@
                         android:id="@+id/allorder_ordercount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="订单时间："
                         android:textSize="14sp" />
 
                     <TextView
@@ -122,8 +127,21 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:text=""
-                        android:textSize="16sp" />
+                        android:textSize="12sp" />
 
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="不支持退款"
+                        android:textColor="@color/viewfinder_laser"
+                        android:textSize="10sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -142,7 +160,8 @@
             android:layout_margin="2dp"
             android:gravity="right"
             android:orientation="horizontal"
-            android:padding="2dp">
+            android:padding="2dp"
+        >
 
             <TextView
                 android:id="@+id/allorder_orderlookdetal"

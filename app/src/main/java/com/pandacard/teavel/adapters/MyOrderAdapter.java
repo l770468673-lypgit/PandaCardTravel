@@ -85,13 +85,16 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
         } else if (orderListBean.getOrderState() == 9) {
             holder.allorder_orderstate.setText("退款失败");
         }
-//        holder.allorder_orderlookdetal.setText("查看详情");
-        holder.allorder_orderlookdetal.setVisibility(View.GONE);
-        holder.allorder_ordelogistics.setText("查看物流");
+        holder.allorder_orderlookdetal.setText("查看详情");
+        holder.rely_ordertime.setText("下单时间：" + orderListBean.getCreateTime());
 
-        holder.allorder_ordercountmoney.setText("合计  :" + orderListBean.getPayPrice() + "");
-//        holder.allorder_ordercolortype.setText("==========");
-//        holder.allorder_ordercount.setText("===00==");
+        holder.allorder_ordelogistics.setVisibility(View.GONE);
+        holder.allorder_orderlookdetal.setVisibility(View.GONE);
+        //        holder.allorder_ordelogistics.setText("查看物流");
+
+        holder.allorder_ordercountmoney.setText("￥" + orderListBean.getPayPrice() + "");
+        holder.allorder_ordercolortype.setText("共" + orderListBean.getBuyNum() + "件");
+        holder.allorder_ordercount.setText("微信支付");
 //        holder.allorder_ordermoney.setText("===00==");
 
 
@@ -101,7 +104,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
                 LUtils.d(TAG, "查看详情");
                 String id = orderListBean.getId();
                 LUtils.d(TAG, "mOrderList.id==" + id);
-//                mAdapterItenClick.setClickDetal(position);
+                mAdapterItenClick.setClickDetal(position);
 
             }
         });
@@ -111,7 +114,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 LUtils.d(TAG, "查看物流");
-//                mAdapterItenClick.setClickLogistics(position);
+                //                mAdapterItenClick.setClickLogistics(position);
             }
         });
 
@@ -135,6 +138,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
         private TextView allorder_ordercountmoney;
         private TextView allorder_orderlookdetal;
         private TextView allorder_ordelogistics;
+        private TextView rely_ordertime;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -147,6 +151,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ViewHold
             allorder_ordercountmoney = itemView.findViewById(R.id.allorder_ordercountmoney);
             allorder_orderlookdetal = itemView.findViewById(R.id.allorder_orderlookdetal);
             allorder_ordelogistics = itemView.findViewById(R.id.allorder_ordelogistics);
+            rely_ordertime = itemView.findViewById(R.id.rely_ordertime);
         }
     }
 }

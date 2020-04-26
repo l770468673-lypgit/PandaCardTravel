@@ -66,7 +66,8 @@ public class SendCardOrderAdapter extends RecyclerView.Adapter<SendCardOrderAdap
         } else if (cardListBean.getCardOrderStatus() == 3) {
             holder.allorder_orderstate.setText("已赠送");
         }
-
+        holder.allorder_ordercolortype.setText(cardListBean.getBuyNum() + "件");
+        holder.allorder_ordercountmoney.setText(cardListBean.getCreateTime());
         holder.allorder_orderlookdetal.setText("查看详情");
         holder.allorder_ordelogistics.setVisibility(View.GONE);
         holder.allorder_orderlookdetal.setOnClickListener(new View.OnClickListener() {

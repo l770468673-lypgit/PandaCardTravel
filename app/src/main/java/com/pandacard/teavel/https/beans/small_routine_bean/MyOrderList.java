@@ -1,5 +1,6 @@
 package com.pandacard.teavel.https.beans.small_routine_bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class MyOrderList {
@@ -40,7 +41,7 @@ public class MyOrderList {
         this.orderList = orderList;
     }
 
-    public static class OrderListBean {
+    public static class OrderListBean implements Serializable {
         /**
          * supPrice : 1.6
          * orderType : 0

@@ -34,6 +34,9 @@ import com.pandacard.teavel.utils.LUtils;
 import com.pandacard.teavel.utils.MyDialog;
 import com.pandacard.teavel.utils.StatusBarUtil;
 import com.pandacard.teavel.utils.ToastUtils;
+import com.tencent.mm.opensdk.modelbiz.WXLaunchMiniProgram;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -111,7 +114,7 @@ public class ByPandaActivity extends AppCompatActivity implements View.OnClickLi
         mLly_readandok.setOnClickListener(this);
         mBycard_button.setOnClickListener(this);
 
-//        mChaeck_imageview.setOnClickListener(this);
+        //        mChaeck_imageview.setOnClickListener(this);
         mCard_money.setText("¥ " + mGoodsCostPrice + "");
 
 
@@ -244,9 +247,22 @@ public class ByPandaActivity extends AppCompatActivity implements View.OnClickLi
             });
         } else {
             from = Location.BOTTOM.ordinal();
-            initPopupWindow();
+//            initPopupWindow();
+            toWeChatproject();
+
         }
 
+    }
+
+    public void toWeChatproject() {
+        String appId = "wx066b02355bf9f39b"; // 填应用AppId
+        IWXAPI api = WXAPIFactory.createWXAPI(this, appId);
+
+        WXLaunchMiniProgram.Req req = new WXLaunchMiniProgram.Req();
+        req.userName = "gh_ad3fcc78de0c"; // 小程序原始id
+        req.path = "/pages/index/index";                  //拉起小程序页面的可带参路径，不填默认拉起小程序首页
+        req.miniprogramType = WXLaunchMiniProgram.Req.MINIPTOGRAM_TYPE_RELEASE;
+        api.sendReq(req);
     }
 
 

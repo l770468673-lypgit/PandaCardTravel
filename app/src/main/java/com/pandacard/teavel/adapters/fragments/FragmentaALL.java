@@ -2,10 +2,13 @@ package com.pandacard.teavel.adapters.fragments;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -56,6 +59,28 @@ public class FragmentaALL extends Fragment implements MyOrderAdapter.AdapterIten
         // Required empty public constructor
     }
 
+    private RelativeLayout informationnull;
+    private AllUiHandler mHandler;
+
+    class AllUiHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 10001:
+                    mAnimaition.stop();
+                    iamge_loaddate_anim.setVisibility(View.GONE);
+                    informationnull.setVisibility(View.VISIBLE);
+                    break;
+                case 10002:
+                    mAnimaition.stop();
+                    iamge_loaddate_anim.setVisibility(View.GONE);
+                    informationnull.setVisibility(View.GONE);
+                    break;
+
+            }
+        }
+    }
     public static FragmentaALL newInstance(String param1, String param2) {
         FragmentaALL fragment = new FragmentaALL();
         Bundle args = new Bundle();
@@ -78,6 +103,8 @@ public class FragmentaALL extends Fragment implements MyOrderAdapter.AdapterIten
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        mHandler = new AllUiHandler();
         View inflate = inflater.inflate(R.layout.fragment_blank, container, false);
         initView(inflate);
         return inflate;
@@ -87,12 +114,20 @@ public class FragmentaALL extends Fragment implements MyOrderAdapter.AdapterIten
         mAll_orderrecycle = inflate.findViewById(R.id.all_orderrecycle);
         iamge_loaddate_anim = inflate.findViewById(R.id.spaiamge_loaddate_anim);
         iamge_loaddate_anim.setBackgroundResource(R.drawable.load_date_anim);
+        informationnull = inflate.findViewById(R.id.informationnull);
         mAnimaition = (AnimationDrawable) iamge_loaddate_anim.getBackground();
         mAnimaition.setOneShot(false);
 
         mAnimaition.start();
         iamge_loaddate_anim.setVisibility(View.VISIBLE);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        informationnull.setVisibility(View.GONE);
+        loadDate();
     }
 
     @Override
@@ -103,7 +138,7 @@ public class FragmentaALL extends Fragment implements MyOrderAdapter.AdapterIten
         mAdapter = new MyOrderAdapter(getActivity());
         mAll_orderrecycle.setAdapter(mAdapter);
         mAdapter.setAdapterItenClick(this);
-        loadDate();
+
     }
 
     private void loadDate() {
@@ -116,16 +151,24 @@ public class FragmentaALL extends Fragment implements MyOrderAdapter.AdapterIten
                 if (response.body() != null) {
                     MyOrderList body = response.body();
                     mOrderList = body.getOrderList();
-                    mAdapter.setOrderList(mOrderList);
-                    mAdapter.notifyDataSetChanged();
-                    mAnimaition.stop();
-                    iamge_loaddate_anim.setVisibility(View.GONE);
+
+                    if (mOrderList != null) {
+                        mAdapter.setOrderList(mOrderList);
+                        mAdapter.notifyDataSetChanged();
+                        mAnimaition.stop();
+
+                        mHandler.sendEmptyMessageDelayed(10002, 200);
+                    } else {
+                        mHandler.sendEmptyMessageDelayed(10001, 200);
+
+                    }
                 }
             }
 
             @Override
             public void onFailure(Call<MyOrderList> call, Throwable t) {
                 LUtils.d(TAG, "" + t);
+                mHandler.sendEmptyMessageDelayed(10001, 200);
             }
         });
     }

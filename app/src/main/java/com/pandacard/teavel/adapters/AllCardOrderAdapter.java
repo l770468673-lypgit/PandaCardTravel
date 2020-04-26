@@ -67,8 +67,12 @@ public class AllCardOrderAdapter extends RecyclerView.Adapter<AllCardOrderAdapte
             holder.allorder_orderstate.setText("已赠送");
         }
 
+        holder.allorder_ordercolortype.setText(cardListBean.getBuyNum() + "件");
+        holder.allorder_ordercountmoney.setText(cardListBean.getCreateTime());
         holder.allorder_orderlookdetal.setText("   自购   ");
         holder.allorder_ordelogistics.setText("   赠送   ");
+//        holder.allorder_ordelogistics.setVisibility(View.GONE);
+//        holder.allorder_orderlookdetal.setVisibility(View.GONE);
         holder.allorder_orderlookdetal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

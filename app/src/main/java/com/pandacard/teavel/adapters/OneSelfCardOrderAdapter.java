@@ -66,6 +66,8 @@ public class OneSelfCardOrderAdapter extends RecyclerView.Adapter<OneSelfCardOrd
         } else if (cardListBean.getCardOrderStatus() == 3) {
             holder.allorder_orderstate.setText("已赠送");
         }
+        holder.allorder_ordercolortype.setText(cardListBean.getBuyNum() + "件");
+        holder.allorder_ordercountmoney.setText(cardListBean.getCreateTime());
 
         holder.allorder_orderlookdetal.setText("查看详情");
         holder.allorder_ordelogistics.setVisibility(View.GONE);

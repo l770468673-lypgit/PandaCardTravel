@@ -10,12 +10,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.pandacard.teavel.R;
@@ -32,6 +35,9 @@ import com.pandacard.teavel.utils.LUtils;
 import com.pandacard.teavel.utils.MyDialog;
 import com.pandacard.teavel.utils.ShareUtil;
 import com.pandacard.teavel.utils.ToastUtils;
+import com.tencent.mm.opensdk.modelbiz.WXLaunchMiniProgram;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import java.util.HashMap;
 import java.util.List;
@@ -87,12 +93,15 @@ public class Frag_AllCardOrder extends Fragment implements View.OnClickListener,
     private String mOrderCode;
     private int ADDRESSREQUEST = 0x0777;
     private int ADDRESSRESULT = 0x0888;
+    private AllUiHandler mHandler;
+
 
     public Frag_AllCardOrder() {
         // Required empty public constructor
     }
 
     private RecyclerView mAll_orderrecycle;
+    private RelativeLayout informationnull;
 
 
     private ImageView iamge_loaddate_anim;
@@ -106,6 +115,26 @@ public class Frag_AllCardOrder extends Fragment implements View.OnClickListener,
     EditText address_addcountries;
     EditText address_addcity;
     EditText address_addaddressdetals;
+
+    class AllUiHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case 10001:
+                    mAnimaition.stop();
+                    iamge_loaddate_anim.setVisibility(View.GONE);
+                    informationnull.setVisibility(View.VISIBLE);
+                    break;
+                case 10002:
+                    mAnimaition.stop();
+                    iamge_loaddate_anim.setVisibility(View.GONE);
+                    informationnull.setVisibility(View.GONE);
+                    break;
+
+            }
+        }
+    }
 
     // TODO: Rename and change types and number of parameters
     public static Frag_AllCardOrder newInstance(String param1, String param2) {
@@ -124,24 +153,28 @@ public class Frag_AllCardOrder extends Fragment implements View.OnClickListener,
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        mHandler = new AllUiHandler();
         View inflate = inflater.inflate(R.layout.fragment_blank, container, false);
         initView(inflate);
+
         return inflate;
     }
 
     private void initView(View inflate) {
 
         mAll_orderrecycle = inflate.findViewById(R.id.all_orderrecycle);
+        informationnull = inflate.findViewById(R.id.informationnull);
         iamge_loaddate_anim = inflate.findViewById(R.id.spaiamge_loaddate_anim);
-//        ownbuy = inflate.findViewById(R.id.ownbuy);
-//        sendfriends = inflate.findViewById(R.id.sendfriends);
-//        mLly_addressdetal = inflate.findViewById(R.id.lly_addressdetal);
+        //        ownbuy = inflate.findViewById(R.id.ownbuy);
+        //        sendfriends = inflate.findViewById(R.id.sendfriends);
+        //        mLly_addressdetal = inflate.findViewById(R.id.lly_addressdetal);
 
         iamge_loaddate_anim.setBackgroundResource(R.drawable.load_date_anim);
         mAnimaition = (AnimationDrawable) iamge_loaddate_anim.getBackground();
@@ -154,20 +187,26 @@ public class Frag_AllCardOrder extends Fragment implements View.OnClickListener,
         mAdapter = new AllCardOrderAdapter(getActivity());
         mAll_orderrecycle.setAdapter(mAdapter);
         mAdapter.setOrderItenClick(this);
-//        、、===========
+        //        、、===========
 
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        informationnull.setVisibility(View.GONE);
+        initDate();
+    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        initDate();
     }
 
     private void initDate() {
+        iamge_loaddate_anim.setVisibility(View.VISIBLE);
         Call<CardsByUserId> cardsByUserId = HttpManager.getInstance().getHttpClient3().getCardsByUserId(
                 ShareUtil.getString(HttpRetrifitUtils.WECHAT_USERID),
                 HttpRetrifitUtils.STATE_NOTSEND);
@@ -175,11 +214,18 @@ public class Frag_AllCardOrder extends Fragment implements View.OnClickListener,
             @Override
             public void onResponse(Call<CardsByUserId> call, Response<CardsByUserId> response) {
                 if (response.body() != null) {
+
                     mCardList = response.body().getCardList();
-                    mAdapter.setCardList(mCardList);
-                    mAdapter.notifyDataSetChanged();
-                    mAnimaition.stop();
-                    iamge_loaddate_anim.setVisibility(View.GONE);
+                    if (mCardList != null) {
+                        mAdapter.setCardList(mCardList);
+                        mAdapter.notifyDataSetChanged();
+                        mAnimaition.stop();
+
+                        mHandler.sendEmptyMessageDelayed(10002, 200);
+                    } else {
+                        mHandler.sendEmptyMessageDelayed(10001, 200);
+
+                    }
 
                 }
 
@@ -187,9 +233,9 @@ public class Frag_AllCardOrder extends Fragment implements View.OnClickListener,
 
             @Override
             public void onFailure(Call<CardsByUserId> call, Throwable t) {
-                mAnimaition.stop();
-                iamge_loaddate_anim.setVisibility(View.GONE);
-//                mLly_addressdetal.setVisibility(View.VISIBLE);
+
+                mHandler.sendEmptyMessage(10001);
+                //                mLly_addressdetal.setVisibility(View.VISIBLE);
             }
         });
 
@@ -275,6 +321,7 @@ public class Frag_AllCardOrder extends Fragment implements View.OnClickListener,
         }
     }
 
+
     private void OwnConfirmDialog() {
 
 
@@ -331,51 +378,63 @@ public class Frag_AllCardOrder extends Fragment implements View.OnClickListener,
 
     @Override
     public void setClickBuy(int position) {
-        mOrderCode = mCardList.get(position).getOrderCode();
-        OwnByAndSendDialog(null);
+        //        mOrderCode = mCardList.get(position).getOrderCode();
+        //        OwnByAndSendDialog(null);
+        toWeChatproject();
+
     }
 
     @Override
     public void setClickSend(final int position) {
-        CardsByUserId.CardListBean cardListBean = mCardList.get(position);
-        ReceiveCardbean cardbean =
-                new ReceiveCardbean(cardListBean.getId(), cardListBean.getOrderCode()
-                        , cardListBean.getUserId(), "", ""
-                        , cardListBean.getProName(), cardListBean.getProLogo(), "");
-        LUtils.d(TAG, "cardbean====" + cardbean.toString());
-        //  addressdialog
-        OnekeyShare oks = new OnekeyShare();
-//         title标题，微信、QQ和QQ空间等平台使用
-//        oks.setTitle("分享");
-//         titleUrl QQ和QQ空间跳转链接
-//        oks.setTitleUrl("");
-//         text是分享文本，所有平台都需要这个字段
-        oks.setText("/pages/receiveCard/receiveCard?data=" + cardbean.toString());
-//         imagePath是图片的本地路径，确保SDcard下面存在此张图片
-        oks.setImagePath("/sdcard/test.jpg");
-//         url在微信、Facebook等平台中使用
-//                oks.setUrl("http://sharesdk.cn");
-        oks.setCallback(new PlatformActionListener() {
-            @Override
-            public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
-                checkOrderDetal(mCardList.get(position).getId());
-                ToastUtils.showToast(getActivity(), "分享成功");
-            }
+        //        CardsByUserId.CardListBean cardListBean = mCardList.get(position);
+        //        ReceiveCardbean cardbean =
+        //                new ReceiveCardbean(cardListBean.getId(), cardListBean.getOrderCode()
+        //                        , cardListBean.getUserId(), "", ""
+        //                        , cardListBean.getProName(), cardListBean.getProLogo(), "");
+        //        LUtils.d(TAG, "cardbean====" + cardbean.toString());
+        //        //  addressdialog
+        //        OnekeyShare oks = new OnekeyShare();
+        //        //         title标题，微信、QQ和QQ空间等平台使用
+        //        //        oks.setTitle("分享");
+        //        //         titleUrl QQ和QQ空间跳转链接
+        //        //        oks.setTitleUrl("");
+        //        //         text是分享文本，所有平台都需要这个字段
+        //        oks.setText("/pages/receiveCard/receiveCard?data=" + cardbean.toString());
+        //        //         imagePath是图片的本地路径，确保SDcard下面存在此张图片
+        //        oks.setImagePath("/sdcard/test.jpg");
+        //        //         url在微信、Facebook等平台中使用
+        //        //                oks.setUrl("http://sharesdk.cn");
+        //        oks.setCallback(new PlatformActionListener() {
+        //            @Override
+        //            public void onComplete(Platform platform, int i, HashMap<String, Object> hashMap) {
+        //                checkOrderDetal(mCardList.get(position).getId());
+        //                ToastUtils.showToast(getActivity(), "分享成功");
+        //            }
+        //
+        //            @Override
+        //            public void onError(Platform platform, int i, Throwable throwable) {
+        //                ToastUtils.showToast(getActivity(), "分享失败");
+        //            }
+        //
+        //            @Override
+        //            public void onCancel(Platform platform, int i) {
+        //                ToastUtils.showToast(getActivity(), "取消分享");
+        //            }
+        //        });
+        //        oks.show(getActivity());
+        toWeChatproject();
 
-            @Override
-            public void onError(Platform platform, int i, Throwable throwable) {
-                ToastUtils.showToast(getActivity(), "分享失败");
-            }
+    }
 
-            @Override
-            public void onCancel(Platform platform, int i) {
-                ToastUtils.showToast(getActivity(), "取消分享");
-            }
-        });
-        oks.show(getActivity());
+    public void toWeChatproject() {
+        String appId = "wx066b02355bf9f39b"; // 填应用AppId
+        IWXAPI api = WXAPIFactory.createWXAPI(getActivity(), appId);
 
-
-
+        WXLaunchMiniProgram.Req req = new WXLaunchMiniProgram.Req();
+        req.userName = "gh_ad3fcc78de0c"; // 小程序原始id
+        req.path = "/pages/index/index";                  //拉起小程序页面的可带参路径，不填默认拉起小程序首页
+        req.miniprogramType = WXLaunchMiniProgram.Req.MINIPTOGRAM_TYPE_RELEASE;
+        api.sendReq(req);
     }
 
 
