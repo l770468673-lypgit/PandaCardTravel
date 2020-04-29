@@ -60,12 +60,8 @@ public class MyApplication extends Application {
     }
 
 
-    public static LiteOrm getLiteOrm() {
-        return liteOrm;
-    }
 
-
-    private static void initImageLoaderOptions() {
+    public static void initImageLoaderOptions() {
         roundedOption = new DisplayImageOptions.Builder()
                 .showImageOnLoading(R.drawable.iv_fail)
                 .showImageForEmptyUri(R.drawable.iv_fail)
@@ -93,6 +89,13 @@ public class MyApplication extends Application {
                 .bitmapConfig(Bitmap.Config.RGB_565).considerExifParams(true)
                 .delayBeforeLoading(100).resetViewBeforeLoading(true).build();
     }
+
+    public static LiteOrm getLiteOrm() {
+        return liteOrm;
+    }
+
+
+
     public static Context getContext() {
         return context;
     }

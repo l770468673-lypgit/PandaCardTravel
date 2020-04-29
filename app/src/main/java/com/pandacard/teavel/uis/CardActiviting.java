@@ -681,6 +681,7 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
             if (nfcAdapter != null) {
                 nfcAdapter.enableForegroundDispatch(this, pi,
                         FILTERS, TECHLISTS);
+                LUtils.e(TAG, "nfcAdapter.enableForegroundDispatch ");
             }
         } catch (Exception e) {
             e.printStackTrace();

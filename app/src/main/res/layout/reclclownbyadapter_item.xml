@@ -70,10 +70,11 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:textStyle="bold"
                         android:id="@+id/allorder_ordename"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="熊猫文旅卡"
+                        android:text="熊猫文旅通卡"
                         android:textSize="14sp" />
 
                     <TextView

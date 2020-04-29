@@ -70,7 +70,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="收货人  "
+            android:text="@string/fragment_address_useread"
             android:textSize="16sp" />
 
         <EditText
@@ -99,7 +99,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="手机号码   "
+            android:text="@string/fragment_address_phonenumber"
             android:textSize="16sp" />
 
         <EditText
@@ -129,7 +129,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="所在省  "
+            android:text="@string/fragment_address_province"
             android:textSize="16sp" />
 
         <EditText
@@ -158,7 +158,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="市  "
+            android:text="@string/fragment_address_city"
             android:textSize="16sp" />
 
         <EditText
@@ -187,7 +187,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="区县  "
+            android:text="@string/fragment_address_quxian"
             android:textSize="16sp" />
 
         <EditText
@@ -216,7 +216,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="详细地址 ："
+            android:text="@string/fragment_address_detal"
             android:textSize="16sp" />
 
         <EditText
@@ -247,7 +247,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="设为默认"
+            android:text="@string/fragment_address_isdefault"
             android:textSize="16sp" />
 
         <Button

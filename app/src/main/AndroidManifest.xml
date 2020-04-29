@@ -178,7 +178,8 @@
             android:name=".uis.NFCActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-
+        <activity android:name="com.xlu.uis.ActivityZone2"
+            android:theme="@style/Anim_activity"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.pandacard.teavel.provider"
@@ -188,6 +189,22 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/videodicxml" />
         </provider>
+        <activity android:name="com.xlu.uis.ActivityZone" android:theme="@style/Anim_activity"/>
+        <activity android:name="com.xlu.uis.ActivityZone2" android:theme="@style/Anim_activity"/>
+        <service android:name="com.xlu.utils.servers.DownloadService" >
+            <intent-filter>
+                <action android:name="cn.com.wideroad.xiaolu.service.download" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+        <service android:name="com.xlu.utils.servers.PlayService" >
+            <intent-filter>
+                <action android:name="cn.com.wideroad.xiaolu.service.play" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

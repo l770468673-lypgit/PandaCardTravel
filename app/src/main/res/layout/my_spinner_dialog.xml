@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal"
+    android:layout_centerInParent="true"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    android:background="@drawable/shape_dialog_bg">
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp">
+        <ProgressBar
+            android:id="@+id/pb_load"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_centerInParent="true"
+            android:indeterminateDrawable="@drawable/progressbar"/>
+
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv_load_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="正在打开..."
+        android:textColor="#414141"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="12sp"/>
+</LinearLayout>

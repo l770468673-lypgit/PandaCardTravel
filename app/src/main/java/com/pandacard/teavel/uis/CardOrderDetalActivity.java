@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.https.HttpManager;
 import com.pandacard.teavel.https.beans.small_routine_bean.queryUserOrderCardById;
+import com.tencent.mm.opensdk.modelbiz.WXLaunchMiniProgram;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -23,6 +27,7 @@ public class CardOrderDetalActivity extends AppCompatActivity implements View.On
     private TextView mOrderdetal_onfirm_paytime;
     private TextView mOrderdetal_onfirm_payway;
     private ImageView mLly_attbarimageview;
+    private Button mOrderbuagain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +38,14 @@ public class CardOrderDetalActivity extends AppCompatActivity implements View.On
 
     private void initView() {
         mOrderdetal_onfirm_num = findViewById(R.id.cardorderdetal_onfirm_num);
+        mOrderbuagain = findViewById(R.id.orderbuagain);
         mLly_attbarimageview = findViewById(R.id.lly_attbarimageview);
         mOrderdetal_onfirm_order = findViewById(R.id.cardorderdetal_onfirm_order);
         mOrderdetal_onfirm_ordertime = findViewById(R.id.cardorderdetal_onfirm_ordertime);
         mOrderdetal_onfirm_paytime = findViewById(R.id.cardorderdetal_onfirm_paytime);
         mOrderdetal_onfirm_payway = findViewById(R.id.cardorderdetal_onfirm_payway);
         mLly_attbarimageview.setOnClickListener(this);
+        mOrderbuagain.setOnClickListener(this);
         Bundle extras = getIntent().getExtras();
         String cardInfocade = extras.getString("CardInfocade");
         if (cardInfocade != null) {
@@ -81,6 +88,20 @@ public class CardOrderDetalActivity extends AppCompatActivity implements View.On
             case R.id.lly_attbarimageview:
                 finish();
                 break;
+            case R.id.orderbuagain:
+                toWeChatproject();
+                break;
         }
+    }
+
+    public void toWeChatproject() {
+        String appId = "wx066b02355bf9f39b"; // 填应用AppId
+        IWXAPI api = WXAPIFactory.createWXAPI(this, appId);
+
+        WXLaunchMiniProgram.Req req = new WXLaunchMiniProgram.Req();
+        req.userName = "gh_ad3fcc78de0c"; // 小程序原始id
+        req.path = "/pages/index/index";                  //拉起小程序页面的可带参路径，不填默认拉起小程序首页
+        req.miniprogramType = WXLaunchMiniProgram.Req.MINIPTOGRAM_TYPE_RELEASE;
+        api.sendReq(req);
     }
 }

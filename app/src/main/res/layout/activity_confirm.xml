@@ -165,8 +165,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="购买数量"
-                android:textSize="20dp" />
+                android:text="@string/bypanda_bynum"
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/onfirm_num"
@@ -193,9 +193,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="配送方式"
-
-                android:textSize="20dp" />
+                android:text="@string/fragment_conform_sendway"
+                android:textSize="16sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -222,8 +221,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="订单备注"
-                android:textSize="20dp" />
+                android:text="@string/fragment_conform_ordernote"
+                android:textSize="16sp" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -299,7 +298,7 @@
                     android:layout_marginRight="6dp"
                     android:background="@drawable/nextsetup"
                     android:gravity="center"
-                    android:text="提交订单"
+                    android:text="@string/fragment_conform_conformorder"
                     android:textColor="@color/ffffff" />
 
             </LinearLayout>

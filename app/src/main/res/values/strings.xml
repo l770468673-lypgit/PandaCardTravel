@@ -14,7 +14,7 @@
 
     <string name="main_frag_home">首页</string>
     <string name="main_frag_travel">旅游</string>
-    <string name="main_frag_shop">商城</string>
+    <string name="main_frag_shop">导览</string>
     <string name="main_frag_mine">我</string>
     <string name="login_phonenum">手机号</string>
     <string name="login_phonenum_reg">手机号快速注册</string>
@@ -191,4 +191,44 @@
     <string name="fragment_travelhome_recharge">通卡购买</string>
     <string name="fragment_travelhome_discounts">卡单列表</string>
     <string name="fragment_travelhome_useread">我的订单</string>
+
+    <string name="fragment_address_useread">收货人</string>
+    <string name="fragment_address_phonenumber">手机号码</string>
+    <string name="fragment_address_province">省  </string>
+    <string name="fragment_address_city">市  </string>
+    <string name="fragment_address_quxian">区县 </string>
+    <string name="fragment_address_detal">详细地址 ： </string>
+    <string name="fragment_address_isdefault">设为默认 ： </string>
+
+
+
+
+    <string name="fragment_card_order_detal_sends">赠送版 </string>
+    <string name="fragment_card_order_detal_not">不支持退款 </string>
+    <string name="fragment_card_order_detal_realpay">实付款 </string>
+    <string name="fragment_card_order_detal_ordernum">订单编号: </string>
+    <string name="fragment_card_order_detal_ordertime">下单时间: </string>
+    <string name="fragment_card_order_detalpaytime">支付时间: </string>
+    <string name="fragment_card_order_detalpayway">支付方式: </string>
+    <string name="fragment_card_order_wechatpay">微信支付 </string>
+    <string name="fragment_card_order_byagain">再次购买 </string>
+
+
+
+    <string name="fragment_conform_sendway">配送方式 </string>
+    <string name="fragment_conform_ordernote">订单备注 </string>
+    <string name="fragment_conform_conformorder">提交订单 </string>
+
+
+    <string name="title_alert">提示</string>
+    <string name="message">您确认需要删除订单吗？</string>
+    <string name="map_title">请选择语音方式</string>
+    <string name="map_msg">小鹿建议现在下载离线语音包</string>
+    <string name="map_load">下载离线包</string>
+    <string name="map_play">在线收听</string>
+    <string name="ok">删除</string>
+    <string name="quit">退出</string>
+    <string name="cancel">取消</string>
+
+
 </resources>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+  
+<RelativeLayout
+        android:padding="10dip"
+        android:background="#ffffff"
+    	android:layout_width="match_parent"
+    	android:layout_height="40dip">
+    	
+        <ImageView
+            android:layout_centerVertical="true"
+            app:srcCompat="@drawable/iv_back"
+            android:id="@+id/iv_zone_back"
+          	android:layout_width="20dp"
+        	android:layout_height="20dp"
+			android:scaleType="centerInside"
+			android:layout_marginLeft="15dp"/>
+        
+        <TextView
+            android:layout_centerInParent="true"
+            android:maxEms="10"
+            android:singleLine="true"
+            android:ellipsize="end"
+            android:id="@+id/tv_zone_name"
+            android:textSize="14sp"
+            android:layout_centerVertical="true"
+            android:textColor="#aa111111"
+          	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"/>
+
+
+        
+    </RelativeLayout>
+    
+    <View
+        android:background="#b1b1b1"
+    	android:layout_width="match_parent"
+    	android:layout_height="0.8dip"/>
+    
+     <RelativeLayout
+    		android:layout_width="match_parent"
+    		android:layout_height="match_parent">
+        
+    
+     <RelativeLayout
+         	android:id="@+id/rl_zone_map"
+    		android:layout_width="match_parent"
+    		android:layout_height="match_parent"/>
+     
+	     <RelativeLayout
+	         	android:layout_marginBottom="20dip"
+	         	android:layout_alignParentBottom="true" 
+	    		android:layout_width="match_parent"
+	    		android:layout_height="wrap_content">
+	    		
+			<TextView
+				    android:textSize="17sp"
+				    android:textColor="#ffffff"
+				    android:id="@+id/tv_nav"
+				    android:gravity="center"
+				    android:layout_marginLeft="20dip"
+				    android:layout_centerVertical="true"
+				    android:text="打赏"
+				    android:background="@drawable/circle_moni"
+	          		android:layout_width="50dip"
+	        		android:layout_height="50dip"/>
+	    		
+				<LinearLayout
+				    android:id="@+id/ly_download"
+				    android:layout_centerInParent="true"
+				    android:background="@drawable/rectangle_download_bg"
+				    android:paddingLeft="20dip"
+				    android:paddingRight="20dip"
+				    android:paddingTop="10dip"
+				    android:paddingBottom="10dip"
+				    android:gravity="center"
+          			android:layout_width="wrap_content"
+        			android:layout_height="wrap_content">
+        			
+					 <ImageView
+					     android:id="@+id/iv_auto_nav"
+					    app:srcCompat="@drawable/iv_xianlu_download"
+	          			android:layout_width="wrap_content"
+	        			android:layout_height="wrap_content"/>
+        			
+	        			
+					    <TextView
+					        android:layout_marginLeft="5dip"
+					        android:id="@+id/tv_download"
+					        android:textColor="#ffffff"
+					        android:textSize="18sp"
+	          				android:layout_width="wrap_content"
+	        				android:layout_height="wrap_content"/>
+				    
+				    
+				</LinearLayout>
+				
+				<TextView
+				    android:textSize="17sp"
+				    android:textColor="#ffffff"
+				    android:id="@+id/tv_moni"
+				    android:gravity="center"
+				    android:layout_marginRight="20dip"
+				    android:layout_alignParentRight="true"
+				    android:layout_centerVertical="true"
+				    android:text="模拟"
+				    android:background="@drawable/circle_moni"
+	          		android:layout_width="50dip"
+	        		android:layout_height="50dip"/>
+	         
+	     </RelativeLayout>
+        
+        
+    </RelativeLayout>
+
+
+
+</LinearLayout>

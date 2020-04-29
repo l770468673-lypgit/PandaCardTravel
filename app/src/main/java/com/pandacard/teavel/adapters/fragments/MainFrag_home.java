@@ -312,7 +312,7 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
 
 //                    Intent Transac = new Intent(getActivity(), MyTransactionAddress.class);
 //                    startActivity(Transac);
-                    ToastUtils.showToast(getActivity(), "请登录后再试");
+                    ToastUtils.showToast(getActivity(), "请稍后再试");
                     break;
                 case R.id.fragment_home_discounts:
                     Intent inrights = new Intent(getActivity(), RightsActivity.class);

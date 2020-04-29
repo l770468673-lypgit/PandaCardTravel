@@ -62,7 +62,7 @@ public class AllCardOrderAdapter extends RecyclerView.Adapter<AllCardOrderAdapte
         if (cardListBean.getCardOrderStatus() == 1) {
             holder.allorder_orderstate.setText("可使用");
         } else if (cardListBean.getCardOrderStatus() == 2) {
-            holder.allorder_orderstate.setText("已自购");
+            holder.allorder_orderstate.setText("自购");
         } else if (cardListBean.getCardOrderStatus() == 3) {
             holder.allorder_orderstate.setText("已赠送");
         }

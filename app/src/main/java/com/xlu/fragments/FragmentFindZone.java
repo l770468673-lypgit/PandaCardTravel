@@ -46,6 +46,7 @@ import com.xlu.po.Zone;
 import com.xlu.uis.ActivityDinnerDetail;
 import com.xlu.uis.ActivitySelectCity;
 import com.xlu.uis.ActivityZhuSuDetail;
+import com.xlu.uis.ActivityZone2;
 import com.xlu.utils.Constance;
 import com.xlu.utils.DBUtil;
 import com.xlu.utils.JsonUtil;
@@ -176,10 +177,10 @@ public class FragmentFindZone extends Fragment implements OnClickListener, Locat
                                 Type type = new TypeToken<Zone>() {
                                 }.getType();
                                 String str = JsonUtil.toJsonString(z, type);
-//                                intent = new Intent(context, ActivityZone2.class);
-//                                intent.putExtra("zonestr", str);
-//                                intent.putExtra("isDownload", false);
-//                                context.startActivity(intent);
+                                intent = new Intent(context, ActivityZone2.class);
+                                intent.putExtra("zonestr", str);
+                                intent.putExtra("isDownload", false);
+                                context.startActivity(intent);
 
                             } else {
                                 Type type = new TypeToken<Zone>() {
