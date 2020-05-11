@@ -1,7 +1,6 @@
 package com.xlu.uis;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +16,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.apps.MyApplication;
 import com.pandacard.teavel.utils.ToastUtils;
-import com.xlu.bases.BaseActivity2;
+import com.xlu.bases.BaseActivity;
 import com.xlu.po.Member;
 import com.xlu.po.ProductSpecal;
 import com.xlu.po.Production;
@@ -32,15 +31,12 @@ import com.xlu.widgets.HorizontalListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.OnClick;
-import cn.com.wideroad.BaseActivity;
 import cn.com.wideroad.BaseHttp;
 import cn.com.wideroad.http.AjaxCallBack;
 import cn.com.wideroad.http.AjaxParams;
 import cn.com.wideroad.utils.StringUtil;
 
-public class ActivityOrderVisitDetail extends BaseActivity2  {
+public class ActivityOrderVisitDetail extends BaseActivity {
     ImageView iv_back;
 
     TextView tv_title;

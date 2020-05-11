@@ -2,24 +2,18 @@ package com.pandacard.teavel.uis;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.RequestManager;
 import com.pandacard.teavel.R;
-import com.pandacard.teavel.bases.BaseActivity;
+import com.pandacard.teavel.bases.BasePandaActivity;
 import com.pandacard.teavel.https.HttpManager;
-import com.pandacard.teavel.https.beans.ResourcesBean;
 import com.pandacard.teavel.https.beans.SecurityCode;
-import com.pandacard.teavel.https.beans.resetPass;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
 import com.pandacard.teavel.utils.LUtils;
-import com.pandacard.teavel.utils.ShareUtil;
 import com.pandacard.teavel.utils.StatusBarUtil;
 import com.pandacard.teavel.utils.TimerUtils;
 import com.pandacard.teavel.utils.ToastUtils;
@@ -29,7 +23,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class RegistActivity extends BaseActivity implements View.OnClickListener {
+public class RegistPandaActivity extends BasePandaActivity implements View.OnClickListener {
 
     private static final String TAG = "RegistActivity";
     private TextView mChongzhinfc_textView;
@@ -90,10 +84,10 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                             // 2 是注册号码
                             if (mAnInt == 2) {
                                 HttpRetrifitUtils.toPhoneRegist(mreg_phonenum.getText().toString().trim(),
-                                        mokregpassword.getText().toString().trim(), RegistActivity.this);
+                                        mokregpassword.getText().toString().trim(), RegistPandaActivity.this);
                             } else {
                                 HttpRetrifitUtils.ResetPassword(mreg_phonenum.getText().toString().trim(),
-                                        mokregpassword.getText().toString().trim(),RegistActivity.this);
+                                        mokregpassword.getText().toString().trim(), RegistPandaActivity.this);
                             }
                         } else {
                             ToastUtils.showToast(this, "密码不正确");
@@ -103,14 +97,14 @@ public class RegistActivity extends BaseActivity implements View.OnClickListener
                         ToastUtils.showToast(this, "手机号码不正确");
                     }
                 } else {
-                    ToastUtils.showToast(RegistActivity.this, "验证码不正确");
+                    ToastUtils.showToast(RegistPandaActivity.this, "验证码不正确");
                 }
                 break;
             case R.id.btn_yanzhengma:
                 if (mreg_phonenum.getText().toString().trim().length() == 11 && mreg_phonenum.getText().toString().trim().startsWith("1")) {
                     TimerUtils.TimerStart();
                     sVcode = null;
-                  getSMSCode(mreg_phonenum.getText().toString().trim(), RegistActivity.this);
+                  getSMSCode(mreg_phonenum.getText().toString().trim(), RegistPandaActivity.this);
 
                 } else {
                     ToastUtils.showToast(this, "检查手机号码是否正确");

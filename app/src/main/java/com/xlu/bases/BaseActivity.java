@@ -26,7 +26,7 @@ import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
 
 
-public abstract class BaseActivity2 extends FragmentActivity {
+public abstract class BaseActivity extends FragmentActivity {
 
 	protected Context context;
 

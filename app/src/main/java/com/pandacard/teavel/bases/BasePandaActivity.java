@@ -10,7 +10,7 @@ import com.pandacard.teavel.R;
 
 
 
-public class BaseActivity extends AppCompatActivity {
+public class BasePandaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

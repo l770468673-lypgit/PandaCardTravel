@@ -30,12 +30,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.pandacard.teavel.R;
-import com.pandacard.teavel.bases.BaseActivity;
+import com.pandacard.teavel.bases.BasePandaActivity;
 import com.pandacard.teavel.https.HttpManager;
 import com.pandacard.teavel.https.beans.Mobilesbean;
 import com.pandacard.teavel.https.beans.SecurityCode;
-import com.pandacard.teavel.https.beans.bean_person;
-import com.pandacard.teavel.https.beans.bindSuccessBean;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
 import com.pandacard.teavel.utils.KeyboardUtils;
 import com.pandacard.teavel.utils.LUtils;
@@ -57,9 +55,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.pandacard.teavel.utils.HttpRetrifitUtils.mBody;
-
-public class LoginActivity extends BaseActivity implements View.OnClickListener, PlatformActionListener {
+public class LoginPandaActivity extends BasePandaActivity implements View.OnClickListener, PlatformActionListener {
 
     private static final String TAG = "LoginActivity";
     private Button mlogin_logineddenglu;
@@ -202,7 +198,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
 
                 if (mLogin_phonenum.getText().toString().trim().length() == 11 && mLogin_password.getText().toString().trim().length() > 0) {
                     HttpRetrifitUtils.toLogin(mLogin_phonenum.getText().toString().trim(),
-                            mLogin_password.getText().toString().trim(), LoginActivity.this);
+                            mLogin_password.getText().toString().trim(), LoginPandaActivity.this);
                     HttpRetrifitUtils.toWchatReg(mLogin_phonenum.getText().toString().trim(),
                             mLogin_password.getText().toString().trim());
                 } else {
@@ -210,7 +206,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 }
                 break;
             case R.id.login_phonenum_reg:
-                Intent inreg = new Intent(this, RegistActivity.class);
+                Intent inreg = new Intent(this, RegistPandaActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putInt(HttpRetrifitUtils.ACT_TITLENAME, 2);// 2 是注册
                 inreg.putExtras(bundle);
@@ -223,7 +219,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         && mWx_login_phonenum.getText().toString().trim().length() == 11//) {
                         && sVcode.equals(mWx_login_password.getText().toString().trim())) {
                     HttpRetrifitUtils.WX_Regist(ShareUtil.getString(HttpRetrifitUtils.WXLOGIN_UNID),
-                            mWx_login_phonenum.getText().toString().trim(),LoginActivity.this);
+                            mWx_login_phonenum.getText().toString().trim(), LoginPandaActivity.this);
                 } else {
                     ToastUtils.showToast(this, "请检查参数");
                 }
@@ -233,7 +229,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 if (mWx_login_phonenum.getText().toString().trim().length() == 11) {
 
                     TimerUtils.TimerStart();
-                    getSMSCode(mWx_login_phonenum.getText().toString().trim(), LoginActivity.this);
+                    getSMSCode(mWx_login_phonenum.getText().toString().trim(), LoginPandaActivity.this);
 
                 } else {
                     ToastUtils.showToast(this, R.string.login_wx_editokphone);
@@ -268,7 +264,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                 LUtils.d(TAG, "：----login_will_wxlogin-------mWechat--- ");
                 break;
             case R.id.forgetpass:
-                Intent inreset = new Intent(this, RegistActivity.class);
+                Intent inreset = new Intent(this, RegistPandaActivity.class);
                 Bundle bundle2 = new Bundle();
                 bundle2.putInt(HttpRetrifitUtils.ACT_TITLENAME, 1);// 1 是重置密码
                 inreset.putExtras(bundle2);
@@ -316,7 +312,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                             Intent intent = new Intent(Settings.
                                     ACTION_APPLICATION_DETAILS_SETTINGS, packageURI);
                             startActivity(intent);
-                            LoginActivity.this.finish();
+                            LoginPandaActivity.this.finish();
                         }
                     })
                     .setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -324,7 +320,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                         public void onClick(DialogInterface dialog, int which) {
                             //关闭页面或者做其他操作
                             cancelPermissionDialog();
-                            LoginActivity.this.finish();
+                            LoginPandaActivity.this.finish();
                         }
                     })
                     .create();
@@ -374,7 +370,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
                     if (mobiles1.length() < 1) {
                         mHandler.sendEmptyMessage(WX_LOGIN_SETPHONE);
                     } else {
-                        HttpRetrifitUtils.toWXlogin(uid, LoginActivity.this);
+                        HttpRetrifitUtils.toWXlogin(uid, LoginPandaActivity.this);
                         ShareUtil.putString(HttpRetrifitUtils.SERNAME_PHONE, mobiles1);
                     }
                 }

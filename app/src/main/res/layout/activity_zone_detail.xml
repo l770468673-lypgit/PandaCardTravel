@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f4f4f4"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/tool_color">
+
+        <ImageView
+            android:id="@+id/iv_zone_detail_back"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:contentDescription="@null"
+            android:layout_marginLeft="15dp"
+            android:scaleType="centerInside"
+            app:srcCompat="@drawable/iv_back" />
+
+        <TextView
+            android:id="@+id/tv_zone_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+        
+        <ImageView
+            app:srcCompat="@drawable/iv_play"
+            android:padding="10dp"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/iv_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dip"
+        android:background="#b1b1b1" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/iv_zone_pic"
+                android:layout_width="match_parent"
+                android:layout_height="180dip"
+                android:scaleType="fitXY" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="30dip"
+                android:paddingLeft="50dip"
+                android:paddingRight="50dip"
+                android:visibility="gone"
+                android:paddingTop="30dip" >
+
+                <TextView
+                    android:id="@+id/tv_in_nav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/rectangle_in_nav"
+                    android:gravity="center"
+                    android:paddingBottom="8dip"
+                    android:paddingTop="8dip"
+                    android:text="进入导览"
+                    android:textColor="#aaffffff"
+                    android:textSize="18sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#ffffff"
+                android:gravity="center_vertical"
+                android:padding="15dip" >
+
+                <TextView
+                    android:id="@+id/tv_tuijian"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dip"
+                    android:drawableTop="@drawable/zone_ticket"
+                    android:gravity="center"
+                    android:text="景点门票"
+                    android:textColor="#ee111111"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="1dip"
+                    android:layout_height="match_parent"
+                    android:background="#eeeeee" />
+
+                <TextView
+                    android:id="@+id/tv_jieshuo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dip"
+                    android:drawableTop="@drawable/iv_jieshuolist"
+                    android:gravity="center"
+                    android:text="解说点"
+                    android:textColor="#ee111111"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="1dip"
+                    android:layout_height="match_parent"
+                    android:background="#eeeeee" />
+
+                <TextView
+                    android:id="@+id/tv_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dip"
+                    android:drawableTop="@drawable/iv_zone_comment"
+                    android:gravity="center"
+                    android:text="景点评价"
+                    android:textColor="#ee111111"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="1dip"
+                    android:layout_height="match_parent"
+                    android:background="#eeeeee" />
+
+                <TextView
+                    android:id="@+id/tv_go"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dip"
+                    android:drawableTop="@drawable/iv_zone_go"
+                    android:gravity="center"
+                    android:text="如何到达"
+                    android:textColor="#ee111111"
+                    android:textSize="12sp" />
+
+                <View
+                    android:layout_width="1dip"
+                    android:layout_height="match_parent"
+                    android:background="#eeeeee" />
+
+                <TextView
+                    android:id="@+id/tv_jihuo_zone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="5dip"
+                    android:drawableTop="@drawable/iv_jihuo_zone"
+                    android:gravity="center"
+                    android:text="激活景点"
+                    android:textColor="#ee111111"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/iv_bottom_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dip"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="10dip"
+                android:paddingLeft="20dip"
+                android:paddingRight="20dip"
+                android:paddingTop="10dip" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" >
+
+                    <ImageView
+                        android:layout_width="3dip"
+                        android:layout_height="12dip"
+                        android:background="#fe6f5f" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dip"
+                        android:text="景点介绍"
+                        android:textColor="#ee111111" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center_vertical" >
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="1dip"
+                        android:background="#fe9c90" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dip"
+                        android:background="#dddddd" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_zone_memo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:textColor="#aa111111" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/iv_bottom_line" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:background="#ffffff"
+                android:orientation="vertical"
+                android:paddingBottom="40dip"
+                android:paddingLeft="20dip"
+                android:paddingRight="20dip"
+                android:paddingTop="20dip"
+                tools:ignore="WebViewLayout">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical" >
+
+                    <ImageView
+                        android:layout_width="3dip"
+                        android:layout_height="12dip"
+                        android:background="#fe6f5f" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dip"
+                        android:ellipsize="end"
+                        android:maxEms="10"
+                        android:singleLine="true"
+                        android:text="游玩攻略"
+                        android:textColor="#ee111111" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dip"
+                    android:gravity="center_vertical" >
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="1dip"
+                        android:background="#fe9c90" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dip"
+                        android:background="#dddddd" />
+                </LinearLayout>
+
+                <WebView
+                    android:id="@+id/wb_gonglue"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dip"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/iv_bottom_line" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

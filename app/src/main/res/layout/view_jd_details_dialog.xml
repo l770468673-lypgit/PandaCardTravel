@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/infowindow"
+    android:gravity="center_vertical">
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="200dp"
+        android:orientation="vertical"
+        android:paddingBottom="8dp"
+        >
+
+        <TextView
+            android:id="@+id/tv_jd_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+          
+         
+            android:text="景点名称"
+            android:textColor="#3FD458"
+            android:drawableRight="@drawable/exit_dialog" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:padding="10dp" >
+
+            <ImageView
+                android:id="@+id/iv_jd_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="5dp" >
+
+                <TextView
+                    android:id="@+id/tv_jd_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="2dp"
+                    android:text="slkdfkdsjljglkjdsfsdklgjfdlkjgklsdfjgkl"
+                    android:maxLines="3"
+                    android:textColor="#989898"
+                    android:textSize="15sp"/>
+
+                <LinearLayout
+                    android:id="@+id/ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:orientation="horizontal" >
+                    
+					<LinearLayout 
+					    android:layout_width="0dp"
+					    android:layout_height="match_parent"
+					    android:layout_weight="1"
+					    android:orientation="horizontal"
+					    android:background="@drawable/shape_play_bg"
+					    android:gravity="center"
+					    android:padding="5dp"
+					    android:layout_marginRight="5dp">
+					    <ImageView 
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:id="@+id/iv_stop"
+					        app:srcCompat="@drawable/iv_jieshuo_windown_stop"/>
+					    <TextView android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:text="暂停"
+					        android:layout_marginLeft="8dp"
+					        android:textColor="#fff"
+					        android:id="@+id/tv_play"/>
+					</LinearLayout>
+                    <LinearLayout
+                        android:layout_marginLeft="5dp"
+                        android:padding="5dp"
+                        android:gravity="center"
+					    android:layout_width="0dp"
+					    android:layout_height="match_parent"
+					    android:layout_weight="1"
+					    android:orientation="horizontal"
+					    android:background="@drawable/shape_go_details_bg"
+					    android:id="@+id/ll_go_details">
+					    <ImageView 
+					        android:layout_width="13dp"
+					        android:layout_height="13dp"
+					        android:id="@+id/iv_play"
+					        app:srcCompat="@drawable/text"/>
+					    <TextView android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:text="文字详情"
+					        android:textColor="#fff"
+					        android:layout_marginLeft="3dp"/>
+					</LinearLayout>
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey" />
+
+        <TextView
+            android:id="@+id/tv_go_here"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="去这里"
+            android:textColor="#000" />
+    </LinearLayout>
+
+</LinearLayout>

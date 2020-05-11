@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,14 +27,9 @@ import com.pandacard.teavel.R;
 import com.pandacard.teavel.adapters.Myadapter;
 import com.pandacard.teavel.https.HttpManager;
 import com.pandacard.teavel.https.beans.cardsbean;
-import com.pandacard.teavel.uis.ByPandaActivity;
-import com.pandacard.teavel.uis.CardActiviting;
-import com.pandacard.teavel.uis.LoginActivity;
-import com.pandacard.teavel.uis.MainActivity;
-import com.pandacard.teavel.uis.MyTransactionAddress;
-import com.pandacard.teavel.uis.NFCActivity;
+import com.pandacard.teavel.uis.LoginPandaActivity;
+import com.pandacard.teavel.uis.NFCPandaActivity;
 import com.pandacard.teavel.uis.RightsActivity;
-import com.pandacard.teavel.uis.SaveMoneyActivity;
 import com.pandacard.teavel.uis.eIDActivity;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
 import com.pandacard.teavel.utils.LUtils;
@@ -152,7 +146,7 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
         mFragment_home_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(getActivity(), LoginActivity.class);
+                Intent intent2 = new Intent(getActivity(), LoginPandaActivity.class);
                 startActivity(intent2);
             }
         });
@@ -319,7 +313,7 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
                     startActivity(inrights);
                     break;
                 case R.id.fragment_home_recharge:
-                    Intent intent = new Intent(getActivity(), NFCActivity.class);
+                    Intent intent = new Intent(getActivity(), NFCPandaActivity.class);
                     startActivityForResult(intent, ParamConst.READ_CARD_INFO_CODE);
                     break;
             }

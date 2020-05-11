@@ -65,7 +65,7 @@
                 android:singleLine="true"
                 android:ellipsize="end"
                 android:textSize="14sp"
-                android:text="宝峰湖景区游玩攻略fjalfjagjljfls"/>
+                android:text="宝峰湖景区游玩攻略"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

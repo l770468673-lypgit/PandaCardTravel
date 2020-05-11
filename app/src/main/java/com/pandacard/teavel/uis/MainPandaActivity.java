@@ -35,7 +35,7 @@ import com.pandacard.teavel.adapters.fragments.MainFrag_home;
 import com.pandacard.teavel.adapters.fragments.MainFrag_mine;
 import com.pandacard.teavel.adapters.fragments.MainFrag_travelHome;
 import com.pandacard.teavel.apps.MyApplication;
-import com.pandacard.teavel.bases.BaseActivity;
+import com.pandacard.teavel.bases.BasePandaActivity;
 import com.pandacard.teavel.https.HttpManager;
 import com.pandacard.teavel.https.beans.AppUpdate;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
@@ -68,7 +68,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends BaseActivity implements
+public class MainPandaActivity extends BasePandaActivity implements
         View.OnClickListener
 //        , RadioGroup.OnCheckedChangeListener,
         , ViewPager.OnPageChangeListener {
@@ -310,7 +310,7 @@ public class MainActivity extends BaseActivity implements
 
                 if (mAppIsLogin != null) {
 
-                    Intent intent = new Intent(this, SaveMoneyActivity.class);
+                    Intent intent = new Intent(this, SaveMoneyPandaActivity.class);
                     startActivity(intent);
                 } else {
                     ToastUtils.showToast(this, "请登录后再试");
@@ -415,20 +415,20 @@ public class MainActivity extends BaseActivity implements
                     if (errorCode == 0) {
                         final AppUpdate.ExtraBean extra = body.getExtra();
                         String versionCode = extra.getVersionCode();
-                        int localVersion = MyApplication.getLocalVersion(MainActivity.this);
+                        int localVersion = MyApplication.getLocalVersion(MainPandaActivity.this);
                         int iversionCode = Integer.parseInt(versionCode);
                         LUtils.d(TAG, "localVersion==" + localVersion);
                         LUtils.d(TAG, "iversionCode==" + iversionCode);
                         if (iversionCode > localVersion) {
                             // 开始下载
                             LUtils.d(TAG, "开始下载");
-                            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                            AlertDialog.Builder builder = new AlertDialog.Builder(MainPandaActivity.this);
                             builder.setTitle("发现新版本" + extra.getVersionCode())
                                     .setMessage("是否升级？")
                                     .setPositiveButton("升级", new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(MainActivity.this, "开始下载", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(MainPandaActivity.this, "开始下载", Toast.LENGTH_LONG).show();
                                             new AppDownloadTask().execute(extra.getUrl(),
                                                     extra.getApkFileName(), extra.getVersionCode());
                                         }
@@ -461,7 +461,7 @@ public class MainActivity extends BaseActivity implements
         protected void onPreExecute() {
             super.onPreExecute();
             // 初始化 NotificationCompat ；
-            mBuilder = new NotificationCompat.Builder(MainActivity.this);
+            mBuilder = new NotificationCompat.Builder(MainPandaActivity.this);
             mBuilder.setSmallIcon(R.mipmap.pandaapplogo);
             mBuilder.setContentTitle("下载中....");
             mBuilder.setContentText("正在下载");
@@ -594,13 +594,13 @@ public class MainActivity extends BaseActivity implements
         }
         Uri uri;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            uri = FileProvider.getUriForFile(MainActivity.this, "com.pandacard.teavel.provider", file);
+            uri = FileProvider.getUriForFile(MainPandaActivity.this, "com.pandacard.teavel.provider", file);
             mIntentNotifi.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         } else {
             uri = Uri.fromFile(file);
         }
         mIntentNotifi.setDataAndType(uri, "application/vnd.android.package-archive");
-        PendingIntent pi = PendingIntent.getActivity(MainActivity.this, 0, mIntentNotifi, 0);
+        PendingIntent pi = PendingIntent.getActivity(MainPandaActivity.this, 0, mIntentNotifi, 0);
         mBuild = mBuilder.setContentIntent(pi).build();
         mManager.notify(NO_3, mBuild);
 

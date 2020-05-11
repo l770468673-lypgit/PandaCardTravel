@@ -1,9 +1,12 @@
 package com.xlu.adapters;
 
 
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -13,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.apps.MyApplication;
+import com.pandacard.teavel.utils.LUtils;
 import com.xlu.po.Jieshuo;
 import com.xlu.utils.Constance;
 import com.xlu.utils.DensityUtil;
@@ -28,16 +32,22 @@ public class YuyinAdapter extends RecyclerView.Adapter<YuyinAdapter.ViewHolder> 
     private List<Jieshuo> jieshuos;
    private  OnClickButtonListener listener;
 
+   private  String TAG ="YuyinAdapter";
+   private  Context c;
+    private final WindowManager mWm;
 
-    public YuyinAdapter(List<Jieshuo> jieshuos) {
+    public YuyinAdapter(List<Jieshuo> jieshuos,Context context) {
         this.jieshuos = jieshuos;
+        this.c=context;
+        mWm = (WindowManager)  c.
+                getSystemService(Context.WINDOW_SERVICE);
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v= LayoutInflater.from(parent.getContext()).inflate(R.layout.my_yuyin_view_layout,null);
-        RelativeLayout.LayoutParams params=new
-                RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
+                RelativeLayout.LayoutParams params=new
+                RelativeLayout.LayoutParams(mWm.getDefaultDisplay().getWidth()
                 , DensityUtil.dip2px(parent.getContext(),100));
         v.setLayoutParams(params);
         return new ViewHolder(v);
@@ -46,6 +56,7 @@ public class YuyinAdapter extends RecyclerView.Adapter<YuyinAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
         final Jieshuo j=jieshuos.get(position);
+        LUtils.d(TAG,"jieshuos.size()=="+jieshuos.size());
         if(j.isListen()){
             holder.ivPlay.setVisibility(View.GONE);
             holder.ivStop.setVisibility(View.VISIBLE);
@@ -55,6 +66,9 @@ public class YuyinAdapter extends RecyclerView.Adapter<YuyinAdapter.ViewHolder> 
         }
         holder.tv.setText(j.getName());
         holder.tvContent.setText(j.getMemo());
+
+//        LUtils.d(TAG,"j.getName()=="+j.getName());
+//        LUtils.d(TAG,"j.getMemo()=="+j.getMemo());
         ImageLoader.getInstance().displayImage(Constance.HTTP_URL+j.getPic(),holder.iv,
                 MyApplication.normalOption);
         holder.ivPlay.setOnClickListener(new View.OnClickListener() {

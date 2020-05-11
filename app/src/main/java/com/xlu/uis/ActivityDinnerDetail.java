@@ -13,7 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.apps.MyApplication;
-import com.xlu.bases.BaseActivity2;
+import com.xlu.bases.BaseActivity;
 import com.xlu.po.MerInfo;
 import com.xlu.po.Merchant1;
 import com.xlu.po.Production;
@@ -28,14 +28,12 @@ import org.json.JSONArray;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.OnClick;
 import cn.com.wideroad.BaseHttp;
 import cn.com.wideroad.http.AjaxCallBack;
 import cn.com.wideroad.http.AjaxParams;
 import cn.com.wideroad.utils.StringUtil;
 
-public class ActivityDinnerDetail extends BaseActivity2 implements OnClickListener {
+public class ActivityDinnerDetail extends BaseActivity implements OnClickListener {
 	ImageView ivBack;
 	TextView tvTitle;
 	TextView tvYouHuiFu;

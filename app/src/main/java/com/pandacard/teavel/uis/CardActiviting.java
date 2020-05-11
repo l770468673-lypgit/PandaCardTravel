@@ -18,7 +18,6 @@ import android.os.Looper;
 import android.os.Message;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -35,7 +34,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.alibaba.fastjson.serializer.StringCodec;
 import com.arcsoft.face.ActiveFileInfo;
 import com.arcsoft.face.AgeInfo;
 import com.arcsoft.face.ErrorInfo;
@@ -71,8 +69,6 @@ import com.pandacard.teavel.arcesoft.RequestFeatureStatus;
 import com.pandacard.teavel.arcesoft.RequestLivenessStatus;
 import com.pandacard.teavel.https.HttpCallback;
 import com.pandacard.teavel.https.HttpManager;
-import com.pandacard.teavel.https.beans.ResourcesBean;
-import com.pandacard.teavel.https.beans.SecurityCode;
 import com.pandacard.teavel.https.beans.bean_addCards;
 import com.pandacard.teavel.https.beans.bean_person;
 import com.pandacard.teavel.https.beans.bindSuccessBean;
@@ -83,7 +79,6 @@ import com.pandacard.teavel.utils.KeyboardUtils;
 import com.pandacard.teavel.utils.LUtils;
 import com.pandacard.teavel.utils.ShareUtil;
 import com.pandacard.teavel.utils.StatusBarUtil;
-import com.pandacard.teavel.utils.TimerUtils;
 import com.pandacard.teavel.utils.ToastUtils;
 import com.pandacard.teavel.utils.readIDcardUtils;
 
@@ -628,7 +623,7 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
                         ToastUtils.showToast(CardActiviting.this, body.getMsg());
 
                         finish();
-                        Intent intent = new Intent(CardActiviting.this, MainActivity.class);
+                        Intent intent = new Intent(CardActiviting.this, MainPandaActivity.class);
                         startActivity(intent);
                     } else {
                         ToastUtils.showToast(CardActiviting.this, body.getMsg());

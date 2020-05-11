@@ -12,7 +12,7 @@
         android:layout_height="wrap_content" />
 
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:padding="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,26 +21,27 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="@dimen/y100"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             android:layout_weight="1"
-            android:background="@mipmap/banner_3"
-            android:scaleType="centerCrop" />
+            android:background="@drawable/img1"
+            android:scaleType="center"
+            />
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="@dimen/y100"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             android:layout_weight="1"
-            android:background="@mipmap/banner_2"
-            android:scaleType="centerCrop" />
+            android:background="@drawable/img3"
+            android:scaleType="center" />
 
         <ImageView
             android:layout_width="0dp"
             android:layout_height="@dimen/y100"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             android:layout_weight="1"
-            android:background="@mipmap/banner_4"
-            android:scaleType="centerCrop" />
+            android:background="@drawable/img4"
+            android:scaleType="center" />
     </LinearLayout>
 
     <RadioGroup

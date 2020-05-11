@@ -1,28 +1,19 @@
 package com.pandacard.teavel.uis;
 
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.graphics.drawable.BitmapDrawable;
-import android.location.Location;
 import android.os.Bundle;
-import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.bumptech.glide.load.model.ModelLoader;
 import com.pandacard.teavel.R;
-import com.pandacard.teavel.adapters.CardAdapter;
-import com.pandacard.teavel.bases.BaseActivity;
+import com.pandacard.teavel.bases.BasePandaActivity;
 import com.pandacard.teavel.https.HttpManager;
 import com.pandacard.teavel.https.beans.cardsbean;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
@@ -39,7 +30,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SaveMoneyActivity extends BaseActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class SaveMoneyPandaActivity extends BasePandaActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private String TAG = "SaveMoneyActivity";
     private ImageView mSave_imageview_back;
@@ -97,12 +88,12 @@ public class SaveMoneyActivity extends BaseActivity implements View.OnClickListe
                             mcards.add(mStrings.get(i));
                         }
                         LUtils.d(TAG, "mcards===" + mcards);
-                        mAdapter = new ArrayAdapter<String>(SaveMoneyActivity.this,
+                        mAdapter = new ArrayAdapter<String>(SaveMoneyPandaActivity.this,
                                 android.R.layout.simple_spinner_item, mcards);
                         mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         mSavemmoney_spinn.setAdapter(mAdapter);
                     } else {
-                        ToastUtils.showToast(SaveMoneyActivity.this, body.getMsg());
+                        ToastUtils.showToast(SaveMoneyPandaActivity.this, body.getMsg());
                     }
 
                 }
@@ -190,12 +181,12 @@ public class SaveMoneyActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.save_radio_btn_recharge:
 
-                Intent intent = new Intent(this, NFCActivity.class);
+                Intent intent = new Intent(this, NFCPandaActivity.class);
                 startActivity(intent);
                 break;
             case R.id.save_radio_btn_more:
 
-                Intent intent2 = new Intent(this, MoreDisposeActivity.class);
+                Intent intent2 = new Intent(this, MoreDisposePandaActivity.class);
                 startActivity(intent2);
                 break;
         }

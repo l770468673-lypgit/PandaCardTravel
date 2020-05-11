@@ -22,7 +22,7 @@ import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.apps.MyApplication;
-import com.xlu.bases.BaseActivity2;
+import com.xlu.bases.BaseActivity;
 import com.xlu.jsutil.JavaScriptObject;
 import com.xlu.po.Member;
 import com.xlu.po.MyEvent;
@@ -37,8 +37,6 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.OnClick;
 import cn.com.wideroad.BaseHttp;
 import cn.com.wideroad.http.AjaxCallBack;
 import cn.com.wideroad.http.AjaxParams;
@@ -46,7 +44,7 @@ import cn.com.wideroad.utils.StringUtil;
 import cn.sharesdk.onekeyshare.OnekeyShare;
 import de.greenrobot.event.EventBus;
 
-public class ActivityXianluDetail extends BaseActivity2 {
+public class ActivityXianluDetail extends BaseActivity {
     ImageView ivXLXQ;
     TextView tvTitle;
     TextView tvShare;

@@ -129,13 +129,13 @@
             android:name=".uis.CardActiviting"
             android:launchMode="singleTask" />
         <activity
-            android:name=".uis.RegistActivity"
+            android:name=".uis.RegistPandaActivity"
             android:launchMode="singleTask" />
         <activity
             android:name=".uis.MineOrderDetal"
             android:launchMode="singleTask" />
         <activity
-            android:name=".uis.MoreDisposeActivity"
+            android:name=".uis.MoreDisposePandaActivity"
             android:launchMode="singleTask" />
         <activity
             android:name="com.xlu.uis.ActivitySelectCity"
@@ -156,10 +156,10 @@
             android:name="com.xlu.uis.ActivityTicketShow"
             android:theme="@style/Anim_activity"  android:launchMode="singleTask"  />
         <activity
-            android:name=".uis.SaveMoneyActivity"
+            android:name=".uis.SaveMoneyPandaActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".uis.LoginActivity"
+            android:name=".uis.LoginPandaActivity"
             android:launchMode="singleTask" />
         <activity
             android:name=".uis.WelcomeActivit"
@@ -172,10 +172,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".uis.MainActivity"
+            android:name=".uis.MainPandaActivity"
             android:launchMode="singleTask" />
         <activity
-            android:name=".uis.NFCActivity"
+            android:name=".uis.NFCPandaActivity"
             android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <activity android:name="com.xlu.uis.ActivityZone2"
@@ -190,7 +190,8 @@
                 android:resource="@xml/videodicxml" />
         </provider>
         <activity android:name="com.xlu.uis.ActivityZone" android:theme="@style/Anim_activity"/>
-        <activity android:name="com.xlu.uis.ActivityZone2" android:theme="@style/Anim_activity"/>
+        <activity android:name="com.xlu.uis.ActivityZone2" android:theme="@style/Anim_activity"
+            tools:ignore="DuplicateActivity" />
         <service android:name="com.xlu.utils.servers.DownloadService" >
             <intent-filter>
                 <action android:name="cn.com.wideroad.xiaolu.service.download" />
@@ -201,6 +202,21 @@
         <service android:name="com.xlu.utils.servers.PlayService" >
             <intent-filter>
                 <action android:name="cn.com.wideroad.xiaolu.service.play" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <service android:name="com.xlu.utils.servers.BluetoothServiceImp2" >
+            <intent-filter>
+                <action android:name="cn.com.wideroad.xiaolu.service.BluetoothImp2" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+        <service android:name="com.xlu.utils.servers.BluetoothServiceImp4" >
+            <intent-filter>
+                <action android:name="cn.com.wideroad.xiaolu.service.BluetoothImp4" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

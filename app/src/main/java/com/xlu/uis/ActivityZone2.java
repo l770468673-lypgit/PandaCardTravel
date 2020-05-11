@@ -1,6 +1,7 @@
 package com.xlu.uis;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -41,7 +42,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-import androidx.appcompat.app.AlertDialog;
+
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -51,11 +52,11 @@ import com.amap.api.maps.model.LatLng;
 import com.google.gson.reflect.TypeToken;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.pandacard.teavel.R;
-import com.pandacard.teavel.adapters.Myadapter;
 import com.pandacard.teavel.apps.MyApplication;
 import com.xlu.adapters.JieShuoPageAdapter;
 import com.xlu.adapters.YuyinAdapter;
-import com.xlu.bases.BaseActivity2;
+import com.xlu.bases.Base2Activity;
+import com.xlu.bases.BaseActivity;
 import com.xlu.bases.model.MapLayer;
 import com.xlu.bases.model.MapObject;
 import com.xlu.po.Jieshuo;
@@ -105,9 +106,9 @@ import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
 import de.greenrobot.event.ThreadMode;
 
-public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
-        OnMapTouchListener, SensorEventListener, PopWindowJieShuoList.OnMyItemOnClickListener, OnClickListener,
-        YuyinAdapter.OnClickButtonListener {
+public class ActivityZone2 extends Base2Activity implements MapEventsListener,
+        OnMapTouchListener, SensorEventListener, Base2Activity.PermissionCall,
+        PopWindowJieShuoList.OnMyItemOnClickListener, OnClickListener, YuyinAdapter.OnClickButtonListener {
 
     private MapWidget mapWidget;
     private DownloadService.DownloadBinder downloadBinder;
@@ -234,14 +235,8 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
         mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
         initPhoneListener();
-        //        if (MyApplication.isNeedPer) {
-        //            requestRunTimePermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION"}, this);
-        //            requestRunTimePermissions(new String[]{"android.permission.ACCESS_FINE_LOCATION"}, this);
-        //            requestRunTimePermissions(new String[]{"android.permission.BLUETOOTH"}, this);
-        //            requestRunTimePermissions(new String[]{"android.permission.BLUETOOTH_ADMIN"}, this);
-        //            requestRunTimePermissions(new String[]{Manifest.permission.READ_PHONE_STATE}, this);
-        //        }
 
+        setmPermissionCall(this);
 
         Type type = new TypeToken<Zone>() {
         }.getType();
@@ -283,7 +278,7 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
     }
 
     private void initRecycleView() {
-        mAdapter = new YuyinAdapter(jieShuoList);
+        mAdapter = new YuyinAdapter(jieShuoList,this);
         slv = new SnappingSwipingViewBuilder(this)
                 .setHeadTailExtraMarginDp(0F)
                 .setOrientation(LinearLayoutManager.HORIZONTAL)
@@ -362,8 +357,7 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
                                 tvZoneName.setText(zone.getName());
                                 tvOldPrice.setText("原价: ¥" + tickets.get(0).getPrice_market());
                                 tvNewPrice.setText("¥" + tickets.get(0).getPrice());
-                                ImageLoader.getInstance().displayImage(Constance.HTTP_URL +
-                                        tickets.get(0).getPic(), ivZoneTicketPic, MyApplication.normalOption);
+                                ImageLoader.getInstance().displayImage(Constance.HTTP_URL + tickets.get(0).getPic(), ivZoneTicketPic, MyApplication.normalOption);
 
                             }
 
@@ -387,12 +381,21 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
                 PhoneStateListener.LISTEN_CALL_STATE);
     }
 
+    @Override
+    public void requestSucess() {
+
+    }
+
+    @Override
+    public void refused() {
+
+    }
 
     @Override
     public void onItemOnClick(Jieshuo jieshuo) {
         for (int i = 0; i < jieShuoList.size(); i++) {
             if (jieShuoList.get(i).getName().equals(jieshuo.getName())) {
-                showJieshuo.setSelected(false);
+//                showJieshuo.setSelected(false);
                 slv.setVisibility(View.VISIBLE);
                 jieShuoList.get(i).setSelected(true);
                 showJieshuo = jieShuoList.get(i);
@@ -446,7 +449,7 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
                     jieshuo1 = null;
                     // 通过AlertDialog.Builder这个类来实例化我们的一个AlertDialog的对象
                     DBUtil.consumeFree(zone.getId());
-                    CustomDialog.Builder dialog = new CustomDialog.Builder(
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(
                             ActivityZone2.this);
                     dialog.setTitle(R.string.map_title)
                             .setMessage(R.string.map_msg)
@@ -492,7 +495,7 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
 
 
                                             } else {
-                                                //                                                MyApplication.show("无网络无法使用");
+//                                                MyApplication.show("无网络无法使用");
                                                 jieshuo.setSelected(true);
                                                 jieshuo.setListen(false);
                                                 updataMap();
@@ -516,7 +519,7 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
 
 
                     } else {
-                        //                        MyApplication.show("无网络无法使用");
+//                        MyApplication.show("无网络无法使用");
                         ivPlay.setVisibility(View.VISIBLE);
                         ivStop.setVisibility(View.GONE);
                         jieshuo.setSelected(true);
@@ -561,18 +564,18 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
 
     @Override
     public void hereOnClickListener(Jieshuo jieshuo, View v) {
-        //        MyApplication.showSingleton("该地图无此功能");
+//        MyApplication.showSingleton("该地图无此功能");
     }
 
     @Override
     public void tuWenOnClickListener(Jieshuo jieshuo, View v) {
-        //        Intent intent = new Intent(ActivityZone2.this,
-        //                ActivityJieshuoDetail.class);
-        //        Type type = new TypeToken<Jieshuo>() {
-        //        }.getType();
-        //        String str = JsonUtil.toJsonString(jieshuo, type);
-        //        intent.putExtra("jieshuostr", str);
-        //        ActivityZone2.this.startActivity(intent);
+//        Intent intent = new Intent(ActivityZone2.this,
+//                ActivityJieshuoDetail.class);
+//        Type type = new TypeToken<Jieshuo>() {
+//        }.getType();
+//        String str = JsonUtil.toJsonString(jieshuo, type);
+//        intent.putExtra("jieshuostr", str);
+//        ActivityZone2.this.startActivity(intent);
     }
 
     class MyPhoneStateListener extends PhoneStateListener {
@@ -1086,10 +1089,10 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
 
                     }
                     if (myOne.isChecked()) {
-                        //                        Intent intent = new Intent(ActivityZone2.this, ActivityZoneDetail.class);
-                        //                        intent.putExtra("zonestr", JsonUtil.getJson(zone));
-                        //                        intent.putExtra("isDownload", DBUtil.zoneHaveDownload(zone.getId()));
-                        //                        startActivity(intent);
+//                        Intent intent = new Intent(ActivityZone2.this, ActivityZoneDetail.class);
+//                        intent.putExtra("zonestr", JsonUtil.getJson(zone));
+//                        intent.putExtra("isDownload", DBUtil.zoneHaveDownload(zone.getId()));
+//                        startActivity(intent);
 
                     }
                     break;
@@ -1109,9 +1112,9 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
                     }
                     break;
                 case R.id.tv_more:
-                    //                    Intent intent = new Intent(this, ActivityZoneTicket.class);
-                    //                    intent.putExtra("model", zone);
-                    //                    startActivity(intent);
+//                    Intent intent = new Intent(this, ActivityZoneTicket.class);
+//                    intent.putExtra("model", zone);
+//                    startActivity(intent);
                     break;
                 case R.id.iv_zone_back:
                     onBackPressed();
@@ -1181,13 +1184,13 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
                     ltTopTag.setVisibility(View.GONE);
                     break;
                 case R.id.tv_public:
-                    //                    MyApplication.showSingleton("本景点暂无此服务");
+//                    MyApplication.showSingleton("本景点暂无此服务");
                     break;
                 case R.id.tv_route:
-                    //                    MyApplication.showSingleton("本景点暂无此服务");
+//                    MyApplication.showSingleton("本景点暂无此服务");
                     break;
                 case R.id.tv_location_share:
-                    //                    MyApplication.showSingleton("本景点暂无此服务");
+//                    MyApplication.showSingleton("本景点暂无此服务");
                     break;
             }
         } catch (Exception e) {
@@ -1221,18 +1224,18 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
 
     private void goActivityDashang() {
         // TODO Auto-generated method stub
-        //        Intent intent = new Intent(ActivityZone2.this, ActivityDaShang.class);
-        //        startActivity(intent);
+//        Intent intent = new Intent(ActivityZone2.this, ActivityDaShang.class);
+//        startActivity(intent);
     }
 
     private void goActivityJieshuoDetail() {
         // TODO Auto-generated method stub
-        //        Intent intent = new Intent(ActivityZone2.this, ActivityJieshuoDetail.class);
-        //        Type type = new TypeToken<Jieshuo>() {
-        //        }.getType();
-        //        String str = JsonUtil.toJsonString(jieshuo3, type);
-        //        intent.putExtra("jieshuostr", str);
-        //        startActivity(intent);
+//        Intent intent = new Intent(ActivityZone2.this, ActivityJieshuoDetail.class);
+//        Type type = new TypeToken<Jieshuo>() {
+//        }.getType();
+//        String str = JsonUtil.toJsonString(jieshuo3, type);
+//        intent.putExtra("jieshuostr", str);
+//        startActivity(intent);
     }
 
 
@@ -1247,7 +1250,7 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
             handler.sendEmptyMessage(1);
         } else if (str.equals("自动导览")) {
             if (!zone.getAutomatic().equals("1")) {
-                //                MyApplication.showSingleton("亲，该景点暂不提供自动导览服务");
+//                MyApplication.showSingleton("亲，该景点暂不提供自动导览服务");
                 return;
             }
             if (DBUtil.zoneHaveDownload(zone.getId())) {
@@ -1320,13 +1323,13 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
                             }.getType();
                             Zone zone = (Zone) JsonUtil.fromJsonToObject(
                                     StringUtil.removeNull(t), type);
-                            //                            Intent intent = new Intent(ActivityZone2.this,
-                            //                                    ActivityPayZone.class);
-                            //                            intent.putExtra("name", zone.getName());
-                            //                            intent.putExtra("memo", zone.getMemo());
-                            //                            intent.putExtra("money", zone.getPrice() + "");
-                            //                            intent.putExtra("id", zone.getId());
-                            //                            startActivityForResult(intent, 14);
+//                            Intent intent = new Intent(ActivityZone2.this,
+//                                    ActivityPayZone.class);
+//                            intent.putExtra("name", zone.getName());
+//                            intent.putExtra("memo", zone.getMemo());
+//                            intent.putExtra("money", zone.getPrice() + "");
+//                            intent.putExtra("id", zone.getId());
+//                            startActivityForResult(intent, 14);
                         } catch (Exception e) {
                             e.getLocalizedMessage();
                         }
@@ -1422,11 +1425,6 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
     }
 
     @Override
-    protected int initView() {
-        return R.layout.activity_zone3;
-    }
-
-    @Override
     protected void onResume() {
         // TODO Auto-generated method stub
         mSensorManager.registerListener(this, mSensor,
@@ -1515,7 +1513,7 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
                     //                    mAdapter.notifyDataSetChanged();
                 } else if (action.equals(Constance.DOWNLOAD_MAP_FAIL)) {
                     pbarDialog.dismiss();
-                    //                    MyApplication.showSingleton("地图加载失败");
+//                    MyApplication.showSingleton("地图加载失败");
                 } else if (action.equals(Constance.LINE_TISHI_END)) {
                     if (!isAutoNavi && playBinder != null)
                         playBinder.play1(Constance.HTTP_URL + "/upload/" + zone.getId() + "/" + netJieshuo.getYuyin() + ".mp3");
@@ -1616,6 +1614,11 @@ public class ActivityZone2 extends BaseActivity2 implements MapEventsListener,
         }
     }
 
+    @Override
+    public int initView() {
+        // TODO Auto-generated method stub
+        return R.layout.activity_zone3;
+    }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {

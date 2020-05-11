@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -47,6 +48,7 @@ import com.xlu.uis.ActivityDinnerDetail;
 import com.xlu.uis.ActivitySelectCity;
 import com.xlu.uis.ActivityZhuSuDetail;
 import com.xlu.uis.ActivityZone2;
+import com.xlu.uis.Map2Activity;
 import com.xlu.utils.Constance;
 import com.xlu.utils.DBUtil;
 import com.xlu.utils.JsonUtil;
@@ -64,7 +66,8 @@ import de.greenrobot.event.EventBus;
 import de.greenrobot.event.Subscribe;
 
 
-public class FragmentFindZone extends Fragment implements OnClickListener, LocationSource, AMapLocationListener {
+public class FragmentFindZone extends Fragment implements OnClickListener,
+        LocationSource, AMapLocationListener {
     OnLocationChangedListener mListener;
     AMapLocationClient mlocationClient;
     AMapLocationClientOption mLocationOption;
@@ -186,10 +189,14 @@ public class FragmentFindZone extends Fragment implements OnClickListener, Locat
                                 Type type = new TypeToken<Zone>() {
                                 }.getType();
                                 String str = JsonUtil.toJsonString(z, type);
-//                                Intent intent = new Intent(context, Map2Activity.class);
-//                                intent.putExtra("zonestr", str);
-//                                intent.putExtra("isDownload", false);
-//                                context.startActivity(intent, ActivityOptions.makeScaleUpAnimation(contentView, MyApplication.getScreenWidth(), MyApplication.getScreenHeight(), MyApplication.getScreenWidth() / 2, MyApplication.getScreenHeight() / 2).toBundle());
+                                Intent intent = new Intent(context, Map2Activity.class);
+                                intent.putExtra("zonestr", str);
+                                intent.putExtra("isDownload", false);
+                                WindowManager wm = (WindowManager)  getActivity().
+                                        getSystemService(Context.WINDOW_SERVICE);
+                                context.startActivity(intent, ActivityOptions.makeScaleUpAnimation(contentView, wm.getDefaultDisplay().getWidth(),
+                                        wm.getDefaultDisplay().getHeight(), wm.getDefaultDisplay().getWidth()/ 2,
+                                        wm.getDefaultDisplay().getHeight()/ 2).toBundle());
                             }
 
                         }

@@ -11,8 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 
 import com.pandacard.teavel.R;
-import com.pandacard.teavel.uis.NFCActivity;
-import com.pandacard.teavel.utils.LUtils;
+import com.pandacard.teavel.uis.NFCPandaActivity;
 
 import java.util.List;
 import java.util.Map;
@@ -21,12 +20,12 @@ public class GridViewAdapter extends BaseAdapter {
     private static String TAG = "GridViewAdapter";
 
 
-    private NFCActivity mActivity;
+    private NFCPandaActivity mActivity;
     private int location=100;
 
     private List<Map<String, String>> mData_list;
 
-    public GridViewAdapter(NFCActivity nfcActivity) {
+    public GridViewAdapter(NFCPandaActivity nfcActivity) {
         this.mActivity = nfcActivity;
     }
 

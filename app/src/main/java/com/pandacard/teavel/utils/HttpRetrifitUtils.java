@@ -1,28 +1,15 @@
 package com.pandacard.teavel.utils;
 
 import android.app.Activity;
-import android.content.Context;
 
-import com.pandacard.teavel.R;
-import com.pandacard.teavel.https.HttpCallback;
 import com.pandacard.teavel.https.HttpManager;
 import com.pandacard.teavel.https.beans.SecurityCode;
 import com.pandacard.teavel.https.beans.resetPass;
-import com.pandacard.teavel.https.beans.small_routine_bean.GoodsInfoById;
 import com.pandacard.teavel.https.beans.small_routine_bean.regAppUser;
-import com.pandacard.teavel.uis.LoginActivity;
-import com.pandacard.teavel.uis.RegistActivity;
 
-import java.io.IOException;
-
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.HTTP;
 
 
 public class HttpRetrifitUtils {

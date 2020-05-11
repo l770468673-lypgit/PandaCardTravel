@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.adapters.reclcleAdapter;
-import com.pandacard.teavel.bases.BaseActivity;
+import com.pandacard.teavel.bases.BasePandaActivity;
 import com.pandacard.teavel.https.HttpManager;
 import com.pandacard.teavel.https.beans.CaerdOrderDetalBean;
 import com.pandacard.teavel.https.beans.cardsbean;
@@ -31,7 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MineOrderDetal extends BaseActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, reclcleAdapter.OnItemLongClickedListener, reclcleAdapter.OnItemClickedListener {
+public class MineOrderDetal extends BasePandaActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener, reclcleAdapter.OnItemLongClickedListener, reclcleAdapter.OnItemClickedListener {
 
 
     private ImageView mAttbarimageview;

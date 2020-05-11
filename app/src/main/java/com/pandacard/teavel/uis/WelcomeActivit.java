@@ -8,32 +8,25 @@ import android.os.Message;
 import android.view.WindowManager;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.pandacard.teavel.R;
 import com.pandacard.teavel.bases.AppStatus;
-import com.pandacard.teavel.bases.BaseActivity;
+import com.pandacard.teavel.bases.BasePandaActivity;
 import com.pandacard.teavel.https.HttpManager;
-import com.pandacard.teavel.https.beans.ResourcesBean;
 import com.pandacard.teavel.https.beans.pandaInfo;
-import com.pandacard.teavel.utils.HttpRetrifitUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class WelcomeActivit extends BaseActivity {
+public class WelcomeActivit extends BasePandaActivity {
 
     public final Runnable toSplashActivity = new Runnable() {
         @Override
         public void run() {
             Bundle bundle = new Bundle();
-            Intent intent = new Intent(WelcomeActivit.this, MainActivity.class);
+            Intent intent = new Intent(WelcomeActivit.this, MainPandaActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             bundle.putString("mShop", mShop);
             bundle.putString("mTrip", mTrip);
