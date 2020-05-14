@@ -57,12 +57,12 @@ public class AdapterZhuSuDetail extends BaseAdapter {
 		if(convertView==null){
 			convertView=LayoutInflater.from(mcontext).inflate(R.layout.lv_item_zhusu_detail, null);
 			holder=new RoomViewHolder();
-			holder.ivRoomImg=(ImageView) convertView.findViewById(R.id.iv_room_img);
-			holder.tvRoomDetail=(TextView) convertView.findViewById(R.id.tv_room_miaoshu);
-			holder.tvRoomName=(TextView) convertView.findViewById(R.id.tv_room_name);
-			holder.tvRoomOrder=(TextView) convertView.findViewById(R.id.tv_room_order);
-			holder.tvRoomPrice=(TextView) convertView.findViewById(R.id.tv_room_price_num);
-			holder.tvLubi= (TextView) convertView.findViewById(R.id.tv_my_lubi);
+			holder.ivRoomImg= convertView.findViewById(R.id.iv_room_img);
+			holder.tvRoomDetail= convertView.findViewById(R.id.tv_room_miaoshu);
+			holder.tvRoomName= convertView.findViewById(R.id.tv_room_name);
+			holder.tvRoomOrder= convertView.findViewById(R.id.tv_room_order);
+			holder.tvRoomPrice= convertView.findViewById(R.id.tv_room_price_num);
+			holder.tvLubi= convertView.findViewById(R.id.tv_my_lubi);
 			convertView.setTag(holder);
 		}else{
 			holder=(RoomViewHolder) convertView.getTag();
@@ -78,7 +78,7 @@ public class AdapterZhuSuDetail extends BaseAdapter {
 		holder.tvRoomName.setText(datas.get(position).getName());
 		holder.tvRoomPrice.setText(datas.get(position).getPrice()+"");
 
-			holder.tvLubi.setText("鹿币立减:"+(int)(datas.get(position).getCoupon_max()));
+			holder.tvLubi.setText("鹿币立减:"+ datas.get(position).getCoupon_max());
 
 		holder.tvRoomOrder.setOnClickListener(new OnClickListener() {
 			@Override
@@ -106,7 +106,7 @@ public class AdapterZhuSuDetail extends BaseAdapter {
 	}
 
 	public interface ZhuSuButtonClicker{
-		public void ButtonClick(View view, int position);
+		void ButtonClick(View view, int position);
 	}
 
 

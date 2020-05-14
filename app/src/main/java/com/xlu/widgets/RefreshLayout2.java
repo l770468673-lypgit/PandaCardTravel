@@ -193,8 +193,8 @@ public class RefreshLayout2 extends SwipeRefreshLayout implements
 					((BaseAdapter) mListView.getAdapter())
 							.notifyDataSetChanged();
 
-				};
-			}.sendEmptyMessage(0);
+				}
+            }.sendEmptyMessage(0);
 		}
 	}
 
@@ -224,7 +224,7 @@ public class RefreshLayout2 extends SwipeRefreshLayout implements
 	 * 
 	 * @author mrsimple
 	 */
-	public static interface OnLoadListener {
-		public void onLoad();
+	public interface OnLoadListener {
+		void onLoad();
 	}
 }

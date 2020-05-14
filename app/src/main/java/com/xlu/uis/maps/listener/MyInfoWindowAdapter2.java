@@ -72,14 +72,14 @@ public class MyInfoWindowAdapter2 implements InfoWindowAdapter {
 	}
 
 	private void render(final Marker marker, View customWindow) {
-		tvJDname = (TextView) customWindow.findViewById(R.id.tv_jd_name);
-		tvJDdetails = (TextView) customWindow.findViewById(R.id.tv_jd_details);
-		tvGoHere = (TextView) customWindow.findViewById(R.id.tv_go_here);
-		tVPlay = (TextView) customWindow.findViewById(R.id.tv_play);
-		ivPlay = (ImageView) customWindow.findViewById(R.id.iv_play);
-		llGoDeatails = (LinearLayout) customWindow
+		tvJDname = customWindow.findViewById(R.id.tv_jd_name);
+		tvJDdetails = customWindow.findViewById(R.id.tv_jd_details);
+		tvGoHere = customWindow.findViewById(R.id.tv_go_here);
+		tVPlay = customWindow.findViewById(R.id.tv_play);
+		ivPlay = customWindow.findViewById(R.id.iv_play);
+		llGoDeatails = customWindow
 				.findViewById(R.id.ll_go_details);
-		ivJDimage = (ImageView) customWindow.findViewById(R.id.iv_jd_image);
+		ivJDimage = customWindow.findViewById(R.id.iv_jd_image);
 		activity.setOnAutoGuideListener(new Map2Activity.OnAutoGuideListener() {
 
 			@Override

@@ -56,13 +56,13 @@ public class AdapterGroup extends BaseAdapter {
 		final ProductSpecal tuanInfo = listTuanInfos.get(position);
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.list_item_group, null);
-			holder.ivGroupPic = (ImageView) convertView
+			holder.ivGroupPic = convertView
 					.findViewById(R.id.iv_group_pic);
-			holder.tvName = (EllipsizeText) convertView
+			holder.tvName = convertView
 					.findViewById(R.id.tv_group_name);
-			holder.tvPrice = (TextView) convertView
+			holder.tvPrice = convertView
 					.findViewById(R.id.tv_group_price);
-			holder.tvGanshou = (EllipsizeText) convertView
+			holder.tvGanshou = convertView
 					.findViewById(R.id.tv_xinalu_ganshou);
 			convertView.setTag(holder);
 		} else {

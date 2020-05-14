@@ -83,7 +83,7 @@ public class CustomDialog extends Dialog {
 	            if(positiveButtonText!=null){
 	            	((Button)layout.findViewById(R.id.positiveButton)).setText(positiveButtonText);
 	            	if(positiveButtonClickListener!=null){
-	            		((Button)layout.findViewById(R.id.positiveButton)).setOnClickListener(new View.OnClickListener() {
+	            		layout.findViewById(R.id.positiveButton).setOnClickListener(new View.OnClickListener() {
 							
 							@Override
 							public void onClick(View arg0) {
@@ -94,13 +94,12 @@ public class CustomDialog extends Dialog {
 	            	}
 	            	
 	            }else{
-	            (
-	            		(Button)layout.findViewById(R.id.positiveButton))	.setVisibility(View.GONE);
+	            layout.findViewById(R.id.positiveButton).setVisibility(View.GONE);
 	            }
 	            if(negativeButtonText!=null){
 	            	((Button)layout.findViewById(R.id.negativeButton)).setText(negativeButtonText);
 	            	if(negativeButtonClickListener!=null){
-	            		((Button)layout.findViewById(R.id.negativeButton)).setOnClickListener(new View.OnClickListener() {
+	            		layout.findViewById(R.id.negativeButton).setOnClickListener(new View.OnClickListener() {
 							
 							@Override
 							public void onClick(View arg0) {
@@ -109,7 +108,7 @@ public class CustomDialog extends Dialog {
 						});
 	            	}
 	            }else{
-	            	((Button)layout.findViewById(R.id.negativeButton)).setVisibility(View.GONE);
+	            	layout.findViewById(R.id.negativeButton).setVisibility(View.GONE);
 	            }
 	            // set the content message  
 	            if (message != null) {  

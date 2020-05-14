@@ -22,5 +22,5 @@ import com.xlu.uis.maps.interfaces.event.MapScrolledEvent;
 
 public interface OnMapScrollListener
 {
-	public void onScrolledEvent(MapWidget v, MapScrolledEvent event);
+	void onScrolledEvent(MapWidget v, MapScrolledEvent event);
 }

@@ -121,9 +121,9 @@ public class FragmentFindZone extends Fragment implements OnClickListener,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         contentView = LayoutInflater.from(getActivity()).inflate(
                 R.layout.fragment_find_zone, null);
-        tabJiudian = (MyNewTab) contentView.findViewById(R.id.mtb_jiudian);
-        tabMeishi = (MyNewTab) contentView.findViewById(R.id.mtb_meishi);
-        tabZone = (MyNewTab) contentView.findViewById(R.id.mtb_zone);
+        tabJiudian = contentView.findViewById(R.id.mtb_jiudian);
+        tabMeishi = contentView.findViewById(R.id.mtb_meishi);
+        tabZone = contentView.findViewById(R.id.mtb_zone);
         tabZone.setChecked(true);
         tabZone.setText("景区");
         tabMeishi.setText("美食");
@@ -136,7 +136,7 @@ public class FragmentFindZone extends Fragment implements OnClickListener,
 //            requestRunTimePermissions(new String[]{"android.permission.ACCESS_COARSE_LOCATION"});
 //            requestRunTimePermissions(new String[]{"android.permission.ACCESS_FINE_LOCATION"});
 //        }
-        mvDaolan = (MapView) contentView.findViewById(R.id.mv_dao_lan);
+        mvDaolan = contentView.findViewById(R.id.mv_dao_lan);
         mvDaolan.onCreate(savedInstanceState);
         aMap = mvDaolan.getMap();
         initAmap();
@@ -160,11 +160,7 @@ public class FragmentFindZone extends Fragment implements OnClickListener,
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
             @Override
             public boolean onMarkerClick(Marker marker) {
-                if (isClick == false) {
-                    isClick = true;
-                } else {
-                    isClick = false;
-                }
+                isClick = isClick == false;
                 if (isClick) {
 
                 }
@@ -284,8 +280,8 @@ public class FragmentFindZone extends Fragment implements OnClickListener,
         for (int i = 0; i < list.size(); i++) {
             Merchant1 m = list.get(i);
             View view = LayoutInflater.from(context).inflate(R.layout.zone_list_marker_layout, null);
-            TextView tv = (TextView) view.findViewById(R.id.marker_tv_zone);
-            ImageView iv = (ImageView) view.findViewById(R.id.iv_marker_img);
+            TextView tv = view.findViewById(R.id.marker_tv_zone);
+            ImageView iv = view.findViewById(R.id.iv_marker_img);
             tv.setText(m.getName());
             Marker marker = aMap.addMarker(new MarkerOptions().title(m.getName()).position(new LatLng(Double.valueOf(m.getWeidu()), Double.valueOf(m.getJindu()))).icon(BitmapDescriptorFactory.fromView(view)));
             markers.add(marker);
@@ -311,8 +307,8 @@ public class FragmentFindZone extends Fragment implements OnClickListener,
         for (int i = 0; i < datasJiudian.size(); i++) {
             Merchant1 m = list.get(i);
             View view = LayoutInflater.from(context).inflate(R.layout.zone_list_marker_layout, null);
-            TextView tv = (TextView) view.findViewById(R.id.marker_tv_zone);
-            ImageView iv = (ImageView) view.findViewById(R.id.iv_marker_img);
+            TextView tv = view.findViewById(R.id.marker_tv_zone);
+            ImageView iv = view.findViewById(R.id.iv_marker_img);
             tv.setText(m.getName());
             Marker marker = aMap.addMarker(new MarkerOptions().title(m.getName()).position(new LatLng(Double.valueOf(m.getWeidu()), Double.valueOf(m.getJindu()))).icon(BitmapDescriptorFactory.fromView(view)));
             markers.add(marker);
@@ -339,7 +335,7 @@ public class FragmentFindZone extends Fragment implements OnClickListener,
         for (int i = 0; i < list.size(); i++) {
             Zone zone = list.get(i);
             View view = LayoutInflater.from(context).inflate(R.layout.zone_list_marker_layout, null);
-            TextView tv = (TextView) view.findViewById(R.id.marker_tv_zone);
+            TextView tv = view.findViewById(R.id.marker_tv_zone);
             tv.setText(zone.getName());
             Marker marker = aMap.addMarker(new MarkerOptions().title(zone.getName()).position(new LatLng(Double.valueOf(zone.getLatitude()), Double.valueOf(zone.getLongitude()))).icon(BitmapDescriptorFactory.fromView(view)));
             markers.add(marker);
@@ -507,7 +503,7 @@ public class FragmentFindZone extends Fragment implements OnClickListener,
                                 if (!listZone.isEmpty())
                                     listZone.clear();
                                 Log.v("123", "onsuccess--2");
-                                listZone.addAll((List<Zone>) JsonUtil.getList(t.toString(), Zone.class));
+                                listZone.addAll(JsonUtil.getList(t.toString(), Zone.class));
                                 Log.v("123", "长度=" + listZone.size());
                                 addZoneMarker(listZone);
 

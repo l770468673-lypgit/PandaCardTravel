@@ -119,16 +119,16 @@ public class YuyinAdapter extends RecyclerView.Adapter<YuyinAdapter.ViewHolder> 
         public ViewHolder(View itemView) {
             super(itemView);
             this.view=itemView;
-            tv = (TextView) view.findViewById(R.id.tv_jieshuo_name);
-           tvContent = (TextView) view
+            tv = view.findViewById(R.id.tv_jieshuo_name);
+           tvContent = view
                     .findViewById(R.id.tv_jieshuo_content);
-           ivHere = (ImageView) view.findViewById(R.id.iv_get_here);
-           ivTw = (ImageView) view.findViewById(R.id.iv_tw);
-            ivPlay = (ImageView) view
+           ivHere = view.findViewById(R.id.iv_get_here);
+           ivTw = view.findViewById(R.id.iv_tw);
+            ivPlay = view
                     .findViewById(R.id.iv_play);
-            ivStop = (ImageView) view
+            ivStop = view
                     .findViewById(R.id.iv_stop);
-            iv = (ImageView) view.findViewById(R.id.iv_jieshuo_img);
+            iv = view.findViewById(R.id.iv_jieshuo_img);
 
 
         }

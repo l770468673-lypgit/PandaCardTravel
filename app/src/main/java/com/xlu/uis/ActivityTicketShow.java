@@ -116,7 +116,7 @@ public class ActivityTicketShow extends BaseActivity implements OnClickListener 
                         try {
                             Type types1 = new TypeToken<List<Production>>() {
                             }.getType();
-                            org.json.JSONArray array=new org.json.JSONArray("["+StringUtil.removeNull(t).toString()+"]");
+                            org.json.JSONArray array=new org.json.JSONArray("["+ StringUtil.removeNull(t) +"]");
                             ticketPro= (List<Production>) JsonUtil.fromJsonToObject(
                                     array.toString(), types1);
                             if(ticketPro==null||ticketPro.size()==0)

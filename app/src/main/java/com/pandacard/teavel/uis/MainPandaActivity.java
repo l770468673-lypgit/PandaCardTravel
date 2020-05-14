@@ -508,7 +508,7 @@ public class MainPandaActivity extends BasePandaActivity implements
                 file.createNewFile();
 
                 output = new FileOutputStream(file);
-                byte[] buffer = new byte[(int) (1024 * 1024)];
+                byte[] buffer = new byte[(1024 * 1024)];
                 int current;
                 int downloaded = 0;
 

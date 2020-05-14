@@ -49,9 +49,9 @@ public class ReaTravelActivity extends AppCompatActivity implements View.OnClick
     }
 
     private void findView() {
-        tabFind = (TabLayout) findViewById(R.id.tab_find);
-        vpFind = (ViewPager) findViewById(R.id.vp_findvvp);
-        tvAllTitle = (TextView) findViewById(R.id.tv_all_title_name);
+        tabFind = findViewById(R.id.tab_find);
+        vpFind = findViewById(R.id.vp_findvvp);
+        tvAllTitle = findViewById(R.id.tv_all_title_name);
         tvAllTitle.setOnClickListener(this);
 
 

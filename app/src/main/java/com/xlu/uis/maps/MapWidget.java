@@ -108,7 +108,7 @@ public class MapWidget extends View implements MapLocationListener {
 
 	private enum Mode {
 		NONE, ZOOMED, ZOOM
-	};
+	}
 
 	private OfflineMapConfig config;
 	private ZoomButtonsController zoomBtnsController;
@@ -367,7 +367,7 @@ public class MapWidget extends View implements MapLocationListener {
 			restoreScrollPosRunnable = new Runnable() {
 				public void run() {
 					jumpTo(new Point(mapX, mapY));
-				};
+				}
 			};
 
 		} else {
@@ -1047,7 +1047,7 @@ public class MapWidget extends View implements MapLocationListener {
 		}
 
 		grid.setSoftScale(scale);
-		setScaleToOtherDrawables((float) getScale());
+		setScaleToOtherDrawables(getScale());
 		invalidate();
 	}
 
@@ -1511,7 +1511,7 @@ public class MapWidget extends View implements MapLocationListener {
 			} else if (dx2 < viewWidth) {
 				int gap = viewWidth - dx2;
 				fromX = -gap;
-				scrollTo((int) getScrollX() - gap, getScrollY());
+				scrollTo(getScrollX() - gap, getScrollY());
 				positionCorrected = true;
 			}
 		} else {
@@ -1533,7 +1533,7 @@ public class MapWidget extends View implements MapLocationListener {
 			} else if (dy2 < viewHeight) {
 				int gap = viewHeight - dy2;
 				fromY = -gap;
-				scrollTo((int) getScrollX(), (int) (getScrollY() - gap));
+				scrollTo(getScrollX(), getScrollY() - gap);
 				positionCorrected = true;
 			}
 
@@ -1553,7 +1553,7 @@ public class MapWidget extends View implements MapLocationListener {
 				performAfterTranslate = new Runnable() {
 					public void run() {
 						onPositionCorrected();
-					};
+					}
 				};
 
 				moveAnimation.setDuration(500);
@@ -2219,8 +2219,8 @@ public class MapWidget extends View implements MapLocationListener {
 			if (config.isMapCenteringEnabled()) {
 				minX = (getWidth() - getMapWidth()) / 2;
 				minY = (getHeight() - getMapHeight()) / 2;
-				maxX = (int) getMapWidth() - getWidth();
-				maxY = (int) getMapHeight() - getHeight();
+				maxX = getMapWidth() - getWidth();
+				maxY = getMapHeight() - getHeight();
 
 				if (minX < 0) {
 					minX = 0;
@@ -2318,7 +2318,7 @@ public class MapWidget extends View implements MapLocationListener {
 				updateMapTouchedEvent(e);
 				mapLongClicklistener.onLongClick(MapWidget.this, mapTouchedEvent);
 			}
-		};
+		}
 	}
 
 	/**

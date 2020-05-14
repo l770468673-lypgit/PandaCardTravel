@@ -20,6 +20,6 @@ import android.graphics.drawable.Drawable;
 
 public interface TileManagerDelegate 
 {
-	public void onTileReady(int zoomLevel, int col, int row, Drawable drawable);
-	public void onError(Exception e);
+	void onTileReady(int zoomLevel, int col, int row, Drawable drawable);
+	void onError(Exception e);
 }

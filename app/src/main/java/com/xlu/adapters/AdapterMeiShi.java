@@ -65,15 +65,15 @@ public class AdapterMeiShi extends BaseAdapter {
 			convertView = LayoutInflater.from(mContext).inflate(
 					R.layout.lv_item_meishi, null);
 			holder = new JiuDianViewHolder();
-			holder.ivJiuDian = (ImageView) convertView
+			holder.ivJiuDian = convertView
 					.findViewById(R.id.iv_jiudian);
-			holder.rbJiuDianPk = (RatingBar) convertView
+			holder.rbJiuDianPk = convertView
 					.findViewById(R.id.rb_jiudian_pk);
-			holder.tvDistanceTextView = (TextView) convertView
+			holder.tvDistanceTextView = convertView
 					.findViewById(R.id.tv_juli);
-			holder.tvJiuDianName = (TextView) convertView
+			holder.tvJiuDianName = convertView
 					.findViewById(R.id.tv_jiudian_names);
-			holder.tvPriceNum = (TextView) convertView
+			holder.tvPriceNum = convertView
 					.findViewById(R.id.tv_price_real_num);
 //			holder.tvTags=(TextView) convertView.findViewById(R.id.tv_tags);
 			convertView.setTag(holder);

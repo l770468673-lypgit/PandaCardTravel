@@ -66,10 +66,10 @@ public class AdapterTicket extends BaseAdapter {
 			view = LayoutInflater.from(context).inflate(R.layout.item_ticket,
 					null);
 			vh = new ViewHolder();
-			vh.tv_name = (TextView) view.findViewById(R.id.tv_name);
-			vh.tv_price = (TextView) view.findViewById(R.id.tv_price);
-			vh.btn_buy = (Button) view.findViewById(R.id.btn);
-			vh.tvLubi= (TextView) view.findViewById(R.id.tv_ticket_lubi);
+			vh.tv_name = view.findViewById(R.id.tv_name);
+			vh.tv_price = view.findViewById(R.id.tv_price);
+			vh.btn_buy = view.findViewById(R.id.btn);
+			vh.tvLubi= view.findViewById(R.id.tv_ticket_lubi);
 			vh.btn_buy.setClickable(false);
 			view.setTag(vh);
 		} else {
@@ -84,7 +84,7 @@ public class AdapterTicket extends BaseAdapter {
 			vh.tv_price.setText("￥"+p.getPrice());
 		}
 
-			vh.tvLubi.setText("鹿币立减:"+(int)(p.getCoupon_max()));
+			vh.tvLubi.setText("鹿币立减:"+ p.getCoupon_max());
 
 
 		vh.btn_buy.setOnClickListener(new OnClickListener() {

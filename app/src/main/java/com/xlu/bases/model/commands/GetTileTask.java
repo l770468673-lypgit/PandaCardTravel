@@ -60,7 +60,7 @@ public class GetTileTask extends AsyncTask<Integer, Integer, Boolean> {
 			Bitmap bitmap = BitmapFactory.decodeStream(is);
 		
 			if (bitmap != null) {
-				tileDrawable = (BitmapDrawable) new BitmapDrawable(bitmap);
+				tileDrawable = new BitmapDrawable(bitmap);
 				result = new TransitionDrawable(new Drawable[]{transparent, tileDrawable});
 				result.setBounds(0, 0, tileDrawable.getBitmap().getWidth(), tileDrawable.getBitmap().getHeight());
 				return Boolean.TRUE;

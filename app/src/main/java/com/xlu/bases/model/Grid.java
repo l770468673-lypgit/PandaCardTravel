@@ -175,7 +175,7 @@ public class Grid
 		for (int row=gridWindowBigger.top; row<=gridWindowBigger.bottom; ++row) {
 			for (int col=gridWindowBigger.left; col<=gridWindowBigger.right; ++col) {
 				
-				Cell cell = cells.get((int) (col + row*colCount));
+				Cell cell = cells.get(col + row*colCount);
 			
 				if (cell != null) {
 					if (col >= gridWindow.left && col <= gridWindow.right &&
@@ -435,7 +435,7 @@ public class Grid
 		for (int row=0; row<rowCount; ++row) {
 			for (int col=0; col<colCount; ++col) {
 				if (!(col >= gridWindowBigger.left && col <=gridWindowBigger.right && row >= gridWindowBigger.top && row <= gridWindowBigger.bottom)) {
-					Cell cell = cells.get((int) (col + row*colCount));
+					Cell cell = cells.get(col + row*colCount);
 			
 					if (cell != null) {
 						cell.freeResources();

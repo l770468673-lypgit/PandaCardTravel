@@ -60,7 +60,7 @@ public class CardAdapter extends BaseAdapter {
         TextView resalcards;
 
         public ViewHolder(View convertView) {
-            resalcards = (TextView) convertView.findViewById(R.id.resalcards);
+            resalcards = convertView.findViewById(R.id.resalcards);
 
 
         }

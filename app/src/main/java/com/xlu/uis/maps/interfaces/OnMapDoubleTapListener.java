@@ -33,5 +33,5 @@ public interface OnMapDoubleTapListener
 	 * @return true - if you want to intercept this event and provide your own implementation.<br>
 	 * false - if you want to leave the default map widget behavior.
 	 */
-	public boolean onDoubleTap(MapWidget v, MapTouchedEvent event);
+    boolean onDoubleTap(MapWidget v, MapTouchedEvent event);
 }

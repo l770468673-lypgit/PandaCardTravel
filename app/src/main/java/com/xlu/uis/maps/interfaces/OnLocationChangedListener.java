@@ -23,5 +23,5 @@ import com.xlu.uis.maps.MapWidget;
 
 public interface OnLocationChangedListener
 {
-    public void onLocationChanged(MapWidget v, Location location);
+    void onLocationChanged(MapWidget v, Location location);
 }

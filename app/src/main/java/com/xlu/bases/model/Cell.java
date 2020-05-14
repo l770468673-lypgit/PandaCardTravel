@@ -186,7 +186,7 @@ public class Cell implements Callback, TileManagerDelegate
              recalculateDrawableRect(dx, dy);
              
              if (image instanceof TransitionDrawable) {
-                 ((TransitionDrawable) image).setCallback(Cell.this);
+                 image.setCallback(Cell.this);
                  ((TransitionDrawable) image).startTransition(150);
                  
                  rootView.postDelayed(new Runnable(){public void run(){onIsReady();}}, 150);

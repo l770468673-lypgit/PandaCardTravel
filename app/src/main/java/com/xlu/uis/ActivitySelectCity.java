@@ -124,8 +124,8 @@ public class ActivitySelectCity extends AppCompatActivity {
         mRv.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL));
 
         //使用indexBar
-        mTvSideBarHint = (TextView) findViewById(R.id.tvSideBarHint);//HintTextView
-        mIndexBar = (IndexBar) findViewById(R.id.indexBar);//IndexBar
+        mTvSideBarHint = findViewById(R.id.tvSideBarHint);//HintTextView
+        mIndexBar = findViewById(R.id.indexBar);//IndexBar
         mIndexBar.setmPressedShowTextView(mTvSideBarHint)//设置HintTextView
                 .setNeedRealIndex(true)//设置需要真实的索引
                 .setmLayoutManager(mManager)//设置RecyclerView的LayoutManager
@@ -163,8 +163,8 @@ public class ActivitySelectCity extends AppCompatActivity {
 
         mContext = this;
 
-        mRv = (RecyclerView) findViewById(R.id.rv);
-        titleTile = (TextView) findViewById(R.id.tv_all_title_name);
+        mRv = findViewById(R.id.rv);
+        titleTile = findViewById(R.id.tv_all_title_name);
         titleTile.setText("选择城市");
         titleTile.setVisibility(View.VISIBLE);
         mRv.setLayoutManager(mManager = new LinearLayoutManager(this));

@@ -754,7 +754,7 @@ public class StringUtils {
             Class<?> normalizerClass = Thread.currentThread().getContextClassLoader()
                 .loadClass("java.text.Normalizer");//$NON-NLS-1$
             java6NormalizeMethod = normalizerClass.getMethod("normalize",
-                    new Class[] {CharSequence.class, normalizerFormClass});//$NON-NLS-1$
+                    CharSequence.class, normalizerFormClass);//$NON-NLS-1$
             java6Available = true;
         } catch (ClassNotFoundException e) {
             java6Available = false;
@@ -771,7 +771,7 @@ public class StringUtils {
             Class<?> normalizerClass = Thread.currentThread().getContextClassLoader()
                 .loadClass("sun.text.Normalizer");//$NON-NLS-1$
             sunDecomposeMethod = normalizerClass.getMethod("decompose",
-                    new Class[] {String.class, Boolean.TYPE, Integer.TYPE});//$NON-NLS-1$
+                    String.class, Boolean.TYPE, Integer.TYPE);//$NON-NLS-1$
             sunAvailable = true;
         } catch (ClassNotFoundException e) {
             sunAvailable = false;
@@ -6126,9 +6126,9 @@ public class StringUtils {
             m = t.length();
         }
 
-        int p[] = new int[n + 1]; //'previous' cost array, horizontally
-        int d[] = new int[n + 1]; // cost array, horizontally
-        int _d[]; //placeholder to assist in swapping p and d
+        int[] p = new int[n + 1]; //'previous' cost array, horizontally
+        int[] d = new int[n + 1]; // cost array, horizontally
+        int[] _d; //placeholder to assist in swapping p and d
 
         // indexes into strings s and t
         int i; // iterates through s
@@ -6266,9 +6266,9 @@ public class StringUtils {
             m = t.length();
         }
 
-        int p[] = new int[n + 1]; // 'previous' cost array, horizontally
-        int d[] = new int[n + 1]; // cost array, horizontally
-        int _d[]; // placeholder to assist in swapping p and d
+        int[] p = new int[n + 1]; // 'previous' cost array, horizontally
+        int[] d = new int[n + 1]; // cost array, horizontally
+        int[] _d; // placeholder to assist in swapping p and d
 
         // fill in starting table values
         int boundary = Math.min(n, threshold) + 1;
@@ -6797,11 +6797,8 @@ public class StringUtils {
 	public static boolean isNullAndBlank(String text) {
 		if (text == null)
 			return true;
-		if ("".equals(text.trim()) || "null".equals(text.trim())) {
-			return true;
-		}
-		return false;
-	}
+        return "".equals(text.trim()) || "null".equals(text.trim());
+    }
 
 	/**
 	 * 生成文件名称

@@ -38,7 +38,7 @@ public class MySpinnerDialog extends ProgressDialog {
         params.width= WindowManager.LayoutParams.WRAP_CONTENT;
         params.height= WindowManager.LayoutParams.WRAP_CONTENT;
         getWindow().setAttributes(params);
-        tv= (TextView) findViewById(R.id.tv_load_dialog);
+        tv= findViewById(R.id.tv_load_dialog);
     }
 
     public void setTvShowText(String text) {

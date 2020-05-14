@@ -188,7 +188,7 @@ public class ActivityZhuSuDetail extends BaseActivity implements OnClickListener
 						try {
 							Type types = new TypeToken<List<Production>>() {
 							}.getType();
-							JSONArray array=new JSONArray("["+ StringUtil.removeNull(t).toString()+"]");
+							JSONArray array=new JSONArray("["+ StringUtil.removeNull(t) +"]");
 							list = (List<Production>) JsonUtil.fromJsonToObject(
 									StringUtil.removeNull(array.toString()), types);
 							if(list==null||list.size()==0)

@@ -152,7 +152,6 @@
                     android:textSize="14sp" />
 
                 <Button
-
                     android:id="@+id/paymoney_bottomlly3"
                     android:layout_width="wrap_content"
                     android:layout_height="30dp"
@@ -168,7 +167,7 @@
             </RelativeLayout>
 
             <Button
-                android:visibility="gone"
+
                 android:id="@+id/quancun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -208,33 +207,27 @@
     </LinearLayout>
 
     <!--tuikuan  退款 全村 等操作 -->
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        >
         <Button
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="圈存"
-            android:visibility="gone" />
+            android:text="圈存" />
 
         <Button
             android:id="@+id/quancun2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="圈存2次"
-            android:visibility="gone" />
+            android:text="圈存2次" />
 
         <Button
             android:id="@+id/tuikuan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="退款"
-            android:visibility="gone" />
+            android:text="退款" />
     </LinearLayout>
     <!--tuikuan  ppppppppppppp -->
 </RelativeLayout>

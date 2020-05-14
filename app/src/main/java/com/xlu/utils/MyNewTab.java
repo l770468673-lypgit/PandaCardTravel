@@ -37,8 +37,8 @@ public class MyNewTab extends LinearLayout{
         super(context, attrs, defStyle);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.tab, defStyle, 0);
         View view= LayoutInflater.from(context).inflate(R.layout.mynewtabview_layout,this);
-        tvText= (TextView) view.findViewById(R.id.tv_text);
-        ivShow= (ImageView) view.findViewById(R.id.iv_show);
+        tvText= view.findViewById(R.id.tv_text);
+        ivShow= view.findViewById(R.id.iv_show);
         ivShow.setImageResource(a.getResourceId(R.styleable.tab_mysrc,0));
         if(isChecked){
             tvText.setTextColor(Color.rgb(143,216,91));

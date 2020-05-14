@@ -74,13 +74,13 @@ public class AdapterTicketList extends BaseAdapter {
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.item_ticket_list, null);
             holder = new TextViewHolder();
-            holder.iv = (ImageView) convertView.findViewById(R.id.iv);
-            holder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
+            holder.iv = convertView.findViewById(R.id.iv);
+            holder.tv_name = convertView.findViewById(R.id.tv_name);
 //			holder.tv_city = (TextView) convertView.findViewById(R.id.tv_city);
-            holder.tv_memo = (TextView) convertView.findViewById(R.id.tv_memo);
-            holder.tv_price = (TextView) convertView.findViewById(R.id.tv_price);
-            holder.tv_price_old = (TextView) convertView.findViewById(R.id.tv_price_old);
-            holder.btn_buy = (Button) convertView.findViewById(R.id.btn);
+            holder.tv_memo = convertView.findViewById(R.id.tv_memo);
+            holder.tv_price = convertView.findViewById(R.id.tv_price);
+            holder.tv_price_old = convertView.findViewById(R.id.tv_price_old);
+            holder.btn_buy = convertView.findViewById(R.id.btn);
             convertView.setTag(holder);
         } else {
             holder = (TextViewHolder) convertView.getTag();

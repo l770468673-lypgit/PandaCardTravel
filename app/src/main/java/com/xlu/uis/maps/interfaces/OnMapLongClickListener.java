@@ -22,5 +22,5 @@ import com.xlu.uis.maps.interfaces.event.MapTouchedEvent;
 
 public interface OnMapLongClickListener
 {
-	public boolean onLongClick(MapWidget v, MapTouchedEvent e);
+	boolean onLongClick(MapWidget v, MapTouchedEvent e);
 }

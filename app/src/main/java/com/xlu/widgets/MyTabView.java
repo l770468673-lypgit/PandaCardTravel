@@ -33,8 +33,8 @@ public class MyTabView extends RelativeLayout {
     }
     private void init(){
        View view= LayoutInflater.from(context).inflate(R.layout.mytabview_layout,this);
-        tvText= (TextView) view.findViewById(R.id.tv_text);
-        ivShow= (ImageView) view.findViewById(R.id.iv_show);
+        tvText= view.findViewById(R.id.tv_text);
+        ivShow= view.findViewById(R.id.iv_show);
         if(isChecked){
             ivShow.setVisibility(View.VISIBLE);
         }else{

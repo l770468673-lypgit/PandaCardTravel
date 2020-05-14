@@ -177,38 +177,38 @@ public class ActivityZone2 extends Base2Activity implements MapEventsListener,
 
     private void findView() {
         //标题栏
-        ivBack = (ImageView) findViewById(R.id.iv_zone_back);
-        myOne = (MyTabView) findViewById(R.id.mtv_one);
-        myTwo = (MyTabView) findViewById(R.id.mtv_two);
+        ivBack = findViewById(R.id.iv_zone_back);
+        myOne = findViewById(R.id.mtv_one);
+        myTwo = findViewById(R.id.mtv_two);
         //门票展示
-        ltTopTag = (LinearLayout) findViewById(R.id.lt_tag);
-        tvZoneName = (TextView) findViewById(R.id.tv_zone_name);
-        tvMore = (TextView) findViewById(R.id.tv_more);
-        ivZoneTicketPic = (ImageView) findViewById(R.id.iv_zone_ticket_pic);
-        tvTicketName = (TextView) findViewById(R.id.tv_zone_ticket_name);
-        tvOldPrice = (TextView) findViewById(R.id.tv_price_old);
-        tvNewPrice = (TextView) findViewById(R.id.tv_price);
-        btnOrder = (Button) findViewById(R.id.btn_order);
-        ivClose = (ImageView) findViewById(R.id.iv_close);
+        ltTopTag = findViewById(R.id.lt_tag);
+        tvZoneName = findViewById(R.id.tv_zone_name);
+        tvMore = findViewById(R.id.tv_more);
+        ivZoneTicketPic = findViewById(R.id.iv_zone_ticket_pic);
+        tvTicketName = findViewById(R.id.tv_zone_ticket_name);
+        tvOldPrice = findViewById(R.id.tv_price_old);
+        tvNewPrice = findViewById(R.id.tv_price);
+        btnOrder = findViewById(R.id.btn_order);
+        ivClose = findViewById(R.id.iv_close);
 
         //下载工具栏
-        lyDownload = (LinearLayout) findViewById(R.id.ly_download);
-        tvDownload = (TextView) findViewById(R.id.tv_auto_navi);
-        tvZoneList = (TextView) findViewById(R.id.tv_zone_list);
-        tvSetting = (TextView) findViewById(R.id.tv_setting);
+        lyDownload = findViewById(R.id.ly_download);
+        tvDownload = findViewById(R.id.tv_auto_navi);
+        tvZoneList = findViewById(R.id.tv_zone_list);
+        tvSetting = findViewById(R.id.tv_setting);
 
         //左边工具栏
 
-        ltLeftMenu = (LinearLayout) findViewById(R.id.lt_left_menu);
-        tvPublic = (TextView) findViewById(R.id.tv_public);
-        tvHide = (TextView) findViewById(R.id.tv_hide);
-        tvShare = (TextView) findViewById(R.id.tv_location_share);
-        tvRoute = (TextView) findViewById(R.id.tv_route);
+        ltLeftMenu = findViewById(R.id.lt_left_menu);
+        tvPublic = findViewById(R.id.tv_public);
+        tvHide = findViewById(R.id.tv_hide);
+        tvShare = findViewById(R.id.tv_location_share);
+        tvRoute = findViewById(R.id.tv_route);
 
 
-        rlZoneMap = (RelativeLayout) findViewById(R.id.rl_zone_map);
+        rlZoneMap = findViewById(R.id.rl_zone_map);
 
-        rlParent = (RelativeLayout) findViewById(R.id.rl_map);
+        rlParent = findViewById(R.id.rl_map);
 
 
         ivBack.setOnClickListener(this);

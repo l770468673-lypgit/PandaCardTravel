@@ -64,11 +64,7 @@ public final class GPSLocationProvider implements LocationListener
 		gpsStatusListener = new MyGPSListener();
 		
 		PackageManager mgr = context.getPackageManager();
-		if (mgr.checkPermission(android.Manifest.permission.ACCESS_FINE_LOCATION, context.getPackageName()) == PackageManager.PERMISSION_GRANTED) {
-			permGranted = true;
-		} else {
-			permGranted = false;
-		}
+        permGranted = mgr.checkPermission(android.Manifest.permission.ACCESS_FINE_LOCATION, context.getPackageName()) == PackageManager.PERMISSION_GRANTED;
 	}
 
 	
@@ -242,13 +238,11 @@ public final class GPSLocationProvider implements LocationListener
 	                if (mLastLocation != null)
 	                    isGpsFix = (SystemClock.elapsedRealtime() - mLastLocationMillis) < 3000;
 
-	                if (isGpsFix) { // A fix has been acquired.
-	                	filterNonGPSFix = true;
-	                    // Do something.
-	                } else { // The fix has been lost.
-	                	filterNonGPSFix = false;
-	                    // Do something.
-	                }
+                    // A fix has been acquired.
+                    // Do something.
+                    // The fix has been lost.
+                    // Do something.
+                    filterNonGPSFix = isGpsFix;
 
 	                break;
 	            case GpsStatus.GPS_EVENT_FIRST_FIX:

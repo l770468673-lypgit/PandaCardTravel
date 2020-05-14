@@ -99,9 +99,9 @@ public class FragmentFindItem extends Fragment implements PullToRefreshLayout.On
     }
 
     private void findView() {
-        pullRefresh = (PullToRefreshLayout) view.findViewById(R.id.pullrlt);
-        slv = (SuperListView) view.findViewById(R.id.mlv_find_item);
-        tvTitle = (TextView) view.findViewById(R.id.tv_all_title_name);
+        pullRefresh = view.findViewById(R.id.pullrlt);
+        slv = view.findViewById(R.id.mlv_find_item);
+        tvTitle = view.findViewById(R.id.tv_all_title_name);
     }
 
 
@@ -153,8 +153,8 @@ public class FragmentFindItem extends Fragment implements PullToRefreshLayout.On
         params.put("weidu", MyApplication.weidu + "");
         params.put("page", page + "");
 
-        LUtils.d(TAG, "jindu==" + String.valueOf(MyApplication.jingdu));
-        LUtils.d(TAG, "weidu==" + String.valueOf(MyApplication.weidu));
+        LUtils.d(TAG, "jindu==" + MyApplication.jingdu);
+        LUtils.d(TAG, "weidu==" + MyApplication.weidu);
         LUtils.d(TAG, "page==" + page + "");
         LUtils.d(TAG, "city==" + DBUtil.getCity(MyApplication.city).getBianhao() + "");
         if (DBUtil.getCity(MyApplication.city) != null) {
@@ -196,7 +196,7 @@ public class FragmentFindItem extends Fragment implements PullToRefreshLayout.On
                                 }
 
                             } else {
-                                List<Merchant1> list2 = (List<Merchant1>) JsonUtil
+                                List<Merchant1> list2 = JsonUtil
                                         .getList(t.toString(), Merchant1.class);
                                 datas.addAll(list2);
                                 if (list2.size() == 0) {
@@ -239,8 +239,8 @@ public class FragmentFindItem extends Fragment implements PullToRefreshLayout.On
         params.put("weidu", MyApplication.weidu + "");
         params.put("page", page + "");
         // params.put("status", status);
-        LUtils.d(TAG, "jindu==" + String.valueOf(MyApplication.jingdu));
-        LUtils.d(TAG, "weidu==" + String.valueOf(MyApplication.weidu));
+        LUtils.d(TAG, "jindu==" + MyApplication.jingdu);
+        LUtils.d(TAG, "weidu==" + MyApplication.weidu);
         LUtils.d(TAG, "page==" + page + "");
         LUtils.d(TAG, "type==" + type);
 

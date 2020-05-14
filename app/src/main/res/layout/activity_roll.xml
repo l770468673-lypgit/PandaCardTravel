@@ -5,9 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".uis.RollActivity">
-    <include
-        android:id="@+id/include1"
-        layout="@layout/toptitlebar_layout_withtext"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/include1"
+            layout="@layout/toptitlebar_layout_withtext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+
+        <WebView
+            android:id="@+id/fragment_travel_webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -55,9 +55,9 @@ public class AdapterRecomment extends BaseAdapter {
 		if(convertView==null){
 			convertView=LayoutInflater.from(context).inflate(R.layout.gv_recommend_zone_item,null);
 			holder=new ViewHolder();
-			holder.iv=(ImageView) convertView.findViewById(R.id.iv_recomment_zone);
-			holder.tv=(TextView) convertView.findViewById(R.id.tv_recomment_text);
-			holder.tvMemo= (TextView) convertView.findViewById(R.id.tv_recomment_memo);
+			holder.iv= convertView.findViewById(R.id.iv_recomment_zone);
+			holder.tv= convertView.findViewById(R.id.tv_recomment_text);
+			holder.tvMemo= convertView.findViewById(R.id.tv_recomment_memo);
 			convertView.setTag(holder);
 		}else{
 			holder=(ViewHolder) convertView.getTag();

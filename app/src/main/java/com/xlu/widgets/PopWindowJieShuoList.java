@@ -56,10 +56,10 @@ public class PopWindowJieShuoList extends PopupWindow implements View.OnClickLis
         this.setBackgroundDrawable(new BitmapDrawable());
         this.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         this.setHeight(ScreenUtil.dip2px(context,300));
-        tvName= (TextView) convertView.findViewById(R.id.tv_pop_jieshuo_name);
-        ivCloseWindow= (ImageView) convertView.findViewById(R.id.iv_close_pop);
-        lv= (ListView) convertView.findViewById(R.id.lv_jieshuo);
-        etJieShuoSearch= (EditText) convertView.findViewById(R.id.et_search_jieshuo);
+        tvName= convertView.findViewById(R.id.tv_pop_jieshuo_name);
+        ivCloseWindow= convertView.findViewById(R.id.iv_close_pop);
+        lv= convertView.findViewById(R.id.lv_jieshuo);
+        etJieShuoSearch= convertView.findViewById(R.id.et_search_jieshuo);
         ivCloseWindow.setOnClickListener(this);
         tvName.setText(zone.getName()+"("+ jieshuos.size()+"个景点)");
         adapter=new PopJieShuoAdapter(context,datas);
@@ -114,11 +114,7 @@ public class PopWindowJieShuoList extends PopupWindow implements View.OnClickLis
 
     }
     private boolean isChild(String parent, String child){
-        if(parent.indexOf(child)==-1){
-            return false;
-        }else{
-            return true;
-        }
+        return parent.indexOf(child) != -1;
     }
 
 
@@ -173,7 +169,7 @@ class PopJieShuoAdapter extends BaseAdapter {
         if(convertView==null){
             holder=new JieShuoViewHolder();
             convertView=  LayoutInflater.from(context).inflate(R.layout.pop_jieshuo_item,null);
-            holder.tv= (TextView) convertView.findViewById(R.id.tv_item_jieshuos);
+            holder.tv= convertView.findViewById(R.id.tv_item_jieshuos);
             convertView.setTag(holder);
         }else{
             holder= (JieShuoViewHolder) convertView.getTag();

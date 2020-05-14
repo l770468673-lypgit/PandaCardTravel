@@ -30,6 +30,7 @@ import com.pandacard.teavel.https.beans.cardsbean;
 import com.pandacard.teavel.uis.LoginPandaActivity;
 import com.pandacard.teavel.uis.NFCPandaActivity;
 import com.pandacard.teavel.uis.RightsActivity;
+import com.pandacard.teavel.uis.RollActivity;
 import com.pandacard.teavel.uis.eIDActivity;
 import com.pandacard.teavel.utils.HttpRetrifitUtils;
 import com.pandacard.teavel.utils.LUtils;
@@ -304,9 +305,11 @@ public class MainFrag_home extends Fragment implements ViewPager.OnPageChangeLis
                     break;
                 case R.id.fragment_home_useread:
 
-//                    Intent Transac = new Intent(getActivity(), MyTransactionAddress.class);
-//                    startActivity(Transac);
-                    ToastUtils.showToast(getActivity(), "请稍后再试");
+                    //                    Intent Transac = new Intent(getActivity(), MyTransactionAddress.class);
+                    //                    startActivity(Transac);
+                    Intent Transac = new Intent(getActivity(), RollActivity.class);
+                    startActivity(Transac);
+                    //                    ToastUtils.showToast(getActivity(), "请稍后再试");
                     break;
                 case R.id.fragment_home_discounts:
                     Intent inrights = new Intent(getActivity(), RightsActivity.class);

@@ -133,8 +133,8 @@ public class MainFrag_mine extends Fragment implements View.OnClickListener {
             case R.id.fragment_mine_useread:
                 break;
             case R.id.lly_mine_card:
-                Intent intentroll = new Intent(getActivity(), RollActivity.class);
-                startActivity(intentroll);
+                //                Intent intentroll = new Intent(getActivity(), RollActivity.class);
+                //                startActivity(intentroll);
                 break;
             case R.id.fragment_mine_eid:
 

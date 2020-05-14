@@ -31,8 +31,8 @@ public class PoiOverlay {
 	private CameraUpdateFactory cameraUpdateFactory;
 	LatLngBounds.Builder b;
 	public enum Type{
-		pub,normal,route;
-	}
+		pub,normal,route
+    }
 
 	public void setType(Type type) {
 		this.type = type;
@@ -144,7 +144,7 @@ public class PoiOverlay {
 					return;
 				}
 				if(mPois.size()==1){
-					mAMap.moveCamera(cameraUpdateFactory.newLatLngZoom(new LatLng(mPois.get(0).getLatLonPoint().getLatitude(),mPois.get(0).getLatLonPoint().getLongitude()), 18f));
+					mAMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(mPois.get(0).getLatLonPoint().getLatitude(),mPois.get(0).getLatLonPoint().getLongitude()), 18f));
 				}else{
 					LatLngBounds bounds=getLatLngBounds();
 					mAMap.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 5));
@@ -185,7 +185,7 @@ public class PoiOverlay {
 			if(v==null)
                 v= LayoutInflater.from(context).inflate(
                     R.layout.route_jieshuo_marker_layout, null);
-            TextView tv = (TextView) v.findViewById(R.id.tv_marker_name);
+            TextView tv = v.findViewById(R.id.tv_marker_name);
 			tv.setText((index + 1) + "");
 			return BitmapDescriptorFactory.fromView(v);
 		}

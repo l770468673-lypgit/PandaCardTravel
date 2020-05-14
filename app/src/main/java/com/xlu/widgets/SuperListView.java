@@ -31,11 +31,11 @@ public class SuperListView extends ListView implements Pullable {
 		inflater = LayoutInflater.from(context);
 		view = inflater.inflate(R.layout.load_fail, null);
 		view1 = inflater.inflate(R.layout.loading, null);
-		tvRefresh = (TextView) view.findViewById(R.id.tv_refresh);
-		tvFail = (TextView) view.findViewById(R.id.tv_fail);
-		tvJianyi = (TextView) view.findViewById(R.id.tv_fail_jianyi);
-		ivPic = (ImageView) view.findViewById(R.id.iv_fail);
-		ivLoading = (ImageView) view1.findViewById(R.id.iv_loading);
+		tvRefresh = view.findViewById(R.id.tv_refresh);
+		tvFail = view.findViewById(R.id.tv_fail);
+		tvJianyi = view.findViewById(R.id.tv_fail_jianyi);
+		ivPic = view.findViewById(R.id.iv_fail);
+		ivLoading = view1.findViewById(R.id.iv_loading);
 		rotate = new ObjectAnimator().ofFloat(ivLoading, "rotation", 0F,360);
 		rotate.setRepeatCount(ValueAnimator.INFINITE);
 		rotate.setDuration(1000);
@@ -81,17 +81,14 @@ public class SuperListView extends ListView implements Pullable {
 
 	@Override
 	public boolean canPullDown() {
-		if (getCount() == 0)
+        // 滑到顶部了
+        if (getCount() == 0)
 		{
 			// 没有item的时候也可以下拉刷新
 			return true;
-		} else if (getFirstVisiblePosition() == 0
-				&& getChildAt(0)!=null&&getChildAt(0).getTop() >= 0)
-		{
-			// 滑到顶部了
-			return true;
 		} else
-			return false;
+            return getFirstVisiblePosition() == 0
+                    && getChildAt(0) != null && getChildAt(0).getTop() >= 0;
 	}
 
 	@Override
@@ -103,11 +100,10 @@ public class SuperListView extends ListView implements Pullable {
 		} else if (getLastVisiblePosition() == (getCount() - 1))
 		{
 			// 滑到底部了
-			if (getChildAt(getLastVisiblePosition() - getFirstVisiblePosition()) != null
-					&& getChildAt(
-					getLastVisiblePosition()
-							- getFirstVisiblePosition()).getBottom() <= getMeasuredHeight())
-				return true;
+            return getChildAt(getLastVisiblePosition() - getFirstVisiblePosition()) != null
+                    && getChildAt(
+                    getLastVisiblePosition()
+                            - getFirstVisiblePosition()).getBottom() <= getMeasuredHeight();
 		}
 		return false;
 	}

@@ -18,5 +18,5 @@ package com.xlu.uis.maps.interfaces;
 
 public interface OnGridReadyListener 
 {
-	public void onReady();
+	void onReady();
 }

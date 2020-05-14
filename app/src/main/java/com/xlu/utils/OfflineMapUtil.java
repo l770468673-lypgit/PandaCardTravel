@@ -69,7 +69,7 @@ public class OfflineMapUtil
 			return 0;
 		}
 		
-		return (int) Math.ceil(Math.log((double)biggerSize) / Math.log(2.0));
+		return (int) Math.ceil(Math.log(biggerSize) / Math.log(2.0));
 	}
 	
 	

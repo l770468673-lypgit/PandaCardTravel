@@ -271,7 +271,6 @@ public class Map2Activity extends BaseActivity implements View.OnClickListener,
                             playJieShuoAuto(jieShuoList.get(i));
                             break;
                         }
-                        ;
                     }
 
                     /*Toast.makeText(getApplicationContext(), statusStr,
@@ -450,7 +449,7 @@ public class Map2Activity extends BaseActivity implements View.OnClickListener,
                                 View view = LayoutInflater.from(Map2Activity.this)
                                         .inflate(R.layout.route_jieshuo_marker_layout,
                                                 null);
-                                TextView tv = (TextView) view
+                                TextView tv = view
                                         .findViewById(R.id.tv_marker_name);
                                 tv.setText(jieShuoList.indexOf(j) + 1 + "");
                                 markerList.get(jieShuoList.indexOf(j)).setIcon(BitmapDescriptorFactory.fromView(view));
@@ -728,7 +727,7 @@ public class Map2Activity extends BaseActivity implements View.OnClickListener,
                     View view = LayoutInflater.from(Map2Activity.this)
                             .inflate(R.layout.route_jieshuo_marker_layout,
                                     null);
-                    TextView tv = (TextView) view
+                    TextView tv = view
                             .findViewById(R.id.tv_marker_name);
                     tv.setText(jieShuoList.indexOf(j) + 1 + "");
                     markerList.get(jieShuoList.indexOf(j)).setIcon(BitmapDescriptorFactory.fromView(view));
@@ -1027,9 +1026,9 @@ public class Map2Activity extends BaseActivity implements View.OnClickListener,
 
                         @Override
                         public void onSuccess(ResponseInfo<String> info) {
-                            Log.v("123", "请求内容：" + info.result.toString());
+                            Log.v("123", "请求内容：" + info.result);
                             if (listener != null) {
-                                listener.onLoadJdData(info.result.toString());
+                                listener.onLoadJdData(info.result);
                             }
                         }
                     });
@@ -1193,58 +1192,58 @@ public class Map2Activity extends BaseActivity implements View.OnClickListener,
     //    private LinearLayout llSearch;
 
     private void initviews() {
-        mapview = (MapView) findViewById(R.id.map);
+        mapview = findViewById(R.id.map);
 
-        rlBiaoTi = (RelativeLayout) findViewById(R.id.rl);
-        ivBack = (ImageView) findViewById(R.id.iv_zone_back);
-        myOne = (MyTabView) findViewById(R.id.mtv_one);
-        myTwo = (MyTabView) findViewById(R.id.mtv_two);
-        ltBottomTool = (LinearLayout) findViewById(R.id.ly_download);
+        rlBiaoTi = findViewById(R.id.rl);
+        ivBack = findViewById(R.id.iv_zone_back);
+        myOne = findViewById(R.id.mtv_one);
+        myTwo = findViewById(R.id.mtv_two);
+        ltBottomTool = findViewById(R.id.ly_download);
 
         //右边按钮
-        btnHf = (Button) findViewById(R.id.btn_huifu);
+        btnHf = findViewById(R.id.btn_huifu);
 
-        rlParent = (RelativeLayout) findViewById(R.id.rl_map);
+        rlParent = findViewById(R.id.rl_map);
 
 
         //上部显示条
-        ltTopTag = (LinearLayout) findViewById(R.id.lt_tag);
-        tvTicketName = (TextView) findViewById(R.id.tv_zone_ticket_name);
-        tvMore = (TextView) findViewById(R.id.tv_more);
+        ltTopTag = findViewById(R.id.lt_tag);
+        tvTicketName = findViewById(R.id.tv_zone_ticket_name);
+        tvMore = findViewById(R.id.tv_more);
         //        tvZoneName= (TextView) findViewById(R.id.tv_zone_name);
-        tvOldPrice = (TextView) findViewById(R.id.tv_price_old);
-        tvNewPrice = (TextView) findViewById(R.id.tv_price);
-        ivZonePic = (ImageView) findViewById(R.id.iv_zone_pic);
-        ivClose = (ImageView) findViewById(R.id.iv_close);
-        btnOrder = (Button) findViewById(R.id.btn_order);
+        tvOldPrice = findViewById(R.id.tv_price_old);
+        tvNewPrice = findViewById(R.id.tv_price);
+        ivZonePic = findViewById(R.id.iv_zone_pic);
+        ivClose = findViewById(R.id.iv_close);
+        btnOrder = findViewById(R.id.btn_order);
 
         //底部工具条
-        ltBottomTool = (LinearLayout) findViewById(R.id.ly_download);
-        tvZoneList = (TextView) findViewById(R.id.tv_zone_list);
-        tvAutoNavi = (TextView) findViewById(R.id.tv_auto_navi);
-        tvSetting = (TextView) findViewById(R.id.tv_setting);
+        ltBottomTool = findViewById(R.id.ly_download);
+        tvZoneList = findViewById(R.id.tv_zone_list);
+        tvAutoNavi = findViewById(R.id.tv_auto_navi);
+        tvSetting = findViewById(R.id.tv_setting);
 
         //左边工具条
-        ltLeftMenu = (LinearLayout) findViewById(R.id.lt_left_menu);
-        btnRoute = (Button) findViewById(R.id.btn_route);
-        btnPublic = (Button) findViewById(R.id.btn_public);
-        btnLocationShare = (Button) findViewById(R.id.btn_location_share);
-        btnHide = (Button) findViewById(R.id.btn_hide);
+        ltLeftMenu = findViewById(R.id.lt_left_menu);
+        btnRoute = findViewById(R.id.btn_route);
+        btnPublic = findViewById(R.id.btn_public);
+        btnLocationShare = findViewById(R.id.btn_location_share);
+        btnHide = findViewById(R.id.btn_hide);
 
 
-        rlProgress = (RelativeLayout) findViewById(R.id.rl_progress);
+        rlProgress = findViewById(R.id.rl_progress);
 
-        mLocationErrText = (TextView) findViewById(R.id.location_errInfo_text);
+        mLocationErrText = findViewById(R.id.location_errInfo_text);
 
 
         //语音播放
-        rlChange = (RelativeLayout) findViewById(R.id.rl_change);
+        rlChange = findViewById(R.id.rl_change);
 
 
         //        mSearchText = (EditText) findViewById(R.id.input_edittext);
 
         mLocationErrText.setVisibility(View.GONE);
-        tvZoneName = (TextView) findViewById(R.id.tv_zone_name);
+        tvZoneName = findViewById(R.id.tv_zone_name);
         jieShuoList = new ArrayList<Jieshuo>();
         myOne.setOnClickListener(this);
         myTwo.setOnClickListener(this);
@@ -1359,7 +1358,7 @@ public class Map2Activity extends BaseActivity implements View.OnClickListener,
                             View view = LayoutInflater.from(Map2Activity.this)
                                     .inflate(R.layout.route_jieshuo_marker_layout,
                                             null);
-                            TextView tv = (TextView) view
+                            TextView tv = view
                                     .findViewById(R.id.tv_marker_name);
                             tv.setText(jieShuoList.indexOf(j2) + 1 + "");
                             markerList.get(jieShuoList.indexOf(j2)).setIcon(BitmapDescriptorFactory.fromView(view));
@@ -1948,8 +1947,8 @@ public class Map2Activity extends BaseActivity implements View.OnClickListener,
         View contentView = LayoutInflater.from(this).inflate(
                 R.layout.view_pop_seach, null);
 
-        TextView tvWC = (TextView) contentView.findViewById(R.id.tv_wc);
-        TextView tvExit = (TextView) contentView.findViewById(R.id.tv_exit);
+        TextView tvWC = contentView.findViewById(R.id.tv_wc);
+        TextView tvExit = contentView.findViewById(R.id.tv_exit);
         tvWC.setOnClickListener(this);
         tvExit.setOnClickListener(this);
         popupWindow = new PopupWindow(contentView, LayoutParams.WRAP_CONTENT,
@@ -2279,7 +2278,7 @@ public class Map2Activity extends BaseActivity implements View.OnClickListener,
                         View view = LayoutInflater.from(Map2Activity.this)
                                 .inflate(R.layout.route_jieshuo_marker_layout,
                                         null);
-                        TextView tv = (TextView) view
+                        TextView tv = view
                                 .findViewById(R.id.tv_marker_name);
                         tv.setText(jieShuoList.indexOf(pauseJieshuo) + 1 + "");
                         markerList.get(jieShuoList.indexOf(pauseJieshuo)).setIcon(BitmapDescriptorFactory.fromView(view));

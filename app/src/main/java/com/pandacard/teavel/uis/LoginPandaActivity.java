@@ -338,12 +338,12 @@ public class LoginPandaActivity extends BasePandaActivity implements View.OnClic
             Object key = entry.getKey();
             Object value = entry.getValue();
             if (entry.getKey().equals("unionid")) {
-                LUtils.d(TAG, key + "：-----unionid--------- " + (String) entry.getValue());
+                LUtils.d(TAG, key + "：-----unionid--------- " + entry.getValue());
                 ShareUtil.putString(HttpRetrifitUtils.WXLOGIN_UNID, (String) entry.getValue());
                 getMobiles((String) entry.getValue());
             }
             if (entry.getKey().equals("headimgurl")) {
-                LUtils.d(TAG, key + "：-----headimgurl--------- " + (String) entry.getValue());
+                LUtils.d(TAG, key + "：-----headimgurl--------- " + entry.getValue());
             }
         }
     }

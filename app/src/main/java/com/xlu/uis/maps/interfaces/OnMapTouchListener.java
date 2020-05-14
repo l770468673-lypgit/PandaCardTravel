@@ -22,5 +22,5 @@ import com.xlu.uis.maps.interfaces.event.MapTouchedEvent;
 
 public interface OnMapTouchListener
 {
-	public void onTouch(MapWidget v, MapTouchedEvent event);
+	void onTouch(MapWidget v, MapTouchedEvent event);
 }

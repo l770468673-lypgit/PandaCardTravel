@@ -28,7 +28,7 @@ public class MapCalibrationData
 	private float widthInMeters;
 	private float heightInMeters;
 	
-	private float results[];
+	private float[] results;
 	
 	public MapCalibrationData(Pair<Point, Location> topLeft, Pair<Point, Location> bottomRight)
 	{

@@ -96,7 +96,7 @@ public class BluetoothServiceImp2 extends Service {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 String name = device.getName();
                 if (name == null || name.contains(Constance.BLUETOTH_NAME)) {
-                    float rssi = (float)intent.getExtras().getShort(BluetoothDevice.EXTRA_RSSI);
+                    float rssi = intent.getExtras().getShort(BluetoothDevice.EXTRA_RSSI);
                     SystemManger.setEqus(device.getAddress(), rssi);
                 }
             }

@@ -85,11 +85,11 @@ public class CustumDialog extends Dialog {
 
 	public void setCustomDialog() {
 		View mView = LayoutInflater.from(getContext()).inflate(R.layout.alter_dialog, null);
-		tvNum = (TextView) mView.findViewById(R.id.tvnum);
-		tvJindu=(TextView) mView.findViewById(R.id.tv_jindu);
-		positiveButton = (Button) mView.findViewById(R.id.positiveButton);
-		negativeButton = (Button) mView.findViewById(R.id.negativeButton);
-		pbjindu=(ProgressBar) mView.findViewById(R.id.pb_progressbar);
+		tvNum = mView.findViewById(R.id.tvnum);
+		tvJindu= mView.findViewById(R.id.tv_jindu);
+		positiveButton = mView.findViewById(R.id.positiveButton);
+		negativeButton = mView.findViewById(R.id.negativeButton);
+		pbjindu= mView.findViewById(R.id.pb_progressbar);
 		super.setContentView(mView);
 	}
 	/** 

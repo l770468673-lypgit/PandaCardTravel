@@ -159,7 +159,7 @@ public class ActivityZone extends BaseActivity implements MapEventsListener,
 		this.savedInstanceState = savedInstanceState;
 		Intent intent = new Intent("cn.com.wideroad.xiaolu.service.download");// �������ط���
 		intent.setPackage(getPackageName());
-		context.bindService(intent, conn, context.BIND_AUTO_CREATE);
+		context.bindService(intent, conn, BIND_AUTO_CREATE);
 		intent = new Intent("cn.com.wideroad.xiaolu.service.play");
 		intent.setPackage(getPackageName());
 		context.bindService(intent, conn1, BIND_AUTO_CREATE);
@@ -499,7 +499,6 @@ public class ActivityZone extends BaseActivity implements MapEventsListener,
 								.intValue());
 						int y = yToScreenCoords(Double.valueOf(jieshuoLine.getZuobiao_y())
 								.intValue());
-						;
 						jieshuoPopup.show(rlZoneMap, x, y);
 						
 //					playBindViewer.play1(Constance.HTTP_URL+"/upload/"+zone.getId()+"/"+jieshuo.getYuyin()+".mp3");
@@ -613,7 +612,6 @@ public class ActivityZone extends BaseActivity implements MapEventsListener,
 						.intValue());
 				int y = yToScreenCoords(Double.valueOf(jieshuo2.getZuobiao_y())
 						.intValue());
-				;
 				jieshuoPopup.show(rlZoneMap, x, y);
 				if (!jieshuo2.equals(jieshuo1)) {
 					jieshuoPopup.setPlay(true);
@@ -664,7 +662,6 @@ public class ActivityZone extends BaseActivity implements MapEventsListener,
 							jieshuo2.getZuobiao_x()).intValue());
 					int y = yToScreenCoords(Double.valueOf(
 							jieshuo2.getZuobiao_y()).intValue());
-					;
 					jieshuoPopup.show(rlZoneMap, x, y);
 					SystemManger.yuying = jieshuo2.getYuyin();
 					playBinder.pause(1);

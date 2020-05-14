@@ -196,7 +196,7 @@ public class SaveMoneyPandaActivity extends BasePandaActivity implements View.On
      * 菜单弹出方向
      */
     public enum Location {
-        BOTTOM;
+        BOTTOM
 
     }
 

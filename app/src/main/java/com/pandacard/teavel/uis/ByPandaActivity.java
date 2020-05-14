@@ -64,7 +64,6 @@ public class ByPandaActivity extends AppCompatActivity implements View.OnClickLi
 
     private String mMSbanna;
     private String mMGoodsDesc;
-    ;
     private TextView mCard_money;
     private AnimationDrawable mAnimaition;
     private ImageView iamge_loaddate_anim;
@@ -337,7 +336,7 @@ public class ByPandaActivity extends AppCompatActivity implements View.OnClickLi
      *  
      */
     public enum Location {
-        BOTTOM;
+        BOTTOM
     }
 
     @Override

@@ -36,7 +36,7 @@ import java.util.List;
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         conentView = inflater.inflate(R.layout.popwindow_select_city, null);
-        gvCity = (GridView) conentView.findViewById(R.id.gv_city);
+        gvCity = conentView.findViewById(R.id.gv_city);
         gvCity.setAdapter(new CityAdapter(context));
 
 
@@ -102,7 +102,7 @@ import java.util.List;
                 convertView= LayoutInflater.from(context).inflate(R.layout.popwindow_layer_button,null);
             }
 
-            Button btnLayer = (Button) convertView.findViewById(R.id.btn_select);
+            Button btnLayer = convertView.findViewById(R.id.btn_select);
 //			if (!citys.get(position).getName().equals("全国"))
 //				tvCity.setBackgroundResource(R.drawable.rectangle1_city);
             btnLayer.setTextSize(16);

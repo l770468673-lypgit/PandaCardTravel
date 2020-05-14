@@ -203,7 +203,7 @@ public class ActivityDinnerDetail extends BaseActivity implements OnClickListene
 						try {
 							Type types = new TypeToken<List<Production>>() {
 							}.getType();
-							JSONArray array=new JSONArray("["+ StringUtil.removeNull(t).toString()+"]");
+							JSONArray array=new JSONArray("["+ StringUtil.removeNull(t) +"]");
 
 							list = (List<Production>) JsonUtil.fromJsonToObject(
 									StringUtil.removeNull(array.toString()), types);

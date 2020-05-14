@@ -32,10 +32,7 @@ public class DBUtil {
 			QueryBuilder qb = new QueryBuilder(Zone.class).whereEquals(
 					"isDownload", true);
 			List<Zone> list = liteOrm.<Zone> query(qb);
-			if (list.size() == 0) {
-				return false;
-			}
-			return true;
+			return list.size() != 0;
 		}else{
 			return false;
 		}
@@ -74,10 +71,7 @@ public class DBUtil {
 			QueryBuilder qb = new QueryBuilder(Zone.class)
 					.whereEquals("id", zoneId);
 			List<Zone> list = liteOrm.<Zone> query(qb);
-			if (list.size() == 0) {
-				return false;
-			}
-			return true;
+			return list.size() != 0;
 		}else{
 			return false;
 		}
@@ -133,12 +127,8 @@ public class DBUtil {
 			liteOrm.save(payment);
 			return false;
 		}
-		else if(list.get(0).getTimes() > 0){
-			return false;
-		}
-		else {
-			return true;
-		}
+		else
+			return list.get(0).getTimes() <= 0;
 	}
 
 	public static void consumeFree(int id) {

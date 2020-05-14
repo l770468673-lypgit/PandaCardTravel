@@ -57,11 +57,11 @@ public class AdapterZhuSu extends BaseAdapter {
 		if(convertView==null){
 			convertView=LayoutInflater.from(mContext).inflate(R.layout.lv_item_zhusu, null);
 			holder=new ZhuSuViewHolder();
-			holder.ivJiuDian=(ImageView) convertView.findViewById(R.id.iv_jiudian_img);
-			holder.tvJiuDianJuLi=(TextView) convertView.findViewById(R.id.tv_jiudian_juli);
-			holder.tvJiuDianName=(TextView) convertView.findViewById(R.id.tv_jiudian_name);
-			holder.rbZhuSuPk=(RatingBar) convertView.findViewById(R.id.rb_zhusu_pk);
-			holder.tvJiuDianPrice=(TextView) convertView.findViewById(R.id.tv_iiudian_price_num);
+			holder.ivJiuDian= convertView.findViewById(R.id.iv_jiudian_img);
+			holder.tvJiuDianJuLi= convertView.findViewById(R.id.tv_jiudian_juli);
+			holder.tvJiuDianName= convertView.findViewById(R.id.tv_jiudian_name);
+			holder.rbZhuSuPk= convertView.findViewById(R.id.rb_zhusu_pk);
+			holder.tvJiuDianPrice= convertView.findViewById(R.id.tv_iiudian_price_num);
 //			holder.tvZhuSuType=(TextView) convertView.findViewById(R.id.tv_zhusu_type);
 			convertView.setTag(holder);
 		}else{

@@ -49,12 +49,12 @@ public class JieshuoPopup
         infoWindow = inflater.inflate(
                 R.layout.jieshuo_window, null);
         container.addView(infoWindow);
-        pic = (ImageView) infoWindow.findViewById(R.id.iv_jieshuo_window_pic);
-        tvName = (TextView) infoWindow.findViewById(R.id.tv_jieshuo_window_name);
-        tvMemo = (TextView) infoWindow.findViewById(R.id.tv_jieshuo_window_memo);
-        tvPlay = (TextView) infoWindow.findViewById(R.id.tv_jieshuo_windown_play);
-        lyPlay = (LinearLayout) infoWindow.findViewById(R.id.ly_jieshuo_windown_play);
-        ivPlay = (ImageView) infoWindow.findViewById(R.id.iv_jieshuo_windown_play);
+        pic = infoWindow.findViewById(R.id.iv_jieshuo_window_pic);
+        tvName = infoWindow.findViewById(R.id.tv_jieshuo_window_name);
+        tvMemo = infoWindow.findViewById(R.id.tv_jieshuo_window_memo);
+        tvPlay = infoWindow.findViewById(R.id.tv_jieshuo_windown_play);
+        lyPlay = infoWindow.findViewById(R.id.ly_jieshuo_windown_play);
+        ivPlay = infoWindow.findViewById(R.id.iv_jieshuo_windown_play);
         infoWindow.setFocusable(true);
         infoWindow.setClickable(true);
     }

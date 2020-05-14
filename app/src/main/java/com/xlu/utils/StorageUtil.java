@@ -155,7 +155,7 @@ public class StorageUtil {
 	                }  
 					if ((line.contains("fat") || line.contains("fuse"))&&
 							line.toLowerCase().contains("sd")) {
-						String columns[] = line.split(" ");
+						String[] columns = line.split(" ");
 						if (!columns[0].contains("/vold")&&!columns[0].contains("/storage")
 								&&!columns[0].contains("/dev"))
 							continue;

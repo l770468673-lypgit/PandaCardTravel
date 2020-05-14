@@ -39,11 +39,11 @@ public class CustomizeGoodsAddView extends LinearLayout implements View.OnClickL
     private void init(Context context) {
         mContext = context;
         View view = View.inflate(context, R.layout.number_adder_layout, this);
-        TextView reduceIV = (TextView) view.findViewById(R.id.tv_reduce);
-        mCountET = (EditText) view.findViewById(R.id.et_count);
+        TextView reduceIV = view.findViewById(R.id.tv_reduce);
+        mCountET = view.findViewById(R.id.et_count);
         mCountET.addTextChangedListener(this);
         mCountET.setInputType(InputType.TYPE_NULL);
-        TextView addIV = (TextView) view.findViewById(R.id.tv_add);
+        TextView addIV = view.findViewById(R.id.tv_add);
         reduceIV.setOnClickListener(this);
         addIV.setOnClickListener(this);
         //设置默认值

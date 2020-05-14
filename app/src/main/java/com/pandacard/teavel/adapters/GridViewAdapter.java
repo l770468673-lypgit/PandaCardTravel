@@ -104,8 +104,8 @@ public class GridViewAdapter extends BaseAdapter {
         LinearLayout gradviewid;
 
         public ViewHolder(View convertView) {
-            gradviewid = (LinearLayout) convertView.findViewById(R.id.gradviewid);
-            realmoney = (TextView) convertView.findViewById(R.id.resalmoney);
+            gradviewid = convertView.findViewById(R.id.gradviewid);
+            realmoney = convertView.findViewById(R.id.resalmoney);
 //            salemoney = (TextView) convertView.findViewById(R.id.salemoney);
 
         }

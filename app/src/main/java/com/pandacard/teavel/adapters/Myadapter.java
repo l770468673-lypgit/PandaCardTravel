@@ -41,7 +41,7 @@ public class Myadapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        ((ViewPager) container).addView((View) mList.get(position % mList.size()), 0);
+        container.addView(mList.get(position % mList.size()), 0);
         return mList.get(position % mList.size());
     }
 

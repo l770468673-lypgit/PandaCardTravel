@@ -202,7 +202,7 @@ public class RegisterAndRecognizeActivity extends AppCompatActivity implements V
 
 
         VersionInfo versionInfo = new VersionInfo();
-        ftEngine.getVersion(versionInfo);
+        FaceEngine.getVersion(versionInfo);
         Log.i(TAG, "initEngine:  init: " + ftInitCode + "  version:" + versionInfo);
 
         if (ftInitCode != ErrorInfo.MOK) {

@@ -121,6 +121,7 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
     public final static int READ_CARD_SUCCESS = 30000003;
     public final static int READ_CARD_FAILED = 90000009;
     public final static int READ_CARD_DELAY = 40000004;
+    public final static int READ_SUCCESS_INICAM = 40000005;
     //    private static final int HANDLER_MSG_FACE = 121201;
 
     public static String[][] TECHLISTS;
@@ -229,9 +230,11 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
                     break;
                 case READ_CARD_SUCCESS:
                     // 本地人脸库初始化
+
                     FaceServer.getInstance().init(CardActiviting.this);
                     initEngine();
                     initCamera();
+
                     String reqid = (String) msg.obj;
                     LUtils.e(TAG, "   读卡成功    salt    " + reqid);
                     queryIdCards(reqid);
@@ -240,6 +243,11 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
                 case READ_CARD_DELAY:
                     int ss = msg.arg1;
                     LUtils.e(TAG, "ss    " + ss);
+                    break;
+                case READ_SUCCESS_INICAM:
+
+
+
                     break;
                 default:
                     break;
@@ -298,15 +306,17 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
 
         StatusBarUtil.setDrawable(this, R.drawable.mine_title_jianbian);
         activeEngine(null);
+        initNfc();
+        initEid();
+
         // Activity启动后就锁定为启动时的方向
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
         initView();
-        initNfc();
-        initEid();
 
         ActivityCompat.requestPermissions(this, NEEDED_PERMISSIONS, ACTION_REQUEST_PERMISSIONS);
         readCode = 0;
     }
+
 
     /**
      * 初始化引擎
@@ -326,7 +336,7 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
 
 
         VersionInfo versionInfo = new VersionInfo();
-        ftEngine.getVersion(versionInfo);
+        FaceEngine.getVersion(versionInfo);
         LUtils.i(TAG, "initEngine:  init: " + ftInitCode + "  version:" + versionInfo);
 
         if (ftInitCode != ErrorInfo.MOK) {
@@ -601,8 +611,10 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
                 readCode = 0;
                 break;
             case R.id.cardactive_nextstep:
+
                 mRely_readcard.setVisibility(View.GONE);
                 mRelay_pandacard.setVisibility(View.GONE);
+
                 mRely_facehead.setVisibility(View.VISIBLE);
 
                 break;
@@ -649,7 +661,7 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
                         if (code == 1) {
                             commiyPhone();
                         } else {
-                            ToastUtils.showToast(CardActiviting.this, response.body().getMsg().toString());
+                            ToastUtils.showToast(CardActiviting.this, response.body().getMsg());
                         }
                     }
                 }
@@ -662,13 +674,31 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
         });
     }
 
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        LUtils.e(TAG, "onRestart   " );
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        LUtils.e(TAG, "onStart   " );
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        LUtils.e(TAG, "onStop   " );
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         if (eid != null) {
             eid.enableReaderMode(nfcAdapter, this);
         }
-
         //        eid.disableReaderMode();
         //        eid.ReadCard(1,callBack);
         try {
@@ -705,8 +735,8 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
                 ReadCardUtils.getInstance().getReadCardInfo(CardActiviting.this, "", ctticReader, new ReadCardUtils.ReadCardUtilsListener() {
                     @Override
                     public void readCardFail(int errCode, String errMes) {
-                        ToastUtils.showToast(CardActiviting.this, "读卡失败 errCode =" + errCode + "errMes=" + errMes.toString());
-                        LUtils.i(TAG, errMes.toString());
+                        ToastUtils.showToast(CardActiviting.this, "读卡失败 errCode =" + errCode + "errMes=" + errMes);
+                        LUtils.i(TAG, errMes);
                     }
 
                     @Override
@@ -1011,6 +1041,8 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
                         // main_tv_idcard.setText(idType + "其他");
                     }
 
+
+                    mHandler.sendEmptyMessage(READ_SUCCESS_INICAM);
                     //                    String idnum = status.getIdnum();
                     //                    mCardact_idnumn.setText(idnum);
                     mName = status.getName();
@@ -1026,7 +1058,7 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
                     //                    cardact_iamgv.setImageBitmap(mBit2map);
 
                     mNv21 = Bitmap2NV21.bitmapToNv21(mBit2map, mBit2map.getWidth(), mBit2map.getHeight());
-                    LUtils.d(TAG, "extra.nv21===" + mNv21);
+                    //                    LUtils.d(TAG, "extra.nv21===" + mNv21);
                     LUtils.d(TAG, "extra.nv21===" + mNv21.length);
 
                     if (faceHelper != null) {
@@ -1195,7 +1227,7 @@ public class CardActiviting extends AppCompatActivity implements View.OnClickLis
                         // 将该人脸特征提取状态置为FAILED，帧回调处理时会重新进行活体检测
                         //                        faceHelper.setName(requestId, Integer.toString(requestId));
                         //                        faceHelper.setName(requestId,"");
-                        LUtils.d(TAG, "Integer.toString(requestId)  - ====" + Integer.toString(requestId));
+                        LUtils.d(TAG, "Integer.toString(requestId)  - ====" + requestId);
                         requestFeatureStatusMap.put(requestId, RequestFeatureStatus.TO_RETRY);
                         delayFaceTaskCompositeDisposable.remove(disposable);
                     }
